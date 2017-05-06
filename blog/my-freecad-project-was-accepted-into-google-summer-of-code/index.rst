@@ -26,7 +26,7 @@ of posts. Here are a few rough-draft titles to highlight my planned topics:
 
 * `Neovim <https://github.com/distcc/distcc>`_ as an IDE:
 
-  1. Building a base, or practically pluginless
+  1. Building your base, or practically pluginless
   2. What makes an IDE? An overview of features
   3. Unix as an IDE, or knowing your tools
   4. Neovim with Python 2 and 3
