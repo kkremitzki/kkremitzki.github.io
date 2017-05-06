@@ -90,7 +90,7 @@ For example, at a lo">
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Using Running Averages in Python to Validate Sensor Data</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Kurt Kremitzki
             </span></p>
             <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2016-05-05T05:09:04-05:00" itemprop="datePublished" title="2016-05-05 05:09">2016-05-05 05:09</time></a></p>
@@ -151,51 +151,51 @@ validate measurements before adding to the rolling average</li>
 <li>The downside is a lag time in response to changes in the measurement, and the lag time goes up with accuracy</li>
 </ul>
 <p>Now, on to the code!</p>
-<pre class="code python"><a name="rest_code_495c22085620417982999e9490dbb158-1"></a><span class="c1"># Create empty list-type variable so we can</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-2"></a><span class="c1"># store measurements</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-3"></a><span class="n">sensor_measurements</span> <span class="o">=</span> <span class="p">[]</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-4"></a>
-<a name="rest_code_495c22085620417982999e9490dbb158-5"></a><span class="c1"># Declare these variables at a top level so you can</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-6"></a><span class="c1"># easily edit them once for your whole script to</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-7"></a><span class="c1"># test performance</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-8"></a><span class="n">upper_reasonable_bound</span> <span class="o">=</span> <span class="mi">200</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-9"></a><span class="n">lower_reasonable_bound</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-10"></a><span class="n">rolling_average_size</span> <span class="o">=</span> <span class="mi">4</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-11"></a>
-<a name="rest_code_495c22085620417982999e9490dbb158-12"></a><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">):</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-13"></a>  <span class="sd">"""</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-14"></a><span class="sd">  Use the builtin functions sum and len to make a quick average function</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-15"></a><span class="sd">  """</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-16"></a>  <span class="c1"># Handle division by zero error</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-17"></a>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-18"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-19"></a>  <span class="k">else</span><span class="p">:</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-20"></a>    <span class="c1"># When you use the average later, make sure to include something like</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-21"></a>    <span class="c1"># sensor_average = rolling_average(sensor_measurements)</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-22"></a>    <span class="c1"># if (conditions) and sensor_average &gt; -1:</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-23"></a>    <span class="c1"># This way, -1 can be used as an "invalid" value</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-24"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-25"></a>
-<a name="rest_code_495c22085620417982999e9490dbb158-26"></a>  <span class="k">def</span> <span class="nf">rolling_average</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-27"></a>    <span class="c1"># Update rolling average if measurement is ok, otherwise</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-28"></a>    <span class="c1"># skip to returning the average from previous values</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-29"></a>    <span class="k">if</span> <span class="n">lower_reasonable_bound</span> <span class="o">&lt;</span> <span class="n">measurement</span> <span class="o">&lt;</span> <span class="n">upper_reasonable_bound</span><span class="p">:</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-30"></a>      <span class="c1"># Remove first item from list if it's full according to our chosen size</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-31"></a>      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">rolling_average_size</span><span class="p">:</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-32"></a>        <span class="n">measurements</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-33"></a>      <span class="n">measurements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">measurement</span><span class="p">)</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-34"></a>    <span class="k">return</span> <span class="n">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-35"></a>
-<a name="rest_code_495c22085620417982999e9490dbb158-36"></a><span class="c1"># Your control loop may be handled in another file</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-37"></a><span class="c1"># or with another method, here's an example usage</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-38"></a><span class="kn">import</span> <span class="nn">some_sensor_module</span> <span class="kn">as</span> <span class="nn">ssm</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-39"></a><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-40"></a>  <span class="n">sensor_measurement</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">some_sensor_function</span><span class="p">()</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-41"></a>  <span class="n">sensor_value</span> <span class="o">=</span> <span class="n">rolling_average</span><span class="p">(</span><span class="n">sensor_measurement</span><span class="p">,</span> <span class="n">sensor_measurements</span><span class="p">)</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-42"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">condition_using_sensor_value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-43"></a>    <span class="n">some_logic_handler_function</span><span class="p">(</span><span class="n">sensor_value</span><span class="p">)</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-44"></a>  <span class="k">else</span><span class="p">:</span>
-<a name="rest_code_495c22085620417982999e9490dbb158-45"></a>    <span class="c1"># and so forth</span>
+<pre class="code python"><a name="rest_code_d9553770af204a35835702e706293ba7-1"></a><span class="c1"># Create empty list-type variable so we can</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-2"></a><span class="c1"># store measurements</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-3"></a><span class="n">sensor_measurements</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-4"></a>
+<a name="rest_code_d9553770af204a35835702e706293ba7-5"></a><span class="c1"># Declare these variables at a top level so you can</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-6"></a><span class="c1"># easily edit them once for your whole script to</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-7"></a><span class="c1"># test performance</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-8"></a><span class="n">upper_reasonable_bound</span> <span class="o">=</span> <span class="mi">200</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-9"></a><span class="n">lower_reasonable_bound</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-10"></a><span class="n">rolling_average_size</span> <span class="o">=</span> <span class="mi">4</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-11"></a>
+<a name="rest_code_d9553770af204a35835702e706293ba7-12"></a><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">):</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-13"></a>  <span class="sd">"""</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-14"></a><span class="sd">  Use the builtin functions sum and len to make a quick average function</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-15"></a><span class="sd">  """</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-16"></a>  <span class="c1"># Handle division by zero error</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-17"></a>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-18"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-19"></a>  <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-20"></a>    <span class="c1"># When you use the average later, make sure to include something like</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-21"></a>    <span class="c1"># sensor_average = rolling_average(sensor_measurements)</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-22"></a>    <span class="c1"># if (conditions) and sensor_average &gt; -1:</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-23"></a>    <span class="c1"># This way, -1 can be used as an "invalid" value</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-24"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-25"></a>
+<a name="rest_code_d9553770af204a35835702e706293ba7-26"></a><span class="k">def</span> <span class="nf">rolling_average</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-27"></a>  <span class="c1"># Update rolling average if measurement is ok, otherwise</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-28"></a>  <span class="c1"># skip to returning the average from previous values</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-29"></a>  <span class="k">if</span> <span class="n">lower_reasonable_bound</span> <span class="o">&lt;</span> <span class="n">measurement</span> <span class="o">&lt;</span> <span class="n">upper_reasonable_bound</span><span class="p">:</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-30"></a>    <span class="c1"># Remove first item from list if it's full according to our chosen size</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-31"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">rolling_average_size</span><span class="p">:</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-32"></a>      <span class="n">measurements</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-33"></a>    <span class="n">measurements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">measurement</span><span class="p">)</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-34"></a>  <span class="k">return</span> <span class="n">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-35"></a>
+<a name="rest_code_d9553770af204a35835702e706293ba7-36"></a><span class="c1"># Your control loop may be handled in another file</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-37"></a><span class="c1"># or with another method, here's an example usage</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-38"></a><span class="kn">import</span> <span class="nn">some_sensor_module</span> <span class="kn">as</span> <span class="nn">ssm</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-39"></a><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-40"></a>  <span class="n">sensor_measurement</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">some_sensor_function</span><span class="p">()</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-41"></a>  <span class="n">sensor_value</span> <span class="o">=</span> <span class="n">rolling_average</span><span class="p">(</span><span class="n">sensor_measurement</span><span class="p">,</span> <span class="n">sensor_measurements</span><span class="p">)</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-42"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">condition_using_sensor_value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-43"></a>    <span class="n">some_logic_handler_function</span><span class="p">(</span><span class="n">sensor_value</span><span class="p">)</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-44"></a>  <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_d9553770af204a35835702e706293ba7-45"></a>    <span class="c1"># and so forth</span>
 </pre>
 <p>Let me know in the comments if you have any questions or feedback!</p>
 </div>

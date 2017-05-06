@@ -87,7 +87,7 @@ At a lower level, xmodmap can be used to directly modify the X11 ser">
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Linux Console Caps/Escape Swap</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Kurt Kremitzki
             </span></p>
             <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2016-05-17T22:40:12-05:00" itemprop="datePublished" title="2016-05-17 22:40">2016-05-17 22:40</time></a></p>
@@ -106,7 +106,7 @@ However, when working directly in the Linux console, things are a little more co
 <p>My particular need is to swap the <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> keys; as a <tt class="docutils literal">vim</tt> user, I use <tt class="docutils literal">Escape</tt> constantly to return to Normal mode.
 To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach <tt class="docutils literal">Escape</tt>, the following line
 can be added to the file <tt class="docutils literal">/etc/rc.local</tt>, before the final line <tt class="docutils literal">exit 0</tt>.</p>
-<pre class="code bash"><a name="rest_code_2c39e98335a2430aa2dca78529fce7e6-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
+<pre class="code bash"><a name="rest_code_9b436d8dd64c459d961ced19b433ea0c-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
 </pre>
 <p>If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
 commands separated by the pipe character <tt class="docutils literal">|</tt>.

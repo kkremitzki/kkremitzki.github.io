@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>Biosystems Engineering Blog (Posts about linux)</title><link>https://kkrem.it/zki/</link><description></description><atom:link href="/blog/tags/linux.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Fri, 03 Feb 2017 23:57:27 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Getting Started with FreeCAD Development in Ubuntu 16.04</title><link>/blog/getting-started-with-freecad-development-in-ubuntu-1604/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.freecadweb.org/"&gt;FreeCAD&lt;/a&gt; is a multi-platform (Windows, Mac, Linux) open source parametric 3D CAD modeler, and can read
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about linux)</title><link>https://kkrem.it/zki/</link><description></description><atom:link type="application/rss+xml" rel="self" href="/blog/tags/linux.xml"></atom:link><language>en</language><lastBuildDate>Sat, 06 May 2017 06:03:37 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Getting Started with FreeCAD Development in Ubuntu 16.04</title><link>/blog/getting-started-with-freecad-development-in-ubuntu-1604/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.freecadweb.org/"&gt;FreeCAD&lt;/a&gt; is a multi-platform (Windows, Mac, Linux) open source parametric 3D CAD modeler, and can read
 and write many open file formats.&lt;/p&gt;
 &lt;p&gt;An explanation of the many virtues of open source software can be found at &lt;a class="reference external" href="http://opensourceforamerica.org/learn-more/benefits-of-open-source-software/"&gt;Open Source for America&lt;/a&gt; and elsewhere. To quote OSFA,&lt;/p&gt;
 &lt;blockquote&gt;
@@ -16,23 +16,23 @@ steps and begin contributing.&lt;/p&gt;
 &lt;li&gt;Pull down a copy of the code. (If you don't have a copy of git, run &lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install git&lt;/tt&gt;.)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_65dc30523bdd414c857fc0c876bcd1ac-1"&gt;&lt;/a&gt;git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
-&lt;a name="rest_code_65dc30523bdd414c857fc0c876bcd1ac-2"&gt;&lt;/a&gt;mkdir freecad-build
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_514385addd6e4fbdb0d6773c39bf7adb-1"&gt;&lt;/a&gt;git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
+&lt;a name="rest_code_514385addd6e4fbdb0d6773c39bf7adb-2"&gt;&lt;/a&gt;mkdir freecad-build
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="2"&gt;
 &lt;li&gt;Install all dependencies.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-1"&gt;&lt;/a&gt;sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-2"&gt;&lt;/a&gt;  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-3"&gt;&lt;/a&gt;  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-4"&gt;&lt;/a&gt;  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools &lt;span class="s1"&gt;'liboce*-dev'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-5"&gt;&lt;/a&gt;  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-6"&gt;&lt;/a&gt;  libfreetype6 libfreetype6-dev
-&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-7"&gt;&lt;/a&gt;
-&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-8"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Install optional packages&lt;/span&gt;
-&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-9"&gt;&lt;/a&gt;sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_fe438200d9194be19c323eb420b89c9e-10"&gt;&lt;/a&gt;  libcoin80-doc libspnav-dev
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-1"&gt;&lt;/a&gt;sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-2"&gt;&lt;/a&gt;  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-3"&gt;&lt;/a&gt;  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-4"&gt;&lt;/a&gt;  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools &lt;span class="s1"&gt;'liboce*-dev'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-5"&gt;&lt;/a&gt;  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-6"&gt;&lt;/a&gt;  libfreetype6 libfreetype6-dev
+&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-7"&gt;&lt;/a&gt;
+&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-8"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Install optional packages&lt;/span&gt;
+&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-9"&gt;&lt;/a&gt;sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_310a731424504cf1aa0f4f17c9c8613e-10"&gt;&lt;/a&gt;  libcoin80-doc libspnav-dev
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="3"&gt;
 &lt;li&gt;Move into build folder, make and compile the software. Use the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-j&lt;/span&gt; $(nproc)&lt;/tt&gt; flag to use all N of your CPU cores
@@ -41,19 +41,19 @@ Don't forget the period at the end of the &lt;tt class="docutils literal"&gt;mak
 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-build&lt;/span&gt;&lt;/tt&gt; directory; it's good to keep the source code and build directories separate.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_28cd9b20df36478280671f9071990633-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; freecad-build
-&lt;a name="rest_code_28cd9b20df36478280671f9071990633-2"&gt;&lt;/a&gt;cmake ../freecad-code
-&lt;a name="rest_code_28cd9b20df36478280671f9071990633-3"&gt;&lt;/a&gt;make -j&lt;span class="k"&gt;$(&lt;/span&gt;nproc&lt;span class="k"&gt;)&lt;/span&gt; .
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_dc9de28358484e4b8acce701b40472c8-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; freecad-build
+&lt;a name="rest_code_dc9de28358484e4b8acce701b40472c8-2"&gt;&lt;/a&gt;cmake ../freecad-code
+&lt;a name="rest_code_dc9de28358484e4b8acce701b40472c8-3"&gt;&lt;/a&gt;make -j&lt;span class="k"&gt;$(&lt;/span&gt;nproc&lt;span class="k"&gt;)&lt;/span&gt; .
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="4"&gt;
 &lt;li&gt;Fix Ubuntu 64-bit issue. If you are using a 64-bit version of Ubuntu (hopefully), you may run in to the following
 error message, which occurs because the expected &lt;tt class="docutils literal"&gt;libfreeimage.so&lt;/tt&gt; file was moved into a subdirectory of &lt;tt class="docutils literal"&gt;/usr/lib/&lt;/tt&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_42f85136bf9244b7b53fad8bb148d1f1-1"&gt;&lt;/a&gt;make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: *** No rule to make target &lt;span class="s1"&gt;'/usr/lib/libfreeimage.so'&lt;/span&gt;, needed by &lt;span class="s1"&gt;'lib/libSMDS.so'&lt;/span&gt;.  Stop.
-&lt;a name="rest_code_42f85136bf9244b7b53fad8bb148d1f1-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_42f85136bf9244b7b53fad8bb148d1f1-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Fix with this line.&lt;/span&gt;
-&lt;a name="rest_code_42f85136bf9244b7b53fad8bb148d1f1-4"&gt;&lt;/a&gt;sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c3becef32c8047c7a213aeb093fe04db-1"&gt;&lt;/a&gt;make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: *** No rule to make target &lt;span class="s1"&gt;'/usr/lib/libfreeimage.so'&lt;/span&gt;, needed by &lt;span class="s1"&gt;'lib/libSMDS.so'&lt;/span&gt;.  Stop.
+&lt;a name="rest_code_c3becef32c8047c7a213aeb093fe04db-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_c3becef32c8047c7a213aeb093fe04db-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Fix with this line.&lt;/span&gt;
+&lt;a name="rest_code_c3becef32c8047c7a213aeb093fe04db-4"&gt;&lt;/a&gt;sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;p&gt;Once the build is complete, a runnable copy of the FreeCAD executable will be in the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-build&lt;/span&gt;&lt;/tt&gt; folder. Any changes
 made to the source code can be tested after re-compiling the executable.&lt;/p&gt;
@@ -64,7 +64,7 @@ However, when working directly in the Linux console, things are a little more co
 &lt;p&gt;My particular need is to swap the &lt;tt class="docutils literal"&gt;Caps Lock&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; keys; as a &lt;tt class="docutils literal"&gt;vim&lt;/tt&gt; user, I use &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; constantly to return to Normal mode.
 To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt;, the following line
 can be added to the file &lt;tt class="docutils literal"&gt;/etc/rc.local&lt;/tt&gt;, before the final line &lt;tt class="docutils literal"&gt;exit 0&lt;/tt&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_2c39e98335a2430aa2dca78529fce7e6-1"&gt;&lt;/a&gt;/usr/bin/dumpkeys &lt;span class="p"&gt;|&lt;/span&gt; /bin/sed &lt;span class="s1"&gt;'s/CtrlL_Lock/Escape/'&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; /usr/bin/loadkeys
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_9b436d8dd64c459d961ced19b433ea0c-1"&gt;&lt;/a&gt;/usr/bin/dumpkeys &lt;span class="p"&gt;|&lt;/span&gt; /bin/sed &lt;span class="s1"&gt;'s/CtrlL_Lock/Escape/'&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; /usr/bin/loadkeys
 &lt;/pre&gt;&lt;p&gt;If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
 commands separated by the pipe character &lt;tt class="docutils literal"&gt;|&lt;/tt&gt;.
 A detailed explanation can be found in the &lt;a class="reference external" href="http://www.tldp.org/LDP/abs/html/io-redirection.html"&gt;Advanced Bash Scripting Guide's chapter on I/O Redirection&lt;/a&gt;, but in short,
@@ -76,7 +76,7 @@ take a look at its argument: the string &lt;tt class="docutils literal"&gt;'/s/C
 with &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; on any matching line from its input (adding &lt;tt class="docutils literal"&gt;g&lt;/tt&gt; after the last slash makes it a truly global substitution and not linewise.)
 The &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; command then passes along the modified stream to &lt;tt class="docutils literal"&gt;loadkeys&lt;/tt&gt;. Because this line is added to &lt;tt class="docutils literal"&gt;/etc/rc.local&lt;/tt&gt;, it will be executed
 every boot, swapping &lt;tt class="docutils literal"&gt;Caps Lock&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; in the Linux console.&lt;/p&gt;&lt;/div&gt;</description><category>linux</category><category>raspberry_pi</category><guid>/blog/linux-console-capsescape-swap/</guid><pubDate>Wed, 18 May 2016 03:40:12 GMT</pubDate></item><item><title>Keeping zoom level when navigating PDF in Evince, GNOME's Document Viewer</title><link>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;This one is short, sweet, and to the point. How often do you have your PDF set to a nice zoom level, only to have it reset when navigating via the Bookmarks/Index? If you use GNOME as a Linux DE (desktop environment), then you can fire up a terminal and use this &lt;tt class="docutils literal"&gt;gsettings&lt;/tt&gt; one-liner to preserve zoom:&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_074c8ebc11744d2ab53caecf50d0109f-1"&gt;&lt;/a&gt;gsettings &lt;span class="nb"&gt;set&lt;/span&gt; org.gnome.Evince allow-links-change-zoom &lt;span class="nb"&gt;false&lt;/span&gt;
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_03d19784111245b4b5cf1c14c99aba96-1"&gt;&lt;/a&gt;gsettings &lt;span class="nb"&gt;set&lt;/span&gt; org.gnome.Evince allow-links-change-zoom &lt;span class="nb"&gt;false&lt;/span&gt;
 &lt;/pre&gt;&lt;p&gt;A great alternative PDF reader is the &lt;tt class="docutils literal"&gt;vim&lt;/tt&gt;-key friendly &lt;a class="reference external" href="https://pwmt.org/projects/zathura/"&gt;zathura&lt;/a&gt;. I've had issues opening larger PDFs with it though, so your mileage may vary.&lt;/p&gt;&lt;/div&gt;</description><category>linux</category><guid>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</guid><pubDate>Sun, 24 Apr 2016 21:51:08 GMT</pubDate></item><item><title>Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line</title><link>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;The recommended flavor of Linux on the Raspberry Pi, Raspbian, uses the LXDE desktop environment, and using its GUI tools to set up wifi is not immediately successful.
 Command-line setup involves editing two files, &lt;tt class="docutils literal"&gt;/etc/network/interfaces&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;/etc/wpa_supplicant/wpa_supplicant.conf&lt;/tt&gt;. Since these are system files, they won't be writable by a normal user. The command &lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;-e&lt;/span&gt; &amp;lt;filename&amp;gt;&lt;/tt&gt; can be used to edit system files with superuser privileges, using the default editor. Normally, this is the program &lt;tt class="docutils literal"&gt;nano&lt;/tt&gt;, which is fairly self-explanatory; make your changes using the keyboard and save the file with &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;Ctrl-X&lt;/span&gt;&lt;/tt&gt;. For advanced users, this can be changed via something like &lt;tt class="docutils literal"&gt;export EDITOR=vi&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;The first file, &lt;tt class="docutils literal"&gt;/etc/network/interfaces&lt;/tt&gt;, needs to have the following:&lt;/p&gt;

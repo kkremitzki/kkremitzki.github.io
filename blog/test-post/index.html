@@ -90,7 +90,7 @@ f(x) = \int_{-\infty}^\infty
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Test Post</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Kurt Kremitzki
             </span></p>
             <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2026-02-28T13:01:42-06:00" itemprop="datePublished" title="2026-02-28 13:01">2026-02-28 13:01</time></a></p>
@@ -112,36 +112,36 @@ f(x) = \int_{-\infty}^\infty
 \,d\xi
 \]</p>
 <p>Python and JavaScript code samples.</p>
-<pre class="code python3"><a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-1"></a><span class="ch">#!/usr/bin/env python</span>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-2"></a>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-3"></a><span class="kn">from</span> <span class="nn">engine</span> <span class="k">import</span> <span class="n">RunForrestRun</span>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-4"></a>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-5"></a><span class="sd">"""Test code for syntax highlighting!"""</span>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-6"></a>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-7"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-8"></a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">var</span>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-11"></a>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-12"></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a name="rest_code_2ef809051ded47a3b3d60b09cd1d3b12-13"></a>        <span class="n">RunForrestRun</span><span class="p">()</span> <span class="c1"># run along!</span>
+<pre class="code python3"><a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-1"></a><span class="ch">#!/usr/bin/env python</span>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-2"></a>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-3"></a><span class="kn">from</span> <span class="nn">engine</span> <span class="k">import</span> <span class="n">RunForrestRun</span>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-4"></a>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-5"></a><span class="sd">"""Test code for syntax highlighting!"""</span>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-6"></a>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-7"></a><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-8"></a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">var</span>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-11"></a>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-12"></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a name="rest_code_e99c2e19eb1f42c48ad848d447a0aaa3-13"></a>        <span class="n">RunForrestRun</span><span class="p">()</span> <span class="c1"># run along!</span>
 </pre>
-<pre class="code javascript"><a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-1"></a><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-2"></a>  <span class="kd">var</span> <span class="nx">listItem</span><span class="p">,</span> <span class="nx">itemStatus</span><span class="p">,</span> <span class="nx">eventType</span><span class="p">;</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-3"></a>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-4"></a>  <span class="nx">$</span><span class="p">(</span><span class="s1">'ul'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-5"></a>    <span class="s1">'click mouseover'</span><span class="p">,</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-6"></a>    <span class="s1">':not(#four)'</span><span class="p">,</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-7"></a>    <span class="p">{</span><span class="nx">status</span><span class="o">:</span> <span class="s1">'important'</span><span class="p">},</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-8"></a>    <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-9"></a>      <span class="nx">listItem</span> <span class="o">=</span> <span class="s1">'Item: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">+</span> <span class="s1">'&lt;br /&gt;'</span><span class="p">;</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-10"></a>      <span class="nx">itemStatus</span> <span class="o">=</span> <span class="s1">'Status: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">status</span> <span class="o">+</span> <span class="s1">'&lt;br /&gt;'</span><span class="p">;</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-11"></a>      <span class="nx">eventType</span> <span class="o">=</span> <span class="s1">'Event: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-12"></a>      <span class="nx">$</span><span class="p">(</span><span class="s1">'#notes'</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">listItem</span> <span class="o">+</span> <span class="nx">itemStatus</span> <span class="o">+</span> <span class="nx">eventType</span><span class="p">);</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-13"></a>    <span class="p">}</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-14"></a>  <span class="p">);</span>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-15"></a>
-<a name="rest_code_3a4ef77c0f074636996761a56ae7eb6c-16"></a><span class="p">});</span>
+<pre class="code javascript"><a name="rest_code_b49da064a708411d930c66deb9819105-1"></a><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-2"></a>  <span class="kd">var</span> <span class="nx">listItem</span><span class="p">,</span> <span class="nx">itemStatus</span><span class="p">,</span> <span class="nx">eventType</span><span class="p">;</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-3"></a>
+<a name="rest_code_b49da064a708411d930c66deb9819105-4"></a>  <span class="nx">$</span><span class="p">(</span><span class="s1">'ul'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-5"></a>    <span class="s1">'click mouseover'</span><span class="p">,</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-6"></a>    <span class="s1">':not(#four)'</span><span class="p">,</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-7"></a>    <span class="p">{</span><span class="nx">status</span><span class="o">:</span> <span class="s1">'important'</span><span class="p">},</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-8"></a>    <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-9"></a>      <span class="nx">listItem</span> <span class="o">=</span> <span class="s1">'Item: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">+</span> <span class="s1">'&lt;br /&gt;'</span><span class="p">;</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-10"></a>      <span class="nx">itemStatus</span> <span class="o">=</span> <span class="s1">'Status: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">status</span> <span class="o">+</span> <span class="s1">'&lt;br /&gt;'</span><span class="p">;</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-11"></a>      <span class="nx">eventType</span> <span class="o">=</span> <span class="s1">'Event: '</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-12"></a>      <span class="nx">$</span><span class="p">(</span><span class="s1">'#notes'</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">listItem</span> <span class="o">+</span> <span class="nx">itemStatus</span> <span class="o">+</span> <span class="nx">eventType</span><span class="p">);</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-13"></a>    <span class="p">}</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-14"></a>  <span class="p">);</span>
+<a name="rest_code_b49da064a708411d930c66deb9819105-15"></a>
+<a name="rest_code_b49da064a708411d930c66deb9819105-16"></a><span class="p">});</span>
 </pre>
 </div>
     </div>

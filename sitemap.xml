@@ -7,134 +7,134 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/2016/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/archive.html</loc>
-  <lastmod>2017-02-03T23:57:00Z</lastmod>
+  <lastmod>2017-05-06T06:03:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/equation-solving-with-python/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/french-lessons/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/getting-started-with-freecad-development-in-ubuntu-1604/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/linux-console-capsescape-swap/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/primer-on-python-projects/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/tags/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/tags/cad/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/tags/control_theory/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/tags/foss/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/tags/linux/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/tags/mathjax/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/tags/python/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/tags/raspberry_pi/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/using-running-averages-in-python-to-validate-sensor-data/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/</loc>
-  <lastmod>2017-02-03T23:53:00Z</lastmod>
+  <lastmod>2017-05-06T05:52:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen301.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen302.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen320.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen340.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen354.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen365.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen366.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen370.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen375.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen460.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen465.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
  <url>
   <loc>/notes/baen468.html</loc>
-  <lastmod>2017-02-03T23:51:00Z</lastmod>
+  <lastmod>2017-05-06T06:00:00Z</lastmod>
  </url>
 </urlset>

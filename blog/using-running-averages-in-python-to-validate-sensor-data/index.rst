@@ -99,15 +99,15 @@ Now, on to the code!
       # This way, -1 can be used as an "invalid" value
       return -1
 
-    def rolling_average(measurement, measurements):
-      # Update rolling average if measurement is ok, otherwise
-      # skip to returning the average from previous values
-      if lower_reasonable_bound < measurement < upper_reasonable_bound:
-        # Remove first item from list if it's full according to our chosen size
-        if len(measurements) >= rolling_average_size:
-          measurements.pop(0)
-        measurements.append(measurement)
-      return average(measurements)
+  def rolling_average(measurement, measurements):
+    # Update rolling average if measurement is ok, otherwise
+    # skip to returning the average from previous values
+    if lower_reasonable_bound < measurement < upper_reasonable_bound:
+      # Remove first item from list if it's full according to our chosen size
+      if len(measurements) >= rolling_average_size:
+        measurements.pop(0)
+      measurements.append(measurement)
+    return average(measurements)
 
   # Your control loop may be handled in another file
   # or with another method, here's an example usage

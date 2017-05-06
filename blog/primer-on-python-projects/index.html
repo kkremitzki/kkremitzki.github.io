@@ -86,7 +86,7 @@ This post is advice mainly targe">
 <article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Primer on Python Projects</a></h1>
 
         <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                     Kurt Kremitzki
             </span></p>
             <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2016-04-10T07:58:54-05:00" itemprop="datePublished" title="2016-04-10 07:58">2016-04-10 07:58</time></a></p>
@@ -104,10 +104,10 @@ This post is advice mainly targeted at everyone in the class.
 Here are a few useful snippets when starting your first big Python project.</p>
 <p class="h3">Imports</p>
 <p>If you're working on a file, e.g. <tt class="docutils literal">code.py</tt>, and it's getting large, you can break off some of that code (usually functions) into another file. Let's say you name this file <tt class="docutils literal">functions.py</tt>. Then, in your original file, you would add to the top:</p>
-<pre class="code python"><a name="rest_code_89369620112a4356857cabe22ce98383-1"></a><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">function1</span><span class="p">,</span> <span class="n">function2</span> <span class="c1"># etc</span>
-<a name="rest_code_89369620112a4356857cabe22ce98383-2"></a><span class="c1"># if you have a lot of functions, you can use something like</span>
-<a name="rest_code_89369620112a4356857cabe22ce98383-3"></a><span class="c1"># from functions import (function1, function2, ... ,</span>
-<a name="rest_code_89369620112a4356857cabe22ce98383-4"></a><span class="c1">#                        functionN_minus_one, functionN)</span>
+<pre class="code python"><a name="rest_code_a3ee439d44154cd6ab9de9eb96333691-1"></a><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">function1</span><span class="p">,</span> <span class="n">function2</span> <span class="c1"># etc</span>
+<a name="rest_code_a3ee439d44154cd6ab9de9eb96333691-2"></a><span class="c1"># if you have a lot of functions, you can use something like</span>
+<a name="rest_code_a3ee439d44154cd6ab9de9eb96333691-3"></a><span class="c1"># from functions import (function1, function2, ... ,</span>
+<a name="rest_code_a3ee439d44154cd6ab9de9eb96333691-4"></a><span class="c1">#                        functionN_minus_one, functionN)</span>
 </pre>
 <p>An example of how to use this, in the context of BAEN370, would be using the following project structure:</p>
 <pre class="literal-block">
@@ -119,56 +119,56 @@ baen370/
 <p>Then, those files' contents would look something like this:</p>
 <!-- TEASER_END -->
 <p><strong>run.py</strong></p>
-<pre class="code python"><a name="rest_code_398c4ab930ff4b1dad90ea92d52e055f-1"></a><span class="kn">from</span> <span class="nn">navigation</span> <span class="kn">import</span> <span class="n">NavigationStrategy</span>
-<a name="rest_code_398c4ab930ff4b1dad90ea92d52e055f-2"></a><span class="c1"># Add more imports like this if you need something from sensors.py, etc.</span>
-<a name="rest_code_398c4ab930ff4b1dad90ea92d52e055f-3"></a>
-<a name="rest_code_398c4ab930ff4b1dad90ea92d52e055f-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
-<a name="rest_code_398c4ab930ff4b1dad90ea92d52e055f-5"></a>  <span class="c1"># Bundle your code for how to handle the maze into one function.</span>
-<a name="rest_code_398c4ab930ff4b1dad90ea92d52e055f-6"></a>  <span class="c1"># That way you can have a file just for running the maze, and you</span>
-<a name="rest_code_398c4ab930ff4b1dad90ea92d52e055f-7"></a>  <span class="c1"># can work on other functions by themselves in logically separated files.</span>
-<a name="rest_code_398c4ab930ff4b1dad90ea92d52e055f-8"></a>  <span class="n">NavigationStrategy</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_ea7b88550ff647b584cb124df5bbe377-1"></a><span class="kn">from</span> <span class="nn">navigation</span> <span class="kn">import</span> <span class="n">NavigationStrategy</span>
+<a name="rest_code_ea7b88550ff647b584cb124df5bbe377-2"></a><span class="c1"># Add more imports like this if you need something from sensors.py, etc.</span>
+<a name="rest_code_ea7b88550ff647b584cb124df5bbe377-3"></a>
+<a name="rest_code_ea7b88550ff647b584cb124df5bbe377-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+<a name="rest_code_ea7b88550ff647b584cb124df5bbe377-5"></a>  <span class="c1"># Bundle your code for how to handle the maze into one function.</span>
+<a name="rest_code_ea7b88550ff647b584cb124df5bbe377-6"></a>  <span class="c1"># That way you can have a file just for running the maze, and you</span>
+<a name="rest_code_ea7b88550ff647b584cb124df5bbe377-7"></a>  <span class="c1"># can work on other functions by themselves in logically separated files.</span>
+<a name="rest_code_ea7b88550ff647b584cb124df5bbe377-8"></a>  <span class="n">NavigationStrategy</span><span class="p">()</span>
 </pre>
 <p><strong>navigation.py</strong></p>
-<pre class="code python"><a name="rest_code_79a1670477724181ace64d2ed6dfd36d-1"></a><span class="kn">from</span> <span class="nn">sensors</span> <span class="kn">import</span> <span class="n">front_prox</span><span class="p">,</span> <span class="n">right_prox</span><span class="p">,</span> <span class="n">front_far</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-2"></a>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-3"></a><span class="k">def</span> <span class="nf">NavigationStrategy</span><span class="p">():</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-4"></a>  <span class="c1"># Describe your navigation strategy here.</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-5"></a>  <span class="c1"># It might look something like this, if you're doing a right-following strategy</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-6"></a>  <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-7"></a>    <span class="k">while</span> <span class="n">front_far</span><span class="p">()</span> <span class="ow">and</span> <span class="n">right_prox</span><span class="p">():</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-8"></a>      <span class="k">if</span> <span class="ow">not</span> <span class="n">front_prox</span><span class="p">():</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-9"></a>        <span class="c1"># gotta go fast</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-10"></a>      <span class="k">else</span><span class="p">:</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-11"></a>        <span class="c1"># slow it down</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-12"></a>    <span class="k">while</span> <span class="ow">not</span> <span class="n">right_prox</span><span class="p">():</span>
-<a name="rest_code_79a1670477724181ace64d2ed6dfd36d-13"></a>      <span class="c1"># How will you handle a right proximity sensor saying "there's no wall nearby"?</span>
+<pre class="code python"><a name="rest_code_46ac1248c7ff4626b4114a350fbde452-1"></a><span class="kn">from</span> <span class="nn">sensors</span> <span class="kn">import</span> <span class="n">front_prox</span><span class="p">,</span> <span class="n">right_prox</span><span class="p">,</span> <span class="n">front_far</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-2"></a>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-3"></a><span class="k">def</span> <span class="nf">NavigationStrategy</span><span class="p">():</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-4"></a>  <span class="c1"># Describe your navigation strategy here.</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-5"></a>  <span class="c1"># It might look something like this, if you're doing a right-following strategy</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-6"></a>  <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-7"></a>    <span class="k">while</span> <span class="n">front_far</span><span class="p">()</span> <span class="ow">and</span> <span class="n">right_prox</span><span class="p">():</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-8"></a>      <span class="k">if</span> <span class="ow">not</span> <span class="n">front_prox</span><span class="p">():</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-9"></a>        <span class="c1"># gotta go fast</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-10"></a>      <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-11"></a>        <span class="c1"># slow it down</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-12"></a>    <span class="k">while</span> <span class="ow">not</span> <span class="n">right_prox</span><span class="p">():</span>
+<a name="rest_code_46ac1248c7ff4626b4114a350fbde452-13"></a>      <span class="c1"># How will you handle a right proximity sensor saying "there's no wall nearby"?</span>
 </pre>
 <p><strong>sensors.py</strong></p>
 <p>In this example, I could have used <tt class="docutils literal">from gopigo import *</tt>, but this is discouraged. For more on why, check out <a class="reference external" href="http://stackoverflow.com/a/2360808">http://stackoverflow.com/a/2360808</a>.</p>
-<pre class="code python"><a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-1"></a><span class="kn">import</span> <span class="nn">gopigo</span> <span class="kn">as</span> <span class="nn">gpg</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-2"></a><span class="c1"># Don't do this:</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-3"></a><span class="c1"># from gopigo import *</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-4"></a>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-5"></a><span class="c1"># Set your thresholds for what is "close" and "far" here</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-6"></a><span class="n">near_threshold</span> <span class="o">=</span> <span class="mi">15</span> <span class="c1"># cm, assuming sensors' voltage-&gt;cm math is true</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-7"></a><span class="n">far_threshold</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># cm</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-8"></a>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-9"></a><span class="k">def</span> <span class="nf">front_prox</span><span class="p">():</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-10"></a>  <span class="c1"># write a function that looks like</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-11"></a>  <span class="k">if</span> <span class="n">some_condition</span> <span class="c1">#  sensor says stuff is near</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-12"></a>    <span class="k">return</span> <span class="bp">True</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-13"></a>  <span class="c1"># No need for else here</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-14"></a>  <span class="k">return</span> <span class="bp">False</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-15"></a>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-16"></a><span class="k">def</span> <span class="nf">right_prox</span><span class="p">:</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-17"></a>  <span class="c1"># something similar to front_prox. replace "pass" with the definition of the function</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-18"></a>  <span class="k">pass</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-19"></a>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-20"></a><span class="k">def</span> <span class="nf">front_far</span><span class="p">:</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-21"></a>  <span class="c1"># If you want to try to speed up in a straightaway,</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-22"></a>  <span class="c1"># write something that returns True when it should go fast</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-23"></a>  <span class="c1"># Replace "pass" with your code.</span>
-<a name="rest_code_3b753492ec974b12b9b9ababe1d21b81-24"></a>  <span class="k">pass</span>
+<pre class="code python"><a name="rest_code_80db3043455444ce987ae1429736aedf-1"></a><span class="kn">import</span> <span class="nn">gopigo</span> <span class="kn">as</span> <span class="nn">gpg</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-2"></a><span class="c1"># Don't do this:</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-3"></a><span class="c1"># from gopigo import *</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-4"></a>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-5"></a><span class="c1"># Set your thresholds for what is "close" and "far" here</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-6"></a><span class="n">near_threshold</span> <span class="o">=</span> <span class="mi">15</span> <span class="c1"># cm, assuming sensors' voltage-&gt;cm math is true</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-7"></a><span class="n">far_threshold</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># cm</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-8"></a>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-9"></a><span class="k">def</span> <span class="nf">front_prox</span><span class="p">():</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-10"></a>  <span class="c1"># write a function that looks like</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-11"></a>  <span class="k">if</span> <span class="n">some_condition</span> <span class="c1">#  sensor says stuff is near</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-12"></a>    <span class="k">return</span> <span class="bp">True</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-13"></a>  <span class="c1"># No need for else here</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-14"></a>  <span class="k">return</span> <span class="bp">False</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-15"></a>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-16"></a><span class="k">def</span> <span class="nf">right_prox</span><span class="p">:</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-17"></a>  <span class="c1"># something similar to front_prox. replace "pass" with the definition of the function</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-18"></a>  <span class="k">pass</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-19"></a>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-20"></a><span class="k">def</span> <span class="nf">front_far</span><span class="p">:</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-21"></a>  <span class="c1"># If you want to try to speed up in a straightaway,</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-22"></a>  <span class="c1"># write something that returns True when it should go fast</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-23"></a>  <span class="c1"># Replace "pass" with your code.</span>
+<a name="rest_code_80db3043455444ce987ae1429736aedf-24"></a>  <span class="k">pass</span>
 </pre>
 <p class="h3">Using IDLE</p>
 <p>IDLE is not the best tool for the job (I'd recommend the free IDE, Spyder) but if it's the tool you use, you might as well get the most out of it.
