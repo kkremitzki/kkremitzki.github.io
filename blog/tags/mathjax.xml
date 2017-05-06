@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Biosystems Engineering Blog (Posts about mathjax)</title><link>https://kkrem.it/zki/</link><description></description><atom:link href="/blog/tags/mathjax.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 06 May 2017 04:32:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Using Running Averages in Python to Validate Sensor Data</title><link>/blog/using-running-averages-in-python-to-validate-sensor-data/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p class="h3"&gt;Handling Signals&lt;/p&gt;
+&lt;p&gt;If you are writing code to respond to sensor data, you should use a bit of logical
+abstraction to have clean code that doesn't become harder to work on with time.
+For example, at a low level, you're getting some signal, likely a voltage, that is
+supposed to represent another physical signal (in an abstract sense), like a distance
+or temperature. However, the signal you are actually accessing in the code is just
+a measurement, e.g. a voltage and not the &lt;em&gt;true&lt;/em&gt; distance. At some point in the code,
+hopefully a well-tested library already written by someone else, this voltage signal
+has some math done to it and becomes a number that is hopefully pretty close to the
+measurement we care about. Later on in the code, in regions &lt;em&gt;we&lt;/em&gt; are usually responsible
+for, it would be nice to treat that number as the real thing, and make whatever system
+we're designing to respond accordingly. Going in blindly, though, can be a recipe for
+disaster. Why?&lt;/p&gt;
+&lt;p class="h3"&gt;Trust, But Verify&lt;/p&gt;
+&lt;p&gt;Sometimes physical components fail. Maybe someone's skin oil, left behind during setup
+or installation, is changing some overall resistance and invaliding our assumptions, and
+math, about a voltage signal across a wire. Water, rust, rot, and an infinite number of
+other failure mechanisms can plague the best-designed system, so a good rule of thumb is to
+trust, but verify.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/blog/using-running-averages-in-python-to-validate-sensor-data/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>control_theory</category><category>mathjax</category><category>python</category><guid>/blog/using-running-averages-in-python-to-validate-sensor-data/</guid><pubDate>Thu, 05 May 2016 10:09:04 GMT</pubDate></item><item><title>Equation Solving with Python &amp; SymPy</title><link>/blog/equation-solving-with-python/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;In engineering applications, the same equation will be solved over and over with
+different values or measurements as inputs. Anticipating this, we can either
+write one function for each variable which inputs all other variables, or take a
+much easier route using &lt;a class="reference external" href="http://www.sympy.org/en/index.html"&gt;SymPy&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The following example is a simple implementation of &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula"&gt;Manning's formula&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;\[
+v = \frac{k}{n} {R_h}^{2/3} S^{1/2}
+\]&lt;/p&gt;
+&lt;p&gt;with &lt;span class="math"&gt;\(k = 1.49\)&lt;/span&gt; since we most often work in English units in American
+hydrology. Note that the variable &lt;tt class="docutils literal"&gt;mannings_eqn&lt;/tt&gt; is actually the above
+expression set equal to 0, so that we see a &lt;span class="math"&gt;\(-v\)&lt;/span&gt; term.&lt;/p&gt;
+&lt;p&gt;The following code creates Sympy &lt;tt class="docutils literal"&gt;Symbol&lt;/tt&gt;s for each variable in the expression.
+In general, if we have &lt;span class="math"&gt;\(n\)&lt;/span&gt; variables in the expression, we can pass in a
+&lt;tt class="docutils literal"&gt;dict&lt;/tt&gt; with &lt;span class="math"&gt;\(n-1\)&lt;/span&gt; key-value pairs (equations) with known values
+to solve for the &lt;span class="math"&gt;\(n\)&lt;/span&gt;th variable. We can create &lt;tt class="docutils literal"&gt;dict&lt;/tt&gt;s with keys, the
+set of knowns, and pass in any (independent) combination of &lt;span class="math"&gt;\(n-1\)&lt;/span&gt; variables from
+our expression to get a number.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/blog/equation-solving-with-python/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>mathjax</category><category>python</category><guid>/blog/equation-solving-with-python/</guid><pubDate>Sun, 10 Apr 2016 11:12:16 GMT</pubDate></item></channel></rss>

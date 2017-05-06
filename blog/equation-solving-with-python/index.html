@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equation Solving with Python &amp; SymPy | Biosystems Engineering Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+<link rel="stylesheet" href="../../assets/css/custom.css">
+<link rel="stylesheet" href="../../assets/css/code.css">
+<meta name="author" content="Kurt Kremitzki">
+<link rel="next" href="../primer-on-python-projects/" title="Primer on Python Projects" type="text/html">
+<meta property="og:site_name" content="Biosystems Engineering Blog">
+<meta property="og:title" content="Equation Solving with Python &amp; SymPy">
+<meta property="og:url" content="/blog/equation-solving-with-python/">
+<meta property="og:description" content="In engineering applications, the same equation will be solved over and over with
+different values or measurements as inputs. Anticipating this, we can either
+write one function for each variable which">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-04-10T06:12:16-05:00">
+<meta property="article:tag" content="mathjax">
+<meta property="article:tag" content="python">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../">About</a>
+                </li>
+<li>
+<a href="../">Blog</a>
+                </li>
+<li>
+<a href="../../notes/">Engineering Notes</a>
+                </li>
+<li>
+<a href="../tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+                </li>
+<li>
+<a href="https://www.linkedin.com/in/kurt-kremitzki-12524919">LinkedIn</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Equation Solving with Python &amp; SymPy</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2016-04-10T06:12:16-05:00" itemprop="datePublished" title="2016-04-10 06:12">2016-04-10 06:12</time></a></p>
+                <p class="commentline">            <a href="#disqus_thread" data-disqus-identifier="cache/posts/equation-solving-with-python.html">Comments</a>
+
+
+            
+        </p>
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>In engineering applications, the same equation will be solved over and over with
+different values or measurements as inputs. Anticipating this, we can either
+write one function for each variable which inputs all other variables, or take a
+much easier route using <a class="reference external" href="http://www.sympy.org/en/index.html">SymPy</a>.</p>
+<p>The following example is a simple implementation of <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula">Manning's formula</a>:</p>
+<p>\[
+v = \frac{k}{n} {R_h}^{2/3} S^{1/2}
+\]</p>
+<p>with <span class="math">\(k = 1.49\)</span> since we most often work in English units in American
+hydrology. Note that the variable <tt class="docutils literal">mannings_eqn</tt> is actually the above
+expression set equal to 0, so that we see a <span class="math">\(-v\)</span> term.</p>
+<p>The following code creates Sympy <tt class="docutils literal">Symbol</tt>s for each variable in the expression.
+In general, if we have <span class="math">\(n\)</span> variables in the expression, we can pass in a
+<tt class="docutils literal">dict</tt> with <span class="math">\(n-1\)</span> key-value pairs (equations) with known values
+to solve for the <span class="math">\(n\)</span>th variable. We can create <tt class="docutils literal">dict</tt>s with keys, the
+set of knowns, and pass in any (independent) combination of <span class="math">\(n-1\)</span> variables from
+our expression to get a number.</p>
+<!-- TEASER_END -->
+<pre class="code python"><a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-1"></a><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">solve</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-2"></a>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-3"></a><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">Rh</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'v, n, Rh, S'</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-4"></a>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-5"></a><span class="n">knowns_1</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-6"></a><span class="n">knowns_2</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">}</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-7"></a><span class="n">knowns_3</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-8"></a>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-9"></a><span class="k">def</span> <span class="nf">solve_mannings</span><span class="p">(</span><span class="n">input_dict</span><span class="p">):</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-10"></a>    <span class="n">mannings_eqn</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span> <span class="o">+</span> <span class="mf">1.49</span><span class="o">/</span><span class="n">n</span> <span class="o">*</span> <span class="n">Rh</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">S</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-11"></a>    <span class="c1"># Use dict flag to get {variable: value} output, not anonymous [value]</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-12"></a>    <span class="n">solution</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mannings_eqn</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">input_dict</span><span class="p">),</span> <span class="nb">dict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-13"></a>    <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-14"></a>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-15"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_1</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-16"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_2</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-17"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_3</span><span class="p">)</span>
+</pre>
+<p>However, the third set of knowns gives us an
+<a class="reference external" href="https://en.wikipedia.org/wiki/Underdetermined_system">underdetermined system</a>
+since we only have two equations for our four-variable system. Accordingly, we
+will have as output one variable as a function of another, in this case <span class="math">\(S\)</span>:</p>
+<pre class="code python"><a name="rest_code_4ee96abdd87c40a9bf600bf36651d1b1-1"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">27.6638694483322</span><span class="p">}]</span>
+<a name="rest_code_4ee96abdd87c40a9bf600bf36651d1b1-2"></a><span class="p">[{</span><span class="n">Rh</span><span class="p">:</span> <span class="mf">5.19987727958683</span><span class="p">}]</span>
+<a name="rest_code_4ee96abdd87c40a9bf600bf36651d1b1-3"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">87.1357285987434</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S</span><span class="p">)}]</span>
+</pre>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../tags/python/" rel="tag">python</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="next">
+                <a href="../primer-on-python-projects/" rel="next" title="Primer on Python Projects">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+                        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="kkremitzki",
+            disqus_url="/blog/equation-solving-with-python/",
+        disqus_title="Equation Solving with Python & SymPy",
+        disqus_identifier="cache/posts/equation-solving-with-python.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script><script>
+                    renderMathInElement(document.body);
+                </script></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2017         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

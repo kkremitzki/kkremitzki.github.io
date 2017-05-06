@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line | Biosystems Engineering Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+<link rel="stylesheet" href="../../assets/css/custom.css">
+<link rel="stylesheet" href="../../assets/css/code.css">
+<meta name="author" content="Kurt Kremitzki">
+<link rel="prev" href="../primer-on-python-projects/" title="Primer on Python Projects" type="text/html">
+<link rel="next" href="../keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/" title="Keeping zoom level when navigating PDF in Evince, GNOME's Document Viewer" type="text/html">
+<meta property="og:site_name" content="Biosystems Engineering Blog">
+<meta property="og:title" content="Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line">
+<meta property="og:url" content="/blog/connecting-a-raspberry-pi-to-texas-am-wifi/">
+<meta property="og:description" content="The recommended flavor of Linux on the Raspberry Pi, Raspbian, uses the LXDE desktop environment, and using its GUI tools to set up wifi is not immediately successful.
+Command-line setup involves edit">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2016-04-21T18:46:17-05:00">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="raspberry_pi">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../">About</a>
+                </li>
+<li>
+<a href="../">Blog</a>
+                </li>
+<li>
+<a href="../../notes/">Engineering Notes</a>
+                </li>
+<li>
+<a href="../tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+                </li>
+<li>
+<a href="https://www.linkedin.com/in/kurt-kremitzki-12524919">LinkedIn</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2016-04-21T18:46:17-05:00" itemprop="datePublished" title="2016-04-21 18:46">2016-04-21 18:46</time></a></p>
+                <p class="commentline">            <a href="#disqus_thread" data-disqus-identifier="cache/posts/connecting-a-raspberry-pi-to-texas-am-wifi.html">Comments</a>
+
+
+            
+        </p>
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>The recommended flavor of Linux on the Raspberry Pi, Raspbian, uses the LXDE desktop environment, and using its GUI tools to set up wifi is not immediately successful.
+Command-line setup involves editing two files, <tt class="docutils literal">/etc/network/interfaces</tt> and <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>. Since these are system files, they won't be writable by a normal user. The command <tt class="docutils literal">sudo <span class="pre">-e</span> &lt;filename&gt;</tt> can be used to edit system files with superuser privileges, using the default editor. Normally, this is the program <tt class="docutils literal">nano</tt>, which is fairly self-explanatory; make your changes using the keyboard and save the file with <tt class="docutils literal"><span class="pre">Ctrl-X</span></tt>. For advanced users, this can be changed via something like <tt class="docutils literal">export EDITOR=vi</tt>.</p>
+<p>The first file, <tt class="docutils literal">/etc/network/interfaces</tt>, needs to have the following:</p>
+<!-- TEASER_END -->
+<pre class="code bash"><a name="rest_code_a911a8232d6248af972553c8350057fa-1"></a>allow-hotplug wlan0
+<a name="rest_code_a911a8232d6248af972553c8350057fa-2"></a>iface wlan0 inet dhcp
+<a name="rest_code_a911a8232d6248af972553c8350057fa-3"></a>  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+</pre>
+<p>The <tt class="docutils literal"><span class="pre">allow-hotplug</span></tt> line allows the <tt class="docutils literal">wlan0</tt> (wireless LAN) interface to be brought up when hotplugged into a running Raspberry Pi.
+The <tt class="docutils literal">iface ... dhcp</tt> line means we are requesting an IP address from the wireless network's DHCP servers, and the <tt class="docutils literal"><span class="pre">wpa-conf</span></tt> line specifies which file to use for our auth config.</p>
+<p>In <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>, you should have:</p>
+<pre class="code bash"><a name="rest_code_091ab582829249b2b39b0960161f967f-1"></a><span class="nv">network</span><span class="o">={</span>
+<a name="rest_code_091ab582829249b2b39b0960161f967f-2"></a>     <span class="nv">ssid</span><span class="o">=</span>”tamulink-wpa”
+<a name="rest_code_091ab582829249b2b39b0960161f967f-3"></a>     <span class="nv">scan_ssid</span><span class="o">=</span><span class="m">1</span>
+<a name="rest_code_091ab582829249b2b39b0960161f967f-4"></a>     <span class="nv">key_mgmt</span><span class="o">=</span>WPA-EAP
+<a name="rest_code_091ab582829249b2b39b0960161f967f-5"></a>     <span class="nv">eap</span><span class="o">=</span>PEAP
+<a name="rest_code_091ab582829249b2b39b0960161f967f-6"></a>     <span class="nv">identity</span><span class="o">=</span>”YOUR_NET_ID”
+<a name="rest_code_091ab582829249b2b39b0960161f967f-7"></a>     <span class="nv">password</span><span class="o">=</span>”YOUR_TAMU_PASSWORD”
+<a name="rest_code_091ab582829249b2b39b0960161f967f-8"></a>     <span class="nv">pairwise</span><span class="o">=</span>CCMP
+<a name="rest_code_091ab582829249b2b39b0960161f967f-9"></a><span class="o">}</span>
+</pre>
+<p>Make sure that there is no space in <tt class="docutils literal">network={</tt>, and that the ssid, identity and passwords are wrapped in quotes.</p>
+<p>The network can be brought up or down via <tt class="docutils literal">sudo ifup wlan0</tt> or <tt class="docutils literal">sudo ifdown wlan0</tt>.</p>
+<p>As a final note, be mindful of the fact that doing this leaves your TAMU password on an unencrypted device; anyone with the know-how could take an SD card with these credentials and read them. Don't neglect the physical security of your Raspberry Pi after doing this, since it will contain important information.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../tags/linux/" rel="tag">linux</a></li>
+            <li><a class="tag p-category" href="../tags/raspberry_pi/" rel="tag">raspberry_pi</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../primer-on-python-projects/" rel="prev" title="Primer on Python Projects">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/" rel="next" title="Keeping zoom level when navigating PDF in Evince, GNOME's Document Viewer">Next post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+                        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="kkremitzki",
+            disqus_url="/blog/connecting-a-raspberry-pi-to-texas-am-wifi/",
+        disqus_title="Connecting a Raspberry Pi to Texas A&M Wifi via Command Line",
+        disqus_identifier="cache/posts/connecting-a-raspberry-pi-to-texas-am-wifi.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2017         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Notes on my journey in biosystems engineering.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biosystems Engineering Blog</title>
+<link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><script src="../assets/js/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+<link rel="stylesheet" href="../assets/css/custom.css">
+<link rel="stylesheet" href="../assets/css/code.css">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../">About</a>
+                </li>
+<li class="active">
+<a href=".">Blog <span class="sr-only">(active)</span></a>
+                </li>
+<li>
+<a href="../notes/">Engineering Notes</a>
+                </li>
+<li>
+<a href="tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+                </li>
+<li>
+<a href="https://www.linkedin.com/in/kurt-kremitzki-12524919">LinkedIn</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+    
+<div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="getting-started-with-freecad-development-in-ubuntu-1604/" class="u-url">Getting Started with FreeCAD Development in Ubuntu 16.04</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="getting-started-with-freecad-development-in-ubuntu-1604/" rel="bookmark"><time class="published dt-published" datetime="2016-06-05T06:17:51-05:00" title="2016-06-05 06:17">2016-06-05 06:17</time></a></p>
+                <p class="commentline">            <a href="getting-started-with-freecad-development-in-ubuntu-1604/#disqus_thread" data-disqus-identifier="cache/posts/getting-started-with-freecad-development-in-ubuntu-1604.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p><a class="reference external" href="http://www.freecadweb.org/">FreeCAD</a> is a multi-platform (Windows, Mac, Linux) open source parametric 3D CAD modeler, and can read
+and write many open file formats.</p>
+<p>An explanation of the many virtues of open source software can be found at <a class="reference external" href="http://opensourceforamerica.org/learn-more/benefits-of-open-source-software/">Open Source for America</a> and elsewhere. To quote OSFA,</p>
+<blockquote>
+The Open Source model harnesses the power of distributed peer review and transparency to create high-quality, secure
+and easily integrated software at an accelerated pace and lower cost.</blockquote>
+<p>Commerical-grade CAD software, while incredibly useful, has several downsides including being locked behind 4 or 5 digit licensing costs,
+and its use in amateur projects or the developing world is often facilitated by piracy. FreeCAD, on the other hand, is free as in beer
+and free as in freedom, although it is currently under development. However, one of the benefits of the open source model is the ease
+with which interested people can contribute to the project and make better tools for all mankind.</p>
+<p>While using FreeCAD, I noticed a few typos in the menus; although my first contribution to the project wasn't too significant, I
+documented the process of getting a development environment set up on my Ubuntu 16.04 desktop so that others could follow the same
+steps and begin contributing.</p>
+<ol class="arabic simple">
+<li>Pull down a copy of the code. (If you don't have a copy of git, run <tt class="docutils literal">sudo <span class="pre">apt-get</span> install git</tt>.)</li>
+</ol>
+<blockquote>
+<pre class="code bash"><a name="rest_code_5470b565435d42ddb8ac027be4301474-1"></a>git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
+<a name="rest_code_5470b565435d42ddb8ac027be4301474-2"></a>mkdir freecad-build
+</pre>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li>Install all dependencies.</li>
+</ol>
+<blockquote>
+<pre class="code bash"><a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-1"></a>sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev <span class="se">\</span>
+<a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-2"></a>  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  <span class="se">\</span>
+<a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-3"></a>  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev <span class="se">\</span>
+<a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-4"></a>  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools <span class="s1">'liboce*-dev'</span> <span class="se">\</span>
+<a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-5"></a>  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev <span class="se">\</span>
+<a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-6"></a>  libfreetype6 libfreetype6-dev
+<a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-7"></a>
+<a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-8"></a><span class="c1"># Install optional packages</span>
+<a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-9"></a>sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen <span class="se">\</span>
+<a name="rest_code_b5d56dac74744786b107e0f3c8769a0f-10"></a>  libcoin80-doc libspnav-dev
+</pre>
+</blockquote>
+<ol class="arabic simple" start="3">
+<li>Move into build folder, make and compile the software. Use the <tt class="docutils literal"><span class="pre">-j</span> $(nproc)</tt> flag to use all N of your CPU cores
+when compiling; some recommend using N + 1 CPU cores, which can be done by instead running <tt class="docutils literal">make <span class="pre">-j$((</span> $(nproc) + 1 )) .</tt>.
+Don't forget the period at the end of the <tt class="docutils literal">make</tt> command, which tells it to put the compiled software in the current
+<tt class="docutils literal"><span class="pre">freecad-build</span></tt> directory; it's good to keep the source code and build directories separate.</li>
+</ol>
+<blockquote>
+<pre class="code bash"><a name="rest_code_0393a8c8b0c54b13ac6fe07842aa3e37-1"></a><span class="nb">cd</span> freecad-build
+<a name="rest_code_0393a8c8b0c54b13ac6fe07842aa3e37-2"></a>cmake ../freecad-code
+<a name="rest_code_0393a8c8b0c54b13ac6fe07842aa3e37-3"></a>make -j<span class="k">$(</span>nproc<span class="k">)</span> .
+</pre>
+</blockquote>
+<ol class="arabic simple" start="4">
+<li>Fix Ubuntu 64-bit issue. If you are using a 64-bit version of Ubuntu (hopefully), you may run in to the following
+error message, which occurs because the expected <tt class="docutils literal">libfreeimage.so</tt> file was moved into a subdirectory of <tt class="docutils literal">/usr/lib/</tt>.</li>
+</ol>
+<blockquote>
+<pre class="code bash"><a name="rest_code_3c9c2975025549d3ad759a9a8036fe2c-1"></a>make<span class="o">[</span><span class="m">2</span><span class="o">]</span>: *** No rule to make target <span class="s1">'/usr/lib/libfreeimage.so'</span>, needed by <span class="s1">'lib/libSMDS.so'</span>.  Stop.
+<a name="rest_code_3c9c2975025549d3ad759a9a8036fe2c-2"></a>
+<a name="rest_code_3c9c2975025549d3ad759a9a8036fe2c-3"></a><span class="c1"># Fix with this line.</span>
+<a name="rest_code_3c9c2975025549d3ad759a9a8036fe2c-4"></a>sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
+</pre>
+</blockquote>
+<p>Once the build is complete, a runnable copy of the FreeCAD executable will be in the <tt class="docutils literal"><span class="pre">freecad-build</span></tt> folder. Any changes
+made to the source code can be tested after re-compiling the executable.</p>
+<p>Hopefully this post helps someone out there! Even if you are only contributing to the documentation as you learn FreeCAD,
+your contribution is valuable and can help tons of people across the globe.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="french-lessons/" class="u-url">French Lessons</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="french-lessons/" rel="bookmark"><time class="published dt-published" datetime="2016-05-27T12:20:29-05:00" title="2016-05-27 12:20">2016-05-27 12:20</time></a></p>
+                <p class="commentline">            <a href="french-lessons/#disqus_thread" data-disqus-identifier="cache/posts/french-lessons.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Part of my summer is going to be spent studying mathematics in France, but international study is not complete without a foray into the language.
+I've always been very interested in linguistics, and one of my long-term goals is to be a polyglot (which first means turning my 4 years of German and 2 years of Chinese into actual mastery), so I was pretty excited when I found my professor
+had arranged thrice weekly morning lessons here at the CLA (Centre de Linguistique Appliquée) Besançon. Our lessons are complete immersion style;
+the teacher speaks only French, which was quite difficult at first. The only "experience" I have with the language comes from my exposure to Spanish
+this spring when I visited Mérida, Yucatán to work on a community garden irrigation project; other than the occasional Spanish or English cognate,
+I'm completely in the dark. Luckily, everyone in town is very helpful and accommodating.</p>
+<img alt="/images/cla.jpg" class="align-center" src="../images/cla.jpg" style="width: 638px;">
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="linux-console-capsescape-swap/" class="u-url">Linux Console Caps/Escape Swap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="linux-console-capsescape-swap/" rel="bookmark"><time class="published dt-published" datetime="2016-05-17T22:40:12-05:00" title="2016-05-17 22:40">2016-05-17 22:40</time></a></p>
+                <p class="commentline">            <a href="linux-console-capsescape-swap/#disqus_thread" data-disqus-identifier="cache/posts/linux-console-capsescape-swap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Full-fledged Linux desktop environments like GNOME or Ubuntu's Unity often have built-in keyboard mapping tools to meet user needs.
+At a lower level, <tt class="docutils literal">xmodmap</tt> can be used to directly modify the X11 server's keyboard mapping.
+However, when working directly in the Linux console, things are a little more complicated without a display server.</p>
+<p>My particular need is to swap the <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> keys; as a <tt class="docutils literal">vim</tt> user, I use <tt class="docutils literal">Escape</tt> constantly to return to Normal mode.
+To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach <tt class="docutils literal">Escape</tt>, the following line
+can be added to the file <tt class="docutils literal">/etc/rc.local</tt>, before the final line <tt class="docutils literal">exit 0</tt>.</p>
+<pre class="code bash"><a name="rest_code_f679460f0e064bfb9c2768977341e3bd-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
+</pre>
+<p>If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
+commands separated by the pipe character <tt class="docutils literal">|</tt>.
+A detailed explanation can be found in the <a class="reference external" href="http://www.tldp.org/LDP/abs/html/io-redirection.html">Advanced Bash Scripting Guide's chapter on I/O Redirection</a>, but in short,
+piping <tt class="docutils literal">cmd1 | cmd2</tt> sends the output of <tt class="docutils literal">cmd</tt> as input for <tt class="docutils literal">cmd2</tt>.</p>
+<p>The programs <tt class="docutils literal">/usr/bin/dumpkeys</tt> and <tt class="docutils literal">/usr/bin/loadkeys</tt> are fairly self-explanatory: they output keymaps for the console
+at the kernel level, and update that keymap if a valid file is input, respectively.
+The middle command, <tt class="docutils literal">sed</tt>, is a powerful, general-purpose stream editor, and the source of much Linux wizardry. To understand what it's doing,
+take a look at its argument: the string <tt class="docutils literal">'/s/CtrlL_Lock/Escape/'</tt>. This tells <tt class="docutils literal">sed</tt> to <em>s</em> ubstitute the first instance of <tt class="docutils literal">CtrlL_Lock</tt>
+with <tt class="docutils literal">Escape</tt> on any matching line from its input (adding <tt class="docutils literal">g</tt> after the last slash makes it a truly global substitution and not linewise.)
+The <tt class="docutils literal">sed</tt> command then passes along the modified stream to <tt class="docutils literal">loadkeys</tt>. Because this line is added to <tt class="docutils literal">/etc/rc.local</tt>, it will be executed
+every boot, swapping <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> in the Linux console.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="using-running-averages-in-python-to-validate-sensor-data/" class="u-url">Using Running Averages in Python to Validate Sensor Data</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="using-running-averages-in-python-to-validate-sensor-data/" rel="bookmark"><time class="published dt-published" datetime="2016-05-05T05:09:04-05:00" title="2016-05-05 05:09">2016-05-05 05:09</time></a></p>
+                <p class="commentline">            <a href="using-running-averages-in-python-to-validate-sensor-data/#disqus_thread" data-disqus-identifier="cache/posts/using-running-averages-in-python-to-validate-sensor-data.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p class="h3">Handling Signals</p>
+<p>If you are writing code to respond to sensor data, you should use a bit of logical
+abstraction to have clean code that doesn't become harder to work on with time.
+For example, at a low level, you're getting some signal, likely a voltage, that is
+supposed to represent another physical signal (in an abstract sense), like a distance
+or temperature. However, the signal you are actually accessing in the code is just
+a measurement, e.g. a voltage and not the <em>true</em> distance. At some point in the code,
+hopefully a well-tested library already written by someone else, this voltage signal
+has some math done to it and becomes a number that is hopefully pretty close to the
+measurement we care about. Later on in the code, in regions <em>we</em> are usually responsible
+for, it would be nice to treat that number as the real thing, and make whatever system
+we're designing to respond accordingly. Going in blindly, though, can be a recipe for
+disaster. Why?</p>
+<p class="h3">Trust, But Verify</p>
+<p>Sometimes physical components fail. Maybe someone's skin oil, left behind during setup
+or installation, is changing some overall resistance and invaliding our assumptions, and
+math, about a voltage signal across a wire. Water, rust, rot, and an infinite number of
+other failure mechanisms can plague the best-designed system, so a good rule of thumb is to
+trust, but verify.</p>
+<!-- TEASER_END -->
+<p>In Python, one way to do this is by using a rolling average, where only measurements
+in a certain range are included. In a sense, this is a sort of integral control mechanism
+where our controller output at <span class="math">\(t\)</span> seconds would look something like</p>
+<p>\[
+u(t) = \frac{K_i(t)}{n} \int_{t-n\ell}^{t} e(\tau)\, \mathrm{d}\tau
+\]</p>
+<p>where we have:</p>
+<ul class="simple">
+<li>
+<span class="math">\(n\)</span> items in the rolling average</li>
+<li>a polling time of <span class="math">\(\ell\)</span> seconds (e.g., each iteration of a <tt class="docutils literal">while True</tt>
+control loop takes <span class="math">\(\ell\)</span> seconds between measurements)</li>
+<li>a gain/transfer function of <span class="math">\(K_i(t)\)</span>, e.g. the scaling factor between a rolling average
+distance signal input and motor power signal output</li>
+</ul>
+<p>However, since we are polling at discrete times, we are taking a sort of Riemann sum
+approximation, where an increase in the number of rectangles in the approximation
+can give better performance at the cost of slower response time (this is where an
+additional derivative control term would help.) Here's an illustration of the error
+for a simple case where <span class="math">\(e(t) = t^2\)</span> and <span class="math">\(n = 4\)</span>.</p>
+<img alt="/images/riemann.jpg" class="align-center" src="../images/riemann.jpg" style="width: 600px;"><p>So what's the takeaway?</p>
+<ul class="simple">
+<li>We can implement a rolling average to deal with a noisy measurement</li>
+<li>While we're at it, we can include a reasonable upper and lower bound to
+validate measurements before adding to the rolling average</li>
+<li>The downside is a lag time in response to changes in the measurement, and the lag time goes up with accuracy</li>
+</ul>
+<p>Now, on to the code!</p>
+<pre class="code python"><a name="rest_code_c4e066b71a294842a66dccbd80bfc479-1"></a><span class="c1"># Create empty list-type variable so we can</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-2"></a><span class="c1"># store measurements</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-3"></a><span class="n">sensor_measurements</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-4"></a>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-5"></a><span class="c1"># Declare these variables at a top level so you can</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-6"></a><span class="c1"># easily edit them once for your whole script to</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-7"></a><span class="c1"># test performance</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-8"></a><span class="n">upper_reasonable_bound</span> <span class="o">=</span> <span class="mi">200</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-9"></a><span class="n">lower_reasonable_bound</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-10"></a><span class="n">rolling_average_size</span> <span class="o">=</span> <span class="mi">4</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-11"></a>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-12"></a><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">):</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-13"></a>  <span class="sd">"""</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-14"></a><span class="sd">  Use the builtin functions sum and len to make a quick average function</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-15"></a><span class="sd">  """</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-16"></a>  <span class="c1"># Handle division by zero error</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-17"></a>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-18"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-19"></a>  <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-20"></a>    <span class="c1"># When you use the average later, make sure to include something like</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-21"></a>    <span class="c1"># sensor_average = rolling_average(sensor_measurements)</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-22"></a>    <span class="c1"># if (conditions) and sensor_average &gt; -1:</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-23"></a>    <span class="c1"># This way, -1 can be used as an "invalid" value</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-24"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-25"></a>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-26"></a><span class="k">def</span> <span class="nf">rolling_average</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-27"></a>  <span class="c1"># Update rolling average if measurement is ok, otherwise</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-28"></a>  <span class="c1"># skip to returning the average from previous values</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-29"></a>  <span class="k">if</span> <span class="n">lower_reasonable_bound</span> <span class="o">&lt;</span> <span class="n">measurement</span> <span class="o">&lt;</span> <span class="n">upper_reasonable_bound</span><span class="p">:</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-30"></a>    <span class="c1"># Remove first item from list if it's full according to our chosen size</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-31"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">rolling_average_size</span><span class="p">:</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-32"></a>      <span class="n">measurements</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-33"></a>    <span class="n">measurements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">measurement</span><span class="p">)</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-34"></a>  <span class="k">return</span> <span class="n">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-35"></a>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-36"></a><span class="c1"># Your control loop may be handled in another file</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-37"></a><span class="c1"># or with another method, here's an example usage</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-38"></a><span class="kn">import</span> <span class="nn">some_sensor_module</span> <span class="kn">as</span> <span class="nn">ssm</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-39"></a><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-40"></a>  <span class="n">sensor_measurement</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">some_sensor_function</span><span class="p">()</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-41"></a>  <span class="n">sensor_value</span> <span class="o">=</span> <span class="n">rolling_average</span><span class="p">(</span><span class="n">sensor_measurement</span><span class="p">,</span> <span class="n">sensor_measurements</span><span class="p">)</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-42"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">condition_using_sensor_value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-43"></a>    <span class="n">some_logic_handler_function</span><span class="p">(</span><span class="n">sensor_value</span><span class="p">)</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-44"></a>  <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_c4e066b71a294842a66dccbd80bfc479-45"></a>    <span class="c1"># and so forth</span>
+</pre>
+<p>Let me know in the comments if you have any questions or feedback!</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/" class="u-url">Keeping zoom level when navigating PDF in Evince, GNOME's Document Viewer</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/" rel="bookmark"><time class="published dt-published" datetime="2016-04-24T16:51:08-05:00" title="2016-04-24 16:51">2016-04-24 16:51</time></a></p>
+                <p class="commentline">            <a href="keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/#disqus_thread" data-disqus-identifier="cache/posts/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>This one is short, sweet, and to the point. How often do you have your PDF set to a nice zoom level, only to have it reset when navigating via the Bookmarks/Index? If you use GNOME as a Linux DE (desktop environment), then you can fire up a terminal and use this <tt class="docutils literal">gsettings</tt> one-liner to preserve zoom:</p>
+<pre class="code bash"><a name="rest_code_ec84061edf02457b87275c8a133f9a5a-1"></a>gsettings <span class="nb">set</span> org.gnome.Evince allow-links-change-zoom <span class="nb">false</span>
+</pre>
+<p>A great alternative PDF reader is the <tt class="docutils literal">vim</tt>-key friendly <a class="reference external" href="https://pwmt.org/projects/zathura/">zathura</a>. I've had issues opening larger PDFs with it though, so your mileage may vary.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="connecting-a-raspberry-pi-to-texas-am-wifi/" class="u-url">Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="connecting-a-raspberry-pi-to-texas-am-wifi/" rel="bookmark"><time class="published dt-published" datetime="2016-04-21T18:46:17-05:00" title="2016-04-21 18:46">2016-04-21 18:46</time></a></p>
+                <p class="commentline">            <a href="connecting-a-raspberry-pi-to-texas-am-wifi/#disqus_thread" data-disqus-identifier="cache/posts/connecting-a-raspberry-pi-to-texas-am-wifi.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>The recommended flavor of Linux on the Raspberry Pi, Raspbian, uses the LXDE desktop environment, and using its GUI tools to set up wifi is not immediately successful.
+Command-line setup involves editing two files, <tt class="docutils literal">/etc/network/interfaces</tt> and <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>. Since these are system files, they won't be writable by a normal user. The command <tt class="docutils literal">sudo <span class="pre">-e</span> &lt;filename&gt;</tt> can be used to edit system files with superuser privileges, using the default editor. Normally, this is the program <tt class="docutils literal">nano</tt>, which is fairly self-explanatory; make your changes using the keyboard and save the file with <tt class="docutils literal"><span class="pre">Ctrl-X</span></tt>. For advanced users, this can be changed via something like <tt class="docutils literal">export EDITOR=vi</tt>.</p>
+<p>The first file, <tt class="docutils literal">/etc/network/interfaces</tt>, needs to have the following:</p>
+<!-- TEASER_END -->
+<pre class="code bash"><a name="rest_code_a911a8232d6248af972553c8350057fa-1"></a>allow-hotplug wlan0
+<a name="rest_code_a911a8232d6248af972553c8350057fa-2"></a>iface wlan0 inet dhcp
+<a name="rest_code_a911a8232d6248af972553c8350057fa-3"></a>  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+</pre>
+<p>The <tt class="docutils literal"><span class="pre">allow-hotplug</span></tt> line allows the <tt class="docutils literal">wlan0</tt> (wireless LAN) interface to be brought up when hotplugged into a running Raspberry Pi.
+The <tt class="docutils literal">iface ... dhcp</tt> line means we are requesting an IP address from the wireless network's DHCP servers, and the <tt class="docutils literal"><span class="pre">wpa-conf</span></tt> line specifies which file to use for our auth config.</p>
+<p>In <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>, you should have:</p>
+<pre class="code bash"><a name="rest_code_091ab582829249b2b39b0960161f967f-1"></a><span class="nv">network</span><span class="o">={</span>
+<a name="rest_code_091ab582829249b2b39b0960161f967f-2"></a>     <span class="nv">ssid</span><span class="o">=</span>”tamulink-wpa”
+<a name="rest_code_091ab582829249b2b39b0960161f967f-3"></a>     <span class="nv">scan_ssid</span><span class="o">=</span><span class="m">1</span>
+<a name="rest_code_091ab582829249b2b39b0960161f967f-4"></a>     <span class="nv">key_mgmt</span><span class="o">=</span>WPA-EAP
+<a name="rest_code_091ab582829249b2b39b0960161f967f-5"></a>     <span class="nv">eap</span><span class="o">=</span>PEAP
+<a name="rest_code_091ab582829249b2b39b0960161f967f-6"></a>     <span class="nv">identity</span><span class="o">=</span>”YOUR_NET_ID”
+<a name="rest_code_091ab582829249b2b39b0960161f967f-7"></a>     <span class="nv">password</span><span class="o">=</span>”YOUR_TAMU_PASSWORD”
+<a name="rest_code_091ab582829249b2b39b0960161f967f-8"></a>     <span class="nv">pairwise</span><span class="o">=</span>CCMP
+<a name="rest_code_091ab582829249b2b39b0960161f967f-9"></a><span class="o">}</span>
+</pre>
+<p>Make sure that there is no space in <tt class="docutils literal">network={</tt>, and that the ssid, identity and passwords are wrapped in quotes.</p>
+<p>The network can be brought up or down via <tt class="docutils literal">sudo ifup wlan0</tt> or <tt class="docutils literal">sudo ifdown wlan0</tt>.</p>
+<p>As a final note, be mindful of the fact that doing this leaves your TAMU password on an unencrypted device; anyone with the know-how could take an SD card with these credentials and read them. Don't neglect the physical security of your Raspberry Pi after doing this, since it will contain important information.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="primer-on-python-projects/" class="u-url">Primer on Python Projects</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="primer-on-python-projects/" rel="bookmark"><time class="published dt-published" datetime="2016-04-10T07:58:54-05:00" title="2016-04-10 07:58">2016-04-10 07:58</time></a></p>
+                <p class="commentline">            <a href="primer-on-python-projects/#disqus_thread" data-disqus-identifier="cache/posts/primer-on-python-projects.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>I'm helping all the teams in my BAEN370 class robotics competition (essentially our final) since I competed in the ASABE Robotics Competition last year in New Orleans.
+This post is advice mainly targeted at everyone in the class.
+Here are a few useful snippets when starting your first big Python project.</p>
+<p class="h3">Imports</p>
+<p>If you're working on a file, e.g. <tt class="docutils literal">code.py</tt>, and it's getting large, you can break off some of that code (usually functions) into another file. Let's say you name this file <tt class="docutils literal">functions.py</tt>. Then, in your original file, you would add to the top:</p>
+<pre class="code python"><a name="rest_code_d7507e8dad944767894c0ef520a82e57-1"></a><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">function1</span><span class="p">,</span> <span class="n">function2</span> <span class="c1"># etc</span>
+<a name="rest_code_d7507e8dad944767894c0ef520a82e57-2"></a><span class="c1"># if you have a lot of functions, you can use something like</span>
+<a name="rest_code_d7507e8dad944767894c0ef520a82e57-3"></a><span class="c1"># from functions import (function1, function2, ... ,</span>
+<a name="rest_code_d7507e8dad944767894c0ef520a82e57-4"></a><span class="c1">#                        functionN_minus_one, functionN)</span>
+</pre>
+<p>An example of how to use this, in the context of BAEN370, would be using the following project structure:</p>
+<pre class="literal-block">
+baen370/
+├── run.py
+├── navigation.py
+└── sensors.py
+</pre>
+<p>Then, those files' contents would look something like this:</p>
+<!-- TEASER_END -->
+<p><strong>run.py</strong></p>
+<pre class="code python"><a name="rest_code_e3fcbde52a6b417a86ce29dea422988e-1"></a><span class="kn">from</span> <span class="nn">navigation</span> <span class="kn">import</span> <span class="n">NavigationStrategy</span>
+<a name="rest_code_e3fcbde52a6b417a86ce29dea422988e-2"></a><span class="c1"># Add more imports like this if you need something from sensors.py, etc.</span>
+<a name="rest_code_e3fcbde52a6b417a86ce29dea422988e-3"></a>
+<a name="rest_code_e3fcbde52a6b417a86ce29dea422988e-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+<a name="rest_code_e3fcbde52a6b417a86ce29dea422988e-5"></a>  <span class="c1"># Bundle your code for how to handle the maze into one function.</span>
+<a name="rest_code_e3fcbde52a6b417a86ce29dea422988e-6"></a>  <span class="c1"># That way you can have a file just for running the maze, and you</span>
+<a name="rest_code_e3fcbde52a6b417a86ce29dea422988e-7"></a>  <span class="c1"># can work on other functions by themselves in logically separated files.</span>
+<a name="rest_code_e3fcbde52a6b417a86ce29dea422988e-8"></a>  <span class="n">NavigationStrategy</span><span class="p">()</span>
+</pre>
+<p><strong>navigation.py</strong></p>
+<pre class="code python"><a name="rest_code_9eb882517c4f4cae91969e8320bf300a-1"></a><span class="kn">from</span> <span class="nn">sensors</span> <span class="kn">import</span> <span class="n">front_prox</span><span class="p">,</span> <span class="n">right_prox</span><span class="p">,</span> <span class="n">front_far</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-2"></a>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-3"></a><span class="k">def</span> <span class="nf">NavigationStrategy</span><span class="p">():</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-4"></a>  <span class="c1"># Describe your navigation strategy here.</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-5"></a>  <span class="c1"># It might look something like this, if you're doing a right-following strategy</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-6"></a>  <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-7"></a>    <span class="k">while</span> <span class="n">front_far</span><span class="p">()</span> <span class="ow">and</span> <span class="n">right_prox</span><span class="p">():</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-8"></a>      <span class="k">if</span> <span class="ow">not</span> <span class="n">front_prox</span><span class="p">():</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-9"></a>        <span class="c1"># gotta go fast</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-10"></a>      <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-11"></a>        <span class="c1"># slow it down</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-12"></a>    <span class="k">while</span> <span class="ow">not</span> <span class="n">right_prox</span><span class="p">():</span>
+<a name="rest_code_9eb882517c4f4cae91969e8320bf300a-13"></a>      <span class="c1"># How will you handle a right proximity sensor saying "there's no wall nearby"?</span>
+</pre>
+<p><strong>sensors.py</strong></p>
+<p>In this example, I could have used <tt class="docutils literal">from gopigo import *</tt>, but this is discouraged. For more on why, check out <a class="reference external" href="http://stackoverflow.com/a/2360808">http://stackoverflow.com/a/2360808</a>.</p>
+<pre class="code python"><a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-1"></a><span class="kn">import</span> <span class="nn">gopigo</span> <span class="kn">as</span> <span class="nn">gpg</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-2"></a><span class="c1"># Don't do this:</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-3"></a><span class="c1"># from gopigo import *</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-4"></a>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-5"></a><span class="c1"># Set your thresholds for what is "close" and "far" here</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-6"></a><span class="n">near_threshold</span> <span class="o">=</span> <span class="mi">15</span> <span class="c1"># cm, assuming sensors' voltage-&gt;cm math is true</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-7"></a><span class="n">far_threshold</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># cm</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-8"></a>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-9"></a><span class="k">def</span> <span class="nf">front_prox</span><span class="p">():</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-10"></a>  <span class="c1"># write a function that looks like</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-11"></a>  <span class="k">if</span> <span class="n">some_condition</span> <span class="c1">#  sensor says stuff is near</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-12"></a>    <span class="k">return</span> <span class="bp">True</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-13"></a>  <span class="c1"># No need for else here</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-14"></a>  <span class="k">return</span> <span class="bp">False</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-15"></a>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-16"></a><span class="k">def</span> <span class="nf">right_prox</span><span class="p">:</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-17"></a>  <span class="c1"># something similar to front_prox. replace "pass" with the definition of the function</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-18"></a>  <span class="k">pass</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-19"></a>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-20"></a><span class="k">def</span> <span class="nf">front_far</span><span class="p">:</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-21"></a>  <span class="c1"># If you want to try to speed up in a straightaway,</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-22"></a>  <span class="c1"># write something that returns True when it should go fast</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-23"></a>  <span class="c1"># Replace "pass" with your code.</span>
+<a name="rest_code_cb0a8fe03dd34dd498ae36bc4b5dc76b-24"></a>  <span class="k">pass</span>
+</pre>
+<p class="h3">Using IDLE</p>
+<p>IDLE is not the best tool for the job (I'd recommend the free IDE, Spyder) but if it's the tool you use, you might as well get the most out of it.
+Here are a few useful keyboard shortcuts</p>
+<ul class="simple">
+<li>
+<tt class="docutils literal"><span class="pre">Alt-P</span></tt> and <tt class="docutils literal"><span class="pre">Alt-N</span></tt> in the interpreter pull up your <strong>P</strong> revious and <strong>N</strong> ext commands, respectively.</li>
+<li>
+<tt class="docutils literal"><span class="pre">Ctrl-[</span></tt> and <tt class="docutils literal"><span class="pre">Ctrl-]</span></tt>  decrease and increase the level of indent of a region</li>
+<li>
+<tt class="docutils literal"><span class="pre">Alt-3</span></tt> and <tt class="docutils literal"><span class="pre">Alt-4</span></tt> comment and uncomment a highlighted region. You can also surround a region by triple apostrophes or triple quotes to make it a multi-line string (which is also a multi-line comment in Python.)</li>
+</ul>
+<p class="h3">Useful Builtins</p>
+<p>Whenever you see <tt class="docutils literal">&gt;&gt;&gt;</tt> (triple chevrons), you're in the <a class="reference external" href="https://docs.python.org/2/tutorial/interpreter.html">Python interpreter</a>. This environment is very useful. You can inspect things in the code you've already ran, write new functions, test out code, and generally use the full power of Python.
+One of the first steps to unleashing this power is learning about the <a class="reference external" href="https://docs.python.org/2/library/functions.html">builtin functions</a>. I'll highlight a few useful tools.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal">help()</tt></dt>
+<dd>Try running <tt class="docutils literal">help(help)</tt> yourself to see the following description.
+This is a wrapper around pydoc.help that provides a helpful message
+when 'help' is typed at the Python interactive prompt.
+Calling help() at the Python prompt starts an interactive help session.
+Calling help(thing) prints help for the python object 'thing'.</dd>
+<dt><tt class="docutils literal">dir()</tt></dt>
+<dd>Use this command to show all the names accessible in a thing. If you call it without an argument, like <tt class="docutils literal">dir()</tt>, it shows you everything accessible in the current scope.
+For example, if you do <tt class="docutils literal">import math</tt>, then <tt class="docutils literal">dir()</tt> will show a list of all names you have accessible, including <tt class="docutils literal">math</tt>. If you type <tt class="docutils literal">dir(math)</tt>, you will see everything
+accessible under <tt class="docutils literal"><span class="pre">math.&lt;thing&gt;</span></tt>, e.g. <tt class="docutils literal">math.sin</tt>, <tt class="docutils literal">math.log</tt>. Try it out!</dd>
+<dt><tt class="docutils literal">len()</tt></dt>
+<dd>Returns the number of items in a container. For example, if you have a <tt class="docutils literal">list</tt> where <tt class="docutils literal">x = [0, 1, 2]</tt>, then typing <tt class="docutils literal">len(x)</tt> will return <tt class="docutils literal">3</tt>.</dd>
+<dt><tt class="docutils literal">_</tt></dt>
+<dd>The underscore symbol is a useful bit of shorthand that refers to the last thing you typed.
+For example, if you're using the Python interpreter as a calculator and you're trying to solve some expression with a complicated numerator and denominator, it can be easier to do one or the other first, and then refer to it as <tt class="docutils literal">_</tt> in the subsequent calculation.</dd>
+</dl>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="equation-solving-with-python/" class="u-url">Equation Solving with Python &amp; SymPy</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="equation-solving-with-python/" rel="bookmark"><time class="published dt-published" datetime="2016-04-10T06:12:16-05:00" title="2016-04-10 06:12">2016-04-10 06:12</time></a></p>
+                <p class="commentline">            <a href="equation-solving-with-python/#disqus_thread" data-disqus-identifier="cache/posts/equation-solving-with-python.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>In engineering applications, the same equation will be solved over and over with
+different values or measurements as inputs. Anticipating this, we can either
+write one function for each variable which inputs all other variables, or take a
+much easier route using <a class="reference external" href="http://www.sympy.org/en/index.html">SymPy</a>.</p>
+<p>The following example is a simple implementation of <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula">Manning's formula</a>:</p>
+<p>\[
+v = \frac{k}{n} {R_h}^{2/3} S^{1/2}
+\]</p>
+<p>with <span class="math">\(k = 1.49\)</span> since we most often work in English units in American
+hydrology. Note that the variable <tt class="docutils literal">mannings_eqn</tt> is actually the above
+expression set equal to 0, so that we see a <span class="math">\(-v\)</span> term.</p>
+<p>The following code creates Sympy <tt class="docutils literal">Symbol</tt>s for each variable in the expression.
+In general, if we have <span class="math">\(n\)</span> variables in the expression, we can pass in a
+<tt class="docutils literal">dict</tt> with <span class="math">\(n-1\)</span> key-value pairs (equations) with known values
+to solve for the <span class="math">\(n\)</span>th variable. We can create <tt class="docutils literal">dict</tt>s with keys, the
+set of knowns, and pass in any (independent) combination of <span class="math">\(n-1\)</span> variables from
+our expression to get a number.</p>
+<!-- TEASER_END -->
+<pre class="code python"><a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-1"></a><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">solve</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-2"></a>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-3"></a><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">Rh</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'v, n, Rh, S'</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-4"></a>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-5"></a><span class="n">knowns_1</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-6"></a><span class="n">knowns_2</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">}</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-7"></a><span class="n">knowns_3</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-8"></a>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-9"></a><span class="k">def</span> <span class="nf">solve_mannings</span><span class="p">(</span><span class="n">input_dict</span><span class="p">):</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-10"></a>    <span class="n">mannings_eqn</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span> <span class="o">+</span> <span class="mf">1.49</span><span class="o">/</span><span class="n">n</span> <span class="o">*</span> <span class="n">Rh</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">S</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-11"></a>    <span class="c1"># Use dict flag to get {variable: value} output, not anonymous [value]</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-12"></a>    <span class="n">solution</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mannings_eqn</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">input_dict</span><span class="p">),</span> <span class="nb">dict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-13"></a>    <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-14"></a>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-15"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_1</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-16"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_2</span><span class="p">)</span>
+<a name="rest_code_9ef7fac85e4b42a1accab03f2aa560bd-17"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_3</span><span class="p">)</span>
+</pre>
+<p>However, the third set of knowns gives us an
+<a class="reference external" href="https://en.wikipedia.org/wiki/Underdetermined_system">underdetermined system</a>
+since we only have two equations for our four-variable system. Accordingly, we
+will have as output one variable as a function of another, in this case <span class="math">\(S\)</span>:</p>
+<pre class="code python"><a name="rest_code_4ee96abdd87c40a9bf600bf36651d1b1-1"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">27.6638694483322</span><span class="p">}]</span>
+<a name="rest_code_4ee96abdd87c40a9bf600bf36651d1b1-2"></a><span class="p">[{</span><span class="n">Rh</span><span class="p">:</span> <span class="mf">5.19987727958683</span><span class="p">}]</span>
+<a name="rest_code_4ee96abdd87c40a9bf600bf36651d1b1-3"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">87.1357285987434</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S</span><span class="p">)}]</span>
+</pre>
+</div>
+    </div>
+    </article>
+</div>
+
+               <script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script><script>
+                    renderMathInElement(document.body);
+                </script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2017         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>
