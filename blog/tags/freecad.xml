@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkrem.it/zki/</link><description></description><atom:link rel="self" href="/blog/tags/freecad.xml" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 06 May 2017 09:24:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My FreeCAD project was accepted into Google Summer of Code!</title><link>/blog/my-freecad-project-was-accepted-into-google-summer-of-code/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;It's been almost a year since my last post, which just so happened to be about FreeCAD
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkrem.it/zki/</link><description></description><atom:link href="/blog/tags/freecad.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 06 May 2017 10:04:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My FreeCAD project was accepted into Google Summer of Code!</title><link>/blog/my-freecad-project-was-accepted-into-google-summer-of-code/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;It's been almost a year since my last post, which just so happened to be about FreeCAD
 as well. It's been a busy year: I've been studying machine design, robotics; partial differential
 equations in general, and heat and mass transfer in particular. I've also been studying the source
 code of FreeCAD while honing my sysadmin skills by helping maintain project infrastructure.
@@ -19,7 +19,7 @@ of posts. Here are a few rough-draft titles to highlight my planned topics:&lt;/
 &lt;li&gt;Unix as an IDE, or knowing your tools&lt;/li&gt;
 &lt;li&gt;Neovim with Python 2 and 3&lt;/li&gt;
 &lt;li&gt;Neovim with C++&lt;/li&gt;
-&lt;li&gt;Building the project&lt;/li&gt;
+&lt;li&gt;Asynchronous autobuilding with Neovim&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;li&gt;Distributed compilation with &lt;a class="reference external" href="https://github.com/distcc/distcc"&gt;distcc&lt;/a&gt;&lt;/li&gt;

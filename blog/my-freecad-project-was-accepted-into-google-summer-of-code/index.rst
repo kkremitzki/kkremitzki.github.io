@@ -31,7 +31,7 @@ of posts. Here are a few rough-draft titles to highlight my planned topics:
   3. Unix as an IDE, or knowing your tools
   4. Neovim with Python 2 and 3
   5. Neovim with C++
-  6. Building the project
+  6. Asynchronous autobuilding with Neovim
 
 * Distributed compilation with `distcc <https://github.com/distcc/distcc>`_
 * Speaking source code: how to fix your first FreeCAD bug
