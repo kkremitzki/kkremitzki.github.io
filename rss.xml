@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog</title><link>https://kkrem.it/zki/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 06 May 2017 08:17:31 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My FreeCAD project was accepted into Google Summer of Code!</title><link>/blog/my-freecad-project-was-accepted-into-google-summer-of-code/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;p&gt;It's been almost a year since my last post, which just so happened to be about FreeCAD
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog</title><link>https://kkrem.it/zki/</link><description>Notes on my journey in biosystems engineering.</description><atom:link type="application/rss+xml" rel="self" href="/rss.xml"></atom:link><language>en</language><lastBuildDate>Sat, 06 May 2017 09:08:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My FreeCAD project was accepted into Google Summer of Code!</title><link>/blog/my-freecad-project-was-accepted-into-google-summer-of-code/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;It's been almost a year since my last post, which just so happened to be about FreeCAD
 as well. It's been a busy year: I've been studying machine design, robotics; partial differential
 equations in general, and heat and mass transfer in particular. I've also been studying the source
-code of FreeCAD. It has a great deal of potential application in things like unit operations and the
-analysis of networks. For example, an irrigation network could be modeled geometrically and analyzed
-for important overall properties of the system like the uniformity coefficient, which is a measure of
-how pressure losses in the network and elevation changes affect how extreme a difference exists between
-the relatively "wettest" and "driest" outputs. I did some early modeling of this using Python in&lt;/p&gt;</description><category>freecad</category><guid>/blog/my-freecad-project-was-accepted-into-google-summer-of-code/</guid><pubDate>Sat, 06 May 2017 07:41:23 GMT</pubDate></item><item><title>Getting Started with FreeCAD Development in Ubuntu 16.04</title><link>/blog/getting-started-with-freecad-development-in-ubuntu-1604/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.freecadweb.org/"&gt;FreeCAD&lt;/a&gt; is a multi-platform (Windows, Mac, Linux) open source parametric 3D CAD modeler, and can read
+code of FreeCAD while honing my sysadmin skills by helping maintain project infrastructure.
+My hard work has paid off, and &lt;a class="reference external" href="https://summerofcode.withgoogle.com/projects/#5752969237626880"&gt;my Google Summer of Code project proposal &lt;/a&gt;
+was accepted! I'm going to be working on improving the parametric part design workbench and writing
+test code to make the module more robust for future development.&lt;/p&gt;
+&lt;p&gt;As a result, I've decided to publish my daily log here. I'll be posting weekly summaries once the
+coding period begins on May 30, as well as more in-depth ad hoc blogging on interesting developments over the summer.
+My goal is to both document my project and to produce a useful reference for other developers wanting to get started
+contributing to FreeCAD.&lt;/p&gt;
+&lt;p&gt;The rest of May is part of the Community Bonding Period, and so I'll ramp up to full speed with an introductory series
+of posts. Here are a few rough-draft titles to highlight my planned topics:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/distcc/distcc"&gt;Neovim&lt;/a&gt; as an IDE:&lt;ol class="arabic"&gt;
+&lt;li&gt;Building a base, or practically pluginless&lt;/li&gt;
+&lt;li&gt;What makes an IDE? An overview of features&lt;/li&gt;
+&lt;li&gt;Unix as an IDE, or knowing your tools&lt;/li&gt;
+&lt;li&gt;Neovim with Python 2 and 3&lt;/li&gt;
+&lt;li&gt;Neovim with C++&lt;/li&gt;
+&lt;li&gt;Building the project&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Distributed compilation with &lt;a class="reference external" href="https://github.com/distcc/distcc"&gt;distcc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Speaking source code: how to fix your first FreeCAD bug&lt;/li&gt;
+&lt;li&gt;Contributing to open source communities (and FreeCAD in particular)&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</description><category>freecad</category><guid>/blog/my-freecad-project-was-accepted-into-google-summer-of-code/</guid><pubDate>Sat, 06 May 2017 07:41:23 GMT</pubDate></item><item><title>Getting Started with FreeCAD Development in Ubuntu 16.04</title><link>/blog/getting-started-with-freecad-development-in-ubuntu-1604/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;a class="reference external" href="http://www.freecadweb.org/"&gt;FreeCAD&lt;/a&gt; is a multi-platform (Windows, Mac, Linux) open source parametric 3D CAD modeler, and can read
 and write many open file formats.&lt;/p&gt;
 &lt;p&gt;An explanation of the many virtues of open source software can be found at &lt;a class="reference external" href="http://opensourceforamerica.org/learn-more/benefits-of-open-source-software/"&gt;Open Source for America&lt;/a&gt; and elsewhere. To quote OSFA,&lt;/p&gt;
 &lt;blockquote&gt;
