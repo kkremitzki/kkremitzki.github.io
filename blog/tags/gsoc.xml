@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog (Posts about gsoc)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/gsoc.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Jun 2017 17:12:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 1 Recap</title><link>/blog/gsoc-week-1-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;The first week of Google Summer of Code has ended, and so it's time for a recap post!&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog (Posts about gsoc)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/gsoc.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Jun 2017 17:15:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 1 Recap</title><link>/blog/gsoc-week-1-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;The first week of Google Summer of Code has ended, and so it's time for a recap post!&lt;/p&gt;
 &lt;p&gt;The main topic this week was &lt;a class="reference external" href="https://www.freecadweb.org/wiki/PartDesign_Mirrored"&gt;PartDesign Mirrored&lt;/a&gt;, a fairly self-explanatory feature,
 with a show-stopping bug explained in &lt;a class="reference external" href="https://freecadweb.org/tracker/view.php?id=3006"&gt;FreeCAD issue 3006&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
@@ -32,7 +32,10 @@ So, I found and set up &lt;a class="reference external" href="https://github.com
 session-saving, and
 "... takes advantage of Neovim's job API to spawn a separate process and communicates with the Neovim process using RPC calls."&lt;/p&gt;
 &lt;p&gt;Pretty nice. Anyway, I was able to step through the code and see exactly what was flying around, just like I wanted.&lt;/p&gt;
-&lt;img alt="/images/neovim1.png" class="align-center" src="/images/neovim1.png" style="width: 600px;"&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="neovim" src="/images/neovim1.png" style="width: 600px;"&gt;
+&lt;p class="caption"&gt;Figure 3. Neovim in an LLDB debug session.&lt;/p&gt;
+&lt;/div&gt;
 &lt;p&gt;So, what was the problem? Hah! Not so simple. Turns out there are &lt;em&gt;at least four bugs here!!&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;First, the algorithm which first checks if the mirrored shapes are adjacent and thus, can be fused, was broken.&lt;/p&gt;
 &lt;p&gt;Once this failed, FreeCAD then attempts to generate a mesh from the shape, and then converts a generalized transformation object representing the mirroring into a matrix to put the mesh in the correct place.
@@ -43,14 +46,14 @@ In other words, the scale factor multiplication was happening twice. The scale f
 &lt;p&gt;The fourth, though, was a bit trickier! It only appeared when fixing the mesh placement.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;
 &lt;img alt="new mirroring bug" src="/images/gsoc-1-3.png" style="width: 600px;"&gt;
-&lt;p class="caption"&gt;Figure 3. A strange, new mirroring bug.&lt;/p&gt;
+&lt;p class="caption"&gt;Figure 4. A strange, new mirroring bug.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;This one was diagnosed by ickby, my mentor for this project.
 It turns out the failure meshes' faces were getting constructed inside out, and so the material's color was not considered "illuminated".&lt;/p&gt;
 &lt;p&gt;The three of us considered a few different options to get around this. One way would be to use Coin3D, FreeCAD's scene graph library, and change the material
 properties to define something that looked the same, illuminated or not. Another is to essentially duplicate each face with the second instance having an inverted normal, so that you're guaranteed to have an outward-facing face.&lt;/p&gt;
 &lt;p&gt;The fix ended up being much simpler than that! It was possible to simply change the vertex ordering. Originally, it was set to &lt;tt class="docutils literal"&gt;COUNTERCLOCKWISE&lt;/tt&gt;.
-However, in figure 3, you can see that simply changing it to &lt;tt class="docutils literal"&gt;CLOCKWISE&lt;/tt&gt; would not be an obvious fix.
+However, in figure 4, you can see that simply changing it to &lt;tt class="docutils literal"&gt;CLOCKWISE&lt;/tt&gt; would not be an obvious fix.
 Abdullah also fixed this one, presumably by checking the docs for that option and finding that there was an "option C", &lt;tt class="docutils literal"&gt;UNKNOWN&lt;/tt&gt;. That did the trick!&lt;/p&gt;
 &lt;p&gt;So now, PartDesign Mirrored is fixed and ready. Not a bad start for the summer!&lt;/p&gt;
 &lt;!-- Open CASCADE and quaternions --&gt;

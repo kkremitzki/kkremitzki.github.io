@@ -57,9 +57,12 @@ session-saving, and
 
 Pretty nice. Anyway, I was able to step through the code and see exactly what was flying around, just like I wanted.
 
-.. image:: /images/neovim1.png
+.. figure:: /images/neovim1.png
   :width: 600
   :align: center
+  :alt: neovim
+
+  Figure 3. Neovim in an LLDB debug session.
 
 So, what was the problem? Hah! Not so simple. Turns out there are *at least four bugs here!!*
 
@@ -79,7 +82,7 @@ The fourth, though, was a bit trickier! It only appeared when fixing the mesh pl
   :align: center
   :alt: new mirroring bug
 
-  Figure 3. A strange, new mirroring bug.
+  Figure 4. A strange, new mirroring bug.
 
 
 This one was diagnosed by ickby, my mentor for this project. 
@@ -89,7 +92,7 @@ The three of us considered a few different options to get around this. One way w
 properties to define something that looked the same, illuminated or not. Another is to essentially duplicate each face with the second instance having an inverted normal, so that you're guaranteed to have an outward-facing face.
 
 The fix ended up being much simpler than that! It was possible to simply change the vertex ordering. Originally, it was set to ``COUNTERCLOCKWISE``. 
-However, in figure 3, you can see that simply changing it to ``CLOCKWISE`` would not be an obvious fix. 
+However, in figure 4, you can see that simply changing it to ``CLOCKWISE`` would not be an obvious fix. 
 Abdullah also fixed this one, presumably by checking the docs for that option and finding that there was an "option C", ``UNKNOWN``. That did the trick!
 
 So now, PartDesign Mirrored is fixed and ready. Not a bad start for the summer!
