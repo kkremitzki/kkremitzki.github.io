@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSoC Week 1 Recap | Biosystems Engineering Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+<link rel="stylesheet" href="../../assets/css/custom.css">
+<link rel="stylesheet" href="../../assets/css/code.css">
+<meta name="author" content="Kurt Kremitzki">
+<link rel="prev" href="../my-freecad-project-was-accepted-into-google-summer-of-code/" title="My FreeCAD project was accepted into Google Summer of Code!" type="text/html">
+<meta property="og:site_name" content="Biosystems Engineering Blog">
+<meta property="og:title" content="GSoC Week 1 Recap">
+<meta property="og:url" content="/blog/gsoc-week-1-recap/">
+<meta property="og:description" content="The first week of Google Summer of Code has ended, and so it's time for a recap post!
+The main topic this week was PartDesign Mirrored, a fairly self-explanatory feature,
+with a show-stopping bug expl">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-06-06T14:28:12-05:00">
+<meta property="article:tag" content="freecad">
+<meta property="article:tag" content="gsoc">
+<meta property="article:tag" content="mathjax">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../">About</a>
+                </li>
+<li>
+<a href="../">Blog</a>
+                </li>
+<li>
+<a href="../tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSoC Week 1 Recap</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-06-06T14:28:12-05:00" itemprop="datePublished" title="2017-06-06 14:28">2017-06-06 14:28</time></a></p>
+                <p class="commentline">            <a href="#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-1-recap.html">Comments</a>
+
+
+            
+        </p>
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>The first week of Google Summer of Code has ended, and so it's time for a recap post!</p>
+<p>The main topic this week was <a class="reference external" href="https://www.freecadweb.org/wiki/PartDesign_Mirrored">PartDesign Mirrored</a>, a fairly self-explanatory feature,
+with a show-stopping bug explained in <a class="reference external" href="https://freecadweb.org/tracker/view.php?id=3006">FreeCAD issue 3006</a>.</p>
+<div class="figure align-center">
+<img alt="unit cube construction" src="../../images/gsoc-1-1.png" style="width: 600px;"><p class="caption">Figure 1. The base of my PartDesign Mirrored experiments.</p>
+</div>
+<p>In this picture, we have a simple <tt class="docutils literal">1 mm</tt> square sketch (pictured in white) attached to the <span class="math">\(xy\)</span>-plane.
+One corner is at the origin, and the sketch is the base for a Pad feature <tt class="docutils literal">1 mm</tt> high.
+Length is handled internally as <tt class="docutils literal">mm</tt> by FreeCAD, so this "unit cube" serves as a useful basis for testing behavior.
+A useful alteration involves displacing this cube, say, <tt class="docutils literal">1 mm</tt> up the <span class="math">\(y\)</span>-axis.
+This constructs a case where mirroring not all mirrorings should succeed, but we'll get into that later.</p>
+<p>Let's turn now to the bug itself, depicted in figure 2.
+The unit cube is supposed to be mirrored about its vertical sketch axis (the <span class="math">\(y\)</span>-axis, pictured running off to the top right.)
+Obviously, it's not, and the failure is helpfully represented in red.</p>
+<div class="figure align-center">
+<img alt="mirroring bug" src="../../images/gsoc-1-2.png" style="width: 600px;"><p class="caption">Figure 2. FreeCAD bug 3006 in action.</p>
+</div>
+<p>Note that the body diagonal of the mirrored part should run from the origin to  <span class="math">\((-1, 1, 1)\)</span>.
+Instead, it's going to <span class="math">\((1, -1, -1)\)</span>, in the opposite direction.</p>
+<p>Well, this was my first really serious bug to tackle for the summer.
+I chose this as a way to really dive in, since it directly involves Open CASCADE, the open source C++ geometry kernel at the heart of FreeCAD.</p>
+<p>However, my programming background is chiefly with Python (as well as JavaScript and Lua), all interpreted languages.
+One nicety of that sort of language is that it can be very quick to debug and examine behavior using the interpreter.
+There is a Python debugger, <tt class="docutils literal">pdb</tt>, but I rarely needed to use it for my mostly personal-sized projects.
+Even then, it's quite straightforward to use since you're already in an interpreter-native environment.</p>
+<p>C++ is a very different beast. In this case, stepping through the code with a debugger was my only choice.
+I use Neovim as my IDE, though, so I wanted a way to combine the power of my text editor with my debugger.
+So, I found and set up <a class="reference external" href="https://github.com/dbgx/lldb.nvim">LLDB.nvim</a>, an LLDB frontend, with an event-based, non-blocking UI,
+session-saving, and
+"... takes advantage of Neovim's job API to spawn a separate process and communicates with the Neovim process using RPC calls."</p>
+<p>Pretty nice. Anyway, I was able to step through the code and see exactly what was flying around, just like I wanted.</p>
+<img alt="/images/neovim1.png" class="align-center" src="../../images/neovim1.png" style="width: 600px;"><p>So, what was the problem? Hah! Not so simple. Turns out there are <em>at least four bugs here!!</em></p>
+<p>First, the algorithm which first checks if the mirrored shapes are adjacent and thus, can be fused, was broken.</p>
+<p>Once this failed, FreeCAD then attempts to generate a mesh from the shape, and then converts a generalized transformation object representing the mirroring into a matrix to put the mesh in the correct place.
+It turns out that in Open CASCADE 7.0.0, the <tt class="docutils literal">gp_Trsf</tt> API was changed so that <tt class="docutils literal"><span class="pre">gp_Trsf::VectorialPart()</span></tt> returns a 3x3 matrix including the scale factor.
+The previous behavior was to return the homogeneous part of the transformation which does not include the scale factor, and the FreeCAD algorithm for constructing the 4x4 matrix for the mesh included multiplying every term by a scale factor.
+In other words, the scale factor multiplication was happening twice. The scale factor I had observed in the debugger was -1, so this perfectly explained the inverted positioning of the failure result!</p>
+<p>The third bug, of a much more minor nature, involved a a classic "failure... success!" message displayed in the event of a mirroring failure, and was easier to fix.</p>
+<p>The fourth, though, was a bit trickier! It only appeared when fixing the mesh placement.</p>
+<div class="figure align-center">
+<img alt="new mirroring bug" src="../../images/gsoc-1-3.png" style="width: 600px;"><p class="caption">Figure 3. A strange, new mirroring bug.</p>
+</div>
+<p>This one was diagnosed by ickby, my mentor for this project.
+It turns out the failure meshes' faces were getting constructed inside out, and so the material's color was not considered "illuminated".</p>
+<p>The three of us considered a few different options to get around this. One way would be to use Coin3D, FreeCAD's scene graph library, and change the material
+properties to define something that looked the same, illuminated or not. Another is to essentially duplicate each face with the second instance having an inverted normal, so that you're guaranteed to have an outward-facing face.</p>
+<p>The fix ended up being much simpler than that! It was possible to simply change the vertex ordering. Originally, it was set to <tt class="docutils literal">COUNTERCLOCKWISE</tt>.
+However, in figure 3, you can see that simply changing it to <tt class="docutils literal">CLOCKWISE</tt> would not be an obvious fix.
+Abdullah also fixed this one, presumably by checking the docs for that option and finding that there was an "option C", <tt class="docutils literal">UNKNOWN</tt>. That did the trick!</p>
+<p>So now, PartDesign Mirrored is fixed and ready. Not a bad start for the summer!</p>
+<!-- Open CASCADE and quaternions -->
+<!-- Transformation matrices -->
+<!-- OpenInventor and tessellation -->
+<!-- Plans for the future -->
+<!-- Rebuild test -->
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../tags/freecad/" rel="tag">freecad</a></li>
+            <li><a class="tag p-category" href="../tags/gsoc/" rel="tag">gsoc</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../my-freecad-project-was-accepted-into-google-summer-of-code/" rel="prev" title="My FreeCAD project was accepted into Google Summer of Code!">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+                        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="kkremitzki",
+            disqus_url="/blog/gsoc-week-1-recap/",
+        disqus_title="GSoC Week 1 Recap",
+        disqus_identifier="cache/posts/gsoc-week-1-recap.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous"></script><script>
+                renderMathInElement(document.body);
+            </script></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2017         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

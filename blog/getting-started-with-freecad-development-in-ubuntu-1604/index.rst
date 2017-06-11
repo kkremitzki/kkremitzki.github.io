@@ -1,7 +1,7 @@
 .. title: Getting Started with FreeCAD Development in Ubuntu 16.04
 .. slug: getting-started-with-freecad-development-in-ubuntu-1604
 .. date: 2016-06-05 06:17:51 UTC-05:00
-.. tags: foss,cad,linux
+.. tags: foss,freecad,linux
 .. category: 
 .. link: 
 .. description: 

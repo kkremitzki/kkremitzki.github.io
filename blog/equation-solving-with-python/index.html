@@ -30,6 +30,7 @@ write one function for each variable which">
 <meta property="article:published_time" content="2016-04-10T06:12:16-05:00">
 <meta property="article:tag" content="mathjax">
 <meta property="article:tag" content="python">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -112,31 +113,31 @@ to solve for the <span class="math">\(n\)</span>th variable. We can create <tt c
 set of knowns, and pass in any (independent) combination of <span class="math">\(n-1\)</span> variables from
 our expression to get a number.</p>
 <!-- TEASER_END -->
-<pre class="code python"><a name="rest_code_200a59e6b5f743209067139e7ae01095-1"></a><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">solve</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-2"></a>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-3"></a><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">Rh</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'v, n, Rh, S'</span><span class="p">)</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-4"></a>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-5"></a><span class="n">knowns_1</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-6"></a><span class="n">knowns_2</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">}</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-7"></a><span class="n">knowns_3</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-8"></a>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-9"></a><span class="k">def</span> <span class="nf">solve_mannings</span><span class="p">(</span><span class="n">input_dict</span><span class="p">):</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-10"></a>    <span class="n">mannings_eqn</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span> <span class="o">+</span> <span class="mf">1.49</span><span class="o">/</span><span class="n">n</span> <span class="o">*</span> <span class="n">Rh</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">S</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-11"></a>    <span class="c1"># Use dict flag to get {variable: value} output, not anonymous [value]</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-12"></a>    <span class="n">solution</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mannings_eqn</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">input_dict</span><span class="p">),</span> <span class="nb">dict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-13"></a>    <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-14"></a>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-15"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_1</span><span class="p">)</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-16"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_2</span><span class="p">)</span>
-<a name="rest_code_200a59e6b5f743209067139e7ae01095-17"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_3</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_a55b251ba21547c5829c316daa2168eb-1"></a><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">solve</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-2"></a>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-3"></a><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">Rh</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'v, n, Rh, S'</span><span class="p">)</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-4"></a>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-5"></a><span class="n">knowns_1</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-6"></a><span class="n">knowns_2</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">}</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-7"></a><span class="n">knowns_3</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-8"></a>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-9"></a><span class="k">def</span> <span class="nf">solve_mannings</span><span class="p">(</span><span class="n">input_dict</span><span class="p">):</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-10"></a>    <span class="n">mannings_eqn</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span> <span class="o">+</span> <span class="mf">1.49</span><span class="o">/</span><span class="n">n</span> <span class="o">*</span> <span class="n">Rh</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">S</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-11"></a>    <span class="c1"># Use dict flag to get {variable: value} output, not anonymous [value]</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-12"></a>    <span class="n">solution</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mannings_eqn</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">input_dict</span><span class="p">),</span> <span class="nb">dict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-13"></a>    <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-14"></a>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-15"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_1</span><span class="p">)</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-16"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_2</span><span class="p">)</span>
+<a name="rest_code_a55b251ba21547c5829c316daa2168eb-17"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_3</span><span class="p">)</span>
 </pre>
 <p>However, the third set of knowns gives us an
 <a class="reference external" href="https://en.wikipedia.org/wiki/Underdetermined_system">underdetermined system</a>
 since we only have two equations for our four-variable system. Accordingly, we
 will have as output one variable as a function of another, in this case <span class="math">\(S\)</span>:</p>
-<pre class="code python"><a name="rest_code_edc1e57e29484a828678c5f06553175f-1"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">27.6638694483322</span><span class="p">}]</span>
-<a name="rest_code_edc1e57e29484a828678c5f06553175f-2"></a><span class="p">[{</span><span class="n">Rh</span><span class="p">:</span> <span class="mf">5.19987727958683</span><span class="p">}]</span>
-<a name="rest_code_edc1e57e29484a828678c5f06553175f-3"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">87.1357285987434</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S</span><span class="p">)}]</span>
+<pre class="code python"><a name="rest_code_74f04c7ff33f4bee9efe94ee673c6265-1"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">27.6638694483322</span><span class="p">}]</span>
+<a name="rest_code_74f04c7ff33f4bee9efe94ee673c6265-2"></a><span class="p">[{</span><span class="n">Rh</span><span class="p">:</span> <span class="mf">5.19987727958683</span><span class="p">}]</span>
+<a name="rest_code_74f04c7ff33f4bee9efe94ee673c6265-3"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">87.1357285987434</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S</span><span class="p">)}]</span>
 </pre>
 </div>
     </div>
@@ -167,9 +168,9 @@ will have as output one variable as a function of another, in this case <span cl
     <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script><script>
-                    renderMathInElement(document.body);
-                </script></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+        </section><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous"></script><script>
+                renderMathInElement(document.body);
+            </script></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
         <!--End of body content-->
 
