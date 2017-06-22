@@ -82,6 +82,6 @@ However, covering the last Pocket option with ``testPocketToFaceCase`` is not (n
 
 If you refer to figure 5, you'll note that the base Pad feature is a hexahedron, or six-sided shape.
 The Pocket feature adds four new faces to the overall shape, ``Face7`` through ``Face10``. 
-However, references relying on the numbering of those faces is inherently brittle and is being addressed
-by another one of the GSoC projects this year.
-Because of that, I'll give a little bit more thought on how to construct the test before proceeding.
+However, references relying on the numbering of those faces is inherently brittle and it turns out that
+a particular face number OpenCASCADE > 7.0 does not correspond to the same face in a lower version, e.g.
+the version used on the FreeCAD CI machines over at Travis.

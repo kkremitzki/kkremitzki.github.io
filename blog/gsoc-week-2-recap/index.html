@@ -138,9 +138,9 @@ and <tt class="docutils literal">testPocketToFirstCase</tt>.
 However, covering the last Pocket option with <tt class="docutils literal">testPocketToFaceCase</tt> is not (necessarily) so trivial.</p>
 <p>If you refer to figure 5, you'll note that the base Pad feature is a hexahedron, or six-sided shape.
 The Pocket feature adds four new faces to the overall shape, <tt class="docutils literal">Face7</tt> through <tt class="docutils literal">Face10</tt>.
-However, references relying on the numbering of those faces is inherently brittle and is being addressed
-by another one of the GSoC projects this year.
-Because of that, I'll give a little bit more thought on how to construct the test before proceeding.</p>
+However, references relying on the numbering of those faces is inherently brittle and it turns out that
+a particular face number OpenCASCADE &gt; 7.0 does not correspond to the same face in a lower version, e.g.
+the version used on the FreeCAD CI machines over at Travis.</p>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
