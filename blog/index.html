@@ -16,6 +16,7 @@ article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href=".">
 <link rel="icon" href="../favicon.ico" sizes="16x16">
+<link rel="next" href="index-1.html" type="text/html">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><script src="../assets/js/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
 <link rel="stylesheet" href="../assets/css/custom.css">
 <link rel="stylesheet" href="../assets/css/code.css">
@@ -70,7 +71,69 @@ article: http://ogp.me/ns/article#
             
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-1-recap/" class="u-url">GSoC Week 1 Recap</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-2-recap/" class="u-url">GSoC Week 2 recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-2-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-18T18:40:33-05:00" title="2017-06-18 18:40">2017-06-18 18:40</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-2-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-2-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>With the four major bugs blocking the usage of <tt class="docutils literal">PartDesign Mirrored</tt> fixed,
+I started out the week exploring the now-functioning tool with the goal of getting what I call "command test coverage".
+In short, this means testing major variations for tools presented to the user in the PartDesign WB.</p>
+<p>For reference, they are depicted and categorized in figures 1 and 2,
+with the newly redesigned icons made by <a class="reference external" href="https://github.com/agryson">Alexander Gryson</a> (kudos to his major rework of all of FreeCAD's icons!)</p>
+<div class="figure align-center">
+<img alt="command palette" src="../images/gsoc-2-1.png" style="width: 900px;"><p class="caption">Figure 1. Datum tools, additive/subtractive features and primitives.</p>
+</div>
+<div class="figure align-center">
+<img alt="command palette" src="../images/gsoc-2-2.png" style="width: 600px;"><p class="caption">Figure 2. Transformations, dressup features, and multi-body boolean operation.</p>
+</div>
+<p>The Mirrored tool takes as input feature(s) and a mirror plane, but the other transformation tools like LinearPattern and PolarPattern behave in a fundamentally similar way.
+By that reasoning, I figured that tests regarding the Mirrored tool really only have two major permutations if one assumes valid input:
+the case where a choice of features and plane succeeds, and one where it doesn't.</p>
+<div class="figure align-center">
+<img alt="mirrored success" src="../images/gsoc-2-3.png" style="width: 600px;"><p class="caption">Figure 3. Success!</p>
+</div>
+<div class="figure align-center">
+<img alt="mirrored failure" src="../images/gsoc-2-4.png" style="width: 600px;"><p class="caption">Figure 4. Failure...</p>
+</div>
+<p>So, I cleaned up the test case submission I started GSoC out with, <tt class="docutils literal">testMirroredSketchCase</tt>,
+and added the new case depicted in figure 4, <tt class="docutils literal">testMirroredOffsetFailureCase</tt>.
+However, I noticed both of my test cases involved <tt class="docutils literal">Sketch</tt>-based additive features, but no additive primitives.
+So, I also included <tt class="docutils literal">testMirroredPrimitiveCase</tt> in <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/816">FreeCAD PR#816</a>.</p>
+<p>What's nice is that besides <tt class="docutils literal">PartDesign Mirrored</tt> now being fixed, several other transformation tools' bugs were resolved.
+Altogether, the PR resolved four issues, <a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=2235">2235</a>,
+<a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=2248">2248</a>, <a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=3006">3006</a>,
+and <a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=3065">3065</a>.</p>
+<p>With all that wrapped up,
+I moved on to adding tests for the various options for the fundamental sketch-based features <tt class="docutils literal">Pad</tt> and <tt class="docutils literal">Pocket</tt>.
+Altogether, I added <tt class="docutils literal">testPadToFirstCase</tt>, <tt class="docutils literal">testPadtoLastCase</tt>, <tt class="docutils literal">testPadToFaceCase</tt>,
+and <tt class="docutils literal">testPadTwoDimensionsCase</tt> to cover the options for <tt class="docutils literal">PartDesign Pad</tt>.
+Unfortunately, these test cases are not very interesting to look at and mostly involve 2-4 lined up cubes similar to
+what figure 3 looks like.</p>
+<p>However, for <tt class="docutils literal">PartDesign Pad</tt>, things do get a little more interesting.
+The base case is a simple reversed pad with a pocket in the middle, shown in figure 5.</p>
+<div class="figure align-center">
+<img alt="mirrored failure" src="../images/gsoc-2-5.png" style="width: 600px;"><p class="caption">Figure 5. The base Pocket test construction.</p>
+</div>
+<p>It was straightforward to add <tt class="docutils literal">testPocketDimensionCase</tt>, <tt class="docutils literal">testPocketThroughAllCase</tt>,
+and <tt class="docutils literal">testPocketToFirstCase</tt>.
+However, covering the last Pocket option with <tt class="docutils literal">testPocketToFaceCase</tt> is not (necessarily) so trivial.</p>
+<p>If you refer to figure 5, you'll note that the base Pad feature is a hexahedron, or six-sided shape.
+The Pocket feature adds four new faces to the overall shape, <tt class="docutils literal">Face7</tt> through <tt class="docutils literal">Face10</tt>.
+However, references relying on the numbering of those faces is inherently brittle and is being addressed
+by another one of the GSoC projects this year.
+Because of that, I'll give a little bit more thought on how to construct the test before proceeding.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-1-recap/" class="u-url">GSoC Week 1 Recap</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -607,69 +670,13 @@ For example, if you're using the Python interpreter as a calculator and you're t
 </dl>
 </div>
     </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="equation-solving-with-python/" class="u-url">Equation Solving with Python &amp; SymPy</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="equation-solving-with-python/" rel="bookmark"><time class="published dt-published" datetime="2016-04-10T06:12:16-05:00" title="2016-04-10 06:12">2016-04-10 06:12</time></a></p>
-                <p class="commentline">            <a href="equation-solving-with-python/#disqus_thread" data-disqus-identifier="cache/posts/equation-solving-with-python.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>In engineering applications, the same equation will be solved over and over with
-different values or measurements as inputs. Anticipating this, we can either
-write one function for each variable which inputs all other variables, or take a
-much easier route using <a class="reference external" href="http://www.sympy.org/en/index.html">SymPy</a>.</p>
-<p>The following example is a simple implementation of <a class="reference external" href="https://en.wikipedia.org/wiki/Manning_formula">Manning's formula</a>:</p>
-<p>\[
-v = \frac{k}{n} {R_h}^{2/3} S^{1/2}
-\]</p>
-<p>with <span class="math">\(k = 1.49\)</span> since we most often work in English units in American
-hydrology. Note that the variable <tt class="docutils literal">mannings_eqn</tt> is actually the above
-expression set equal to 0, so that we see a <span class="math">\(-v\)</span> term.</p>
-<p>The following code creates Sympy <tt class="docutils literal">Symbol</tt>s for each variable in the expression.
-In general, if we have <span class="math">\(n\)</span> variables in the expression, we can pass in a
-<tt class="docutils literal">dict</tt> with <span class="math">\(n-1\)</span> key-value pairs (equations) with known values
-to solve for the <span class="math">\(n\)</span>th variable. We can create <tt class="docutils literal">dict</tt>s with keys, the
-set of knowns, and pass in any (independent) combination of <span class="math">\(n-1\)</span> variables from
-our expression to get a number.</p>
-<!-- TEASER_END -->
-<pre class="code python"><a name="rest_code_a55b251ba21547c5829c316daa2168eb-1"></a><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">solve</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-2"></a>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-3"></a><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">Rh</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'v, n, Rh, S'</span><span class="p">)</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-4"></a>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-5"></a><span class="n">knowns_1</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-6"></a><span class="n">knowns_2</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">}</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-7"></a><span class="n">knowns_3</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-8"></a>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-9"></a><span class="k">def</span> <span class="nf">solve_mannings</span><span class="p">(</span><span class="n">input_dict</span><span class="p">):</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-10"></a>    <span class="n">mannings_eqn</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span> <span class="o">+</span> <span class="mf">1.49</span><span class="o">/</span><span class="n">n</span> <span class="o">*</span> <span class="n">Rh</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">S</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-11"></a>    <span class="c1"># Use dict flag to get {variable: value} output, not anonymous [value]</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-12"></a>    <span class="n">solution</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mannings_eqn</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">input_dict</span><span class="p">),</span> <span class="nb">dict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-13"></a>    <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-14"></a>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-15"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_1</span><span class="p">)</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-16"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_2</span><span class="p">)</span>
-<a name="rest_code_a55b251ba21547c5829c316daa2168eb-17"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_3</span><span class="p">)</span>
-</pre>
-<p>However, the third set of knowns gives us an
-<a class="reference external" href="https://en.wikipedia.org/wiki/Underdetermined_system">underdetermined system</a>
-since we only have two equations for our four-variable system. Accordingly, we
-will have as output one variable as a function of another, in this case <span class="math">\(S\)</span>:</p>
-<pre class="code python"><a name="rest_code_74f04c7ff33f4bee9efe94ee673c6265-1"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">27.6638694483322</span><span class="p">}]</span>
-<a name="rest_code_74f04c7ff33f4bee9efe94ee673c6265-2"></a><span class="p">[{</span><span class="n">Rh</span><span class="p">:</span> <span class="mf">5.19987727958683</span><span class="p">}]</span>
-<a name="rest_code_74f04c7ff33f4bee9efe94ee673c6265-3"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">87.1357285987434</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S</span><span class="p">)}]</span>
-</pre>
-</div>
-    </div>
     </article>
 </div>
-
-               <script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous"></script><script>
+        <nav class="postindexpager"><ul class="pager">
+<li class="next">
+                <a href="index-1.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous"></script><script>
                 renderMathInElement(document.body);
             </script>
 </div>

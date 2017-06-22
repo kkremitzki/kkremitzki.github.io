@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog (Posts about gsoc)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/gsoc.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 11 Jun 2017 17:15:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 1 Recap</title><link>/blog/gsoc-week-1-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;The first week of Google Summer of Code has ended, and so it's time for a recap post!&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog (Posts about gsoc)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/gsoc.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Thu, 22 Jun 2017 00:10:45 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 2 recap</title><link>/blog/gsoc-week-2-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;With the four major bugs blocking the usage of &lt;tt class="docutils literal"&gt;PartDesign Mirrored&lt;/tt&gt; fixed,
+I started out the week exploring the now-functioning tool with the goal of getting what I call "command test coverage".
+In short, this means testing major variations for tools presented to the user in the PartDesign WB.&lt;/p&gt;
+&lt;p&gt;For reference, they are depicted and categorized in figures 1 and 2,
+with the newly redesigned icons made by &lt;a class="reference external" href="https://github.com/agryson"&gt;Alexander Gryson&lt;/a&gt; (kudos to his major rework of all of FreeCAD's icons!)&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="command palette" src="/images/gsoc-2-1.png" style="width: 900px;"&gt;
+&lt;p class="caption"&gt;Figure 1. Datum tools, additive/subtractive features and primitives.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="command palette" src="/images/gsoc-2-2.png" style="width: 600px;"&gt;
+&lt;p class="caption"&gt;Figure 2. Transformations, dressup features, and multi-body boolean operation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The Mirrored tool takes as input feature(s) and a mirror plane, but the other transformation tools like LinearPattern and PolarPattern behave in a fundamentally similar way.
+By that reasoning, I figured that tests regarding the Mirrored tool really only have two major permutations if one assumes valid input:
+the case where a choice of features and plane succeeds, and one where it doesn't.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="mirrored success" src="/images/gsoc-2-3.png" style="width: 600px;"&gt;
+&lt;p class="caption"&gt;Figure 3. Success!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="mirrored failure" src="/images/gsoc-2-4.png" style="width: 600px;"&gt;
+&lt;p class="caption"&gt;Figure 4. Failure...&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;So, I cleaned up the test case submission I started GSoC out with, &lt;tt class="docutils literal"&gt;testMirroredSketchCase&lt;/tt&gt;,
+and added the new case depicted in figure 4, &lt;tt class="docutils literal"&gt;testMirroredOffsetFailureCase&lt;/tt&gt;.
+However, I noticed both of my test cases involved &lt;tt class="docutils literal"&gt;Sketch&lt;/tt&gt;-based additive features, but no additive primitives.
+So, I also included &lt;tt class="docutils literal"&gt;testMirroredPrimitiveCase&lt;/tt&gt; in &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/816"&gt;FreeCAD PR#816&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;What's nice is that besides &lt;tt class="docutils literal"&gt;PartDesign Mirrored&lt;/tt&gt; now being fixed, several other transformation tools' bugs were resolved.
+Altogether, the PR resolved four issues, &lt;a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=2235"&gt;2235&lt;/a&gt;,
+&lt;a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=2248"&gt;2248&lt;/a&gt;, &lt;a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=3006"&gt;3006&lt;/a&gt;,
+and &lt;a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=3065"&gt;3065&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;With all that wrapped up,
+I moved on to adding tests for the various options for the fundamental sketch-based features &lt;tt class="docutils literal"&gt;Pad&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Pocket&lt;/tt&gt;.
+Altogether, I added &lt;tt class="docutils literal"&gt;testPadToFirstCase&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;testPadtoLastCase&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;testPadToFaceCase&lt;/tt&gt;,
+and &lt;tt class="docutils literal"&gt;testPadTwoDimensionsCase&lt;/tt&gt; to cover the options for &lt;tt class="docutils literal"&gt;PartDesign Pad&lt;/tt&gt;.
+Unfortunately, these test cases are not very interesting to look at and mostly involve 2-4 lined up cubes similar to
+what figure 3 looks like.&lt;/p&gt;
+&lt;p&gt;However, for &lt;tt class="docutils literal"&gt;PartDesign Pad&lt;/tt&gt;, things do get a little more interesting.
+The base case is a simple reversed pad with a pocket in the middle, shown in figure 5.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="mirrored failure" src="/images/gsoc-2-5.png" style="width: 600px;"&gt;
+&lt;p class="caption"&gt;Figure 5. The base Pocket test construction.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;It was straightforward to add &lt;tt class="docutils literal"&gt;testPocketDimensionCase&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;testPocketThroughAllCase&lt;/tt&gt;,
+and &lt;tt class="docutils literal"&gt;testPocketToFirstCase&lt;/tt&gt;.
+However, covering the last Pocket option with &lt;tt class="docutils literal"&gt;testPocketToFaceCase&lt;/tt&gt; is not (necessarily) so trivial.&lt;/p&gt;
+&lt;p&gt;If you refer to figure 5, you'll note that the base Pad feature is a hexahedron, or six-sided shape.
+The Pocket feature adds four new faces to the overall shape, &lt;tt class="docutils literal"&gt;Face7&lt;/tt&gt; through &lt;tt class="docutils literal"&gt;Face10&lt;/tt&gt;.
+However, references relying on the numbering of those faces is inherently brittle and is being addressed
+by another one of the GSoC projects this year.
+Because of that, I'll give a little bit more thought on how to construct the test before proceeding.&lt;/p&gt;&lt;/div&gt;</description><category>freecad</category><category>gsoc</category><guid>/blog/gsoc-week-2-recap/</guid><pubDate>Sun, 18 Jun 2017 23:40:33 GMT</pubDate></item><item><title>GSoC Week 1 Recap</title><link>/blog/gsoc-week-1-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;The first week of Google Summer of Code has ended, and so it's time for a recap post!&lt;/p&gt;
 &lt;p&gt;The main topic this week was &lt;a class="reference external" href="https://www.freecadweb.org/wiki/PartDesign_Mirrored"&gt;PartDesign Mirrored&lt;/a&gt;, a fairly self-explanatory feature,
 with a show-stopping bug explained in &lt;a class="reference external" href="https://freecadweb.org/tracker/view.php?id=3006"&gt;FreeCAD issue 3006&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="figure align-center"&gt;

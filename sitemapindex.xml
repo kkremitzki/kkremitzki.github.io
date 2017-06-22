@@ -19,11 +19,11 @@
  </sitemap>
  <sitemap>
   <loc>/blog/tags/freecad.xml</loc>
-  <lastmod>2017-06-11T17:12:00Z</lastmod>
+  <lastmod>2017-06-21T21:41:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/gsoc.xml</loc>
-  <lastmod>2017-06-11T17:12:00Z</lastmod>
+  <lastmod>2017-06-21T21:41:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/linux.xml</loc>
@@ -31,7 +31,7 @@
  </sitemap>
  <sitemap>
   <loc>/blog/tags/mathjax.xml</loc>
-  <lastmod>2017-06-11T17:12:00Z</lastmod>
+  <lastmod>2017-06-11T17:15:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/python.xml</loc>
@@ -43,10 +43,10 @@
  </sitemap>
  <sitemap>
   <loc>/rss.xml</loc>
-  <lastmod>2017-06-11T17:12:00Z</lastmod>
+  <lastmod>2017-06-21T21:41:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/sitemap.xml</loc>
-  <lastmod>2017-06-11T17:12:00Z</lastmod>
+  <lastmod>2017-06-21T21:41:00Z</lastmod>
  </sitemap>
 </sitemapindex>
