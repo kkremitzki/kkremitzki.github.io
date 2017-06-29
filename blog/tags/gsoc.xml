@@ -1,5 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog (Posts about gsoc)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/gsoc.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Thu, 22 Jun 2017 05:45:21 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 2 recap</title><link>/blog/gsoc-week-2-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;With the four major bugs blocking the usage of &lt;tt class="docutils literal"&gt;PartDesign Mirrored&lt;/tt&gt; fixed,
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog (Posts about gsoc)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/gsoc.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Thu, 29 Jun 2017 05:50:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 3 recap</title><link>/blog/gsoc-week-3-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;topics for post
+testing status overview (pictures)
+bug discovery and working on it
+attachment editor discussion
+sketcher API&lt;/p&gt;
+&lt;p&gt;error
+Unhandled Base::Exception caught in GUIApplication::notify.
+The error message is: Rotation axis must not be perpendicular with the sketch plane&lt;/p&gt;
+&lt;p&gt;Howdy! I wasn't sure of the best way to represent my progress thus far, but I figure a table is an alright way to summarize.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="33%"&gt;
+&lt;col width="28%"&gt;
+&lt;col width="11%"&gt;
+&lt;col width="28%"&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;tool category&lt;/th&gt;
+&lt;th class="head"&gt;initial, current test count&lt;/th&gt;
+&lt;th class="head"&gt;status&lt;/th&gt;
+&lt;th class="head"&gt;notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;datum tools&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;hold&lt;/td&gt;
+&lt;td&gt;waiting on attachment
+editor work in phase 2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;add. &amp;amp; sub. features/primitives&lt;/td&gt;
+&lt;td&gt;3, 11&lt;/td&gt;
+&lt;td&gt;blocked&lt;/td&gt;
+&lt;td&gt;basic Pipe not working; when
+fixed, tool (not option)
+will be almost complete&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;transformations&lt;/td&gt;
+&lt;td&gt;0, 3&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt;Mirrored added, still need
+Linear and MirroredPattern&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;dressup features&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;boolean operation&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;I got my Pad &amp;amp; Pocket tests added, so right now the total Δtests is 11. Next up is Loft and Pipe. However,
+Pipe has a bit of a blocking bug right now. My test scenario involves a simple circle centered at the origin
+in an XY-attached sketch, serving as the base Profile, and a simple line on the Z axis in an XZ-attached sketch.
+The test construction is illustrated in figure 1.&lt;/p&gt;
+&lt;p&gt;This should result in a cylinder, as the preview indicates in figure 2. For some reason, when clicking OK,
+an external reference warning is being generated, and this is blocking any test constructions for PartDesign Pipe.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="test pipe construction" src="/images/gsoc-3-3.png" style="width: 300px;"&gt;
+&lt;p class="caption"&gt;Figure 1. PartDesign Pipe Profile and Spine sketches which should form a simple cylinder.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="external reference warning" src="/images/gsoc-3-4.png" style="width: 600px;"&gt;
+&lt;p class="caption"&gt;Figure 2. PartDesign Pipe erroneously warning about external references.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I also ran into a bug in PartDesign Revolve, which, as bugs are wont to do, ended up being two bugs.
+The construction case to see them is depicted in figure 3.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="revolution sketches" src="/images/gsoc-3-1.png" style="width: 300px;"&gt;
+&lt;p class="caption"&gt;Figure 3. Simple sketches attached to the three base planes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I attached a simple circle sketch to each of the three base planes, and offset them so they wouldn't be symmetric
+with respect to the origin or any base axes. When attempting to add a Revolution with these sketches, they behave
+as expected, until one attempts to revolve them about the axis which is normal to the sketch's plane. For the
+XY- and YZ-attached sketches, the following error appears:&lt;/p&gt;
+&lt;blockquote&gt;
+Unhandled Base::Exception caught in GUIApplication::notify.
+The error message is: Rotation axis must not be perpendicular with the sketch plane&lt;/blockquote&gt;
+&lt;p&gt;However, if one tries to revolve the XZ-attached circle, FreeCAD gives it the ol' college try, but
+ends up with an awfully thin "solid":&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="faulty revolution" src="/images/gsoc-3-2.png" style="width: 300px;"&gt;
+&lt;p class="caption"&gt;Figure 4. An "error-free" PartDesign Revolution.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I'll also be looking into these bugs this week.&lt;/p&gt;&lt;/div&gt;</description><category>freecad</category><category>gsoc</category><guid>/blog/gsoc-week-3-recap/</guid><pubDate>Thu, 22 Jun 2017 16:15:49 GMT</pubDate></item><item><title>GSoC Week 2 recap</title><link>/blog/gsoc-week-2-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;With the four major bugs blocking the usage of &lt;tt class="docutils literal"&gt;PartDesign Mirrored&lt;/tt&gt; fixed,
 I started out the week exploring the now-functioning tool with the goal of getting what I call "command test coverage".
 In short, this means testing major variations for tools presented to the user in the PartDesign WB.&lt;/p&gt;
 &lt;p&gt;For reference, they are depicted and categorized in figures 1 and 2,

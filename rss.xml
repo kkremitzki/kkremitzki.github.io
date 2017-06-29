@@ -1,5 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Thu, 22 Jun 2017 05:45:21 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 2 recap</title><link>/blog/gsoc-week-2-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;With the four major bugs blocking the usage of &lt;tt class="docutils literal"&gt;PartDesign Mirrored&lt;/tt&gt; fixed,
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Thu, 29 Jun 2017 05:50:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 3 recap</title><link>/blog/gsoc-week-3-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;topics for post
+testing status overview (pictures)
+bug discovery and working on it
+attachment editor discussion
+sketcher API&lt;/p&gt;
+&lt;p&gt;error
+Unhandled Base::Exception caught in GUIApplication::notify.
+The error message is: Rotation axis must not be perpendicular with the sketch plane&lt;/p&gt;
+&lt;p&gt;Howdy! I wasn't sure of the best way to represent my progress thus far, but I figure a table is an alright way to summarize.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="33%"&gt;
+&lt;col width="28%"&gt;
+&lt;col width="11%"&gt;
+&lt;col width="28%"&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;tool category&lt;/th&gt;
+&lt;th class="head"&gt;initial, current test count&lt;/th&gt;
+&lt;th class="head"&gt;status&lt;/th&gt;
+&lt;th class="head"&gt;notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;datum tools&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;hold&lt;/td&gt;
+&lt;td&gt;waiting on attachment
+editor work in phase 2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;add. &amp;amp; sub. features/primitives&lt;/td&gt;
+&lt;td&gt;3, 11&lt;/td&gt;
+&lt;td&gt;blocked&lt;/td&gt;
+&lt;td&gt;basic Pipe not working; when
+fixed, tool (not option)
+will be almost complete&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;transformations&lt;/td&gt;
+&lt;td&gt;0, 3&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt;Mirrored added, still need
+Linear and MirroredPattern&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;dressup features&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;boolean operation&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;I got my Pad &amp;amp; Pocket tests added, so right now the total Δtests is 11. Next up is Loft and Pipe. However,
+Pipe has a bit of a blocking bug right now. My test scenario involves a simple circle centered at the origin
+in an XY-attached sketch, serving as the base Profile, and a simple line on the Z axis in an XZ-attached sketch.
+The test construction is illustrated in figure 1.&lt;/p&gt;
+&lt;p&gt;This should result in a cylinder, as the preview indicates in figure 2. For some reason, when clicking OK,
+an external reference warning is being generated, and this is blocking any test constructions for PartDesign Pipe.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="test pipe construction" src="/images/gsoc-3-3.png" style="width: 300px;"&gt;
+&lt;p class="caption"&gt;Figure 1. PartDesign Pipe Profile and Spine sketches which should form a simple cylinder.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="external reference warning" src="/images/gsoc-3-4.png" style="width: 600px;"&gt;
+&lt;p class="caption"&gt;Figure 2. PartDesign Pipe erroneously warning about external references.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I also ran into a bug in PartDesign Revolve, which, as bugs are wont to do, ended up being two bugs.
+The construction case to see them is depicted in figure 3.&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="revolution sketches" src="/images/gsoc-3-1.png" style="width: 300px;"&gt;
+&lt;p class="caption"&gt;Figure 3. Simple sketches attached to the three base planes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I attached a simple circle sketch to each of the three base planes, and offset them so they wouldn't be symmetric
+with respect to the origin or any base axes. When attempting to add a Revolution with these sketches, they behave
+as expected, until one attempts to revolve them about the axis which is normal to the sketch's plane. For the
+XY- and YZ-attached sketches, the following error appears:&lt;/p&gt;
+&lt;blockquote&gt;
+Unhandled Base::Exception caught in GUIApplication::notify.
+The error message is: Rotation axis must not be perpendicular with the sketch plane&lt;/blockquote&gt;
+&lt;p&gt;However, if one tries to revolve the XZ-attached circle, FreeCAD gives it the ol' college try, but
+ends up with an awfully thin "solid":&lt;/p&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="faulty revolution" src="/images/gsoc-3-2.png" style="width: 300px;"&gt;
+&lt;p class="caption"&gt;Figure 4. An "error-free" PartDesign Revolution.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;I'll also be looking into these bugs this week.&lt;/p&gt;&lt;/div&gt;</description><category>freecad</category><category>gsoc</category><guid>/blog/gsoc-week-3-recap/</guid><pubDate>Thu, 22 Jun 2017 16:15:49 GMT</pubDate></item><item><title>GSoC Week 2 recap</title><link>/blog/gsoc-week-2-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;With the four major bugs blocking the usage of &lt;tt class="docutils literal"&gt;PartDesign Mirrored&lt;/tt&gt; fixed,
 I started out the week exploring the now-functioning tool with the goal of getting what I call "command test coverage".
 In short, this means testing major variations for tools presented to the user in the PartDesign WB.&lt;/p&gt;
 &lt;p&gt;For reference, they are depicted and categorized in figures 1 and 2,
@@ -243,21 +331,4 @@ trust, but verify.&lt;/p&gt;
 &lt;/pre&gt;&lt;p&gt;A great alternative PDF reader is the &lt;tt class="docutils literal"&gt;vim&lt;/tt&gt;-key friendly &lt;a class="reference external" href="https://pwmt.org/projects/zathura/"&gt;zathura&lt;/a&gt;. I've had issues opening larger PDFs with it though, so your mileage may vary.&lt;/p&gt;&lt;/div&gt;</description><category>linux</category><guid>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</guid><pubDate>Sun, 24 Apr 2016 21:51:08 GMT</pubDate></item><item><title>Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line</title><link>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;The recommended flavor of Linux on the Raspberry Pi, Raspbian, uses the LXDE desktop environment, and using its GUI tools to set up wifi is not immediately successful.
 Command-line setup involves editing two files, &lt;tt class="docutils literal"&gt;/etc/network/interfaces&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;/etc/wpa_supplicant/wpa_supplicant.conf&lt;/tt&gt;. Since these are system files, they won't be writable by a normal user. The command &lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;-e&lt;/span&gt; &amp;lt;filename&amp;gt;&lt;/tt&gt; can be used to edit system files with superuser privileges, using the default editor. Normally, this is the program &lt;tt class="docutils literal"&gt;nano&lt;/tt&gt;, which is fairly self-explanatory; make your changes using the keyboard and save the file with &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;Ctrl-X&lt;/span&gt;&lt;/tt&gt;. For advanced users, this can be changed via something like &lt;tt class="docutils literal"&gt;export EDITOR=vi&lt;/tt&gt;.&lt;/p&gt;
 &lt;p&gt;The first file, &lt;tt class="docutils literal"&gt;/etc/network/interfaces&lt;/tt&gt;, needs to have the following:&lt;/p&gt;
-&lt;p&gt;&lt;a href="/blog/connecting-a-raspberry-pi-to-texas-am-wifi/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>linux</category><category>raspberry_pi</category><guid>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</guid><pubDate>Thu, 21 Apr 2016 23:46:17 GMT</pubDate></item><item><title>Primer on Python Projects</title><link>/blog/primer-on-python-projects/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;I'm helping all the teams in my BAEN370 class robotics competition (essentially our final) since I competed in the ASABE Robotics Competition last year in New Orleans.
-This post is advice mainly targeted at everyone in the class.
-Here are a few useful snippets when starting your first big Python project.&lt;/p&gt;
-&lt;p class="h3"&gt;Imports&lt;/p&gt;
-&lt;p&gt;If you're working on a file, e.g. &lt;tt class="docutils literal"&gt;code.py&lt;/tt&gt;, and it's getting large, you can break off some of that code (usually functions) into another file. Let's say you name this file &lt;tt class="docutils literal"&gt;functions.py&lt;/tt&gt;. Then, in your original file, you would add to the top:&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_8e2b53695f2b49c4879fbcd1847d2b60-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;functions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;function1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;function2&lt;/span&gt; &lt;span class="c1"&gt;# etc&lt;/span&gt;
-&lt;a name="rest_code_8e2b53695f2b49c4879fbcd1847d2b60-2"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# if you have a lot of functions, you can use something like&lt;/span&gt;
-&lt;a name="rest_code_8e2b53695f2b49c4879fbcd1847d2b60-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# from functions import (function1, function2, ... ,&lt;/span&gt;
-&lt;a name="rest_code_8e2b53695f2b49c4879fbcd1847d2b60-4"&gt;&lt;/a&gt;&lt;span class="c1"&gt;#                        functionN_minus_one, functionN)&lt;/span&gt;
-&lt;/pre&gt;&lt;p&gt;An example of how to use this, in the context of BAEN370, would be using the following project structure:&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-baen370/
-├── run.py
-├── navigation.py
-└── sensors.py
-&lt;/pre&gt;
-&lt;p&gt;Then, those files' contents would look something like this:&lt;/p&gt;
-&lt;p&gt;&lt;a href="/blog/primer-on-python-projects/"&gt;Read more…&lt;/a&gt; (3 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>/blog/primer-on-python-projects/</guid><pubDate>Sun, 10 Apr 2016 12:58:54 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;a href="/blog/connecting-a-raspberry-pi-to-texas-am-wifi/"&gt;Read more…&lt;/a&gt; (1 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>linux</category><category>raspberry_pi</category><guid>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</guid><pubDate>Thu, 21 Apr 2016 23:46:17 GMT</pubDate></item></channel></rss>

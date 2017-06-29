@@ -71,7 +71,111 @@ article: http://ogp.me/ns/article#
             
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-2-recap/" class="u-url">GSoC Week 2 recap</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-3-recap/" class="u-url">GSoC Week 3 recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-3-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-22T11:15:49-05:00" title="2017-06-22 11:15">2017-06-22 11:15</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-3-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-3-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>topics for post
+testing status overview (pictures)
+bug discovery and working on it
+attachment editor discussion
+sketcher API</p>
+<p>error
+Unhandled Base::Exception caught in GUIApplication::notify.
+The error message is: Rotation axis must not be perpendicular with the sketch plane</p>
+<p>Howdy! I wasn't sure of the best way to represent my progress thus far, but I figure a table is an alright way to summarize.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%">
+<col width="28%">
+<col width="11%">
+<col width="28%">
+</colgroup>
+<thead valign="bottom"><tr>
+<th class="head">tool category</th>
+<th class="head">initial, current test count</th>
+<th class="head">status</th>
+<th class="head">notes</th>
+</tr></thead>
+<tbody valign="top">
+<tr>
+<td>datum tools</td>
+<td>0, 0</td>
+<td>hold</td>
+<td>waiting on attachment
+editor work in phase 2</td>
+</tr>
+<tr>
+<td>add. &amp; sub. features/primitives</td>
+<td>3, 11</td>
+<td>blocked</td>
+<td>basic Pipe not working; when
+fixed, tool (not option)
+will be almost complete</td>
+</tr>
+<tr>
+<td>transformations</td>
+<td>0, 3</td>
+<td>ready</td>
+<td>Mirrored added, still need
+Linear and MirroredPattern</td>
+</tr>
+<tr>
+<td>dressup features</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>boolean operation</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<p>I got my Pad &amp; Pocket tests added, so right now the total Δtests is 11. Next up is Loft and Pipe. However,
+Pipe has a bit of a blocking bug right now. My test scenario involves a simple circle centered at the origin
+in an XY-attached sketch, serving as the base Profile, and a simple line on the Z axis in an XZ-attached sketch.
+The test construction is illustrated in figure 1.</p>
+<p>This should result in a cylinder, as the preview indicates in figure 2. For some reason, when clicking OK,
+an external reference warning is being generated, and this is blocking any test constructions for PartDesign Pipe.</p>
+<div class="figure align-center">
+<img alt="test pipe construction" src="../images/gsoc-3-3.png" style="width: 300px;"><p class="caption">Figure 1. PartDesign Pipe Profile and Spine sketches which should form a simple cylinder.</p>
+</div>
+<div class="figure align-center">
+<img alt="external reference warning" src="../images/gsoc-3-4.png" style="width: 600px;"><p class="caption">Figure 2. PartDesign Pipe erroneously warning about external references.</p>
+</div>
+<p>I also ran into a bug in PartDesign Revolve, which, as bugs are wont to do, ended up being two bugs.
+The construction case to see them is depicted in figure 3.</p>
+<div class="figure align-center">
+<img alt="revolution sketches" src="../images/gsoc-3-1.png" style="width: 300px;"><p class="caption">Figure 3. Simple sketches attached to the three base planes.</p>
+</div>
+<p>I attached a simple circle sketch to each of the three base planes, and offset them so they wouldn't be symmetric
+with respect to the origin or any base axes. When attempting to add a Revolution with these sketches, they behave
+as expected, until one attempts to revolve them about the axis which is normal to the sketch's plane. For the
+XY- and YZ-attached sketches, the following error appears:</p>
+<blockquote>
+Unhandled Base::Exception caught in GUIApplication::notify.
+The error message is: Rotation axis must not be perpendicular with the sketch plane</blockquote>
+<p>However, if one tries to revolve the XZ-attached circle, FreeCAD gives it the ol' college try, but
+ends up with an awfully thin "solid":</p>
+<div class="figure align-center">
+<img alt="faulty revolution" src="../images/gsoc-3-2.png" style="width: 300px;"><p class="caption">Figure 4. An "error-free" PartDesign Revolution.</p>
+</div>
+<p>I'll also be looking into these bugs this week.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-2-recap/" class="u-url">GSoC Week 2 recap</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -551,123 +655,6 @@ The <tt class="docutils literal">iface ... dhcp</tt> line means we are requestin
 <p>Make sure that there is no space in <tt class="docutils literal">network={</tt>, and that the ssid, identity and passwords are wrapped in quotes.</p>
 <p>The network can be brought up or down via <tt class="docutils literal">sudo ifup wlan0</tt> or <tt class="docutils literal">sudo ifdown wlan0</tt>.</p>
 <p>As a final note, be mindful of the fact that doing this leaves your TAMU password on an unencrypted device; anyone with the know-how could take an SD card with these credentials and read them. Don't neglect the physical security of your Raspberry Pi after doing this, since it will contain important information.</p>
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="primer-on-python-projects/" class="u-url">Primer on Python Projects</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="primer-on-python-projects/" rel="bookmark"><time class="published dt-published" datetime="2016-04-10T07:58:54-05:00" title="2016-04-10 07:58">2016-04-10 07:58</time></a></p>
-                <p class="commentline">            <a href="primer-on-python-projects/#disqus_thread" data-disqus-identifier="cache/posts/primer-on-python-projects.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>I'm helping all the teams in my BAEN370 class robotics competition (essentially our final) since I competed in the ASABE Robotics Competition last year in New Orleans.
-This post is advice mainly targeted at everyone in the class.
-Here are a few useful snippets when starting your first big Python project.</p>
-<p class="h3">Imports</p>
-<p>If you're working on a file, e.g. <tt class="docutils literal">code.py</tt>, and it's getting large, you can break off some of that code (usually functions) into another file. Let's say you name this file <tt class="docutils literal">functions.py</tt>. Then, in your original file, you would add to the top:</p>
-<pre class="code python"><a name="rest_code_8e2b53695f2b49c4879fbcd1847d2b60-1"></a><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">function1</span><span class="p">,</span> <span class="n">function2</span> <span class="c1"># etc</span>
-<a name="rest_code_8e2b53695f2b49c4879fbcd1847d2b60-2"></a><span class="c1"># if you have a lot of functions, you can use something like</span>
-<a name="rest_code_8e2b53695f2b49c4879fbcd1847d2b60-3"></a><span class="c1"># from functions import (function1, function2, ... ,</span>
-<a name="rest_code_8e2b53695f2b49c4879fbcd1847d2b60-4"></a><span class="c1">#                        functionN_minus_one, functionN)</span>
-</pre>
-<p>An example of how to use this, in the context of BAEN370, would be using the following project structure:</p>
-<pre class="literal-block">
-baen370/
-├── run.py
-├── navigation.py
-└── sensors.py
-</pre>
-<p>Then, those files' contents would look something like this:</p>
-<!-- TEASER_END -->
-<p><strong>run.py</strong></p>
-<pre class="code python"><a name="rest_code_20fefd730e774d44a1c945e296d30964-1"></a><span class="kn">from</span> <span class="nn">navigation</span> <span class="kn">import</span> <span class="n">NavigationStrategy</span>
-<a name="rest_code_20fefd730e774d44a1c945e296d30964-2"></a><span class="c1"># Add more imports like this if you need something from sensors.py, etc.</span>
-<a name="rest_code_20fefd730e774d44a1c945e296d30964-3"></a>
-<a name="rest_code_20fefd730e774d44a1c945e296d30964-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
-<a name="rest_code_20fefd730e774d44a1c945e296d30964-5"></a>  <span class="c1"># Bundle your code for how to handle the maze into one function.</span>
-<a name="rest_code_20fefd730e774d44a1c945e296d30964-6"></a>  <span class="c1"># That way you can have a file just for running the maze, and you</span>
-<a name="rest_code_20fefd730e774d44a1c945e296d30964-7"></a>  <span class="c1"># can work on other functions by themselves in logically separated files.</span>
-<a name="rest_code_20fefd730e774d44a1c945e296d30964-8"></a>  <span class="n">NavigationStrategy</span><span class="p">()</span>
-</pre>
-<p><strong>navigation.py</strong></p>
-<pre class="code python"><a name="rest_code_b50586f60d8544e5998f4ca3160df942-1"></a><span class="kn">from</span> <span class="nn">sensors</span> <span class="kn">import</span> <span class="n">front_prox</span><span class="p">,</span> <span class="n">right_prox</span><span class="p">,</span> <span class="n">front_far</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-2"></a>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-3"></a><span class="k">def</span> <span class="nf">NavigationStrategy</span><span class="p">():</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-4"></a>  <span class="c1"># Describe your navigation strategy here.</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-5"></a>  <span class="c1"># It might look something like this, if you're doing a right-following strategy</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-6"></a>  <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-7"></a>    <span class="k">while</span> <span class="n">front_far</span><span class="p">()</span> <span class="ow">and</span> <span class="n">right_prox</span><span class="p">():</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-8"></a>      <span class="k">if</span> <span class="ow">not</span> <span class="n">front_prox</span><span class="p">():</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-9"></a>        <span class="c1"># gotta go fast</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-10"></a>      <span class="k">else</span><span class="p">:</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-11"></a>        <span class="c1"># slow it down</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-12"></a>    <span class="k">while</span> <span class="ow">not</span> <span class="n">right_prox</span><span class="p">():</span>
-<a name="rest_code_b50586f60d8544e5998f4ca3160df942-13"></a>      <span class="c1"># How will you handle a right proximity sensor saying "there's no wall nearby"?</span>
-</pre>
-<p><strong>sensors.py</strong></p>
-<p>In this example, I could have used <tt class="docutils literal">from gopigo import *</tt>, but this is discouraged. For more on why, check out <a class="reference external" href="http://stackoverflow.com/a/2360808">http://stackoverflow.com/a/2360808</a>.</p>
-<pre class="code python"><a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-1"></a><span class="kn">import</span> <span class="nn">gopigo</span> <span class="kn">as</span> <span class="nn">gpg</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-2"></a><span class="c1"># Don't do this:</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-3"></a><span class="c1"># from gopigo import *</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-4"></a>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-5"></a><span class="c1"># Set your thresholds for what is "close" and "far" here</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-6"></a><span class="n">near_threshold</span> <span class="o">=</span> <span class="mi">15</span> <span class="c1"># cm, assuming sensors' voltage-&gt;cm math is true</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-7"></a><span class="n">far_threshold</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># cm</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-8"></a>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-9"></a><span class="k">def</span> <span class="nf">front_prox</span><span class="p">():</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-10"></a>  <span class="c1"># write a function that looks like</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-11"></a>  <span class="k">if</span> <span class="n">some_condition</span> <span class="c1">#  sensor says stuff is near</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-12"></a>    <span class="k">return</span> <span class="bp">True</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-13"></a>  <span class="c1"># No need for else here</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-14"></a>  <span class="k">return</span> <span class="bp">False</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-15"></a>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-16"></a><span class="k">def</span> <span class="nf">right_prox</span><span class="p">:</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-17"></a>  <span class="c1"># something similar to front_prox. replace "pass" with the definition of the function</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-18"></a>  <span class="k">pass</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-19"></a>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-20"></a><span class="k">def</span> <span class="nf">front_far</span><span class="p">:</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-21"></a>  <span class="c1"># If you want to try to speed up in a straightaway,</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-22"></a>  <span class="c1"># write something that returns True when it should go fast</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-23"></a>  <span class="c1"># Replace "pass" with your code.</span>
-<a name="rest_code_23adf3f3f2d94ed3a1708f2879318225-24"></a>  <span class="k">pass</span>
-</pre>
-<p class="h3">Using IDLE</p>
-<p>IDLE is not the best tool for the job (I'd recommend the free IDE, Spyder) but if it's the tool you use, you might as well get the most out of it.
-Here are a few useful keyboard shortcuts</p>
-<ul class="simple">
-<li>
-<tt class="docutils literal"><span class="pre">Alt-P</span></tt> and <tt class="docutils literal"><span class="pre">Alt-N</span></tt> in the interpreter pull up your <strong>P</strong> revious and <strong>N</strong> ext commands, respectively.</li>
-<li>
-<tt class="docutils literal"><span class="pre">Ctrl-[</span></tt> and <tt class="docutils literal"><span class="pre">Ctrl-]</span></tt>  decrease and increase the level of indent of a region</li>
-<li>
-<tt class="docutils literal"><span class="pre">Alt-3</span></tt> and <tt class="docutils literal"><span class="pre">Alt-4</span></tt> comment and uncomment a highlighted region. You can also surround a region by triple apostrophes or triple quotes to make it a multi-line string (which is also a multi-line comment in Python.)</li>
-</ul>
-<p class="h3">Useful Builtins</p>
-<p>Whenever you see <tt class="docutils literal">&gt;&gt;&gt;</tt> (triple chevrons), you're in the <a class="reference external" href="https://docs.python.org/2/tutorial/interpreter.html">Python interpreter</a>. This environment is very useful. You can inspect things in the code you've already ran, write new functions, test out code, and generally use the full power of Python.
-One of the first steps to unleashing this power is learning about the <a class="reference external" href="https://docs.python.org/2/library/functions.html">builtin functions</a>. I'll highlight a few useful tools.</p>
-<dl class="docutils">
-<dt><tt class="docutils literal">help()</tt></dt>
-<dd>Try running <tt class="docutils literal">help(help)</tt> yourself to see the following description.
-This is a wrapper around pydoc.help that provides a helpful message
-when 'help' is typed at the Python interactive prompt.
-Calling help() at the Python prompt starts an interactive help session.
-Calling help(thing) prints help for the python object 'thing'.</dd>
-<dt><tt class="docutils literal">dir()</tt></dt>
-<dd>Use this command to show all the names accessible in a thing. If you call it without an argument, like <tt class="docutils literal">dir()</tt>, it shows you everything accessible in the current scope.
-For example, if you do <tt class="docutils literal">import math</tt>, then <tt class="docutils literal">dir()</tt> will show a list of all names you have accessible, including <tt class="docutils literal">math</tt>. If you type <tt class="docutils literal">dir(math)</tt>, you will see everything
-accessible under <tt class="docutils literal"><span class="pre">math.&lt;thing&gt;</span></tt>, e.g. <tt class="docutils literal">math.sin</tt>, <tt class="docutils literal">math.log</tt>. Try it out!</dd>
-<dt><tt class="docutils literal">len()</tt></dt>
-<dd>Returns the number of items in a container. For example, if you have a <tt class="docutils literal">list</tt> where <tt class="docutils literal">x = [0, 1, 2]</tt>, then typing <tt class="docutils literal">len(x)</tt> will return <tt class="docutils literal">3</tt>.</dd>
-<dt><tt class="docutils literal">_</tt></dt>
-<dd>The underscore symbol is a useful bit of shorthand that refers to the last thing you typed.
-For example, if you're using the Python interpreter as a calculator and you're trying to solve some expression with a complicated numerator and denominator, it can be easier to do one or the other first, and then refer to it as <tt class="docutils literal">_</tt> in the subsequent calculation.</dd>
-</dl>
 </div>
     </div>
     </article>
