@@ -24,6 +24,8 @@ easy fix.
 ``LinearPattern`` and ``PolarPattern`` got 6 new tests each, covering all the major variations of sketch-
 or primitive-based features.
 
+Finally, I added one new test for each of the dressup features, ``Fillet``, ``Chamfer``, ``Draft``, and ``Thickness``.
+
 Here's the pull request summarizing my work: https://github.com/FreeCAD/FreeCAD/pull/869
 
 +----------------------------------+-----------------------------+-----------+-----------------------------+
