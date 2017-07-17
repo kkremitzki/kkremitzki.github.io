@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about gsoc)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link rel="self" href="/blog/tags/gsoc.xml" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 17 Jul 2017 22:03:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 4 recap</title><link>/blog/gsoc-week-4-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;I started this week out with the goal of troubleshooting the bugs I found with PartDesign Pipe and Revolve.
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about gsoc)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/gsoc.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 17 Jul 2017 22:27:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 5 recap</title><link>/blog/gsoc-week-5-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;This week started out with some interesting discussions on the future Python structure of FreeCAD, over
+&lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=10&amp;amp;t=23197"&gt;on the forums&lt;/a&gt;. This was especially salient
+as I have a bit of pain interacting with parts of the FreeCAD Python API and improvements to it would
+be a good long-term goal after finishing GSoC.&lt;/p&gt;
+&lt;p&gt;I decided that the &lt;tt class="docutils literal"&gt;TestPartDesignApp.py&lt;/tt&gt; file I had been working in thus far needed splitting up,
+as I was cramming almost every new test into it.
+The &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/blob/master/src/Mod/PartDesign/TestPartDesignApp.py"&gt;new version of this file&lt;/a&gt;
+is a pretty nice indicator of the overall status of PartDesign test coverage.&lt;/p&gt;
+&lt;p&gt;I also added some basic tests for datum tools, covering simple creation scenarios. While exploring the 4th datum
+tool, &lt;tt class="docutils literal"&gt;ShapeBinder&lt;/tt&gt;, I found a bug that causes a crash, so I will need to look into that shortly to see if it's an
+easy fix.&lt;/p&gt;
+&lt;p&gt;&lt;tt class="docutils literal"&gt;LinearPattern&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;PolarPattern&lt;/tt&gt; got 6 new tests each, covering all the major variations of sketch-
+or primitive-based features.&lt;/p&gt;
+&lt;p&gt;Here's the pull request summarizing my work: &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/869"&gt;https://github.com/FreeCAD/FreeCAD/pull/869&lt;/a&gt;&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="33%"&gt;
+&lt;col width="28%"&gt;
+&lt;col width="11%"&gt;
+&lt;col width="28%"&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;tool category&lt;/th&gt;
+&lt;th class="head"&gt;initial, current test count&lt;/th&gt;
+&lt;th class="head"&gt;status&lt;/th&gt;
+&lt;th class="head"&gt;notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;datum tools&lt;/td&gt;
+&lt;td&gt;0, 3&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt;found shapebinder crash bug&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;add. &amp;amp; sub. features/primitives&lt;/td&gt;
+&lt;td&gt;15, 15&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;transformations&lt;/td&gt;
+&lt;td&gt;3, 15&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt;all done but MultiTransform&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;dressup features&lt;/td&gt;
+&lt;td&gt;0, 4&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;boolean operation&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;</description><category>freecad</category><category>gsoc</category><guid>/blog/gsoc-week-5-recap/</guid><pubDate>Tue, 11 Jul 2017 19:45:35 GMT</pubDate></item><item><title>GSoC Week 4 recap</title><link>/blog/gsoc-week-4-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;I started this week out with the goal of troubleshooting the bugs I found with PartDesign Pipe and Revolve.
 However, I ended up running into several annoying issues. The LLDB debugging integration I previously wrote about
 began showing some inexplicable errors:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;

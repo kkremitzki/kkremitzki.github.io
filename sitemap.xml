@@ -19,11 +19,11 @@
  </url>
  <url>
   <loc>/archive.html</loc>
-  <lastmod>2017-07-17T21:34:00Z</lastmod>
+  <lastmod>2017-07-17T22:23:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/</loc>
-  <lastmod>2017-07-17T21:28:00Z</lastmod>
+  <lastmod>2017-07-17T22:23:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</loc>
@@ -58,8 +58,12 @@
   <lastmod>2017-07-17T21:28:00Z</lastmod>
  </url>
  <url>
+  <loc>/blog/gsoc-week-5-recap/</loc>
+  <lastmod>2017-07-17T22:23:00Z</lastmod>
+ </url>
+ <url>
   <loc>/blog/index-1.html</loc>
-  <lastmod>2017-07-17T21:34:00Z</lastmod>
+  <lastmod>2017-07-17T22:23:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</loc>

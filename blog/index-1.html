@@ -71,7 +71,26 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="connecting-a-raspberry-pi-to-texas-am-wifi/" class="u-url">Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/" class="u-url">Keeping zoom level when navigating PDF in Evince, GNOME's Document Viewer</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/" rel="bookmark"><time class="published dt-published" datetime="2016-04-24T16:51:08-05:00" title="2016-04-24 16:51">2016-04-24 16:51</time></a></p>
+                <p class="commentline">            <a href="keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/#disqus_thread" data-disqus-identifier="cache/posts/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>This one is short, sweet, and to the point. How often do you have your PDF set to a nice zoom level, only to have it reset when navigating via the Bookmarks/Index? If you use GNOME as a Linux DE (desktop environment), then you can fire up a terminal and use this <tt class="docutils literal">gsettings</tt> one-liner to preserve zoom:</p>
+<pre class="code bash"><a name="rest_code_311f34c72b3b436494f8f99e572b7530-1"></a>gsettings <span class="nb">set</span> org.gnome.Evince allow-links-change-zoom <span class="nb">false</span>
+</pre>
+<p>A great alternative PDF reader is the <tt class="docutils literal">vim</tt>-key friendly <a class="reference external" href="https://pwmt.org/projects/zathura/">zathura</a>. I've had issues opening larger PDFs with it though, so your mileage may vary.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="connecting-a-raspberry-pi-to-texas-am-wifi/" class="u-url">Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki

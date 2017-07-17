@@ -71,7 +71,82 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-4-recap/" class="u-url">GSoC Week 4 recap</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-5-recap/" class="u-url">GSoC Week 5 recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-5-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-07-11T14:45:35-05:00" title="2017-07-11 14:45">2017-07-11 14:45</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-5-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-5-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>This week started out with some interesting discussions on the future Python structure of FreeCAD, over
+<a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=10&amp;t=23197">on the forums</a>. This was especially salient
+as I have a bit of pain interacting with parts of the FreeCAD Python API and improvements to it would
+be a good long-term goal after finishing GSoC.</p>
+<p>I decided that the <tt class="docutils literal">TestPartDesignApp.py</tt> file I had been working in thus far needed splitting up,
+as I was cramming almost every new test into it.
+The <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/blob/master/src/Mod/PartDesign/TestPartDesignApp.py">new version of this file</a>
+is a pretty nice indicator of the overall status of PartDesign test coverage.</p>
+<p>I also added some basic tests for datum tools, covering simple creation scenarios. While exploring the 4th datum
+tool, <tt class="docutils literal">ShapeBinder</tt>, I found a bug that causes a crash, so I will need to look into that shortly to see if it's an
+easy fix.</p>
+<p><tt class="docutils literal">LinearPattern</tt> and <tt class="docutils literal">PolarPattern</tt> got 6 new tests each, covering all the major variations of sketch-
+or primitive-based features.</p>
+<p>Here's the pull request summarizing my work: <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/869">https://github.com/FreeCAD/FreeCAD/pull/869</a></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%">
+<col width="28%">
+<col width="11%">
+<col width="28%">
+</colgroup>
+<thead valign="bottom"><tr>
+<th class="head">tool category</th>
+<th class="head">initial, current test count</th>
+<th class="head">status</th>
+<th class="head">notes</th>
+</tr></thead>
+<tbody valign="top">
+<tr>
+<td>datum tools</td>
+<td>0, 3</td>
+<td>ready</td>
+<td>found shapebinder crash bug</td>
+</tr>
+<tr>
+<td>add. &amp; sub. features/primitives</td>
+<td>15, 15</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>transformations</td>
+<td>3, 15</td>
+<td>ready</td>
+<td>all done but MultiTransform</td>
+</tr>
+<tr>
+<td>dressup features</td>
+<td>0, 4</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>boolean operation</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-4-recap/" class="u-url">GSoC Week 4 recap</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -699,25 +774,6 @@ validate measurements before adding to the rolling average</li>
 <a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-45"></a>    <span class="c1"># and so forth</span>
 </pre>
 <p>Let me know in the comments if you have any questions or feedback!</p>
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/" class="u-url">Keeping zoom level when navigating PDF in Evince, GNOME's Document Viewer</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/" rel="bookmark"><time class="published dt-published" datetime="2016-04-24T16:51:08-05:00" title="2016-04-24 16:51">2016-04-24 16:51</time></a></p>
-                <p class="commentline">            <a href="keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/#disqus_thread" data-disqus-identifier="cache/posts/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>This one is short, sweet, and to the point. How often do you have your PDF set to a nice zoom level, only to have it reset when navigating via the Bookmarks/Index? If you use GNOME as a Linux DE (desktop environment), then you can fire up a terminal and use this <tt class="docutils literal">gsettings</tt> one-liner to preserve zoom:</p>
-<pre class="code bash"><a name="rest_code_311f34c72b3b436494f8f99e572b7530-1"></a>gsettings <span class="nb">set</span> org.gnome.Evince allow-links-change-zoom <span class="nb">false</span>
-</pre>
-<p>A great alternative PDF reader is the <tt class="docutils literal">vim</tt>-key friendly <a class="reference external" href="https://pwmt.org/projects/zathura/">zathura</a>. I've had issues opening larger PDFs with it though, so your mileage may vary.</p>
 </div>
     </div>
     </article>
