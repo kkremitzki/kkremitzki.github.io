@@ -7,16 +7,6 @@
 .. description: 
 .. type: text
 
-topics for post
-testing status overview (pictures)
-bug discovery and working on it
-attachment editor discussion
-sketcher API
-
-error
-Unhandled Base::Exception caught in GUIApplication::notify.
-The error message is: Rotation axis must not be perpendicular with the sketch plane
-
 Howdy! I wasn't sure of the best way to represent my progress thus far, but I figure a table is an alright way to summarize.
 
 +----------------------------------+-----------------------------+-----------+-----------------------------+
@@ -26,15 +16,20 @@ Howdy! I wasn't sure of the best way to represent my progress thus far, but I fi
 |                                  |                             |           | editor work in phase 2      |
 +----------------------------------+-----------------------------+-----------+-----------------------------+
 |  add. & sub. features/primitives |            3, 11            |  blocked  | basic Pipe not working; when|
-|                                  |                             |           | fixed, tool (not option)    |
-|                                  |                             |           | will be almost complete     |
+|                                  |                             |           | fixed, all tools in this    |
+|                                  |                             |           | category (but not all their |
+|                                  |                             |           | options) will have test     |
+|                                  |                             |           | coverage                    |
 +----------------------------------+-----------------------------+-----------+-----------------------------+
 |  transformations                 |            0, 3             |   ready   | Mirrored added, still need  |
-|                                  |                             |           | Linear and MirroredPattern  |
+|                                  |                             |           | Linear and PolarPattern     |
 +----------------------------------+-----------------------------+-----------+-----------------------------+
 |  dressup features                |            0, 0             |   ready   |                             |
 +----------------------------------+-----------------------------+-----------+-----------------------------+
-|  boolean operation               |            0, 0             |   ready   |                             |
+|  boolean operation               |            0, 0             |   ready   | Previously seemed to        |
+|                                  |                             |           | misbehave but recent changes|
+|                                  |                             |           | to containers may have fixed|
+|                                  |                             |           | this                        |
 +----------------------------------+-----------------------------+-----------+-----------------------------+
 
 I got my Pad & Pocket tests added, so right now the total Δtests is 11. Next up is Loft and Pipe. However,

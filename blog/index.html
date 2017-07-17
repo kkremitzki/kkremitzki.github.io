@@ -17,8 +17,7 @@ article: http://ogp.me/ns/article#
 <link rel="canonical" href=".">
 <link rel="icon" href="../favicon.ico" sizes="16x16">
 <link rel="next" href="index-1.html" type="text/html">
-<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><script src="../assets/js/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
-<link rel="stylesheet" href="../assets/css/custom.css">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><script src="../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../assets/css/custom.css">
 <link rel="stylesheet" href="../assets/css/code.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
 </head>
@@ -70,8 +69,114 @@ article: http://ogp.me/ns/article#
         <div class="row">
             
     
+    
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-3-recap/" class="u-url">GSoC Week 3 recap</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-4-recap/" class="u-url">GSoC Week 4 recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-4-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-30T05:48:06-05:00" title="2017-06-30 05:48">2017-06-30 05:48</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-4-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-4-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>I started this week out with the goal of troubleshooting the bugs I found with PartDesign Pipe and Revolve.
+However, I ended up running into several annoying issues. The LLDB debugging integration I previously wrote about
+began showing some inexplicable errors:</p>
+<pre class="literal-block">
+error caught in async handler 'exec ('continue',)'
+Traceback (most recent call last):
+  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/__init_
+_.py", line 49, in _exec
+    self.ctrl.safe_execute(args)
+  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/control
+ler.py", line 101, in safe_execute
+    self.safe_call(self.exec_command, [cmd])
+  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/control
+ler.py", line 94, in safe_call
+    raise EventLoopError("Dead event loop!")
+EventLoopError: Dead event loop!
+</pre>
+<p>Eventually I found <a class="reference external" href="https://github.com/dbgx/lldb.nvim/issues/52">an issue on Github</a> which refers to
+a now-deleted comment in the author's original repository, stating the project was no longer being developed.
+The question remains as to how it was working just fine when I began and only just now stopped working, but
+the end result was that my debugger-editor integration was broken, which makes it quite a bit tougher to debug
+the C++ side of the codebase.</p>
+<p>One option I had was to just use GDB as a standalone command line application, but it's really convenient, e.g.
+to not have to manually type out file names and line numbers for breakpoints, and otherwise have your debugger
+wired up to your editor.</p>
+<p>However, this was inexplicably not working either! Basic features of GDB worked, but trying to specify breakpoints
+to step through the code was not. I banged my head on this issue for a while until I figured up <tt class="docutils literal">ccmake</tt> to
+take a look at my build options. The issue? Somehow, the <tt class="docutils literal">CMAKE_BUILD_TYPE</tt>, which had been set to <tt class="docutils literal">Debug</tt>,
+was unset. So, I set it again and started the debug build, which takes quite a long time.
+(Around 2 hours with <tt class="docutils literal">make <span class="pre">-j4</span></tt>.)</p>
+<p>I also did more research on options for debugger integration. I found an interesting option called Pyclewn
+which is a debugger front-end for (neo)vim. This option was attractive since I could have a unified front-end
+to both my C++ debugger as well as a Python one. However, setup wasn't straightforward, so I continued searching
+for a simpler option.</p>
+<p>Luckily, I stumbled upon <a class="reference external" href="https://github.com/neovim/neovim/blob/master/contrib/gdb/neovim_gdb.vim">neovim_gdb.vim</a>,
+a simple combination of vim settings, available in the <tt class="docutils literal">contrib</tt> folder of the neovim repository.</p>
+<p>Once that was taken care of, I started working on my original objective for the week. I found that the
+PartDesign Pipe issue was being caused by the code checking for whether or not the Pipe's AuxillerySpine (sic)
+was a part of the active body, but didn't check if the thing existed first. This resulted in a check to
+see if a null pointer was part of the active body, which is never the case. Checking for existence first
+<a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/848">resolved the issue</a>. With that bug fixed, I also added
+two tests each for PartDesign Pipe and Loft.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%">
+<col width="28%">
+<col width="11%">
+<col width="28%">
+</colgroup>
+<thead valign="bottom"><tr>
+<th class="head">tool category</th>
+<th class="head">initial, current test count</th>
+<th class="head">status</th>
+<th class="head">notes</th>
+</tr></thead>
+<tbody valign="top">
+<tr>
+<td>datum tools</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>add. &amp; sub. features/primitives</td>
+<td>11, 15</td>
+<td>ready</td>
+<td>all additive &amp; subtractive
+features now have at least
+one test</td>
+</tr>
+<tr>
+<td>transformations</td>
+<td>3, 3</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>dressup features</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>boolean operation</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-3-recap/" class="u-url">GSoC Week 3 recap</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -84,14 +189,6 @@ article: http://ogp.me/ns/article#
 </div>
     </header><div class="e-content entry-content">
     <div>
-<p>topics for post
-testing status overview (pictures)
-bug discovery and working on it
-attachment editor discussion
-sketcher API</p>
-<p>error
-Unhandled Base::Exception caught in GUIApplication::notify.
-The error message is: Rotation axis must not be perpendicular with the sketch plane</p>
 <p>Howdy! I wasn't sure of the best way to represent my progress thus far, but I figure a table is an alright way to summarize.</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -119,15 +216,17 @@ editor work in phase 2</td>
 <td>3, 11</td>
 <td>blocked</td>
 <td>basic Pipe not working; when
-fixed, tool (not option)
-will be almost complete</td>
+fixed, all tools in this
+category (but not all their
+options) will have test
+coverage</td>
 </tr>
 <tr>
 <td>transformations</td>
 <td>0, 3</td>
 <td>ready</td>
 <td>Mirrored added, still need
-Linear and MirroredPattern</td>
+Linear and PolarPattern</td>
 </tr>
 <tr>
 <td>dressup features</td>
@@ -139,7 +238,10 @@ Linear and MirroredPattern</td>
 <td>boolean operation</td>
 <td>0, 0</td>
 <td>ready</td>
-<td> </td>
+<td>Previously seemed to
+misbehave but recent changes
+to containers may have fixed
+this</td>
 </tr>
 </tbody>
 </table>
@@ -384,24 +486,24 @@ steps and begin contributing.</p>
 <li>Pull down a copy of the code. (If you don't have a copy of git, run <tt class="docutils literal">sudo <span class="pre">apt-get</span> install git</tt>.)</li>
 </ol>
 <blockquote>
-<pre class="code bash"><a name="rest_code_6f304aa6edf54310b13ca0278ede9786-1"></a>git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
-<a name="rest_code_6f304aa6edf54310b13ca0278ede9786-2"></a>mkdir freecad-build
+<pre class="code bash"><a name="rest_code_f67eb74822004b8285335453893d5b7e-1"></a>git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
+<a name="rest_code_f67eb74822004b8285335453893d5b7e-2"></a>mkdir freecad-build
 </pre>
 </blockquote>
 <ol class="arabic simple" start="2">
 <li>Install all dependencies.</li>
 </ol>
 <blockquote>
-<pre class="code bash"><a name="rest_code_092d45db1dda497ea024546065707533-1"></a>sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev <span class="se">\</span>
-<a name="rest_code_092d45db1dda497ea024546065707533-2"></a>  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  <span class="se">\</span>
-<a name="rest_code_092d45db1dda497ea024546065707533-3"></a>  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev <span class="se">\</span>
-<a name="rest_code_092d45db1dda497ea024546065707533-4"></a>  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools <span class="s1">'liboce*-dev'</span> <span class="se">\</span>
-<a name="rest_code_092d45db1dda497ea024546065707533-5"></a>  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev <span class="se">\</span>
-<a name="rest_code_092d45db1dda497ea024546065707533-6"></a>  libfreetype6 libfreetype6-dev
-<a name="rest_code_092d45db1dda497ea024546065707533-7"></a>
-<a name="rest_code_092d45db1dda497ea024546065707533-8"></a><span class="c1"># Install optional packages</span>
-<a name="rest_code_092d45db1dda497ea024546065707533-9"></a>sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen <span class="se">\</span>
-<a name="rest_code_092d45db1dda497ea024546065707533-10"></a>  libcoin80-doc libspnav-dev
+<pre class="code bash"><a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-1"></a>sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-2"></a>  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-3"></a>  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-4"></a>  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools <span class="s1">'liboce*-dev'</span> <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-5"></a>  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-6"></a>  libfreetype6 libfreetype6-dev
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-7"></a>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-8"></a><span class="c1"># Install optional packages</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-9"></a>sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-10"></a>  libcoin80-doc libspnav-dev
 </pre>
 </blockquote>
 <ol class="arabic simple" start="3">
@@ -411,9 +513,9 @@ Don't forget the period at the end of the <tt class="docutils literal">make</tt>
 <tt class="docutils literal"><span class="pre">freecad-build</span></tt> directory; it's good to keep the source code and build directories separate.</li>
 </ol>
 <blockquote>
-<pre class="code bash"><a name="rest_code_1bfb695903464d5c949a8e347b76fd38-1"></a><span class="nb">cd</span> freecad-build
-<a name="rest_code_1bfb695903464d5c949a8e347b76fd38-2"></a>cmake ../freecad-code
-<a name="rest_code_1bfb695903464d5c949a8e347b76fd38-3"></a>make -j<span class="k">$(</span>nproc<span class="k">)</span> .
+<pre class="code bash"><a name="rest_code_182722f6ab2140df96f4a1506a282d7f-1"></a><span class="nb">cd</span> freecad-build
+<a name="rest_code_182722f6ab2140df96f4a1506a282d7f-2"></a>cmake ../freecad-code
+<a name="rest_code_182722f6ab2140df96f4a1506a282d7f-3"></a>make -j<span class="k">$(</span>nproc<span class="k">)</span> .
 </pre>
 </blockquote>
 <ol class="arabic simple" start="4">
@@ -421,10 +523,10 @@ Don't forget the period at the end of the <tt class="docutils literal">make</tt>
 error message, which occurs because the expected <tt class="docutils literal">libfreeimage.so</tt> file was moved into a subdirectory of <tt class="docutils literal">/usr/lib/</tt>.</li>
 </ol>
 <blockquote>
-<pre class="code bash"><a name="rest_code_8d0b1415c0e44af5b9ff66f2cc3e4b99-1"></a>make<span class="o">[</span><span class="m">2</span><span class="o">]</span>: *** No rule to make target <span class="s1">'/usr/lib/libfreeimage.so'</span>, needed by <span class="s1">'lib/libSMDS.so'</span>.  Stop.
-<a name="rest_code_8d0b1415c0e44af5b9ff66f2cc3e4b99-2"></a>
-<a name="rest_code_8d0b1415c0e44af5b9ff66f2cc3e4b99-3"></a><span class="c1"># Fix with this line.</span>
-<a name="rest_code_8d0b1415c0e44af5b9ff66f2cc3e4b99-4"></a>sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
+<pre class="code bash"><a name="rest_code_b6707817aec84b25a27f4456f0659de5-1"></a>make<span class="o">[</span><span class="m">2</span><span class="o">]</span>: *** No rule to make target <span class="s1">'/usr/lib/libfreeimage.so'</span>, needed by <span class="s1">'lib/libSMDS.so'</span>.  Stop.
+<a name="rest_code_b6707817aec84b25a27f4456f0659de5-2"></a>
+<a name="rest_code_b6707817aec84b25a27f4456f0659de5-3"></a><span class="c1"># Fix with this line.</span>
+<a name="rest_code_b6707817aec84b25a27f4456f0659de5-4"></a>sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
 </pre>
 </blockquote>
 <p>Once the build is complete, a runnable copy of the FreeCAD executable will be in the <tt class="docutils literal"><span class="pre">freecad-build</span></tt> folder. Any changes
@@ -474,7 +576,7 @@ However, when working directly in the Linux console, things are a little more co
 <p>My particular need is to swap the <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> keys; as a <tt class="docutils literal">vim</tt> user, I use <tt class="docutils literal">Escape</tt> constantly to return to Normal mode.
 To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach <tt class="docutils literal">Escape</tt>, the following line
 can be added to the file <tt class="docutils literal">/etc/rc.local</tt>, before the final line <tt class="docutils literal">exit 0</tt>.</p>
-<pre class="code bash"><a name="rest_code_76db1ee80f084b8991909e3932f7c943-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
+<pre class="code bash"><a name="rest_code_36d2d57faa9c4dbdb655bb6d753a151c-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
 </pre>
 <p>If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
 commands separated by the pipe character <tt class="docutils literal">|</tt>.
@@ -550,51 +652,51 @@ validate measurements before adding to the rolling average</li>
 <li>The downside is a lag time in response to changes in the measurement, and the lag time goes up with accuracy</li>
 </ul>
 <p>Now, on to the code!</p>
-<pre class="code python"><a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-1"></a><span class="c1"># Create empty list-type variable so we can</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-2"></a><span class="c1"># store measurements</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-3"></a><span class="n">sensor_measurements</span> <span class="o">=</span> <span class="p">[]</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-4"></a>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-5"></a><span class="c1"># Declare these variables at a top level so you can</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-6"></a><span class="c1"># easily edit them once for your whole script to</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-7"></a><span class="c1"># test performance</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-8"></a><span class="n">upper_reasonable_bound</span> <span class="o">=</span> <span class="mi">200</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-9"></a><span class="n">lower_reasonable_bound</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-10"></a><span class="n">rolling_average_size</span> <span class="o">=</span> <span class="mi">4</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-11"></a>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-12"></a><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">):</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-13"></a>  <span class="sd">"""</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-14"></a><span class="sd">  Use the builtin functions sum and len to make a quick average function</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-15"></a><span class="sd">  """</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-16"></a>  <span class="c1"># Handle division by zero error</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-17"></a>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-18"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-19"></a>  <span class="k">else</span><span class="p">:</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-20"></a>    <span class="c1"># When you use the average later, make sure to include something like</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-21"></a>    <span class="c1"># sensor_average = rolling_average(sensor_measurements)</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-22"></a>    <span class="c1"># if (conditions) and sensor_average &gt; -1:</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-23"></a>    <span class="c1"># This way, -1 can be used as an "invalid" value</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-24"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-25"></a>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-26"></a><span class="k">def</span> <span class="nf">rolling_average</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-27"></a>  <span class="c1"># Update rolling average if measurement is ok, otherwise</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-28"></a>  <span class="c1"># skip to returning the average from previous values</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-29"></a>  <span class="k">if</span> <span class="n">lower_reasonable_bound</span> <span class="o">&lt;</span> <span class="n">measurement</span> <span class="o">&lt;</span> <span class="n">upper_reasonable_bound</span><span class="p">:</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-30"></a>    <span class="c1"># Remove first item from list if it's full according to our chosen size</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-31"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">rolling_average_size</span><span class="p">:</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-32"></a>      <span class="n">measurements</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-33"></a>    <span class="n">measurements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">measurement</span><span class="p">)</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-34"></a>  <span class="k">return</span> <span class="n">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-35"></a>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-36"></a><span class="c1"># Your control loop may be handled in another file</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-37"></a><span class="c1"># or with another method, here's an example usage</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-38"></a><span class="kn">import</span> <span class="nn">some_sensor_module</span> <span class="kn">as</span> <span class="nn">ssm</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-39"></a><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-40"></a>  <span class="n">sensor_measurement</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">some_sensor_function</span><span class="p">()</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-41"></a>  <span class="n">sensor_value</span> <span class="o">=</span> <span class="n">rolling_average</span><span class="p">(</span><span class="n">sensor_measurement</span><span class="p">,</span> <span class="n">sensor_measurements</span><span class="p">)</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-42"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">condition_using_sensor_value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-43"></a>    <span class="n">some_logic_handler_function</span><span class="p">(</span><span class="n">sensor_value</span><span class="p">)</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-44"></a>  <span class="k">else</span><span class="p">:</span>
-<a name="rest_code_c92ff27e5a6d435880d8a7a84522a710-45"></a>    <span class="c1"># and so forth</span>
+<pre class="code python"><a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-1"></a><span class="c1"># Create empty list-type variable so we can</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-2"></a><span class="c1"># store measurements</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-3"></a><span class="n">sensor_measurements</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-4"></a>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-5"></a><span class="c1"># Declare these variables at a top level so you can</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-6"></a><span class="c1"># easily edit them once for your whole script to</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-7"></a><span class="c1"># test performance</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-8"></a><span class="n">upper_reasonable_bound</span> <span class="o">=</span> <span class="mi">200</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-9"></a><span class="n">lower_reasonable_bound</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-10"></a><span class="n">rolling_average_size</span> <span class="o">=</span> <span class="mi">4</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-11"></a>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-12"></a><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">):</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-13"></a>  <span class="sd">"""</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-14"></a><span class="sd">  Use the builtin functions sum and len to make a quick average function</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-15"></a><span class="sd">  """</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-16"></a>  <span class="c1"># Handle division by zero error</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-17"></a>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-18"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-19"></a>  <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-20"></a>    <span class="c1"># When you use the average later, make sure to include something like</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-21"></a>    <span class="c1"># sensor_average = rolling_average(sensor_measurements)</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-22"></a>    <span class="c1"># if (conditions) and sensor_average &gt; -1:</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-23"></a>    <span class="c1"># This way, -1 can be used as an "invalid" value</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-24"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-25"></a>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-26"></a><span class="k">def</span> <span class="nf">rolling_average</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-27"></a>  <span class="c1"># Update rolling average if measurement is ok, otherwise</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-28"></a>  <span class="c1"># skip to returning the average from previous values</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-29"></a>  <span class="k">if</span> <span class="n">lower_reasonable_bound</span> <span class="o">&lt;</span> <span class="n">measurement</span> <span class="o">&lt;</span> <span class="n">upper_reasonable_bound</span><span class="p">:</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-30"></a>    <span class="c1"># Remove first item from list if it's full according to our chosen size</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-31"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">rolling_average_size</span><span class="p">:</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-32"></a>      <span class="n">measurements</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-33"></a>    <span class="n">measurements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">measurement</span><span class="p">)</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-34"></a>  <span class="k">return</span> <span class="n">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-35"></a>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-36"></a><span class="c1"># Your control loop may be handled in another file</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-37"></a><span class="c1"># or with another method, here's an example usage</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-38"></a><span class="kn">import</span> <span class="nn">some_sensor_module</span> <span class="kn">as</span> <span class="nn">ssm</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-39"></a><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-40"></a>  <span class="n">sensor_measurement</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">some_sensor_function</span><span class="p">()</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-41"></a>  <span class="n">sensor_value</span> <span class="o">=</span> <span class="n">rolling_average</span><span class="p">(</span><span class="n">sensor_measurement</span><span class="p">,</span> <span class="n">sensor_measurements</span><span class="p">)</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-42"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">condition_using_sensor_value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-43"></a>    <span class="n">some_logic_handler_function</span><span class="p">(</span><span class="n">sensor_value</span><span class="p">)</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-44"></a>  <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_7fc5e7c6e26d4628b14214bc7eb3c8d5-45"></a>    <span class="c1"># and so forth</span>
 </pre>
 <p>Let me know in the comments if you have any questions or feedback!</p>
 </div>
@@ -613,48 +715,9 @@ validate measurements before adding to the rolling average</li>
     </header><div class="e-content entry-content">
     <div>
 <p>This one is short, sweet, and to the point. How often do you have your PDF set to a nice zoom level, only to have it reset when navigating via the Bookmarks/Index? If you use GNOME as a Linux DE (desktop environment), then you can fire up a terminal and use this <tt class="docutils literal">gsettings</tt> one-liner to preserve zoom:</p>
-<pre class="code bash"><a name="rest_code_8b66c0530d78478e9b01ab31c2f9ab81-1"></a>gsettings <span class="nb">set</span> org.gnome.Evince allow-links-change-zoom <span class="nb">false</span>
+<pre class="code bash"><a name="rest_code_311f34c72b3b436494f8f99e572b7530-1"></a>gsettings <span class="nb">set</span> org.gnome.Evince allow-links-change-zoom <span class="nb">false</span>
 </pre>
 <p>A great alternative PDF reader is the <tt class="docutils literal">vim</tt>-key friendly <a class="reference external" href="https://pwmt.org/projects/zathura/">zathura</a>. I've had issues opening larger PDFs with it though, so your mileage may vary.</p>
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="connecting-a-raspberry-pi-to-texas-am-wifi/" class="u-url">Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="connecting-a-raspberry-pi-to-texas-am-wifi/" rel="bookmark"><time class="published dt-published" datetime="2016-04-21T18:46:17-05:00" title="2016-04-21 18:46">2016-04-21 18:46</time></a></p>
-                <p class="commentline">            <a href="connecting-a-raspberry-pi-to-texas-am-wifi/#disqus_thread" data-disqus-identifier="cache/posts/connecting-a-raspberry-pi-to-texas-am-wifi.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>The recommended flavor of Linux on the Raspberry Pi, Raspbian, uses the LXDE desktop environment, and using its GUI tools to set up wifi is not immediately successful.
-Command-line setup involves editing two files, <tt class="docutils literal">/etc/network/interfaces</tt> and <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>. Since these are system files, they won't be writable by a normal user. The command <tt class="docutils literal">sudo <span class="pre">-e</span> &lt;filename&gt;</tt> can be used to edit system files with superuser privileges, using the default editor. Normally, this is the program <tt class="docutils literal">nano</tt>, which is fairly self-explanatory; make your changes using the keyboard and save the file with <tt class="docutils literal"><span class="pre">Ctrl-X</span></tt>. For advanced users, this can be changed via something like <tt class="docutils literal">export EDITOR=vi</tt>.</p>
-<p>The first file, <tt class="docutils literal">/etc/network/interfaces</tt>, needs to have the following:</p>
-<!-- TEASER_END -->
-<pre class="code bash"><a name="rest_code_ed523941b6dd4bc49eb660ee817fad1d-1"></a>allow-hotplug wlan0
-<a name="rest_code_ed523941b6dd4bc49eb660ee817fad1d-2"></a>iface wlan0 inet dhcp
-<a name="rest_code_ed523941b6dd4bc49eb660ee817fad1d-3"></a>  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-</pre>
-<p>The <tt class="docutils literal"><span class="pre">allow-hotplug</span></tt> line allows the <tt class="docutils literal">wlan0</tt> (wireless LAN) interface to be brought up when hotplugged into a running Raspberry Pi.
-The <tt class="docutils literal">iface ... dhcp</tt> line means we are requesting an IP address from the wireless network's DHCP servers, and the <tt class="docutils literal"><span class="pre">wpa-conf</span></tt> line specifies which file to use for our auth config.</p>
-<p>In <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>, you should have:</p>
-<pre class="code bash"><a name="rest_code_6bdff23420e346178b869ed4f692d998-1"></a><span class="nv">network</span><span class="o">={</span>
-<a name="rest_code_6bdff23420e346178b869ed4f692d998-2"></a>     <span class="nv">ssid</span><span class="o">=</span>”tamulink-wpa”
-<a name="rest_code_6bdff23420e346178b869ed4f692d998-3"></a>     <span class="nv">scan_ssid</span><span class="o">=</span><span class="m">1</span>
-<a name="rest_code_6bdff23420e346178b869ed4f692d998-4"></a>     <span class="nv">key_mgmt</span><span class="o">=</span>WPA-EAP
-<a name="rest_code_6bdff23420e346178b869ed4f692d998-5"></a>     <span class="nv">eap</span><span class="o">=</span>PEAP
-<a name="rest_code_6bdff23420e346178b869ed4f692d998-6"></a>     <span class="nv">identity</span><span class="o">=</span>”YOUR_NET_ID”
-<a name="rest_code_6bdff23420e346178b869ed4f692d998-7"></a>     <span class="nv">password</span><span class="o">=</span>”YOUR_TAMU_PASSWORD”
-<a name="rest_code_6bdff23420e346178b869ed4f692d998-8"></a>     <span class="nv">pairwise</span><span class="o">=</span>CCMP
-<a name="rest_code_6bdff23420e346178b869ed4f692d998-9"></a><span class="o">}</span>
-</pre>
-<p>Make sure that there is no space in <tt class="docutils literal">network={</tt>, and that the ssid, identity and passwords are wrapped in quotes.</p>
-<p>The network can be brought up or down via <tt class="docutils literal">sudo ifup wlan0</tt> or <tt class="docutils literal">sudo ifdown wlan0</tt>.</p>
-<p>As a final note, be mindful of the fact that doing this leaves your TAMU password on an unencrypted device; anyone with the know-how could take an SD card with these credentials and read them. Don't neglect the physical security of your Raspberry Pi after doing this, since it will contain important information.</p>
 </div>
     </div>
     </article>

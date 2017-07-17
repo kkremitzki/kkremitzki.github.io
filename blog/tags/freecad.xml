@@ -1,13 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/freecad.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Thu, 29 Jun 2017 05:50:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 3 recap</title><link>/blog/gsoc-week-3-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;topics for post
-testing status overview (pictures)
-bug discovery and working on it
-attachment editor discussion
-sketcher API&lt;/p&gt;
-&lt;p&gt;error
-Unhandled Base::Exception caught in GUIApplication::notify.
-The error message is: Rotation axis must not be perpendicular with the sketch plane&lt;/p&gt;
-&lt;p&gt;Howdy! I wasn't sure of the best way to represent my progress thus far, but I figure a table is an alright way to summarize.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link rel="self" href="/blog/tags/freecad.xml" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 17 Jul 2017 22:03:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 4 recap</title><link>/blog/gsoc-week-4-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;I started this week out with the goal of troubleshooting the bugs I found with PartDesign Pipe and Revolve.
+However, I ended up running into several annoying issues. The LLDB debugging integration I previously wrote about
+began showing some inexplicable errors:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+error caught in async handler 'exec ('continue',)'
+Traceback (most recent call last):
+  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/__init_
+_.py", line 49, in _exec
+    self.ctrl.safe_execute(args)
+  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/control
+ler.py", line 101, in safe_execute
+    self.safe_call(self.exec_command, [cmd])
+  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/control
+ler.py", line 94, in safe_call
+    raise EventLoopError("Dead event loop!")
+EventLoopError: Dead event loop!
+&lt;/pre&gt;
+&lt;p&gt;Eventually I found &lt;a class="reference external" href="https://github.com/dbgx/lldb.nvim/issues/52"&gt;an issue on Github&lt;/a&gt; which refers to
+a now-deleted comment in the author's original repository, stating the project was no longer being developed.
+The question remains as to how it was working just fine when I began and only just now stopped working, but
+the end result was that my debugger-editor integration was broken, which makes it quite a bit tougher to debug
+the C++ side of the codebase.&lt;/p&gt;
+&lt;p&gt;One option I had was to just use GDB as a standalone command line application, but it's really convenient, e.g.
+to not have to manually type out file names and line numbers for breakpoints, and otherwise have your debugger
+wired up to your editor.&lt;/p&gt;
+&lt;p&gt;However, this was inexplicably not working either! Basic features of GDB worked, but trying to specify breakpoints
+to step through the code was not. I banged my head on this issue for a while until I figured up &lt;tt class="docutils literal"&gt;ccmake&lt;/tt&gt; to
+take a look at my build options. The issue? Somehow, the &lt;tt class="docutils literal"&gt;CMAKE_BUILD_TYPE&lt;/tt&gt;, which had been set to &lt;tt class="docutils literal"&gt;Debug&lt;/tt&gt;,
+was unset. So, I set it again and started the debug build, which takes quite a long time.
+(Around 2 hours with &lt;tt class="docutils literal"&gt;make &lt;span class="pre"&gt;-j4&lt;/span&gt;&lt;/tt&gt;.)&lt;/p&gt;
+&lt;p&gt;I also did more research on options for debugger integration. I found an interesting option called Pyclewn
+which is a debugger front-end for (neo)vim. This option was attractive since I could have a unified front-end
+to both my C++ debugger as well as a Python one. However, setup wasn't straightforward, so I continued searching
+for a simpler option.&lt;/p&gt;
+&lt;p&gt;Luckily, I stumbled upon &lt;a class="reference external" href="https://github.com/neovim/neovim/blob/master/contrib/gdb/neovim_gdb.vim"&gt;neovim_gdb.vim&lt;/a&gt;,
+a simple combination of vim settings, available in the &lt;tt class="docutils literal"&gt;contrib&lt;/tt&gt; folder of the neovim repository.&lt;/p&gt;
+&lt;p&gt;Once that was taken care of, I started working on my original objective for the week. I found that the
+PartDesign Pipe issue was being caused by the code checking for whether or not the Pipe's AuxillerySpine (sic)
+was a part of the active body, but didn't check if the thing existed first. This resulted in a check to
+see if a null pointer was part of the active body, which is never the case. Checking for existence first
+&lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/848"&gt;resolved the issue&lt;/a&gt;. With that bug fixed, I also added
+two tests each for PartDesign Pipe and Loft.&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="33%"&gt;
+&lt;col width="28%"&gt;
+&lt;col width="11%"&gt;
+&lt;col width="28%"&gt;
+&lt;/colgroup&gt;
+&lt;thead valign="bottom"&gt;
+&lt;tr&gt;&lt;th class="head"&gt;tool category&lt;/th&gt;
+&lt;th class="head"&gt;initial, current test count&lt;/th&gt;
+&lt;th class="head"&gt;status&lt;/th&gt;
+&lt;th class="head"&gt;notes&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;datum tools&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;add. &amp;amp; sub. features/primitives&lt;/td&gt;
+&lt;td&gt;11, 15&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt;all additive &amp;amp; subtractive
+features now have at least
+one test&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;transformations&lt;/td&gt;
+&lt;td&gt;3, 3&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;dressup features&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;boolean operation&lt;/td&gt;
+&lt;td&gt;0, 0&lt;/td&gt;
+&lt;td&gt;ready&lt;/td&gt;
+&lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;</description><category>freecad</category><category>gsoc</category><guid>/blog/gsoc-week-4-recap/</guid><pubDate>Fri, 30 Jun 2017 10:48:06 GMT</pubDate></item><item><title>GSoC Week 3 recap</title><link>/blog/gsoc-week-3-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Howdy! I wasn't sure of the best way to represent my progress thus far, but I figure a table is an alright way to summarize.&lt;/p&gt;
 &lt;table border="1" class="docutils"&gt;
 &lt;colgroup&gt;
 &lt;col width="33%"&gt;
@@ -33,14 +110,16 @@ editor work in phase 2&lt;/td&gt;
 &lt;td&gt;3, 11&lt;/td&gt;
 &lt;td&gt;blocked&lt;/td&gt;
 &lt;td&gt;basic Pipe not working; when
-fixed, tool (not option)
-will be almost complete&lt;/td&gt;
+fixed, all tools in this
+category (but not all their
+options) will have test
+coverage&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;transformations&lt;/td&gt;
 &lt;td&gt;0, 3&lt;/td&gt;
 &lt;td&gt;ready&lt;/td&gt;
 &lt;td&gt;Mirrored added, still need
-Linear and MirroredPattern&lt;/td&gt;
+Linear and PolarPattern&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;dressup features&lt;/td&gt;
 &lt;td&gt;0, 0&lt;/td&gt;
@@ -50,7 +129,10 @@ Linear and MirroredPattern&lt;/td&gt;
 &lt;tr&gt;&lt;td&gt;boolean operation&lt;/td&gt;
 &lt;td&gt;0, 0&lt;/td&gt;
 &lt;td&gt;ready&lt;/td&gt;
-&lt;td&gt; &lt;/td&gt;
+&lt;td&gt;Previously seemed to
+misbehave but recent changes
+to containers may have fixed
+this&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -242,23 +324,23 @@ steps and begin contributing.&lt;/p&gt;
 &lt;li&gt;Pull down a copy of the code. (If you don't have a copy of git, run &lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install git&lt;/tt&gt;.)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_6f304aa6edf54310b13ca0278ede9786-1"&gt;&lt;/a&gt;git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
-&lt;a name="rest_code_6f304aa6edf54310b13ca0278ede9786-2"&gt;&lt;/a&gt;mkdir freecad-build
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_f67eb74822004b8285335453893d5b7e-1"&gt;&lt;/a&gt;git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
+&lt;a name="rest_code_f67eb74822004b8285335453893d5b7e-2"&gt;&lt;/a&gt;mkdir freecad-build
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="2"&gt;
 &lt;li&gt;Install all dependencies.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_092d45db1dda497ea024546065707533-1"&gt;&lt;/a&gt;sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_092d45db1dda497ea024546065707533-2"&gt;&lt;/a&gt;  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_092d45db1dda497ea024546065707533-3"&gt;&lt;/a&gt;  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_092d45db1dda497ea024546065707533-4"&gt;&lt;/a&gt;  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools &lt;span class="s1"&gt;'liboce*-dev'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_092d45db1dda497ea024546065707533-5"&gt;&lt;/a&gt;  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_092d45db1dda497ea024546065707533-6"&gt;&lt;/a&gt;  libfreetype6 libfreetype6-dev
-&lt;a name="rest_code_092d45db1dda497ea024546065707533-7"&gt;&lt;/a&gt;
-&lt;a name="rest_code_092d45db1dda497ea024546065707533-8"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Install optional packages&lt;/span&gt;
-&lt;a name="rest_code_092d45db1dda497ea024546065707533-9"&gt;&lt;/a&gt;sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_092d45db1dda497ea024546065707533-10"&gt;&lt;/a&gt;  libcoin80-doc libspnav-dev
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-1"&gt;&lt;/a&gt;sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-2"&gt;&lt;/a&gt;  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-3"&gt;&lt;/a&gt;  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-4"&gt;&lt;/a&gt;  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools &lt;span class="s1"&gt;'liboce*-dev'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-5"&gt;&lt;/a&gt;  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-6"&gt;&lt;/a&gt;  libfreetype6 libfreetype6-dev
+&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-7"&gt;&lt;/a&gt;
+&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-8"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Install optional packages&lt;/span&gt;
+&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-9"&gt;&lt;/a&gt;sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-10"&gt;&lt;/a&gt;  libcoin80-doc libspnav-dev
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="3"&gt;
 &lt;li&gt;Move into build folder, make and compile the software. Use the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-j&lt;/span&gt; $(nproc)&lt;/tt&gt; flag to use all N of your CPU cores
@@ -267,19 +349,19 @@ Don't forget the period at the end of the &lt;tt class="docutils literal"&gt;mak
 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-build&lt;/span&gt;&lt;/tt&gt; directory; it's good to keep the source code and build directories separate.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_1bfb695903464d5c949a8e347b76fd38-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; freecad-build
-&lt;a name="rest_code_1bfb695903464d5c949a8e347b76fd38-2"&gt;&lt;/a&gt;cmake ../freecad-code
-&lt;a name="rest_code_1bfb695903464d5c949a8e347b76fd38-3"&gt;&lt;/a&gt;make -j&lt;span class="k"&gt;$(&lt;/span&gt;nproc&lt;span class="k"&gt;)&lt;/span&gt; .
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_182722f6ab2140df96f4a1506a282d7f-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; freecad-build
+&lt;a name="rest_code_182722f6ab2140df96f4a1506a282d7f-2"&gt;&lt;/a&gt;cmake ../freecad-code
+&lt;a name="rest_code_182722f6ab2140df96f4a1506a282d7f-3"&gt;&lt;/a&gt;make -j&lt;span class="k"&gt;$(&lt;/span&gt;nproc&lt;span class="k"&gt;)&lt;/span&gt; .
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="4"&gt;
 &lt;li&gt;Fix Ubuntu 64-bit issue. If you are using a 64-bit version of Ubuntu (hopefully), you may run in to the following
 error message, which occurs because the expected &lt;tt class="docutils literal"&gt;libfreeimage.so&lt;/tt&gt; file was moved into a subdirectory of &lt;tt class="docutils literal"&gt;/usr/lib/&lt;/tt&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_8d0b1415c0e44af5b9ff66f2cc3e4b99-1"&gt;&lt;/a&gt;make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: *** No rule to make target &lt;span class="s1"&gt;'/usr/lib/libfreeimage.so'&lt;/span&gt;, needed by &lt;span class="s1"&gt;'lib/libSMDS.so'&lt;/span&gt;.  Stop.
-&lt;a name="rest_code_8d0b1415c0e44af5b9ff66f2cc3e4b99-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_8d0b1415c0e44af5b9ff66f2cc3e4b99-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Fix with this line.&lt;/span&gt;
-&lt;a name="rest_code_8d0b1415c0e44af5b9ff66f2cc3e4b99-4"&gt;&lt;/a&gt;sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_b6707817aec84b25a27f4456f0659de5-1"&gt;&lt;/a&gt;make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: *** No rule to make target &lt;span class="s1"&gt;'/usr/lib/libfreeimage.so'&lt;/span&gt;, needed by &lt;span class="s1"&gt;'lib/libSMDS.so'&lt;/span&gt;.  Stop.
+&lt;a name="rest_code_b6707817aec84b25a27f4456f0659de5-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_b6707817aec84b25a27f4456f0659de5-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Fix with this line.&lt;/span&gt;
+&lt;a name="rest_code_b6707817aec84b25a27f4456f0659de5-4"&gt;&lt;/a&gt;sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;p&gt;Once the build is complete, a runnable copy of the FreeCAD executable will be in the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-build&lt;/span&gt;&lt;/tt&gt; folder. Any changes
 made to the source code can be tested after re-compiling the executable.&lt;/p&gt;

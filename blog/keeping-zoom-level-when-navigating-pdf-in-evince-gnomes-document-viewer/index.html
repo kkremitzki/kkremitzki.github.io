@@ -15,8 +15,7 @@ article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href=".">
 <link rel="icon" href="../../favicon.ico" sizes="16x16">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
-<link rel="stylesheet" href="../../assets/css/custom.css">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../../assets/css/custom.css">
 <link rel="stylesheet" href="../../assets/css/code.css">
 <meta name="author" content="Kurt Kremitzki">
 <link rel="prev" href="../connecting-a-raspberry-pi-to-texas-am-wifi/" title="Connecting a Raspberry Pi to Texas A&amp;M Wifi via Command Line" type="text/html">
@@ -93,7 +92,7 @@ article: http://ogp.me/ns/article#
     </header><div class="e-content entry-content" itemprop="articleBody text">
     <div>
 <p>This one is short, sweet, and to the point. How often do you have your PDF set to a nice zoom level, only to have it reset when navigating via the Bookmarks/Index? If you use GNOME as a Linux DE (desktop environment), then you can fire up a terminal and use this <tt class="docutils literal">gsettings</tt> one-liner to preserve zoom:</p>
-<pre class="code bash"><a name="rest_code_8b66c0530d78478e9b01ab31c2f9ab81-1"></a>gsettings <span class="nb">set</span> org.gnome.Evince allow-links-change-zoom <span class="nb">false</span>
+<pre class="code bash"><a name="rest_code_311f34c72b3b436494f8f99e572b7530-1"></a>gsettings <span class="nb">set</span> org.gnome.Evince allow-links-change-zoom <span class="nb">false</span>
 </pre>
 <p>A great alternative PDF reader is the <tt class="docutils literal">vim</tt>-key friendly <a class="reference external" href="https://pwmt.org/projects/zathura/">zathura</a>. I've had issues opening larger PDFs with it though, so your mileage may vary.</p>
 </div>

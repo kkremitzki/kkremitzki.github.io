@@ -15,8 +15,7 @@ article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href=".">
 <link rel="icon" href="../../favicon.ico" sizes="16x16">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
-<link rel="stylesheet" href="../../assets/css/custom.css">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../../assets/css/custom.css">
 <link rel="stylesheet" href="../../assets/css/code.css">
 <meta name="author" content="Kurt Kremitzki">
 <link rel="prev" href="../using-running-averages-in-python-to-validate-sensor-data/" title="Using Running Averages in Python to Validate Sensor Data" type="text/html">
@@ -100,7 +99,7 @@ However, when working directly in the Linux console, things are a little more co
 <p>My particular need is to swap the <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> keys; as a <tt class="docutils literal">vim</tt> user, I use <tt class="docutils literal">Escape</tt> constantly to return to Normal mode.
 To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach <tt class="docutils literal">Escape</tt>, the following line
 can be added to the file <tt class="docutils literal">/etc/rc.local</tt>, before the final line <tt class="docutils literal">exit 0</tt>.</p>
-<pre class="code bash"><a name="rest_code_76db1ee80f084b8991909e3932f7c943-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
+<pre class="code bash"><a name="rest_code_36d2d57faa9c4dbdb655bb6d753a151c-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
 </pre>
 <p>If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
 commands separated by the pipe character <tt class="docutils literal">|</tt>.
