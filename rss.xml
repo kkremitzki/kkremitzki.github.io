@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 17 Jul 2017 22:31:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 5 recap</title><link>/blog/gsoc-week-5-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;This week started out with some interesting discussions on the future Python structure of FreeCAD, over
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link type="application/rss+xml" rel="self" href="/rss.xml"></atom:link><language>en</language><lastBuildDate>Sun, 23 Jul 2017 20:21:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 6 Recap</title><link>/blog/gsoc-week-6-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Short post this week! I was in Spokane, Washington, from July 15-19th for a robotics competition being held at the Annual International Meeting of my professional society,
+the American Society of Agricultural &amp;amp; Biological Engineers, or ASABE. I only had a smattering of time to work on the various FreeCAD bugs I have mentioned in previous posts
+so there isn't much to report on that front. Instead, I'll leave a picture from the beautiful Spokane downtown area.&lt;/p&gt;
+&lt;img alt="/images/gsoc-6-1.jpg" class="align-center" src="/images/gsoc-6-1.jpg"&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-6-recap/</guid><pubDate>Fri, 21 Jul 2017 05:26:28 GMT</pubDate></item><item><title>GSoC Week 5 recap</title><link>/blog/gsoc-week-5-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;This week started out with some interesting discussions on the future Python structure of FreeCAD, over
 &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=10&amp;amp;t=23197"&gt;on the forums&lt;/a&gt;. This was especially salient
 as I have a bit of pain interacting with parts of the FreeCAD Python API and improvements to it would
 be a good long-term goal after finishing GSoC.&lt;/p&gt;
@@ -445,23 +448,4 @@ The middle command, &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt;, is a powe
 take a look at its argument: the string &lt;tt class="docutils literal"&gt;'/s/CtrlL_Lock/Escape/'&lt;/tt&gt;. This tells &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; to &lt;em&gt;s&lt;/em&gt; ubstitute the first instance of &lt;tt class="docutils literal"&gt;CtrlL_Lock&lt;/tt&gt;
 with &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; on any matching line from its input (adding &lt;tt class="docutils literal"&gt;g&lt;/tt&gt; after the last slash makes it a truly global substitution and not linewise.)
 The &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; command then passes along the modified stream to &lt;tt class="docutils literal"&gt;loadkeys&lt;/tt&gt;. Because this line is added to &lt;tt class="docutils literal"&gt;/etc/rc.local&lt;/tt&gt;, it will be executed
-every boot, swapping &lt;tt class="docutils literal"&gt;Caps Lock&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; in the Linux console.&lt;/p&gt;&lt;/div&gt;</description><category>linux</category><category>raspberry_pi</category><guid>/blog/linux-console-capsescape-swap/</guid><pubDate>Wed, 18 May 2016 03:40:12 GMT</pubDate></item><item><title>Using Running Averages in Python to Validate Sensor Data</title><link>/blog/using-running-averages-in-python-to-validate-sensor-data/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p class="h3"&gt;Handling Signals&lt;/p&gt;
-&lt;p&gt;If you are writing code to respond to sensor data, you should use a bit of logical
-abstraction to have clean code that doesn't become harder to work on with time.
-For example, at a low level, you're getting some signal, likely a voltage, that is
-supposed to represent another physical signal (in an abstract sense), like a distance
-or temperature. However, the signal you are actually accessing in the code is just
-a measurement, e.g. a voltage and not the &lt;em&gt;true&lt;/em&gt; distance. At some point in the code,
-hopefully a well-tested library already written by someone else, this voltage signal
-has some math done to it and becomes a number that is hopefully pretty close to the
-measurement we care about. Later on in the code, in regions &lt;em&gt;we&lt;/em&gt; are usually responsible
-for, it would be nice to treat that number as the real thing, and make whatever system
-we're designing to respond accordingly. Going in blindly, though, can be a recipe for
-disaster. Why?&lt;/p&gt;
-&lt;p class="h3"&gt;Trust, But Verify&lt;/p&gt;
-&lt;p&gt;Sometimes physical components fail. Maybe someone's skin oil, left behind during setup
-or installation, is changing some overall resistance and invaliding our assumptions, and
-math, about a voltage signal across a wire. Water, rust, rot, and an infinite number of
-other failure mechanisms can plague the best-designed system, so a good rule of thumb is to
-trust, but verify.&lt;/p&gt;
-&lt;p&gt;&lt;a href="/blog/using-running-averages-in-python-to-validate-sensor-data/"&gt;Read more…&lt;/a&gt; (2 min remaining to read)&lt;/p&gt;&lt;/div&gt;</description><category>control_theory</category><category>mathjax</category><category>python</category><guid>/blog/using-running-averages-in-python-to-validate-sensor-data/</guid><pubDate>Thu, 05 May 2016 10:09:04 GMT</pubDate></item></channel></rss>
+every boot, swapping &lt;tt class="docutils literal"&gt;Caps Lock&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; in the Linux console.&lt;/p&gt;&lt;/div&gt;</description><category>linux</category><category>raspberry_pi</category><guid>/blog/linux-console-capsescape-swap/</guid><pubDate>Wed, 18 May 2016 03:40:12 GMT</pubDate></item></channel></rss>
