@@ -71,7 +71,63 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="using-running-averages-in-python-to-validate-sensor-data/" class="u-url">Using Running Averages in Python to Validate Sensor Data</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="french-lessons/" class="u-url">French Lessons</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="french-lessons/" rel="bookmark"><time class="published dt-published" datetime="2016-05-27T12:20:29-05:00" title="2016-05-27 12:20">2016-05-27 12:20</time></a></p>
+                <p class="commentline">            <a href="french-lessons/#disqus_thread" data-disqus-identifier="cache/posts/french-lessons.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Part of my summer is going to be spent studying mathematics in France, but international study is not complete without a foray into the language.
+I've always been very interested in linguistics, and one of my long-term goals is to be a polyglot (which first means turning my 4 years of German and 2 years of Chinese into actual mastery), so I was pretty excited when I found my professor
+had arranged thrice weekly morning lessons here at the CLA (Centre de Linguistique Appliquée) Besançon. Our lessons are complete immersion style;
+the teacher speaks only French, which was quite difficult at first. The only "experience" I have with the language comes from my exposure to Spanish
+this spring when I visited Mérida, Yucatán to work on a community garden irrigation project; other than the occasional Spanish or English cognate,
+I'm completely in the dark. Luckily, everyone in town is very helpful and accommodating.</p>
+<img alt="/images/cla.jpg" class="align-center" src="../images/cla.jpg" style="width: 638px;">
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="linux-console-capsescape-swap/" class="u-url">Linux Console Caps/Escape Swap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="linux-console-capsescape-swap/" rel="bookmark"><time class="published dt-published" datetime="2016-05-17T22:40:12-05:00" title="2016-05-17 22:40">2016-05-17 22:40</time></a></p>
+                <p class="commentline">            <a href="linux-console-capsescape-swap/#disqus_thread" data-disqus-identifier="cache/posts/linux-console-capsescape-swap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Full-fledged Linux desktop environments like GNOME or Ubuntu's Unity often have built-in keyboard mapping tools to meet user needs.
+At a lower level, <tt class="docutils literal">xmodmap</tt> can be used to directly modify the X11 server's keyboard mapping.
+However, when working directly in the Linux console, things are a little more complicated without a display server.</p>
+<p>My particular need is to swap the <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> keys; as a <tt class="docutils literal">vim</tt> user, I use <tt class="docutils literal">Escape</tt> constantly to return to Normal mode.
+To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach <tt class="docutils literal">Escape</tt>, the following line
+can be added to the file <tt class="docutils literal">/etc/rc.local</tt>, before the final line <tt class="docutils literal">exit 0</tt>.</p>
+<pre class="code bash"><a name="rest_code_36d2d57faa9c4dbdb655bb6d753a151c-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
+</pre>
+<p>If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
+commands separated by the pipe character <tt class="docutils literal">|</tt>.
+A detailed explanation can be found in the <a class="reference external" href="http://www.tldp.org/LDP/abs/html/io-redirection.html">Advanced Bash Scripting Guide's chapter on I/O Redirection</a>, but in short,
+piping <tt class="docutils literal">cmd1 | cmd2</tt> sends the output of <tt class="docutils literal">cmd</tt> as input for <tt class="docutils literal">cmd2</tt>.</p>
+<p>The programs <tt class="docutils literal">/usr/bin/dumpkeys</tt> and <tt class="docutils literal">/usr/bin/loadkeys</tt> are fairly self-explanatory: they output keymaps for the console
+at the kernel level, and update that keymap if a valid file is input, respectively.
+The middle command, <tt class="docutils literal">sed</tt>, is a powerful, general-purpose stream editor, and the source of much Linux wizardry. To understand what it's doing,
+take a look at its argument: the string <tt class="docutils literal">'/s/CtrlL_Lock/Escape/'</tt>. This tells <tt class="docutils literal">sed</tt> to <em>s</em> ubstitute the first instance of <tt class="docutils literal">CtrlL_Lock</tt>
+with <tt class="docutils literal">Escape</tt> on any matching line from its input (adding <tt class="docutils literal">g</tt> after the last slash makes it a truly global substitution and not linewise.)
+The <tt class="docutils literal">sed</tt> command then passes along the modified stream to <tt class="docutils literal">loadkeys</tt>. Because this line is added to <tt class="docutils literal">/etc/rc.local</tt>, it will be executed
+every boot, swapping <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> in the Linux console.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="using-running-averages-in-python-to-validate-sensor-data/" class="u-url">Using Running Averages in Python to Validate Sensor Data</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki

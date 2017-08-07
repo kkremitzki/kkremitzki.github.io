@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link type="application/rss+xml" rel="self" href="/rss.xml"></atom:link><language>en</language><lastBuildDate>Sun, 23 Jul 2017 20:21:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 6 Recap</title><link>/blog/gsoc-week-6-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Short post this week! I was in Spokane, Washington, from July 15-19th for a robotics competition being held at the Annual International Meeting of my professional society,
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link rel="self" type="application/rss+xml" href="/rss.xml"></atom:link><language>en</language><lastBuildDate>Mon, 07 Aug 2017 07:11:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 8 Recap</title><link>/blog/gsoc-week-8-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Total tool coverage lasted less than a week! It's a good thing though, because that means a new tool &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/898"&gt;landed in master&lt;/a&gt;: PartDesign Hole.&lt;/p&gt;
+&lt;object class="align-center" data="/images/PartDesign_Hole.svg" type="image/svg+xml"&gt;
+Part Design Hole tool&lt;/object&gt;
+&lt;p&gt;This is a really great tool for the Part Design WB not only because holes (and their corresponding fasteners) are ubiquitous in part design generally,
+but also because the tool does a good job of capturing that information into a FreeCAD object that can be later be hooked into for both the
+Assembly and TechDraw workbenches. For example, the options I've selected in the following screenshot could be used to complete a technical drawing
+for this part in FreeCAD, and that information exchange could be done in an automated and customizable way.&lt;/p&gt;
+&lt;img alt="Part Design Hole tool" class="align-center" src="/images/gsoc-8-1.png"&gt;
+&lt;p&gt;This information could also be used by the Path WB to generate control code for open-source, automated manufacturing processes and machines, so it's really
+great to have such a full-featured tool added.&lt;/p&gt;
+&lt;p&gt;I spent some time trying to find bugs in the tool, but didn't really find any. The only gotcha I noticed is related to the orientation of sketches which serve as the
+basis for holes. There is no Reverse option for the Hole feature itself, so for example, if you have a sketch on the "bottom" of an object but not attached to it,
+you may need to set the Map Reversed option for the sketch itself to true.&lt;/p&gt;
+&lt;p&gt;Some tests will be forthcoming for Hole, but besides that, I also spent some time looking at few outstanding bugs in C++-land.&lt;/p&gt;
+&lt;p&gt;Particularly,&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;(mentioned in week 5) ShapeBinder crash when base object not initially selected&lt;/li&gt;
+&lt;li&gt;(mentioned in week 3) Revolution has unhandled error for some bad revolution axis choices, does bad revolution without error for others&lt;/li&gt;
+&lt;li&gt;(new) Pipe fails when its path is a loop. For example, a Pipe with a circle as a base and a larger, orthogonal circle passing through the base should become a torus.
+Currently, it fails with the wonderfully verbose error message 'TopoDS::Shell'.&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-8-recap/</guid><pubDate>Fri, 04 Aug 2017 08:19:02 GMT</pubDate></item><item><title>GSoC Week 7 Recap</title><link>/blog/gsoc-week-7-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;I hit a nice milestone this week! With &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/899"&gt;PR 899&lt;/a&gt; I hit total tool &lt;em&gt;test&lt;/em&gt; coverage for the Part Design workbench.
+Now, what exactly does that mean? Well, if you look at my screenshot of the workbench tools from Week 2, every one of those is now covered by tests with most
+key functionality hit. Some of them, like the dressup features Fillet and Chamfer, only have one test, either because the tool is simple or because further tests
+lie outside the scope of the Part Design workbench (e.g. testing the topological naming robustness of Fillet to recalculation.)&lt;/p&gt;
+&lt;p&gt;The PartDesign Primitive (Box, Cylinder, Sphere, Cone, Ellipsoid, Torus, Prism, and Wedge) tests were interesting to write.
+I was able to cover basic construction of both Additive and Subtractive primitives of each type by simply making a large Additive Primitive
+and smaller Subtractive Primitive inside the first, and then ensuring that the ensuing Shape's Volume property was about equal to
+the difference in volumes according to the formula for that shape, e.g.&lt;/p&gt;
+&lt;p&gt;\[
+\mathrm{Shape.Volume}\ \approx V = \frac{4}{3}\pi (R^3 - r^3)
+\]&lt;/p&gt;
+&lt;p&gt;for Additive-&lt;span class="math"&gt;\(R\)&lt;/span&gt; and Subtractive-&lt;span class="math"&gt;\(r\)&lt;/span&gt; Primitive Spheres.
+I had to look up a few volume formulas but otherwise the tests for the lengthly list in the parentheses above went quickly.&lt;/p&gt;
+&lt;p&gt;I also fixed a bug with Loft sections not being hidden, so e.g. the Sketches being lofted to or through were still visible.&lt;/p&gt;
+&lt;p&gt;Additionally, there was an issue with both Loft and Pipe not claiming children correctly in the tree which I fixed.&lt;/p&gt;&lt;/div&gt;</description><category>mathjax</category><guid>/blog/gsoc-week-7-recap/</guid><pubDate>Fri, 28 Jul 2017 20:30:58 GMT</pubDate></item><item><title>GSoC Week 6 Recap</title><link>/blog/gsoc-week-6-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Short post this week! I was in Spokane, Washington, from July 15-19th for a robotics competition being held at the Annual International Meeting of my professional society,
 the American Society of Agricultural &amp;amp; Biological Engineers, or ASABE. I only had a smattering of time to work on the various FreeCAD bugs I have mentioned in previous posts
 so there isn't much to report on that front. Instead, I'll leave a picture from the beautiful Spokane downtown area.&lt;/p&gt;
 &lt;img alt="/images/gsoc-6-1.jpg" class="align-center" src="/images/gsoc-6-1.jpg"&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-6-recap/</guid><pubDate>Fri, 21 Jul 2017 05:26:28 GMT</pubDate></item><item><title>GSoC Week 5 recap</title><link>/blog/gsoc-week-5-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;This week started out with some interesting discussions on the future Python structure of FreeCAD, over
@@ -425,27 +459,4 @@ error message, which occurs because the expected &lt;tt class="docutils literal"
 &lt;p&gt;Once the build is complete, a runnable copy of the FreeCAD executable will be in the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-build&lt;/span&gt;&lt;/tt&gt; folder. Any changes
 made to the source code can be tested after re-compiling the executable.&lt;/p&gt;
 &lt;p&gt;Hopefully this post helps someone out there! Even if you are only contributing to the documentation as you learn FreeCAD,
-your contribution is valuable and can help tons of people across the globe.&lt;/p&gt;&lt;/div&gt;</description><category>foss</category><category>freecad</category><category>linux</category><guid>/blog/getting-started-with-freecad-development-in-ubuntu-1604/</guid><pubDate>Sun, 05 Jun 2016 11:17:51 GMT</pubDate></item><item><title>French Lessons</title><link>/blog/french-lessons/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Part of my summer is going to be spent studying mathematics in France, but international study is not complete without a foray into the language.
-I've always been very interested in linguistics, and one of my long-term goals is to be a polyglot (which first means turning my 4 years of German and 2 years of Chinese into actual mastery), so I was pretty excited when I found my professor
-had arranged thrice weekly morning lessons here at the CLA (Centre de Linguistique Appliquée) Besançon. Our lessons are complete immersion style;
-the teacher speaks only French, which was quite difficult at first. The only "experience" I have with the language comes from my exposure to Spanish
-this spring when I visited Mérida, Yucatán to work on a community garden irrigation project; other than the occasional Spanish or English cognate,
-I'm completely in the dark. Luckily, everyone in town is very helpful and accommodating.&lt;/p&gt;
-&lt;img alt="/images/cla.jpg" class="align-center" src="/images/cla.jpg" style="width: 638px;"&gt;&lt;/div&gt;</description><guid>/blog/french-lessons/</guid><pubDate>Fri, 27 May 2016 17:20:29 GMT</pubDate></item><item><title>Linux Console Caps/Escape Swap</title><link>/blog/linux-console-capsescape-swap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Full-fledged Linux desktop environments like GNOME or Ubuntu's Unity often have built-in keyboard mapping tools to meet user needs.
-At a lower level, &lt;tt class="docutils literal"&gt;xmodmap&lt;/tt&gt; can be used to directly modify the X11 server's keyboard mapping.
-However, when working directly in the Linux console, things are a little more complicated without a display server.&lt;/p&gt;
-&lt;p&gt;My particular need is to swap the &lt;tt class="docutils literal"&gt;Caps Lock&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; keys; as a &lt;tt class="docutils literal"&gt;vim&lt;/tt&gt; user, I use &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; constantly to return to Normal mode.
-To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt;, the following line
-can be added to the file &lt;tt class="docutils literal"&gt;/etc/rc.local&lt;/tt&gt;, before the final line &lt;tt class="docutils literal"&gt;exit 0&lt;/tt&gt;.&lt;/p&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_36d2d57faa9c4dbdb655bb6d753a151c-1"&gt;&lt;/a&gt;/usr/bin/dumpkeys &lt;span class="p"&gt;|&lt;/span&gt; /bin/sed &lt;span class="s1"&gt;'s/CtrlL_Lock/Escape/'&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; /usr/bin/loadkeys
-&lt;/pre&gt;&lt;p&gt;If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
-commands separated by the pipe character &lt;tt class="docutils literal"&gt;|&lt;/tt&gt;.
-A detailed explanation can be found in the &lt;a class="reference external" href="http://www.tldp.org/LDP/abs/html/io-redirection.html"&gt;Advanced Bash Scripting Guide's chapter on I/O Redirection&lt;/a&gt;, but in short,
-piping &lt;tt class="docutils literal"&gt;cmd1 | cmd2&lt;/tt&gt; sends the output of &lt;tt class="docutils literal"&gt;cmd&lt;/tt&gt; as input for &lt;tt class="docutils literal"&gt;cmd2&lt;/tt&gt;.&lt;/p&gt;
-&lt;p&gt;The programs &lt;tt class="docutils literal"&gt;/usr/bin/dumpkeys&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;/usr/bin/loadkeys&lt;/tt&gt; are fairly self-explanatory: they output keymaps for the console
-at the kernel level, and update that keymap if a valid file is input, respectively.
-The middle command, &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt;, is a powerful, general-purpose stream editor, and the source of much Linux wizardry. To understand what it's doing,
-take a look at its argument: the string &lt;tt class="docutils literal"&gt;'/s/CtrlL_Lock/Escape/'&lt;/tt&gt;. This tells &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; to &lt;em&gt;s&lt;/em&gt; ubstitute the first instance of &lt;tt class="docutils literal"&gt;CtrlL_Lock&lt;/tt&gt;
-with &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; on any matching line from its input (adding &lt;tt class="docutils literal"&gt;g&lt;/tt&gt; after the last slash makes it a truly global substitution and not linewise.)
-The &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; command then passes along the modified stream to &lt;tt class="docutils literal"&gt;loadkeys&lt;/tt&gt;. Because this line is added to &lt;tt class="docutils literal"&gt;/etc/rc.local&lt;/tt&gt;, it will be executed
-every boot, swapping &lt;tt class="docutils literal"&gt;Caps Lock&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;Escape&lt;/tt&gt; in the Linux console.&lt;/p&gt;&lt;/div&gt;</description><category>linux</category><category>raspberry_pi</category><guid>/blog/linux-console-capsescape-swap/</guid><pubDate>Wed, 18 May 2016 03:40:12 GMT</pubDate></item></channel></rss>
+your contribution is valuable and can help tons of people across the globe.&lt;/p&gt;&lt;/div&gt;</description><category>foss</category><category>freecad</category><category>linux</category><guid>/blog/getting-started-with-freecad-development-in-ubuntu-1604/</guid><pubDate>Sun, 05 Jun 2016 11:17:51 GMT</pubDate></item></channel></rss>

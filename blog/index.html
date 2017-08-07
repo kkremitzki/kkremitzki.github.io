@@ -71,7 +71,72 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-6-recap/" class="u-url">GSoC Week 6 Recap</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-8-recap/" class="u-url">GSoC Week 8 Recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-8-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-08-04T03:19:02-05:00" title="2017-08-04 03:19">2017-08-04 03:19</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-8-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-8-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Total tool coverage lasted less than a week! It's a good thing though, because that means a new tool <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/898">landed in master</a>: PartDesign Hole.</p>
+<object class="align-center" data="../images/PartDesign_Hole.svg" type="image/svg+xml">
+Part Design Hole tool</object>
+<p>This is a really great tool for the Part Design WB not only because holes (and their corresponding fasteners) are ubiquitous in part design generally,
+but also because the tool does a good job of capturing that information into a FreeCAD object that can be later be hooked into for both the
+Assembly and TechDraw workbenches. For example, the options I've selected in the following screenshot could be used to complete a technical drawing
+for this part in FreeCAD, and that information exchange could be done in an automated and customizable way.</p>
+<img alt="Part Design Hole tool" class="align-center" src="../images/gsoc-8-1.png"><p>This information could also be used by the Path WB to generate control code for open-source, automated manufacturing processes and machines, so it's really
+great to have such a full-featured tool added.</p>
+<p>I spent some time trying to find bugs in the tool, but didn't really find any. The only gotcha I noticed is related to the orientation of sketches which serve as the
+basis for holes. There is no Reverse option for the Hole feature itself, so for example, if you have a sketch on the "bottom" of an object but not attached to it,
+you may need to set the Map Reversed option for the sketch itself to true.</p>
+<p>Some tests will be forthcoming for Hole, but besides that, I also spent some time looking at few outstanding bugs in C++-land.</p>
+<p>Particularly,</p>
+<ul class="simple">
+<li>(mentioned in week 5) ShapeBinder crash when base object not initially selected</li>
+<li>(mentioned in week 3) Revolution has unhandled error for some bad revolution axis choices, does bad revolution without error for others</li>
+<li>(new) Pipe fails when its path is a loop. For example, a Pipe with a circle as a base and a larger, orthogonal circle passing through the base should become a torus.
+Currently, it fails with the wonderfully verbose error message 'TopoDS::Shell'.</li>
+</ul>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-7-recap/" class="u-url">GSoC Week 7 Recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-7-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-07-28T15:30:58-05:00" title="2017-07-28 15:30">2017-07-28 15:30</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-7-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-7-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>I hit a nice milestone this week! With <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/899">PR 899</a> I hit total tool <em>test</em> coverage for the Part Design workbench.
+Now, what exactly does that mean? Well, if you look at my screenshot of the workbench tools from Week 2, every one of those is now covered by tests with most
+key functionality hit. Some of them, like the dressup features Fillet and Chamfer, only have one test, either because the tool is simple or because further tests
+lie outside the scope of the Part Design workbench (e.g. testing the topological naming robustness of Fillet to recalculation.)</p>
+<p>The PartDesign Primitive (Box, Cylinder, Sphere, Cone, Ellipsoid, Torus, Prism, and Wedge) tests were interesting to write.
+I was able to cover basic construction of both Additive and Subtractive primitives of each type by simply making a large Additive Primitive
+and smaller Subtractive Primitive inside the first, and then ensuring that the ensuing Shape's Volume property was about equal to
+the difference in volumes according to the formula for that shape, e.g.</p>
+<p>\[
+\mathrm{Shape.Volume}\ \approx V = \frac{4}{3}\pi (R^3 - r^3)
+\]</p>
+<p>for Additive-<span class="math">\(R\)</span> and Subtractive-<span class="math">\(r\)</span> Primitive Spheres.
+I had to look up a few volume formulas but otherwise the tests for the lengthly list in the parentheses above went quickly.</p>
+<p>I also fixed a bug with Loft sections not being hidden, so e.g. the Sketches being lofted to or through were still visible.</p>
+<p>Additionally, there was an issue with both Loft and Pipe not claiming children correctly in the tree which I fixed.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-6-recap/" class="u-url">GSoC Week 6 Recap</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -628,62 +693,6 @@ error message, which occurs because the expected <tt class="docutils literal">li
 made to the source code can be tested after re-compiling the executable.</p>
 <p>Hopefully this post helps someone out there! Even if you are only contributing to the documentation as you learn FreeCAD,
 your contribution is valuable and can help tons of people across the globe.</p>
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="french-lessons/" class="u-url">French Lessons</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="french-lessons/" rel="bookmark"><time class="published dt-published" datetime="2016-05-27T12:20:29-05:00" title="2016-05-27 12:20">2016-05-27 12:20</time></a></p>
-                <p class="commentline">            <a href="french-lessons/#disqus_thread" data-disqus-identifier="cache/posts/french-lessons.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>Part of my summer is going to be spent studying mathematics in France, but international study is not complete without a foray into the language.
-I've always been very interested in linguistics, and one of my long-term goals is to be a polyglot (which first means turning my 4 years of German and 2 years of Chinese into actual mastery), so I was pretty excited when I found my professor
-had arranged thrice weekly morning lessons here at the CLA (Centre de Linguistique Appliquée) Besançon. Our lessons are complete immersion style;
-the teacher speaks only French, which was quite difficult at first. The only "experience" I have with the language comes from my exposure to Spanish
-this spring when I visited Mérida, Yucatán to work on a community garden irrigation project; other than the occasional Spanish or English cognate,
-I'm completely in the dark. Luckily, everyone in town is very helpful and accommodating.</p>
-<img alt="/images/cla.jpg" class="align-center" src="../images/cla.jpg" style="width: 638px;">
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="linux-console-capsescape-swap/" class="u-url">Linux Console Caps/Escape Swap</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="linux-console-capsescape-swap/" rel="bookmark"><time class="published dt-published" datetime="2016-05-17T22:40:12-05:00" title="2016-05-17 22:40">2016-05-17 22:40</time></a></p>
-                <p class="commentline">            <a href="linux-console-capsescape-swap/#disqus_thread" data-disqus-identifier="cache/posts/linux-console-capsescape-swap.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>Full-fledged Linux desktop environments like GNOME or Ubuntu's Unity often have built-in keyboard mapping tools to meet user needs.
-At a lower level, <tt class="docutils literal">xmodmap</tt> can be used to directly modify the X11 server's keyboard mapping.
-However, when working directly in the Linux console, things are a little more complicated without a display server.</p>
-<p>My particular need is to swap the <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> keys; as a <tt class="docutils literal">vim</tt> user, I use <tt class="docutils literal">Escape</tt> constantly to return to Normal mode.
-To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach <tt class="docutils literal">Escape</tt>, the following line
-can be added to the file <tt class="docutils literal">/etc/rc.local</tt>, before the final line <tt class="docutils literal">exit 0</tt>.</p>
-<pre class="code bash"><a name="rest_code_36d2d57faa9c4dbdb655bb6d753a151c-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
-</pre>
-<p>If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
-commands separated by the pipe character <tt class="docutils literal">|</tt>.
-A detailed explanation can be found in the <a class="reference external" href="http://www.tldp.org/LDP/abs/html/io-redirection.html">Advanced Bash Scripting Guide's chapter on I/O Redirection</a>, but in short,
-piping <tt class="docutils literal">cmd1 | cmd2</tt> sends the output of <tt class="docutils literal">cmd</tt> as input for <tt class="docutils literal">cmd2</tt>.</p>
-<p>The programs <tt class="docutils literal">/usr/bin/dumpkeys</tt> and <tt class="docutils literal">/usr/bin/loadkeys</tt> are fairly self-explanatory: they output keymaps for the console
-at the kernel level, and update that keymap if a valid file is input, respectively.
-The middle command, <tt class="docutils literal">sed</tt>, is a powerful, general-purpose stream editor, and the source of much Linux wizardry. To understand what it's doing,
-take a look at its argument: the string <tt class="docutils literal">'/s/CtrlL_Lock/Escape/'</tt>. This tells <tt class="docutils literal">sed</tt> to <em>s</em> ubstitute the first instance of <tt class="docutils literal">CtrlL_Lock</tt>
-with <tt class="docutils literal">Escape</tt> on any matching line from its input (adding <tt class="docutils literal">g</tt> after the last slash makes it a truly global substitution and not linewise.)
-The <tt class="docutils literal">sed</tt> command then passes along the modified stream to <tt class="docutils literal">loadkeys</tt>. Because this line is added to <tt class="docutils literal">/etc/rc.local</tt>, it will be executed
-every boot, swapping <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> in the Linux console.</p>
 </div>
     </div>
     </article>
