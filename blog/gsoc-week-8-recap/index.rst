@@ -33,7 +33,7 @@ Some tests will be forthcoming for Hole, but besides that, I also spent some tim
 
 Particularly,
 
-- (mentioned in week 5) ShapeBinder crash when base object not initially selected 
+- (mentioned in week 5) ShapeBinder crash when base object not initially selected due to null pointer dereference
 - (mentioned in week 3) Revolution has unhandled error for some bad revolution axis choices, does bad revolution without error for others
 - (new) Pipe fails when its path is a loop. For example, a Pipe with a circle as a base and a larger, orthogonal circle passing through the base should become a torus.
   Currently, it fails with the wonderfully verbose error message 'TopoDS::Shell'.
