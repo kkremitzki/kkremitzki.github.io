@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 29 Aug 2017 14:46:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 12: Final Work Product</title><link>/blog/gsoc-week-12-final-work-product/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Well, it's time to finally wrap up the summer!&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link rel="self" href="/rss.xml" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 29 Aug 2017 14:56:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 12: Final Work Product</title><link>/blog/gsoc-week-12-final-work-product/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Well, it's time to finally wrap up the summer!&lt;/p&gt;
 &lt;p&gt;It's been a really great and rewarding opportunity, so I first want to thank everyone at Google and beyond who helped put GSoC together,
 as well as my mentor Stefan Tröger for providing feedback and guidance.&lt;/p&gt;
 &lt;p&gt;I was able to work with code that ranged almost the entire stack of FreeCAD dependencies: from low-level OpenCASCADE code involving
@@ -9,6 +9,15 @@ Qt GUI in both C++ as well as its Python interface PySide.&lt;/p&gt;
 &lt;p&gt;As a result, I feel very prepared to continue working with the FreeCAD project and look forward to doing so. I really think it's a great
 program and hope to use it for many years in the future.&lt;/p&gt;
 &lt;p&gt;So again, my thanks!&lt;/p&gt;
+&lt;p&gt;The main goal of the project was to get test coverage of the Part Design Workbench, and to explore it to find showstopping bugs. The only
+remaining one involves a crash in ShapeBinder, discussed at &lt;a class="reference external" href="https://freecadweb.org/tracker/view.php?id=2517"&gt;https://freecadweb.org/tracker/view.php?id=2517&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I fixed quite a few bugs and I think the general experience with the workbench is better.
+Test coverage is there for all the tools, and I'd say the workbench is ready for the public, so now the major work is to release FreeCAD 0.17,
+the biggest FreeCAD release ever, with its new Part Design (no longer "NEXT") Workbench.&lt;/p&gt;
+&lt;p&gt;My other goal of improvements to Boolean Operation was made unnecessary by someone else's PR in May.&lt;/p&gt;
+&lt;p&gt;The last goal, improvements to the Attachment Editor, ended up being a little too big for this GSoC, and could even possibly serve
+as a good GSoC project for next summer, although whoever does it had better be fairly artistic at making explanatory yet small icons.&lt;/p&gt;
+&lt;p&gt;In my opinion, I'd say the summer was a success.&lt;/p&gt;
 &lt;p&gt;Altogether, my code contribution can be summarized with 7 PRs and one experimental branch:&lt;/p&gt;
 &lt;p&gt;PR's:&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;

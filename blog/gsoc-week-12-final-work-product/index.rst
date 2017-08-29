@@ -22,6 +22,20 @@ program and hope to use it for many years in the future.
 
 So again, my thanks!
 
+The main goal of the project was to get test coverage of the Part Design Workbench, and to explore it to find showstopping bugs. The only 
+remaining one involves a crash in ShapeBinder, discussed at https://freecadweb.org/tracker/view.php?id=2517.
+
+I fixed quite a few bugs and I think the general experience with the workbench is better. 
+Test coverage is there for all the tools, and I'd say the workbench is ready for the public, so now the major work is to release FreeCAD 0.17, 
+the biggest FreeCAD release ever, with its new Part Design (no longer "NEXT") Workbench.
+
+My other goal of improvements to Boolean Operation was made unnecessary by someone else's PR in May.
+
+The last goal, improvements to the Attachment Editor, ended up being a little too big for this GSoC, and could even possibly serve
+as a good GSoC project for next summer, although whoever does it had better be fairly artistic at making explanatory yet small icons.
+
+In my opinion, I'd say the summer was a success.
+
 Altogether, my code contribution can be summarized with 7 PRs and one experimental branch:
 
 PR's:
