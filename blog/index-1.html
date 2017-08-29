@@ -16,7 +16,7 @@ article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="#">
 <link rel="icon" href="../favicon.ico" sizes="16x16">
-<link rel="prev" href="." type="text/html">
+<link rel="prev" href="index-2.html" type="text/html">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><script src="../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../assets/css/custom.css">
 <link rel="stylesheet" href="../assets/css/code.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -71,7 +71,203 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="french-lessons/" class="u-url">French Lessons</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-1-recap/" class="u-url">GSoC Week 1 Recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-1-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-06T14:28:12-05:00" title="2017-06-06 14:28">2017-06-06 14:28</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-1-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-1-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>The first week of Google Summer of Code has ended, and so it's time for a recap post!</p>
+<p>The main topic this week was <a class="reference external" href="https://www.freecadweb.org/wiki/PartDesign_Mirrored">PartDesign Mirrored</a>, a fairly self-explanatory feature,
+with a show-stopping bug explained in <a class="reference external" href="https://freecadweb.org/tracker/view.php?id=3006">FreeCAD issue 3006</a>.</p>
+<div class="figure align-center">
+<img alt="unit cube construction" src="../images/gsoc-1-1.png" style="width: 600px;"><p class="caption">Figure 1. The base of my PartDesign Mirrored experiments.</p>
+</div>
+<p>In this picture, we have a simple <tt class="docutils literal">1 mm</tt> square sketch (pictured in white) attached to the <span class="math">\(xy\)</span>-plane.
+One corner is at the origin, and the sketch is the base for a Pad feature <tt class="docutils literal">1 mm</tt> high.
+Length is handled internally as <tt class="docutils literal">mm</tt> by FreeCAD, so this "unit cube" serves as a useful basis for testing behavior.
+A useful alteration involves displacing this cube, say, <tt class="docutils literal">1 mm</tt> up the <span class="math">\(y\)</span>-axis.
+This constructs a case where mirroring not all mirrorings should succeed, but we'll get into that later.</p>
+<p>Let's turn now to the bug itself, depicted in figure 2.
+The unit cube is supposed to be mirrored about its vertical sketch axis (the <span class="math">\(y\)</span>-axis, pictured running off to the top right.)
+Obviously, it's not, and the failure is helpfully represented in red.</p>
+<div class="figure align-center">
+<img alt="mirroring bug" src="../images/gsoc-1-2.png" style="width: 600px;"><p class="caption">Figure 2. FreeCAD bug 3006 in action.</p>
+</div>
+<p>Note that the body diagonal of the mirrored part should run from the origin to  <span class="math">\((-1, 1, 1)\)</span>.
+Instead, it's going to <span class="math">\((1, -1, -1)\)</span>, in the opposite direction.</p>
+<p>Well, this was my first really serious bug to tackle for the summer.
+I chose this as a way to really dive in, since it directly involves Open CASCADE, the open source C++ geometry kernel at the heart of FreeCAD.</p>
+<p>However, my programming background is chiefly with Python (as well as JavaScript and Lua), all interpreted languages.
+One nicety of that sort of language is that it can be very quick to debug and examine behavior using the interpreter.
+There is a Python debugger, <tt class="docutils literal">pdb</tt>, but I rarely needed to use it for my mostly personal-sized projects.
+Even then, it's quite straightforward to use since you're already in an interpreter-native environment.</p>
+<p>C++ is a very different beast. In this case, stepping through the code with a debugger was my only choice.
+I use Neovim as my IDE, though, so I wanted a way to combine the power of my text editor with my debugger.
+So, I found and set up <a class="reference external" href="https://github.com/dbgx/lldb.nvim">LLDB.nvim</a>, an LLDB frontend, with an event-based, non-blocking UI,
+session-saving, and
+"... takes advantage of Neovim's job API to spawn a separate process and communicates with the Neovim process using RPC calls."</p>
+<p>Pretty nice. Anyway, I was able to step through the code and see exactly what was flying around, just like I wanted.</p>
+<div class="figure align-center">
+<img alt="neovim" src="../images/neovim1.png" style="width: 600px;"><p class="caption">Figure 3. Neovim in an LLDB debug session.</p>
+</div>
+<p>So, what was the problem? Hah! Not so simple. Turns out there are <em>at least four bugs here!!</em></p>
+<p>First, the algorithm which first checks if the mirrored shapes are adjacent and thus, can be fused, was broken.</p>
+<p>Once this failed, FreeCAD then attempts to generate a mesh from the shape, and then converts a generalized transformation object representing the mirroring into a matrix to put the mesh in the correct place.
+It turns out that in Open CASCADE 7.0.0, the <tt class="docutils literal">gp_Trsf</tt> API was changed so that <tt class="docutils literal"><span class="pre">gp_Trsf::VectorialPart()</span></tt> returns a 3x3 matrix including the scale factor.
+The previous behavior was to return the homogeneous part of the transformation which does not include the scale factor, and the FreeCAD algorithm for constructing the 4x4 matrix for the mesh included multiplying every term by a scale factor.
+In other words, the scale factor multiplication was happening twice. The scale factor I had observed in the debugger was -1, so this perfectly explained the inverted positioning of the failure result!</p>
+<p>The third bug, of a much more minor nature, involved a a classic "failure... success!" message displayed in the event of a mirroring failure, and was easier to fix.</p>
+<p>The fourth, though, was a bit trickier! It only appeared when fixing the mesh placement.</p>
+<div class="figure align-center">
+<img alt="new mirroring bug" src="../images/gsoc-1-3.png" style="width: 600px;"><p class="caption">Figure 4. A strange, new mirroring bug.</p>
+</div>
+<p>This one was diagnosed by ickby, my mentor for this project.
+It turns out the failure meshes' faces were getting constructed inside out, and so the material's color was not considered "illuminated".</p>
+<p>The three of us considered a few different options to get around this. One way would be to use Coin3D, FreeCAD's scene graph library, and change the material
+properties to define something that looked the same, illuminated or not. Another is to essentially duplicate each face with the second instance having an inverted normal, so that you're guaranteed to have an outward-facing face.</p>
+<p>The fix ended up being much simpler than that! It was possible to simply change the vertex ordering. Originally, it was set to <tt class="docutils literal">COUNTERCLOCKWISE</tt>.
+However, in figure 4, you can see that simply changing it to <tt class="docutils literal">CLOCKWISE</tt> would not be an obvious fix.
+Abdullah also fixed this one, presumably by checking the docs for that option and finding that there was an "option C", <tt class="docutils literal">UNKNOWN</tt>. That did the trick!</p>
+<p>So now, PartDesign Mirrored is fixed and ready. Not a bad start for the summer!</p>
+<!-- Open CASCADE and quaternions -->
+<!-- Transformation matrices -->
+<!-- OpenInventor and tessellation -->
+<!-- Plans for the future -->
+<!-- Rebuild test -->
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="my-freecad-project-was-accepted-into-google-summer-of-code/" class="u-url">My FreeCAD project was accepted into Google Summer of Code!</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="my-freecad-project-was-accepted-into-google-summer-of-code/" rel="bookmark"><time class="published dt-published" datetime="2017-05-06T02:41:23-05:00" title="2017-05-06 02:41">2017-05-06 02:41</time></a></p>
+                <p class="commentline">            <a href="my-freecad-project-was-accepted-into-google-summer-of-code/#disqus_thread" data-disqus-identifier="cache/posts/my-freecad-project-was-accepted-into-google-summer-of-code.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>It's been almost a year since my last post, which just so happened to be about FreeCAD
+as well. It's been a busy year: I've been studying machine design, robotics; partial differential
+equations in general, and heat and mass transfer in particular. I've also been studying the source
+code of FreeCAD while honing my sysadmin skills by helping maintain project infrastructure.
+My hard work has paid off, and <a class="reference external" href="https://summerofcode.withgoogle.com/projects/#5752969237626880">my Google Summer of Code project proposal </a>
+was accepted! I'm going to be working on improving the parametric part design workbench and writing
+test code to make the module more robust for future development.</p>
+<p>As a result, I've decided to publish my daily log here. I'll be posting weekly summaries once the
+coding period begins on May 30, as well as more in-depth ad hoc blogging on interesting developments over the summer.
+My goal is to both document my project and to produce a useful reference for other developers wanting to get started
+contributing to FreeCAD.</p>
+<p>The rest of May is part of the Community Bonding Period, and so I'll ramp up to full speed with an introductory series
+of posts. Here are a few rough-draft titles to highlight my planned topics:</p>
+<ul class="simple">
+<li>
+<a class="reference external" href="https://github.com/distcc/distcc">Neovim</a> as an IDE:<ol class="arabic">
+<li>Building your base, or practically pluginless</li>
+<li>What makes an IDE? An overview of features</li>
+<li>Unix as an IDE, or knowing your tools</li>
+<li>Neovim with Python 2 and 3</li>
+<li>Neovim with C++</li>
+<li>Asynchronous autobuilding with Neovim</li>
+</ol>
+</li>
+<li>Distributed compilation with <a class="reference external" href="https://github.com/distcc/distcc">distcc</a>
+</li>
+<li>Speaking source code: how to fix your first FreeCAD bug</li>
+<li>Contributing to open source communities (and FreeCAD in particular)</li>
+</ul>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="getting-started-with-freecad-development-in-ubuntu-1604/" class="u-url">Getting Started with FreeCAD Development in Ubuntu 16.04</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="getting-started-with-freecad-development-in-ubuntu-1604/" rel="bookmark"><time class="published dt-published" datetime="2016-06-05T06:17:51-05:00" title="2016-06-05 06:17">2016-06-05 06:17</time></a></p>
+                <p class="commentline">            <a href="getting-started-with-freecad-development-in-ubuntu-1604/#disqus_thread" data-disqus-identifier="cache/posts/getting-started-with-freecad-development-in-ubuntu-1604.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p><a class="reference external" href="http://www.freecadweb.org/">FreeCAD</a> is a multi-platform (Windows, Mac, Linux) open source parametric 3D CAD modeler, and can read
+and write many open file formats.</p>
+<p>An explanation of the many virtues of open source software can be found at <a class="reference external" href="http://opensourceforamerica.org/learn-more/benefits-of-open-source-software/">Open Source for America</a> and elsewhere. To quote OSFA,</p>
+<blockquote>
+The Open Source model harnesses the power of distributed peer review and transparency to create high-quality, secure
+and easily integrated software at an accelerated pace and lower cost.</blockquote>
+<p>Commerical-grade CAD software, while incredibly useful, has several downsides including being locked behind 4 or 5 digit licensing costs,
+and its use in amateur projects or the developing world is often facilitated by piracy. FreeCAD, on the other hand, is free as in beer
+and free as in freedom, although it is currently under development. However, one of the benefits of the open source model is the ease
+with which interested people can contribute to the project and make better tools for all mankind.</p>
+<p>While using FreeCAD, I noticed a few typos in the menus; although my first contribution to the project wasn't too significant, I
+documented the process of getting a development environment set up on my Ubuntu 16.04 desktop so that others could follow the same
+steps and begin contributing.</p>
+<ol class="arabic simple">
+<li>Pull down a copy of the code. (If you don't have a copy of git, run <tt class="docutils literal">sudo <span class="pre">apt-get</span> install git</tt>.)</li>
+</ol>
+<blockquote>
+<pre class="code bash"><a name="rest_code_f67eb74822004b8285335453893d5b7e-1"></a>git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
+<a name="rest_code_f67eb74822004b8285335453893d5b7e-2"></a>mkdir freecad-build
+</pre>
+</blockquote>
+<ol class="arabic simple" start="2">
+<li>Install all dependencies.</li>
+</ol>
+<blockquote>
+<pre class="code bash"><a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-1"></a>sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-2"></a>  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-3"></a>  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-4"></a>  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools <span class="s1">'liboce*-dev'</span> <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-5"></a>  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-6"></a>  libfreetype6 libfreetype6-dev
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-7"></a>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-8"></a><span class="c1"># Install optional packages</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-9"></a>sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen <span class="se">\</span>
+<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-10"></a>  libcoin80-doc libspnav-dev
+</pre>
+</blockquote>
+<ol class="arabic simple" start="3">
+<li>Move into build folder, make and compile the software. Use the <tt class="docutils literal"><span class="pre">-j</span> $(nproc)</tt> flag to use all N of your CPU cores
+when compiling; some recommend using N + 1 CPU cores, which can be done by instead running <tt class="docutils literal">make <span class="pre">-j$((</span> $(nproc) + 1 )) .</tt>.
+Don't forget the period at the end of the <tt class="docutils literal">make</tt> command, which tells it to put the compiled software in the current
+<tt class="docutils literal"><span class="pre">freecad-build</span></tt> directory; it's good to keep the source code and build directories separate.</li>
+</ol>
+<blockquote>
+<pre class="code bash"><a name="rest_code_182722f6ab2140df96f4a1506a282d7f-1"></a><span class="nb">cd</span> freecad-build
+<a name="rest_code_182722f6ab2140df96f4a1506a282d7f-2"></a>cmake ../freecad-code
+<a name="rest_code_182722f6ab2140df96f4a1506a282d7f-3"></a>make -j<span class="k">$(</span>nproc<span class="k">)</span> .
+</pre>
+</blockquote>
+<ol class="arabic simple" start="4">
+<li>Fix Ubuntu 64-bit issue. If you are using a 64-bit version of Ubuntu (hopefully), you may run in to the following
+error message, which occurs because the expected <tt class="docutils literal">libfreeimage.so</tt> file was moved into a subdirectory of <tt class="docutils literal">/usr/lib/</tt>.</li>
+</ol>
+<blockquote>
+<pre class="code bash"><a name="rest_code_b6707817aec84b25a27f4456f0659de5-1"></a>make<span class="o">[</span><span class="m">2</span><span class="o">]</span>: *** No rule to make target <span class="s1">'/usr/lib/libfreeimage.so'</span>, needed by <span class="s1">'lib/libSMDS.so'</span>.  Stop.
+<a name="rest_code_b6707817aec84b25a27f4456f0659de5-2"></a>
+<a name="rest_code_b6707817aec84b25a27f4456f0659de5-3"></a><span class="c1"># Fix with this line.</span>
+<a name="rest_code_b6707817aec84b25a27f4456f0659de5-4"></a>sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
+</pre>
+</blockquote>
+<p>Once the build is complete, a runnable copy of the FreeCAD executable will be in the <tt class="docutils literal"><span class="pre">freecad-build</span></tt> folder. Any changes
+made to the source code can be tested after re-compiling the executable.</p>
+<p>Hopefully this post helps someone out there! Even if you are only contributing to the documentation as you learn FreeCAD,
+your contribution is valuable and can help tons of people across the globe.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="french-lessons/" class="u-url">French Lessons</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -475,7 +671,7 @@ will have as output one variable as a function of another, in this case <span cl
 </div>
         <nav class="postindexpager"><ul class="pager">
 <li class="previous">
-                <a href="." rel="prev">Newer posts</a>
+                <a href="index-2.html" rel="prev">Newer posts</a>
             </li>
         </ul></nav><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous"></script><script>
                 renderMathInElement(document.body);

@@ -16,7 +16,7 @@ article: http://ogp.me/ns/article#
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href=".">
 <link rel="icon" href="../favicon.ico" sizes="16x16">
-<link rel="next" href="index-1.html" type="text/html">
+<link rel="next" href="index-2.html" type="text/html">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><script src="../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../assets/css/custom.css">
 <link rel="stylesheet" href="../assets/css/code.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -71,7 +71,152 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-8-recap/" class="u-url">GSoC Week 8 Recap</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-12-final-work-product/" class="u-url">GSoC Week 12: Final Work Product</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-12-final-work-product/" rel="bookmark"><time class="published dt-published" datetime="2017-08-27T12:50:18-05:00" title="2017-08-27 12:50">2017-08-27 12:50</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-12-final-work-product/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-12-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Well, it's time to finally wrap up the summer!</p>
+<p>It's been a really great and rewarding opportunity, so I first want to thank everyone at Google and beyond who helped put GSoC together,
+as well as my mentor Stefan Tröger for providing feedback and guidance.</p>
+<p>I was able to work with code that ranged almost the entire stack of FreeCAD dependencies: from low-level OpenCASCADE code involving
+quaternions &amp; transformations, geometry &amp; topology; to the scene graph library Coin3D we have to thank for our pretty screenshots;
+the connection between C++ and Python code, which I have a feeling will be useful later in my engineering career; and all the way up to the
+Qt GUI in both C++ as well as its Python interface PySide.</p>
+<p>As a result, I feel very prepared to continue working with the FreeCAD project and look forward to doing so. I really think it's a great
+program and hope to use it for many years in the future.</p>
+<p>So again, my thanks!</p>
+<p>Altogether, my code contribution can be summarized with 7 PRs and one experimental branch:</p>
+<p>PR's:</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/816">https://github.com/FreeCAD/FreeCAD/pull/816</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/829">https://github.com/FreeCAD/FreeCAD/pull/829</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/848">https://github.com/FreeCAD/FreeCAD/pull/848</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/869">https://github.com/FreeCAD/FreeCAD/pull/869</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/899">https://github.com/FreeCAD/FreeCAD/pull/899</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/920">https://github.com/FreeCAD/FreeCAD/pull/920</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/957">https://github.com/FreeCAD/FreeCAD/pull/957</a></li>
+</ol>
+<p>Experimental Attachment Editor/PartDesign Datum Tools branch:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/kkremitzki/freecad/tree/pdn_datum_tools">https://github.com/kkremitzki/freecad/tree/pdn_datum_tools</a></li>
+</ul>
+<p>Here's my summary posts, summarized:</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="gsoc-week-1-recap/">/blog/gsoc-week-1-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-2-recap/">/blog/gsoc-week-2-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-3-recap/">/blog/gsoc-week-3-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-4-recap/">/blog/gsoc-week-4-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-5-recap/">/blog/gsoc-week-5-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-6-recap/">/blog/gsoc-week-6-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-7-recap/">/blog/gsoc-week-7-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-8-recap/">/blog/gsoc-week-8-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-9-recap/">/blog/gsoc-week-9-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-10-recap/">/blog/gsoc-week-10-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-11-recap/">/blog/gsoc-week-11-recap/</a></li>
+</ol>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-11-recap/" class="u-url">GSoC Week 11 Recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-11-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-08-22T07:31:55-05:00" title="2017-08-22 07:31">2017-08-22 07:31</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-11-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-11-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Unfortunately, it looks like solid, usable improvements to the Attachment Editor are unlikely to be ready for a PR
+by the end of my GSoC, although I will publish my experimental branch which uses Python for the datum tools and uses the Python-based
+Attachment Editor I mentioned previously.</p>
+<p>However, as a consolation I did finalize some additional tests for PartDesign Hole, so my goal of functional coverage of the PartDesign tools
+succeeded.</p>
+<p>Also, I think with this foray into GUI code, I've hit nearly the full stack of libraries used in FreeCAD this summer. It feels pretty nice, because
+I feel prepared to tackle whatever problem I want to in the FreeCAD project.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-10-recap/" class="u-url">GSoC Week 10 Recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-10-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-08-20T07:22:49-05:00" title="2017-08-20 07:22">2017-08-20 07:22</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-10-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-10-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>The final portion of GSoC for me will be dedicated to working on improvements to the Attachment Editor, and this post will essentially be my design
+for what those improvements will look like. The Attachment Editor is available in the Part Workbench through Python. One can for example create a simple
+Part Cube, select it, then click Part -&gt; Attachment. It also is used when creating datum geometry in Part Design, or when creating a primitive.</p>
+<p>Here are a few screenshots:</p>
+<div class="figure align-center">
+<img alt="command palette" src="../images/gsoc-10-1.png"><p class="caption">Figure 1. The Python-based Attachment Editor in the Part workbench.</p>
+</div>
+<div class="figure align-center">
+<img alt="command palette" src="../images/gsoc-10-2.png"><p class="caption">Figure 2. Creating a Datum Plane.</p>
+</div>
+<p>Creating datum geometry is a key part of the Part Design process, so it's helpful for it to be very easy and intuitive. The current
+Attachment Mode information especially can be quite overwhelming to a beginner, however. Especially considering how improvements
+to the Attachment Editor could be reused in a future Assembly Workbench, it was decided to look into improving these tools.</p>
+<p>The first, most obvious improvement here would be inactivating the "Extra placement" section when inactive. This could
+possibly be accomplished by making a separate collapsible section which automatically hides when there is no attachment.</p>
+<p>The second, and tougher improvement, involves reworking the current the four attachment selections and the attachment mode.
+Reference names probably don't need to be more than 3/4ths the width of the page. The methods for selecting references via
+an activation button, and deleting via clearing out the text are not user-friendly.</p>
+<p>The four-reference list here would ideally be replaced with an icon-based grid, which starts out empty. Each selection's icon would
+be based on its type, e.g. Vertex, Edge, Face, Curve, etc., where available, and a generic icon for unrecognized types. The selection's name
+could be displayed in a shortened form, e.g. "MyLongShapeNameIs...". This approach could be extended for future Assembly use by adding a scrollbar
+on the icons, allowing for several rows of attachment references, 4 at a time.</p>
+<p>This tool could be very user-friendly, as invalid reference icons can be highlighted red, and when the attachment is complete, the reference set's icons
+can be highlighted green. Ghosted icons can be displayed as needed for a selected Attachment Mode.</p>
+<p>A similar approach for Attachment Mode could be used. Using a 4-icon row with a scrollbar, attachment modes can be explained with a short label and
+an icon, where feasible; hopefully the large size will allow for expressive icons. When a mode is moused over or selected, the remaining references required
+can be displayed in the reference selection area.</p>
+<p>Altogether, (i) splitting out the placement and toggling when it has no effect (i.e. there is no attachment) and (ii) reworking Reference Selection and Attachment Mode
+dialogs to use unified icon list GUI code, as well as (iii) making the icon set to explain the attachment concepts to users, comprise the components of this
+"Attachment Editor Improvement" project.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-9-recap/" class="u-url">GSoC Week 9 Recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-9-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-08-10T21:18:04-05:00" title="2017-08-10 21:18">2017-08-10 21:18</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-9-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-9-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>I celebrated my birthday in south Texas last week! I was about 3 miles from the future SpaceX launch facility opening in 2018.
+It'll be great to possibly see launches to Mars from there in the next few years.</p>
+<p>I mostly spent this week working on the bugs I mentioned last week. I wanted to try to make a dent in the outstanding bugs I've found.
+Unfortunately, my lack of C++ background (compared to Python) really hampered this; it's a little bit like trying to run before you walk.
+In the end, I only fixed the Revolution bug(s). In the case where a revolution is attempted on the same plane as the sketch, resulting in e.g. a flat disc,
+the issue was that the code was checking the angle between the sketch's normal and the revolution plane's normal, looking for a 0° angle. However,
+it was failing to fail in the case of a 180° angle.</p>
+<p>I also added a simple convenience check for all tools in Part Design: if you open a document with only one body and try to click a PDN tool's button,
+the single body will be auto-activated instead of popping up a warning. If there are no bodies or more than one, the warning still occurs.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-8-recap/" class="u-url">GSoC Week 8 Recap</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -437,269 +582,11 @@ ends up with an awfully thin "solid":</p>
 <p>I'll also be looking into these bugs this week.</p>
 </div>
     </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-2-recap/" class="u-url">GSoC Week 2 recap</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="gsoc-week-2-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-18T18:40:33-05:00" title="2017-06-18 18:40">2017-06-18 18:40</time></a></p>
-                <p class="commentline">            <a href="gsoc-week-2-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-2-recap.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>With the four major bugs blocking the usage of <tt class="docutils literal">PartDesign Mirrored</tt> fixed,
-I started out the week exploring the now-functioning tool with the goal of getting what I call "command test coverage".
-In short, this means testing major variations for tools presented to the user in the PartDesign WB.</p>
-<p>For reference, they are depicted and categorized in figures 1 and 2,
-with the newly redesigned icons made by <a class="reference external" href="https://github.com/agryson">Alexander Gryson</a> (kudos to his major rework of all of FreeCAD's icons!)</p>
-<div class="figure align-center">
-<img alt="command palette" src="../images/gsoc-2-1.png" style="width: 900px;"><p class="caption">Figure 1. Datum tools, additive/subtractive features and primitives.</p>
-</div>
-<div class="figure align-center">
-<img alt="command palette" src="../images/gsoc-2-2.png" style="width: 600px;"><p class="caption">Figure 2. Transformations, dressup features, and multi-body boolean operation.</p>
-</div>
-<p>The Mirrored tool takes as input feature(s) and a mirror plane, but the other transformation tools like LinearPattern and PolarPattern behave in a fundamentally similar way.
-By that reasoning, I figured that tests regarding the Mirrored tool really only have two major permutations if one assumes valid input:
-the case where a choice of features and plane succeeds, and one where it doesn't.</p>
-<div class="figure align-center">
-<img alt="mirrored success" src="../images/gsoc-2-3.png" style="width: 600px;"><p class="caption">Figure 3. Success!</p>
-</div>
-<div class="figure align-center">
-<img alt="mirrored failure" src="../images/gsoc-2-4.png" style="width: 600px;"><p class="caption">Figure 4. Failure...</p>
-</div>
-<p>So, I cleaned up the test case submission I started GSoC out with, <tt class="docutils literal">testMirroredSketchCase</tt>,
-and added the new case depicted in figure 4, <tt class="docutils literal">testMirroredOffsetFailureCase</tt>.
-However, I noticed both of my test cases involved <tt class="docutils literal">Sketch</tt>-based additive features, but no additive primitives.
-So, I also included <tt class="docutils literal">testMirroredPrimitiveCase</tt> in <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/816">FreeCAD PR#816</a>.</p>
-<p>What's nice is that besides <tt class="docutils literal">PartDesign Mirrored</tt> now being fixed, several other transformation tools' bugs were resolved.
-Altogether, the PR resolved four issues, <a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=2235">2235</a>,
-<a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=2248">2248</a>, <a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=3006">3006</a>,
-and <a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=3065">3065</a>.</p>
-<p>With all that wrapped up,
-I moved on to adding tests for the various options for the fundamental sketch-based features <tt class="docutils literal">Pad</tt> and <tt class="docutils literal">Pocket</tt>.
-Altogether, I added <tt class="docutils literal">testPadToFirstCase</tt>, <tt class="docutils literal">testPadtoLastCase</tt>, <tt class="docutils literal">testPadToFaceCase</tt>,
-and <tt class="docutils literal">testPadTwoDimensionsCase</tt> to cover the options for <tt class="docutils literal">PartDesign Pad</tt>.
-Unfortunately, these test cases are not very interesting to look at and mostly involve 2-4 lined up cubes similar to
-what figure 3 looks like.</p>
-<p>However, for <tt class="docutils literal">PartDesign Pad</tt>, things do get a little more interesting.
-The base case is a simple reversed pad with a pocket in the middle, shown in figure 5.</p>
-<div class="figure align-center">
-<img alt="mirrored failure" src="../images/gsoc-2-5.png" style="width: 600px;"><p class="caption">Figure 5. The base Pocket test construction.</p>
-</div>
-<p>It was straightforward to add <tt class="docutils literal">testPocketDimensionCase</tt>, <tt class="docutils literal">testPocketThroughAllCase</tt>,
-and <tt class="docutils literal">testPocketToFirstCase</tt>.
-However, covering the last Pocket option with <tt class="docutils literal">testPocketToFaceCase</tt> is not (necessarily) so trivial.</p>
-<p>If you refer to figure 5, you'll note that the base Pad feature is a hexahedron, or six-sided shape.
-The Pocket feature adds four new faces to the overall shape, <tt class="docutils literal">Face7</tt> through <tt class="docutils literal">Face10</tt>.
-However, references relying on the numbering of those faces is inherently brittle and it turns out that
-a particular face number OpenCASCADE &gt; 7.0 does not correspond to the same face in a lower version, e.g.
-the version used on the FreeCAD CI machines over at Travis.</p>
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-1-recap/" class="u-url">GSoC Week 1 Recap</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="gsoc-week-1-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-06T14:28:12-05:00" title="2017-06-06 14:28">2017-06-06 14:28</time></a></p>
-                <p class="commentline">            <a href="gsoc-week-1-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-1-recap.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>The first week of Google Summer of Code has ended, and so it's time for a recap post!</p>
-<p>The main topic this week was <a class="reference external" href="https://www.freecadweb.org/wiki/PartDesign_Mirrored">PartDesign Mirrored</a>, a fairly self-explanatory feature,
-with a show-stopping bug explained in <a class="reference external" href="https://freecadweb.org/tracker/view.php?id=3006">FreeCAD issue 3006</a>.</p>
-<div class="figure align-center">
-<img alt="unit cube construction" src="../images/gsoc-1-1.png" style="width: 600px;"><p class="caption">Figure 1. The base of my PartDesign Mirrored experiments.</p>
-</div>
-<p>In this picture, we have a simple <tt class="docutils literal">1 mm</tt> square sketch (pictured in white) attached to the <span class="math">\(xy\)</span>-plane.
-One corner is at the origin, and the sketch is the base for a Pad feature <tt class="docutils literal">1 mm</tt> high.
-Length is handled internally as <tt class="docutils literal">mm</tt> by FreeCAD, so this "unit cube" serves as a useful basis for testing behavior.
-A useful alteration involves displacing this cube, say, <tt class="docutils literal">1 mm</tt> up the <span class="math">\(y\)</span>-axis.
-This constructs a case where mirroring not all mirrorings should succeed, but we'll get into that later.</p>
-<p>Let's turn now to the bug itself, depicted in figure 2.
-The unit cube is supposed to be mirrored about its vertical sketch axis (the <span class="math">\(y\)</span>-axis, pictured running off to the top right.)
-Obviously, it's not, and the failure is helpfully represented in red.</p>
-<div class="figure align-center">
-<img alt="mirroring bug" src="../images/gsoc-1-2.png" style="width: 600px;"><p class="caption">Figure 2. FreeCAD bug 3006 in action.</p>
-</div>
-<p>Note that the body diagonal of the mirrored part should run from the origin to  <span class="math">\((-1, 1, 1)\)</span>.
-Instead, it's going to <span class="math">\((1, -1, -1)\)</span>, in the opposite direction.</p>
-<p>Well, this was my first really serious bug to tackle for the summer.
-I chose this as a way to really dive in, since it directly involves Open CASCADE, the open source C++ geometry kernel at the heart of FreeCAD.</p>
-<p>However, my programming background is chiefly with Python (as well as JavaScript and Lua), all interpreted languages.
-One nicety of that sort of language is that it can be very quick to debug and examine behavior using the interpreter.
-There is a Python debugger, <tt class="docutils literal">pdb</tt>, but I rarely needed to use it for my mostly personal-sized projects.
-Even then, it's quite straightforward to use since you're already in an interpreter-native environment.</p>
-<p>C++ is a very different beast. In this case, stepping through the code with a debugger was my only choice.
-I use Neovim as my IDE, though, so I wanted a way to combine the power of my text editor with my debugger.
-So, I found and set up <a class="reference external" href="https://github.com/dbgx/lldb.nvim">LLDB.nvim</a>, an LLDB frontend, with an event-based, non-blocking UI,
-session-saving, and
-"... takes advantage of Neovim's job API to spawn a separate process and communicates with the Neovim process using RPC calls."</p>
-<p>Pretty nice. Anyway, I was able to step through the code and see exactly what was flying around, just like I wanted.</p>
-<div class="figure align-center">
-<img alt="neovim" src="../images/neovim1.png" style="width: 600px;"><p class="caption">Figure 3. Neovim in an LLDB debug session.</p>
-</div>
-<p>So, what was the problem? Hah! Not so simple. Turns out there are <em>at least four bugs here!!</em></p>
-<p>First, the algorithm which first checks if the mirrored shapes are adjacent and thus, can be fused, was broken.</p>
-<p>Once this failed, FreeCAD then attempts to generate a mesh from the shape, and then converts a generalized transformation object representing the mirroring into a matrix to put the mesh in the correct place.
-It turns out that in Open CASCADE 7.0.0, the <tt class="docutils literal">gp_Trsf</tt> API was changed so that <tt class="docutils literal"><span class="pre">gp_Trsf::VectorialPart()</span></tt> returns a 3x3 matrix including the scale factor.
-The previous behavior was to return the homogeneous part of the transformation which does not include the scale factor, and the FreeCAD algorithm for constructing the 4x4 matrix for the mesh included multiplying every term by a scale factor.
-In other words, the scale factor multiplication was happening twice. The scale factor I had observed in the debugger was -1, so this perfectly explained the inverted positioning of the failure result!</p>
-<p>The third bug, of a much more minor nature, involved a a classic "failure... success!" message displayed in the event of a mirroring failure, and was easier to fix.</p>
-<p>The fourth, though, was a bit trickier! It only appeared when fixing the mesh placement.</p>
-<div class="figure align-center">
-<img alt="new mirroring bug" src="../images/gsoc-1-3.png" style="width: 600px;"><p class="caption">Figure 4. A strange, new mirroring bug.</p>
-</div>
-<p>This one was diagnosed by ickby, my mentor for this project.
-It turns out the failure meshes' faces were getting constructed inside out, and so the material's color was not considered "illuminated".</p>
-<p>The three of us considered a few different options to get around this. One way would be to use Coin3D, FreeCAD's scene graph library, and change the material
-properties to define something that looked the same, illuminated or not. Another is to essentially duplicate each face with the second instance having an inverted normal, so that you're guaranteed to have an outward-facing face.</p>
-<p>The fix ended up being much simpler than that! It was possible to simply change the vertex ordering. Originally, it was set to <tt class="docutils literal">COUNTERCLOCKWISE</tt>.
-However, in figure 4, you can see that simply changing it to <tt class="docutils literal">CLOCKWISE</tt> would not be an obvious fix.
-Abdullah also fixed this one, presumably by checking the docs for that option and finding that there was an "option C", <tt class="docutils literal">UNKNOWN</tt>. That did the trick!</p>
-<p>So now, PartDesign Mirrored is fixed and ready. Not a bad start for the summer!</p>
-<!-- Open CASCADE and quaternions -->
-<!-- Transformation matrices -->
-<!-- OpenInventor and tessellation -->
-<!-- Plans for the future -->
-<!-- Rebuild test -->
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="my-freecad-project-was-accepted-into-google-summer-of-code/" class="u-url">My FreeCAD project was accepted into Google Summer of Code!</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="my-freecad-project-was-accepted-into-google-summer-of-code/" rel="bookmark"><time class="published dt-published" datetime="2017-05-06T02:41:23-05:00" title="2017-05-06 02:41">2017-05-06 02:41</time></a></p>
-                <p class="commentline">            <a href="my-freecad-project-was-accepted-into-google-summer-of-code/#disqus_thread" data-disqus-identifier="cache/posts/my-freecad-project-was-accepted-into-google-summer-of-code.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>It's been almost a year since my last post, which just so happened to be about FreeCAD
-as well. It's been a busy year: I've been studying machine design, robotics; partial differential
-equations in general, and heat and mass transfer in particular. I've also been studying the source
-code of FreeCAD while honing my sysadmin skills by helping maintain project infrastructure.
-My hard work has paid off, and <a class="reference external" href="https://summerofcode.withgoogle.com/projects/#5752969237626880">my Google Summer of Code project proposal </a>
-was accepted! I'm going to be working on improving the parametric part design workbench and writing
-test code to make the module more robust for future development.</p>
-<p>As a result, I've decided to publish my daily log here. I'll be posting weekly summaries once the
-coding period begins on May 30, as well as more in-depth ad hoc blogging on interesting developments over the summer.
-My goal is to both document my project and to produce a useful reference for other developers wanting to get started
-contributing to FreeCAD.</p>
-<p>The rest of May is part of the Community Bonding Period, and so I'll ramp up to full speed with an introductory series
-of posts. Here are a few rough-draft titles to highlight my planned topics:</p>
-<ul class="simple">
-<li>
-<a class="reference external" href="https://github.com/distcc/distcc">Neovim</a> as an IDE:<ol class="arabic">
-<li>Building your base, or practically pluginless</li>
-<li>What makes an IDE? An overview of features</li>
-<li>Unix as an IDE, or knowing your tools</li>
-<li>Neovim with Python 2 and 3</li>
-<li>Neovim with C++</li>
-<li>Asynchronous autobuilding with Neovim</li>
-</ol>
-</li>
-<li>Distributed compilation with <a class="reference external" href="https://github.com/distcc/distcc">distcc</a>
-</li>
-<li>Speaking source code: how to fix your first FreeCAD bug</li>
-<li>Contributing to open source communities (and FreeCAD in particular)</li>
-</ul>
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="getting-started-with-freecad-development-in-ubuntu-1604/" class="u-url">Getting Started with FreeCAD Development in Ubuntu 16.04</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="getting-started-with-freecad-development-in-ubuntu-1604/" rel="bookmark"><time class="published dt-published" datetime="2016-06-05T06:17:51-05:00" title="2016-06-05 06:17">2016-06-05 06:17</time></a></p>
-                <p class="commentline">            <a href="getting-started-with-freecad-development-in-ubuntu-1604/#disqus_thread" data-disqus-identifier="cache/posts/getting-started-with-freecad-development-in-ubuntu-1604.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p><a class="reference external" href="http://www.freecadweb.org/">FreeCAD</a> is a multi-platform (Windows, Mac, Linux) open source parametric 3D CAD modeler, and can read
-and write many open file formats.</p>
-<p>An explanation of the many virtues of open source software can be found at <a class="reference external" href="http://opensourceforamerica.org/learn-more/benefits-of-open-source-software/">Open Source for America</a> and elsewhere. To quote OSFA,</p>
-<blockquote>
-The Open Source model harnesses the power of distributed peer review and transparency to create high-quality, secure
-and easily integrated software at an accelerated pace and lower cost.</blockquote>
-<p>Commerical-grade CAD software, while incredibly useful, has several downsides including being locked behind 4 or 5 digit licensing costs,
-and its use in amateur projects or the developing world is often facilitated by piracy. FreeCAD, on the other hand, is free as in beer
-and free as in freedom, although it is currently under development. However, one of the benefits of the open source model is the ease
-with which interested people can contribute to the project and make better tools for all mankind.</p>
-<p>While using FreeCAD, I noticed a few typos in the menus; although my first contribution to the project wasn't too significant, I
-documented the process of getting a development environment set up on my Ubuntu 16.04 desktop so that others could follow the same
-steps and begin contributing.</p>
-<ol class="arabic simple">
-<li>Pull down a copy of the code. (If you don't have a copy of git, run <tt class="docutils literal">sudo <span class="pre">apt-get</span> install git</tt>.)</li>
-</ol>
-<blockquote>
-<pre class="code bash"><a name="rest_code_f67eb74822004b8285335453893d5b7e-1"></a>git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
-<a name="rest_code_f67eb74822004b8285335453893d5b7e-2"></a>mkdir freecad-build
-</pre>
-</blockquote>
-<ol class="arabic simple" start="2">
-<li>Install all dependencies.</li>
-</ol>
-<blockquote>
-<pre class="code bash"><a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-1"></a>sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev <span class="se">\</span>
-<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-2"></a>  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  <span class="se">\</span>
-<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-3"></a>  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev <span class="se">\</span>
-<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-4"></a>  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools <span class="s1">'liboce*-dev'</span> <span class="se">\</span>
-<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-5"></a>  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev <span class="se">\</span>
-<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-6"></a>  libfreetype6 libfreetype6-dev
-<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-7"></a>
-<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-8"></a><span class="c1"># Install optional packages</span>
-<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-9"></a>sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen <span class="se">\</span>
-<a name="rest_code_66cdd73aaa344d729e4cd6b53c712810-10"></a>  libcoin80-doc libspnav-dev
-</pre>
-</blockquote>
-<ol class="arabic simple" start="3">
-<li>Move into build folder, make and compile the software. Use the <tt class="docutils literal"><span class="pre">-j</span> $(nproc)</tt> flag to use all N of your CPU cores
-when compiling; some recommend using N + 1 CPU cores, which can be done by instead running <tt class="docutils literal">make <span class="pre">-j$((</span> $(nproc) + 1 )) .</tt>.
-Don't forget the period at the end of the <tt class="docutils literal">make</tt> command, which tells it to put the compiled software in the current
-<tt class="docutils literal"><span class="pre">freecad-build</span></tt> directory; it's good to keep the source code and build directories separate.</li>
-</ol>
-<blockquote>
-<pre class="code bash"><a name="rest_code_182722f6ab2140df96f4a1506a282d7f-1"></a><span class="nb">cd</span> freecad-build
-<a name="rest_code_182722f6ab2140df96f4a1506a282d7f-2"></a>cmake ../freecad-code
-<a name="rest_code_182722f6ab2140df96f4a1506a282d7f-3"></a>make -j<span class="k">$(</span>nproc<span class="k">)</span> .
-</pre>
-</blockquote>
-<ol class="arabic simple" start="4">
-<li>Fix Ubuntu 64-bit issue. If you are using a 64-bit version of Ubuntu (hopefully), you may run in to the following
-error message, which occurs because the expected <tt class="docutils literal">libfreeimage.so</tt> file was moved into a subdirectory of <tt class="docutils literal">/usr/lib/</tt>.</li>
-</ol>
-<blockquote>
-<pre class="code bash"><a name="rest_code_b6707817aec84b25a27f4456f0659de5-1"></a>make<span class="o">[</span><span class="m">2</span><span class="o">]</span>: *** No rule to make target <span class="s1">'/usr/lib/libfreeimage.so'</span>, needed by <span class="s1">'lib/libSMDS.so'</span>.  Stop.
-<a name="rest_code_b6707817aec84b25a27f4456f0659de5-2"></a>
-<a name="rest_code_b6707817aec84b25a27f4456f0659de5-3"></a><span class="c1"># Fix with this line.</span>
-<a name="rest_code_b6707817aec84b25a27f4456f0659de5-4"></a>sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
-</pre>
-</blockquote>
-<p>Once the build is complete, a runnable copy of the FreeCAD executable will be in the <tt class="docutils literal"><span class="pre">freecad-build</span></tt> folder. Any changes
-made to the source code can be tested after re-compiling the executable.</p>
-<p>Hopefully this post helps someone out there! Even if you are only contributing to the documentation as you learn FreeCAD,
-your contribution is valuable and can help tons of people across the globe.</p>
-</div>
-    </div>
     </article>
 </div>
         <nav class="postindexpager"><ul class="pager">
 <li class="next">
-                <a href="index-1.html" rel="next">Older posts</a>
+                <a href="index-2.html" rel="next">Older posts</a>
             </li>
         </ul></nav><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous"></script><script>
                 renderMathInElement(document.body);

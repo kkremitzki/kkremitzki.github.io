@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Notes on my journey in biosystems engineering.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biosystems Engineering Blog (old posts, page 2) | Biosystems Engineering Blog</title>
+<link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="#">
+<link rel="icon" href="../favicon.ico" sizes="16x16">
+<link rel="prev" href="." type="text/html">
+<link rel="next" href="index-1.html" type="text/html">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><script src="../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../assets/css/custom.css">
+<link rel="stylesheet" href="../assets/css/code.css">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../">About</a>
+                </li>
+<li>
+<a href=".">Blog</a>
+                </li>
+<li>
+<a href="tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+    
+    
+<div class="postindex">
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-2-recap/" class="u-url">GSoC Week 2 recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-2-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-18T18:40:33-05:00" title="2017-06-18 18:40">2017-06-18 18:40</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-2-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-2-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>With the four major bugs blocking the usage of <tt class="docutils literal">PartDesign Mirrored</tt> fixed,
+I started out the week exploring the now-functioning tool with the goal of getting what I call "command test coverage".
+In short, this means testing major variations for tools presented to the user in the PartDesign WB.</p>
+<p>For reference, they are depicted and categorized in figures 1 and 2,
+with the newly redesigned icons made by <a class="reference external" href="https://github.com/agryson">Alexander Gryson</a> (kudos to his major rework of all of FreeCAD's icons!)</p>
+<div class="figure align-center">
+<img alt="command palette" src="../images/gsoc-2-1.png" style="width: 900px;"><p class="caption">Figure 1. Datum tools, additive/subtractive features and primitives.</p>
+</div>
+<div class="figure align-center">
+<img alt="command palette" src="../images/gsoc-2-2.png" style="width: 600px;"><p class="caption">Figure 2. Transformations, dressup features, and multi-body boolean operation.</p>
+</div>
+<p>The Mirrored tool takes as input feature(s) and a mirror plane, but the other transformation tools like LinearPattern and PolarPattern behave in a fundamentally similar way.
+By that reasoning, I figured that tests regarding the Mirrored tool really only have two major permutations if one assumes valid input:
+the case where a choice of features and plane succeeds, and one where it doesn't.</p>
+<div class="figure align-center">
+<img alt="mirrored success" src="../images/gsoc-2-3.png" style="width: 600px;"><p class="caption">Figure 3. Success!</p>
+</div>
+<div class="figure align-center">
+<img alt="mirrored failure" src="../images/gsoc-2-4.png" style="width: 600px;"><p class="caption">Figure 4. Failure...</p>
+</div>
+<p>So, I cleaned up the test case submission I started GSoC out with, <tt class="docutils literal">testMirroredSketchCase</tt>,
+and added the new case depicted in figure 4, <tt class="docutils literal">testMirroredOffsetFailureCase</tt>.
+However, I noticed both of my test cases involved <tt class="docutils literal">Sketch</tt>-based additive features, but no additive primitives.
+So, I also included <tt class="docutils literal">testMirroredPrimitiveCase</tt> in <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/816">FreeCAD PR#816</a>.</p>
+<p>What's nice is that besides <tt class="docutils literal">PartDesign Mirrored</tt> now being fixed, several other transformation tools' bugs were resolved.
+Altogether, the PR resolved four issues, <a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=2235">2235</a>,
+<a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=2248">2248</a>, <a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=3006">3006</a>,
+and <a class="reference external" href="https://www.freecadweb.org/tracker/view.php?id=3065">3065</a>.</p>
+<p>With all that wrapped up,
+I moved on to adding tests for the various options for the fundamental sketch-based features <tt class="docutils literal">Pad</tt> and <tt class="docutils literal">Pocket</tt>.
+Altogether, I added <tt class="docutils literal">testPadToFirstCase</tt>, <tt class="docutils literal">testPadtoLastCase</tt>, <tt class="docutils literal">testPadToFaceCase</tt>,
+and <tt class="docutils literal">testPadTwoDimensionsCase</tt> to cover the options for <tt class="docutils literal">PartDesign Pad</tt>.
+Unfortunately, these test cases are not very interesting to look at and mostly involve 2-4 lined up cubes similar to
+what figure 3 looks like.</p>
+<p>However, for <tt class="docutils literal">PartDesign Pad</tt>, things do get a little more interesting.
+The base case is a simple reversed pad with a pocket in the middle, shown in figure 5.</p>
+<div class="figure align-center">
+<img alt="mirrored failure" src="../images/gsoc-2-5.png" style="width: 600px;"><p class="caption">Figure 5. The base Pocket test construction.</p>
+</div>
+<p>It was straightforward to add <tt class="docutils literal">testPocketDimensionCase</tt>, <tt class="docutils literal">testPocketThroughAllCase</tt>,
+and <tt class="docutils literal">testPocketToFirstCase</tt>.
+However, covering the last Pocket option with <tt class="docutils literal">testPocketToFaceCase</tt> is not (necessarily) so trivial.</p>
+<p>If you refer to figure 5, you'll note that the base Pad feature is a hexahedron, or six-sided shape.
+The Pocket feature adds four new faces to the overall shape, <tt class="docutils literal">Face7</tt> through <tt class="docutils literal">Face10</tt>.
+However, references relying on the numbering of those faces is inherently brittle and it turns out that
+a particular face number OpenCASCADE &gt; 7.0 does not correspond to the same face in a lower version, e.g.
+the version used on the FreeCAD CI machines over at Travis.</p>
+</div>
+    </div>
+    </article>
+</div>
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="." rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-1.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2017         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

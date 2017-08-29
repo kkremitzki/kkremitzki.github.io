@@ -19,11 +19,11 @@
  </url>
  <url>
   <loc>/archive.html</loc>
-  <lastmod>2017-08-07T05:13:00Z</lastmod>
+  <lastmod>2017-08-29T13:10:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/</loc>
-  <lastmod>2017-08-07T05:13:00Z</lastmod>
+  <lastmod>2017-08-29T13:10:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</loc>
@@ -44,6 +44,18 @@
  <url>
   <loc>/blog/gsoc-week-1-recap/</loc>
   <lastmod>2017-06-11T17:12:00Z</lastmod>
+ </url>
+ <url>
+  <loc>/blog/gsoc-week-10-recap/</loc>
+  <lastmod>2017-08-29T13:10:00Z</lastmod>
+ </url>
+ <url>
+  <loc>/blog/gsoc-week-11-recap/</loc>
+  <lastmod>2017-08-29T13:10:00Z</lastmod>
+ </url>
+ <url>
+  <loc>/blog/gsoc-week-12-final-work-product/</loc>
+  <lastmod>2017-08-29T13:10:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/gsoc-week-2-recap/</loc>
@@ -74,8 +86,16 @@
   <lastmod>2017-08-07T05:13:00Z</lastmod>
  </url>
  <url>
+  <loc>/blog/gsoc-week-9-recap/</loc>
+  <lastmod>2017-08-29T13:10:00Z</lastmod>
+ </url>
+ <url>
   <loc>/blog/index-1.html</loc>
-  <lastmod>2017-08-07T05:13:00Z</lastmod>
+  <lastmod>2017-08-29T13:10:00Z</lastmod>
+ </url>
+ <url>
+  <loc>/blog/index-2.html</loc>
+  <lastmod>2017-08-29T13:10:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</loc>
