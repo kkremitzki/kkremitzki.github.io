@@ -71,7 +71,65 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-12-final-work-product/" class="u-url">GSoC Week 12: Final Work Product</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="looking-back-on-2017/" class="u-url">Looking Back on 2017</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="looking-back-on-2017/" rel="bookmark"><time class="published dt-published" datetime="2017-12-29T01:30:51-06:00" title="2017-12-29 01:30">2017-12-29 01:30</time></a></p>
+                <p class="commentline">            <a href="looking-back-on-2017/#disqus_thread" data-disqus-identifier="cache/posts/looking-back-on-2017.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>2017 has been an incredible year for me with lots of opportunities, but many
+challenges as well. In the spring, I got a (lab) teaching opportunity for a
+50-student Measurement &amp; Control of Biological Systems course, culminating in
+17 teams making maze-solving autonomous robots. There's a higher level of
+mastery to be attained by teaching others, and in that regard, it was an
+incredible experience. Teaching, however, is well outside my comfort zone, and
+in that regard it had some difficulties.</p>
+<p>In the summer, I was able to work on a Google Summer of Code project/pseudo-internship.
+Working in a mix of Python and C++ was again an interesting challenge since
+I'm much more familiar with the former than the latter, and even my experience
+with other languages lies on the Python side of the interpreted/compiled,
+dynamic/static typing divide. Still, it was an invaluable experience since C++
+rules the domain of finite element analysis and computational fluid dynamics,
+which I want to explore further. Particularly, FreeCAD is the perfect vehicle for
+engineering computer modeling, so I have high hopes for my future with the project.</p>
+<p>At the end of the summer, I passed the exam for the Linux Foundation Certified
+System Administrator. This was an opportunity provided by a scholarship given
+in part because of my work using Python to analyze the efficiency of backyard
+irrigation systems in the Yucatán back in early 2016, so it was great to finally
+see the culmination of that work. As a little celebration project, I decided to
+begin running my own Linux mail server, which has been a great success. There
+were a few hiccups with blacklists on Yahoo and Outlook, but I was ultimately
+able to get it working with all the major email providers.</p>
+<p>I also embarked on a project I've been wanting to do for a long time: running
+my own Linux router. I found a great series of tutorials on setting up such a
+router using Ubuntu and the Pine64 board, and have had excellent results since.</p>
+<p>I have also been spending time here and there researching a really promising
+project, FreeIPA. It's a sort of competitor to Active Directory in the identity
+management space, mostly made up of a combination of an LDAP, Kerberos, and
+certificate server. I'm running a sort of pseudo-small business in my home
+network using my FreeIPA server as a centralized authentication, authorization,
+and identity server, and it's been a great experience so far; I hope to apply it
+in reality with the FreeCAD project one day. Look out for future posts on the
+topic.</p>
+<p>In the fall, I began my final year at Texas A&amp;M. My capstone project and team
+was assigned. Our project involves analyzing the flood resiliency of the Houston
+area and proposing an ecological engineering design to improve that resiliency and
+mitigate the effects of future extreme flood events such as was seen during
+Hurricane Harvey. We are using an open-source toolchain involving PostGIS, Python,
+and QGIS, and the project is really quite exciting since our analysis could be applied
+to other coastal cities and regions facing extreme weather events in the future.</p>
+<p>Altogether, it's been a great year, but I foresee 2018 being even better. If
+you're reading this, I want to wish you a happy new year with hope for the same!</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-12-final-work-product/" class="u-url">GSoC Week 12: Final Work Product</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -488,107 +546,6 @@ one test</td>
 </tr>
 </tbody>
 </table>
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-3-recap/" class="u-url">GSoC Week 3 recap</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="gsoc-week-3-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-22T11:15:49-05:00" title="2017-06-22 11:15">2017-06-22 11:15</time></a></p>
-                <p class="commentline">            <a href="gsoc-week-3-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-3-recap.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>Howdy! I wasn't sure of the best way to represent my progress thus far, but I figure a table is an alright way to summarize.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="33%">
-<col width="28%">
-<col width="11%">
-<col width="28%">
-</colgroup>
-<thead valign="bottom"><tr>
-<th class="head">tool category</th>
-<th class="head">initial, current test count</th>
-<th class="head">status</th>
-<th class="head">notes</th>
-</tr></thead>
-<tbody valign="top">
-<tr>
-<td>datum tools</td>
-<td>0, 0</td>
-<td>hold</td>
-<td>waiting on attachment
-editor work in phase 2</td>
-</tr>
-<tr>
-<td>add. &amp; sub. features/primitives</td>
-<td>3, 11</td>
-<td>blocked</td>
-<td>basic Pipe not working; when
-fixed, all tools in this
-category (but not all their
-options) will have test
-coverage</td>
-</tr>
-<tr>
-<td>transformations</td>
-<td>0, 3</td>
-<td>ready</td>
-<td>Mirrored added, still need
-Linear and PolarPattern</td>
-</tr>
-<tr>
-<td>dressup features</td>
-<td>0, 0</td>
-<td>ready</td>
-<td> </td>
-</tr>
-<tr>
-<td>boolean operation</td>
-<td>0, 0</td>
-<td>ready</td>
-<td>Previously seemed to
-misbehave but recent changes
-to containers may have fixed
-this</td>
-</tr>
-</tbody>
-</table>
-<p>I got my Pad &amp; Pocket tests added, so right now the total Δtests is 11. Next up is Loft and Pipe. However,
-Pipe has a bit of a blocking bug right now. My test scenario involves a simple circle centered at the origin
-in an XY-attached sketch, serving as the base Profile, and a simple line on the Z axis in an XZ-attached sketch.
-The test construction is illustrated in figure 1.</p>
-<p>This should result in a cylinder, as the preview indicates in figure 2. For some reason, when clicking OK,
-an external reference warning is being generated, and this is blocking any test constructions for PartDesign Pipe.</p>
-<div class="figure align-center">
-<img alt="test pipe construction" src="../images/gsoc-3-3.png" style="width: 300px;"><p class="caption">Figure 1. PartDesign Pipe Profile and Spine sketches which should form a simple cylinder.</p>
-</div>
-<div class="figure align-center">
-<img alt="external reference warning" src="../images/gsoc-3-4.png" style="width: 600px;"><p class="caption">Figure 2. PartDesign Pipe erroneously warning about external references.</p>
-</div>
-<p>I also ran into a bug in PartDesign Revolve, which, as bugs are wont to do, ended up being two bugs.
-The construction case to see them is depicted in figure 3.</p>
-<div class="figure align-center">
-<img alt="revolution sketches" src="../images/gsoc-3-1.png" style="width: 300px;"><p class="caption">Figure 3. Simple sketches attached to the three base planes.</p>
-</div>
-<p>I attached a simple circle sketch to each of the three base planes, and offset them so they wouldn't be symmetric
-with respect to the origin or any base axes. When attempting to add a Revolution with these sketches, they behave
-as expected, until one attempts to revolve them about the axis which is normal to the sketch's plane. For the
-XY- and YZ-attached sketches, the following error appears:</p>
-<blockquote>
-Unhandled Base::Exception caught in GUIApplication::notify.
-The error message is: Rotation axis must not be perpendicular with the sketch plane</blockquote>
-<p>However, if one tries to revolve the XZ-attached circle, FreeCAD gives it the ol' college try, but
-ends up with an awfully thin "solid":</p>
-<div class="figure align-center">
-<img alt="faulty revolution" src="../images/gsoc-3-2.png" style="width: 300px;"><p class="caption">Figure 4. An "error-free" PartDesign Revolution.</p>
-</div>
-<p>I'll also be looking into these bugs this week.</p>
 </div>
     </div>
     </article>

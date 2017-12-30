@@ -1,6 +1,6 @@
 .. title: Looking Back on 2017
 .. slug: looking-back-on-2017
-.. date: 2017-12-30 01:30:51 UTC-06:00
+.. date: 2017-12-29 01:30:51 UTC-06:00
 .. tags: 
 .. category: 
 .. link: 
