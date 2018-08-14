@@ -50,7 +50,7 @@ At a lower level, xmodmap can be used to directly modify the X11 ser">
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../../">About</a>
@@ -99,7 +99,7 @@ However, when working directly in the Linux console, things are a little more co
 <p>My particular need is to swap the <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> keys; as a <tt class="docutils literal">vim</tt> user, I use <tt class="docutils literal">Escape</tt> constantly to return to Normal mode.
 To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach <tt class="docutils literal">Escape</tt>, the following line
 can be added to the file <tt class="docutils literal">/etc/rc.local</tt>, before the final line <tt class="docutils literal">exit 0</tt>.</p>
-<pre class="code bash"><a name="rest_code_36d2d57faa9c4dbdb655bb6d753a151c-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
+<pre class="code bash"><a name="rest_code_286272761a104c409a83780aea25f62f-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
 </pre>
 <p>If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
 commands separated by the pipe character <tt class="docutils literal">|</tt>.
@@ -151,7 +151,7 @@ every boot, swapping <tt class="docutils literal">Caps Lock</tt> and <tt class="
 
         <footer id="footer">
             
-Contents © 2017         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+Contents © 2018         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
 - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 
             

@@ -41,7 +41,7 @@ article: http://ogp.me/ns/article#
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../">About</a>
@@ -71,7 +71,213 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-2-recap/" class="u-url">GSoC Week 2 recap</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-4-recap/" class="u-url">GSoC Week 4 recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-4-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-30T05:48:06-05:00" title="2017-06-30 05:48">2017-06-30 05:48</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-4-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-4-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>I started this week out with the goal of troubleshooting the bugs I found with PartDesign Pipe and Revolve.
+However, I ended up running into several annoying issues. The LLDB debugging integration I previously wrote about
+began showing some inexplicable errors:</p>
+<pre class="literal-block">
+error caught in async handler 'exec ('continue',)'
+Traceback (most recent call last):
+  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/__init_
+_.py", line 49, in _exec
+    self.ctrl.safe_execute(args)
+  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/control
+ler.py", line 101, in safe_execute
+    self.safe_call(self.exec_command, [cmd])
+  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/control
+ler.py", line 94, in safe_call
+    raise EventLoopError("Dead event loop!")
+EventLoopError: Dead event loop!
+</pre>
+<p>Eventually I found <a class="reference external" href="https://github.com/dbgx/lldb.nvim/issues/52">an issue on Github</a> which refers to
+a now-deleted comment in the author's original repository, stating the project was no longer being developed.
+The question remains as to how it was working just fine when I began and only just now stopped working, but
+the end result was that my debugger-editor integration was broken, which makes it quite a bit tougher to debug
+the C++ side of the codebase.</p>
+<p>One option I had was to just use GDB as a standalone command line application, but it's really convenient, e.g.
+to not have to manually type out file names and line numbers for breakpoints, and otherwise have your debugger
+wired up to your editor.</p>
+<p>However, this was inexplicably not working either! Basic features of GDB worked, but trying to specify breakpoints
+to step through the code was not. I banged my head on this issue for a while until I figured up <tt class="docutils literal">ccmake</tt> to
+take a look at my build options. The issue? Somehow, the <tt class="docutils literal">CMAKE_BUILD_TYPE</tt>, which had been set to <tt class="docutils literal">Debug</tt>,
+was unset. So, I set it again and started the debug build, which takes quite a long time.
+(Around 2 hours with <tt class="docutils literal">make <span class="pre">-j4</span></tt>.)</p>
+<p>I also did more research on options for debugger integration. I found an interesting option called Pyclewn
+which is a debugger front-end for (neo)vim. This option was attractive since I could have a unified front-end
+to both my C++ debugger as well as a Python one. However, setup wasn't straightforward, so I continued searching
+for a simpler option.</p>
+<p>Luckily, I stumbled upon <a class="reference external" href="https://github.com/neovim/neovim/blob/master/contrib/gdb/neovim_gdb.vim">neovim_gdb.vim</a>,
+a simple combination of vim settings, available in the <tt class="docutils literal">contrib</tt> folder of the neovim repository.</p>
+<p>Once that was taken care of, I started working on my original objective for the week. I found that the
+PartDesign Pipe issue was being caused by the code checking for whether or not the Pipe's AuxillerySpine (sic)
+was a part of the active body, but didn't check if the thing existed first. This resulted in a check to
+see if a null pointer was part of the active body, which is never the case. Checking for existence first
+<a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/848">resolved the issue</a>. With that bug fixed, I also added
+two tests each for PartDesign Pipe and Loft.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%">
+<col width="28%">
+<col width="11%">
+<col width="28%">
+</colgroup>
+<thead valign="bottom"><tr>
+<th class="head">tool category</th>
+<th class="head">initial, current test count</th>
+<th class="head">status</th>
+<th class="head">notes</th>
+</tr></thead>
+<tbody valign="top">
+<tr>
+<td>datum tools</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>add. &amp; sub. features/primitives</td>
+<td>11, 15</td>
+<td>ready</td>
+<td>all additive &amp; subtractive
+features now have at least
+one test</td>
+</tr>
+<tr>
+<td>transformations</td>
+<td>3, 3</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>dressup features</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>boolean operation</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-3-recap/" class="u-url">GSoC Week 3 recap</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="gsoc-week-3-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-22T11:15:49-05:00" title="2017-06-22 11:15">2017-06-22 11:15</time></a></p>
+                <p class="commentline">            <a href="gsoc-week-3-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-3-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Howdy! I wasn't sure of the best way to represent my progress thus far, but I figure a table is an alright way to summarize.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%">
+<col width="28%">
+<col width="11%">
+<col width="28%">
+</colgroup>
+<thead valign="bottom"><tr>
+<th class="head">tool category</th>
+<th class="head">initial, current test count</th>
+<th class="head">status</th>
+<th class="head">notes</th>
+</tr></thead>
+<tbody valign="top">
+<tr>
+<td>datum tools</td>
+<td>0, 0</td>
+<td>hold</td>
+<td>waiting on attachment
+editor work in phase 2</td>
+</tr>
+<tr>
+<td>add. &amp; sub. features/primitives</td>
+<td>3, 11</td>
+<td>blocked</td>
+<td>basic Pipe not working; when
+fixed, all tools in this
+category (but not all their
+options) will have test
+coverage</td>
+</tr>
+<tr>
+<td>transformations</td>
+<td>0, 3</td>
+<td>ready</td>
+<td>Mirrored added, still need
+Linear and PolarPattern</td>
+</tr>
+<tr>
+<td>dressup features</td>
+<td>0, 0</td>
+<td>ready</td>
+<td> </td>
+</tr>
+<tr>
+<td>boolean operation</td>
+<td>0, 0</td>
+<td>ready</td>
+<td>Previously seemed to
+misbehave but recent changes
+to containers may have fixed
+this</td>
+</tr>
+</tbody>
+</table>
+<p>I got my Pad &amp; Pocket tests added, so right now the total Δtests is 11. Next up is Loft and Pipe. However,
+Pipe has a bit of a blocking bug right now. My test scenario involves a simple circle centered at the origin
+in an XY-attached sketch, serving as the base Profile, and a simple line on the Z axis in an XZ-attached sketch.
+The test construction is illustrated in figure 1.</p>
+<p>This should result in a cylinder, as the preview indicates in figure 2. For some reason, when clicking OK,
+an external reference warning is being generated, and this is blocking any test constructions for PartDesign Pipe.</p>
+<div class="figure align-center">
+<img alt="test pipe construction" src="../images/gsoc-3-3.png" style="width: 300px;"><p class="caption">Figure 1. PartDesign Pipe Profile and Spine sketches which should form a simple cylinder.</p>
+</div>
+<div class="figure align-center">
+<img alt="external reference warning" src="../images/gsoc-3-4.png" style="width: 600px;"><p class="caption">Figure 2. PartDesign Pipe erroneously warning about external references.</p>
+</div>
+<p>I also ran into a bug in PartDesign Revolve, which, as bugs are wont to do, ended up being two bugs.
+The construction case to see them is depicted in figure 3.</p>
+<div class="figure align-center">
+<img alt="revolution sketches" src="../images/gsoc-3-1.png" style="width: 300px;"><p class="caption">Figure 3. Simple sketches attached to the three base planes.</p>
+</div>
+<p>I attached a simple circle sketch to each of the three base planes, and offset them so they wouldn't be symmetric
+with respect to the origin or any base axes. When attempting to add a Revolution with these sketches, they behave
+as expected, until one attempts to revolve them about the axis which is normal to the sketch's plane. For the
+XY- and YZ-attached sketches, the following error appears:</p>
+<blockquote>
+Unhandled Base::Exception caught in GUIApplication::notify.
+The error message is: Rotation axis must not be perpendicular with the sketch plane</blockquote>
+<p>However, if one tries to revolve the XZ-attached circle, FreeCAD gives it the ol' college try, but
+ends up with an awfully thin "solid":</p>
+<div class="figure align-center">
+<img alt="faulty revolution" src="../images/gsoc-3-2.png" style="width: 300px;"><p class="caption">Figure 4. An "error-free" PartDesign Revolution.</p>
+</div>
+<p>I'll also be looking into these bugs this week.</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-2-recap/" class="u-url">GSoC Week 2 recap</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -148,7 +354,7 @@ the version used on the FreeCAD CI machines over at Travis.</p>
 
         <footer id="footer">
             
-Contents © 2017         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+Contents © 2018         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
 - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 
             

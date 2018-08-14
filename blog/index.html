@@ -41,7 +41,7 @@ article: http://ogp.me/ns/article#
             </a>
         </div>
 <!-- /.navbar-header -->
-        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
             <ul class="nav navbar-nav">
 <li>
 <a href="../">About</a>
@@ -71,7 +71,226 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="looking-back-on-2017/" class="u-url">Looking Back on 2017</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="google-summer-of-code-2018-with-freecad/" class="u-url">Google Summer of Code 2018 with FreeCAD</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="google-summer-of-code-2018-with-freecad/" rel="bookmark"><time class="published dt-published" datetime="2018-08-14T03:51:37-05:00" title="2018-08-14 03:51">2018-08-14 03:51</time></a></p>
+                <p class="commentline">            <a href="google-summer-of-code-2018-with-freecad/#disqus_thread" data-disqus-identifier="cache/posts/google-summer-of-code-2018-with-freecad.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Hello all! This post is my final work product for GSoC 2018 for the FreeCAD project.
+The main center for communication for FreeCAD is the forums, but we also coordinated things
+through the #freecad channel on Freenode.
+<a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;t=28478">The main thread for my project was here.</a></p>
+<p>To summarize my project: FreeCAD is a complex application with an extensive dependency tree. The packaging
+situation has always trailed the tip of development, which means users don't get to see the best FreeCAD
+has to offer, and people trying to help new users have to deal with sometimes years-old bugs.
+The goal was to improve the general ecosystem of the FreeCAD stack, and to cut down on technical debt to
+make things easier moving forward. After some consideration it was decided to focus on Debian packaging
+since that would be the most 'ecologically good'.</p>
+<p>I began with a rough knowledge of Debian packaging, but now feel competent
+enough to want to take over the maintenance of Debian packaging for FreeCAD and several other packages
+within the Debian Science Team, which will improve the free software engineering experience in Debian
+as well as its derivatives such as Ubuntu and Linux Mint.</p>
+<p>This post will summarize my work throughout the summer chronologically, mostly linking to emails in
+the Debian Science mailing list, pull requests on Debian's Gitlab instance or Github, and to some repositories.</p>
+<p>More detailed information can be found at <a class="reference external" href="https://salsa.debian.org/users/kkremitzki-guest">https://salsa.debian.org/users/kkremitzki-guest</a>.</p>
+<div class="section" id="coding-period-0-community-bonding-period-april-23-may-14">
+<h2>Coding Period 0, Community Bonding Period (April 23 - May 14)</h2>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>May 8: RFS for python-fluids: <a class="reference external" href="https://lists.debian.org/debian-science/2018/05/msg00044.html">https://lists.debian.org/debian-science/2018/05/msg00044.html</a>
+</dt>
+<dd><ul class="first last">
+<li>Packaging this was part of learning more about Debian packaging, and because I'm a fan of the library
+for its use in fluids engineering - part of overall ecosystem improvements.</li>
+</ul></dd>
+</dl></li>
+</ul>
+</div>
+<div class="section" id="coding-period-1-may-14-june-15">
+<h2>Coding Period 1 (May 14 - June 15)</h2>
+<ul class="simple">
+<li>Most of the first coding period was spent working on FreeCAD 0.17 packaging, as well as packaging Netgen 6.2.1804
+and updating Gmsh to use OCCT, which I packaged prior to GSoC. I didn't finish them quite in time for submission
+within the first coding period. I also spent time working on packaging PySide 2, which is a dependency for
+FreeCAD's transition to Qt 5 &amp; Python 3, but backed away after finding it was being worked on by others.</li>
+<li><dl class="first docutils">
+<dt>May 17: Netgen PR (Remove unnecessary backup files): <a class="reference external" href="https://github.com/NGSolve/netgen/pull/15">https://github.com/NGSolve/netgen/pull/15</a>
+</dt>
+<dd><ul class="first last">
+<li>Preparation work for packaging Netgen, which is used as a mesher by FreeCAD.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>May 25: Discussion of Netgen 6.2.1804 work: <a class="reference external" href="https://lists.debian.org/debian-science/2018/05/msg00101.html">https://lists.debian.org/debian-science/2018/05/msg00101.html</a>
+</dt>
+<dd><ul class="first last">
+<li>This was just me announcing that I was working on this so as to help not duplicate work.</li>
+</ul></dd>
+</dl></li>
+</ul>
+</div>
+<div class="section" id="coding-period-2-june-15-july-13">
+<h2>Coding Period 2 (June 15 - July 13)</h2>
+<ul class="simple">
+<li>June 19: Improvements to fluids after suggestions: <a class="reference external" href="https://lists.debian.org/debian-science/2018/06/msg00031.html">https://lists.debian.org/debian-science/2018/06/msg00031.html</a>
+</li>
+<li><dl class="first docutils">
+<dt>June 20: OpenFOAM 5 experimentation announced: <a class="reference external" href="https://lists.debian.org/debian-science/2018/06/msg00038.html">https://lists.debian.org/debian-science/2018/06/msg00038.html</a>
+</dt>
+<dd><ul class="first last">
+<li>This package is part of the FreeCAD ecosystem by way of its CFD (Computational Fluid Dynamics) workbench.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>June 21: RFS for netgen: <a class="reference external" href="https://lists.debian.org/debian-science/2018/06/msg00039.html">https://lists.debian.org/debian-science/2018/06/msg00039.html</a>
+</dt>
+<dd><ul class="first last">
+<li>Note: RFS = request for sponsorship, i.e. a submission of packaging work for Debian project members.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>June 21: RFS for gmsh: <a class="reference external" href="https://lists.debian.org/debian-science/2018/06/msg00040.html">https://lists.debian.org/debian-science/2018/06/msg00040.html</a>
+</dt>
+<dd><ul class="first last">
+<li>Gmsh is another mesher used by FreeCAD.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>June 21: RFS for freecad: <a class="reference external" href="https://lists.debian.org/debian-science/2018/06/msg00041.html">https://lists.debian.org/debian-science/2018/06/msg00041.html</a>
+</dt>
+<dd><ul class="first last">
+<li>This was the packaging work for the FreeCAD 0.17 release.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>June 21: RFS for if97: <a class="reference external" href="https://lists.debian.org/debian-science/2018/06/msg00042.html">https://lists.debian.org/debian-science/2018/06/msg00042.html</a>
+</dt>
+<dd><ul class="first last">
+<li>This was another ecosystem project I worked on, a dependency for CoolProp, a powerful thermodynamics library.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>July 8: FreeCAD PR (Detect OCCT at new Debian location): <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/1545">https://github.com/FreeCAD/FreeCAD/pull/1545</a>
+</dt>
+<dd><ul class="first last">
+<li>This was a housekeeping PR as a result of my Debian packaging work.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>July 8: FreeCAD-Doc initial commit: <a class="reference external" href="https://github.com/FreeCAD/FreeCAD-Doc/commits/master">https://github.com/FreeCAD/FreeCAD-Doc/commits/master</a>
+</dt>
+<dd><ul class="first last">
+<li>The freecad-doc package was removed from Debian in 2016 for Debian Free Software Guidelines reasons.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>July 11: Updated PPA to OCCT 7.3: <a class="reference external" href="https://launchpad.net/~freecad-maintainers/+archive/ubuntu/freecad-daily/+packages">https://launchpad.net/~freecad-maintainers/+archive/ubuntu/freecad-daily/+packages</a>
+</dt>
+<dd><ul class="first last">
+<li>This was a backport of Debian packaging work for OCCT 7.3</li>
+</ul></dd>
+</dl></li>
+</ul>
+</div>
+<div class="section" id="coding-period-3-july-13-aug-14">
+<h2>Coding Period 3 (July 13 - Aug 14)</h2>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>July 26: PR for horizon-eda (Support build against OCCT): <a class="reference external" href="https://github.com/carrotIndustries/horizon/pull/181/files">https://github.com/carrotIndustries/horizon/pull/181/files</a>
+</dt>
+<dd><ul class="first last">
+<li>As part of packaging OCCT, it is planned to phase out OCE (a community fork of OCCT which has stalled in development) and this
+was more housekeeping work.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>July 27: PR for deal.ii (Update dependencies &amp; rules for liboce-&gt;libocct transition): <a class="reference external" href="https://salsa.debian.org/science-team/deal.ii/merge_requests/1">https://salsa.debian.org/science-team/deal.ii/merge_requests/1</a>
+</dt>
+<dd><ul class="first last">
+<li>Similar as above.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>July 29: RFS for ulmo: <a class="reference external" href="https://lists.debian.org/debian-science/2018/07/msg00042.html">https://lists.debian.org/debian-science/2018/07/msg00042.html</a>
+</dt>
+<dd><ul class="first last">
+<li>This was an ecosystem packaging work, as this library was very useful for me in hydrology and for various agricultural engineering data needs.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>Aug 7: RFS for openfoam: <a class="reference external" href="https://lists.debian.org/debian-science/2018/08/msg00011.html">https://lists.debian.org/debian-science/2018/08/msg00011.html</a>
+</dt>
+<dd><ul class="first last">
+<li>My submission for OpenFOAM 5 was delayed by the release of OpenFOAM 6.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>Aug 8: RFS for openvoronoi: <a class="reference external" href="https://lists.debian.org/debian-science/2018/08/msg00022.html">https://lists.debian.org/debian-science/2018/08/msg00022.html</a>
+</dt>
+<dd><ul class="first last">
+<li>This was a new dependency for FreeCAD's Path workbench which was relicensed so it could be directly integrated.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>Aug 8: RFS for opencamlib: <a class="reference external" href="https://lists.debian.org/debian-science/2018/08/msg00023.html">https://lists.debian.org/debian-science/2018/08/msg00023.html</a>
+</dt>
+<dd><ul class="first last">
+<li>Similar as above.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>Aug 10: PR for smesh (Fix GCC8 FTBFS): <a class="reference external" href="https://github.com/LaughlinResearch/SMESH/pull/9">https://github.com/LaughlinResearch/SMESH/pull/9</a>
+</dt>
+<dd><ul class="first last">
+<li>Part of packaging work for SMESH, a mesher used by FreeCAD which is included in the FreeCAD source (which is generally undesirable, and so packaging it would allow us to remove the included copy.)</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>Aug 12: RFS for pivy: <a class="reference external" href="https://lists.debian.org/debian-science/2018/08/msg00041.html">https://lists.debian.org/debian-science/2018/08/msg00041.html</a>
+</dt>
+<dd><ul class="first last">
+<li>PySide 2 was a dependency for pivy, so once it was packaged I was able to submit my work for pivy, which required upstreaming Python 3 support from FreeCAD's fork. This package was the last dependency for FreeCAD's Qt 5 &amp; Python 3 transition.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>Aug 14: RFS for freecad-doc: <a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906105">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906105</a>
+</dt>
+<dd><ul class="first last">
+<li>Packaging for freecad-doc was delayed by my desire, by way of providing a multi-language supported package, to say thanks to the FreeCAD community translators who provided thorough French and Italian translations.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>Aug 14: SMESH repo: <a class="reference external" href="https://salsa.debian.org/kkremitzki-guest/salome-smesh">https://salsa.debian.org/kkremitzki-guest/salome-smesh</a>
+</dt>
+<dd><ul class="first last">
+<li>Packaging external SMESH is incomplete, as its current CMake instructions don't append the library version to the shared library, which will require patching.</li>
+</ul></dd>
+</dl></li>
+<li><dl class="first docutils">
+<dt>Aug 14: CoolProp repo: <a class="reference external" href="https://salsa.debian.org/kkremitzki-guest/coolprop">https://salsa.debian.org/kkremitzki-guest/coolprop</a>
+</dt>
+<dd><ul class="first last">
+<li>Similar as above.</li>
+</ul></dd>
+</dl></li>
+</ul>
+<p>Now that GSoC is done I am excited to continue working within the Debian Science Team. Besides an upcoming FreeCAD 0.18 release,
+I have several packages I plan to make improvements to and to package for Debian, and ultimately to integrate into future
+FreeCAD workbenches as part of my plan to make it the ultimate 3D engineering toolbox!</p>
+<p>Therefore, I must say thanks to the FreeCAD and Debian communities for working with me, and to my GSoC mentors and GSoC itself
+for providing me this wonderful opportunity. May it continue providing valuable opportunities for others for many years to come.</p>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="looking-back-on-2017/" class="u-url">Looking Back on 2017</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -443,111 +662,6 @@ or primitive-based features.</p>
 </table>
 </div>
     </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-4-recap/" class="u-url">GSoC Week 4 recap</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="gsoc-week-4-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-06-30T05:48:06-05:00" title="2017-06-30 05:48">2017-06-30 05:48</time></a></p>
-                <p class="commentline">            <a href="gsoc-week-4-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-4-recap.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>I started this week out with the goal of troubleshooting the bugs I found with PartDesign Pipe and Revolve.
-However, I ended up running into several annoying issues. The LLDB debugging integration I previously wrote about
-began showing some inexplicable errors:</p>
-<pre class="literal-block">
-error caught in async handler 'exec ('continue',)'
-Traceback (most recent call last):
-  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/__init_
-_.py", line 49, in _exec
-    self.ctrl.safe_execute(args)
-  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/control
-ler.py", line 101, in safe_execute
-    self.safe_call(self.exec_command, [cmd])
-  File "/home/kurt/.config/nvim/bundles/repos/github.com/dbgx/lldb.nvim/rplugin/python/lldb_nvim/control
-ler.py", line 94, in safe_call
-    raise EventLoopError("Dead event loop!")
-EventLoopError: Dead event loop!
-</pre>
-<p>Eventually I found <a class="reference external" href="https://github.com/dbgx/lldb.nvim/issues/52">an issue on Github</a> which refers to
-a now-deleted comment in the author's original repository, stating the project was no longer being developed.
-The question remains as to how it was working just fine when I began and only just now stopped working, but
-the end result was that my debugger-editor integration was broken, which makes it quite a bit tougher to debug
-the C++ side of the codebase.</p>
-<p>One option I had was to just use GDB as a standalone command line application, but it's really convenient, e.g.
-to not have to manually type out file names and line numbers for breakpoints, and otherwise have your debugger
-wired up to your editor.</p>
-<p>However, this was inexplicably not working either! Basic features of GDB worked, but trying to specify breakpoints
-to step through the code was not. I banged my head on this issue for a while until I figured up <tt class="docutils literal">ccmake</tt> to
-take a look at my build options. The issue? Somehow, the <tt class="docutils literal">CMAKE_BUILD_TYPE</tt>, which had been set to <tt class="docutils literal">Debug</tt>,
-was unset. So, I set it again and started the debug build, which takes quite a long time.
-(Around 2 hours with <tt class="docutils literal">make <span class="pre">-j4</span></tt>.)</p>
-<p>I also did more research on options for debugger integration. I found an interesting option called Pyclewn
-which is a debugger front-end for (neo)vim. This option was attractive since I could have a unified front-end
-to both my C++ debugger as well as a Python one. However, setup wasn't straightforward, so I continued searching
-for a simpler option.</p>
-<p>Luckily, I stumbled upon <a class="reference external" href="https://github.com/neovim/neovim/blob/master/contrib/gdb/neovim_gdb.vim">neovim_gdb.vim</a>,
-a simple combination of vim settings, available in the <tt class="docutils literal">contrib</tt> folder of the neovim repository.</p>
-<p>Once that was taken care of, I started working on my original objective for the week. I found that the
-PartDesign Pipe issue was being caused by the code checking for whether or not the Pipe's AuxillerySpine (sic)
-was a part of the active body, but didn't check if the thing existed first. This resulted in a check to
-see if a null pointer was part of the active body, which is never the case. Checking for existence first
-<a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/848">resolved the issue</a>. With that bug fixed, I also added
-two tests each for PartDesign Pipe and Loft.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="33%">
-<col width="28%">
-<col width="11%">
-<col width="28%">
-</colgroup>
-<thead valign="bottom"><tr>
-<th class="head">tool category</th>
-<th class="head">initial, current test count</th>
-<th class="head">status</th>
-<th class="head">notes</th>
-</tr></thead>
-<tbody valign="top">
-<tr>
-<td>datum tools</td>
-<td>0, 0</td>
-<td>ready</td>
-<td> </td>
-</tr>
-<tr>
-<td>add. &amp; sub. features/primitives</td>
-<td>11, 15</td>
-<td>ready</td>
-<td>all additive &amp; subtractive
-features now have at least
-one test</td>
-</tr>
-<tr>
-<td>transformations</td>
-<td>3, 3</td>
-<td>ready</td>
-<td> </td>
-</tr>
-<tr>
-<td>dressup features</td>
-<td>0, 0</td>
-<td>ready</td>
-<td> </td>
-</tr>
-<tr>
-<td>boolean operation</td>
-<td>0, 0</td>
-<td>ready</td>
-<td> </td>
-</tr>
-</tbody>
-</table>
-</div>
-    </div>
     </article>
 </div>
         <nav class="postindexpager"><ul class="pager">
@@ -562,7 +676,7 @@ one test</td>
 
         <footer id="footer">
             
-Contents © 2017         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+Contents © 2018         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
 - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 
             
