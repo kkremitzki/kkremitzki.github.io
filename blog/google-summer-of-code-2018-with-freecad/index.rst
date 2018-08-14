@@ -22,7 +22,9 @@ since that would be the most 'ecologically good'.
 I began with a rough knowledge of Debian packaging, but now feel competent
 enough to want to take over the maintenance of Debian packaging for FreeCAD and several other packages
 within the Debian Science Team, which will improve the free software engineering experience in Debian 
-as well as its derivatives such as Ubuntu and Linux Mint.
+as well as its derivatives such as Ubuntu and Linux Mint. In fact, I plan on trying to offically become
+a Debian Maintainer and then Debian Developer. On the 4th of July during the middle of the project
+I drove to Houston for a GPG keysigning, so the wheels are already in motion.
 
 This post will summarize my work throughout the summer chronologically, mostly linking to emails in
 the Debian Science mailing list, pull requests on Debian's Gitlab instance or Github, and to some repositories.

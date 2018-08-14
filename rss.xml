@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 14 Aug 2018 10:00:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Google Summer of Code 2018 with FreeCAD</title><link>/blog/google-summer-of-code-2018-with-freecad/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all! This post is my final work product for GSoC 2018 for the FreeCAD project.
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 14 Aug 2018 10:04:08 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Google Summer of Code 2018 with FreeCAD</title><link>/blog/google-summer-of-code-2018-with-freecad/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all! This post is my final work product for GSoC 2018 for the FreeCAD project.
 The main center for communication for FreeCAD is the forums, but we also coordinated things
 through the #freecad channel on Freenode.
 &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;amp;t=28478"&gt;The main thread for my project was here.&lt;/a&gt;&lt;/p&gt;
@@ -12,7 +12,9 @@ since that would be the most 'ecologically good'.&lt;/p&gt;
 &lt;p&gt;I began with a rough knowledge of Debian packaging, but now feel competent
 enough to want to take over the maintenance of Debian packaging for FreeCAD and several other packages
 within the Debian Science Team, which will improve the free software engineering experience in Debian
-as well as its derivatives such as Ubuntu and Linux Mint.&lt;/p&gt;
+as well as its derivatives such as Ubuntu and Linux Mint. In fact, I plan on trying to offically become
+a Debian Maintainer and then Debian Developer. On the 4th of July during the middle of the project
+I drove to Houston for a GPG keysigning, so the wheels are already in motion.&lt;/p&gt;
 &lt;p&gt;This post will summarize my work throughout the summer chronologically, mostly linking to emails in
 the Debian Science mailing list, pull requests on Debian's Gitlab instance or Github, and to some repositories.&lt;/p&gt;
 &lt;p&gt;More detailed information can be found at &lt;a class="reference external" href="https://salsa.debian.org/users/kkremitzki-guest"&gt;https://salsa.debian.org/users/kkremitzki-guest&lt;/a&gt;.&lt;/p&gt;
