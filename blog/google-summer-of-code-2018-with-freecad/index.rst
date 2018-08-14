@@ -74,7 +74,7 @@ Coding Period 3 (July 13 - Aug 14)
 ##################################
 * July 26: PR for horizon-eda (Support build against OCCT): https://github.com/carrotIndustries/horizon/pull/181/files
 	* As part of packaging OCCT, it is planned to phase out OCE (a community fork of OCCT which has stalled in development) and this
-	  was more housekeeping work.
+	  was more housekeeping work to update package dependencies from OCE->OCCT.
 * July 27: PR for deal.ii (Update dependencies & rules for liboce->libocct transition): https://salsa.debian.org/science-team/deal.ii/merge_requests/1
 	* Similar as above.
 * July 29: RFS for ulmo: https://lists.debian.org/debian-science/2018/07/msg00042.html
