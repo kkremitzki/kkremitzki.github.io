@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 14 Aug 2018 10:04:08 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Google Summer of Code 2018 with FreeCAD</title><link>/blog/google-summer-of-code-2018-with-freecad/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all! This post is my final work product for GSoC 2018 for the FreeCAD project.
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 14 Aug 2018 10:07:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Google Summer of Code 2018 with FreeCAD</title><link>/blog/google-summer-of-code-2018-with-freecad/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all! This post is my final work product for GSoC 2018 for the FreeCAD project.
 The main center for communication for FreeCAD is the forums, but we also coordinated things
 through the #freecad channel on Freenode.
 &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;amp;t=28478"&gt;The main thread for my project was here.&lt;/a&gt;&lt;/p&gt;
@@ -191,6 +191,14 @@ was more housekeeping work.&lt;/li&gt;
 &lt;dt&gt;Aug 12: RFS for pivy: &lt;a class="reference external" href="https://lists.debian.org/debian-science/2018/08/msg00041.html"&gt;https://lists.debian.org/debian-science/2018/08/msg00041.html&lt;/a&gt;&lt;/dt&gt;
 &lt;dd&gt;&lt;ul class="first last"&gt;
 &lt;li&gt;PySide 2 was a dependency for pivy, so once it was packaged I was able to submit my work for pivy, which required upstreaming Python 3 support from FreeCAD's fork. This package was the last dependency for FreeCAD's Qt 5 &amp;amp; Python 3 transition.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;Aug 13: FreeCAD Qt 5/Python 3 builds provided in FreeCAD Daily PPA based on experimental (RFS submitted) packages: &lt;a class="reference external" href="https://launchpad.net/~freecad-maintainers/+archive/ubuntu/freecad-daily/+packages"&gt;https://launchpad.net/~freecad-maintainers/+archive/ubuntu/freecad-daily/+packages&lt;/a&gt;&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last"&gt;
+&lt;li&gt;While bugs were indeed present, these next-generation FreeCAD builds still somewhat work.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/dd&gt;
 &lt;/dl&gt;

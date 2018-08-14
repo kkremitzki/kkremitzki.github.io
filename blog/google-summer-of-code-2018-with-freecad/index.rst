@@ -89,6 +89,8 @@ Coding Period 3 (July 13 - Aug 14)
 	* Part of packaging work for SMESH, a mesher used by FreeCAD which is included in the FreeCAD source (which is generally undesirable, and so packaging it would allow us to remove the included copy.)
 * Aug 12: RFS for pivy: https://lists.debian.org/debian-science/2018/08/msg00041.html
 	* PySide 2 was a dependency for pivy, so once it was packaged I was able to submit my work for pivy, which required upstreaming Python 3 support from FreeCAD's fork. This package was the last dependency for FreeCAD's Qt 5 & Python 3 transition. 
+* Aug 13: FreeCAD Qt 5/Python 3 builds provided in FreeCAD Daily PPA based on experimental (RFS submitted) packages: https://launchpad.net/~freecad-maintainers/+archive/ubuntu/freecad-daily/+packages
+        * While bugs were indeed present, these next-generation FreeCAD builds still somewhat work.
 * Aug 14: RFS for freecad-doc: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906105
 	* Packaging for freecad-doc was delayed by my desire, by way of providing a multi-language supported package, to say thanks to the FreeCAD community translators who provided thorough French and Italian translations.
 * Aug 14: SMESH repo: https://salsa.debian.org/kkremitzki-guest/salome-smesh
