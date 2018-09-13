@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Software Activities in August 2018 | Biosystems Engineering Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../../assets/css/custom.css">
+<link rel="stylesheet" href="../../assets/css/code.css">
+<meta name="author" content="Kurt Kremitzki">
+<link rel="prev" href="../google-summer-of-code-2018-with-freecad/" title="Google Summer of Code 2018 with FreeCAD" type="text/html">
+<meta property="og:site_name" content="Biosystems Engineering Blog">
+<meta property="og:title" content="Free Software Activities in August 2018">
+<meta property="og:url" content="/blog/free-software-activities-in-august-2018/">
+<meta property="og:description" content="Hello all! After reading some of the nice activity logs published by members of the
+Debian Project at https://planet.debian.org, I've decided to publish my own version.
+This will mostly be my work on ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-09-12T05:20:13-05:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../">About</a>
+                </li>
+<li>
+<a href="../">Blog</a>
+                </li>
+<li>
+<a href="../tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Free Software Activities in August 2018</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2018-09-12T05:20:13-05:00" itemprop="datePublished" title="2018-09-12 05:20">2018-09-12 05:20</time></a></p>
+                <p class="commentline">            <a href="#disqus_thread" data-disqus-identifier="cache/posts/free-software-activities-in-august-2018.html">Comments</a>
+
+
+            
+        </p>
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Hello all! After reading some of the nice activity logs published by members of the
+Debian Project at <a class="reference external" href="https://planet.debian.org">https://planet.debian.org</a>, I've decided to publish my own version.
+This will mostly be my work on FreeCAD and Debian, but will also include other points
+of note from my many interests. I'll also include relevant activities for <a class="reference external" href="https://www.patreon.com/kkremitzki">my supporters
+on Patreon</a></p>
+<p>As covered in my previous post, most of the first half of August was spent finishing
+my Google Summer of Code project for FreeCAD, which largely turned into "packaging
+for the Debian Science Team" since FreeCAD's dependency chain and options for
+integration are so vast. However, the nature of the work is highly parallel.
+For example, when packaging, most issues occur either almost immediately into the build,
+or after the build has finished. This means that after an initial bit of packaging work
+that allows a build to actually proceed, one then has to launch the build and wait
+anywhere from a few minutes to a few hours to see the next issue arise. So, as a
+result, I worked on <em>many</em> packages in parallel. A negative consequence of this was
+that I somewhat overloaded my plate in terms of things I can handle, so in actuality
+this meant I would work on a handful of packages on several machines at once, and then
+once those issues were largely resolved I would move onto another handful, rather
+than really juggling them all at once.</p>
+<p>After finishing GSoC, I first turned my attention to two of the packages I had
+worked on in parallel, python-fluids and python-ulmo.</p>
+<div class="section" id="id1">
+<h2><a class="reference external" href="https://tracker.debian.org/pkg/python-fluids">python-fluids</a></h2>
+<p>I made a new upload for this package to correct several issues. Here's an excerpt from the changelog:</p>
+<pre class="literal-block">
+* [1215102] Make python-fluids-doc Multi-Arch: foreign
+* [eb610fd] Correct Vcs-* fields
+* [62570cd] Updated to Standards-Version 4.2.0, no change required
+* [29e96a7] Correct debian/watch
+* [3e90d05] Add missing scipy dependency
+* [cd776a2] Add lintian override for
+  package-contains-documentation-outside-usr-share-doc
+</pre>
+<p>The package still fails some reproducibility tests on i386 and could use a standards version bump, but other
+than that, this package is almost completely clean now! It's quite satisfying cleaning up these packages.</p>
+</div>
+<div class="section" id="id2">
+<h2><a class="reference external" href="https://tracker.debian.org/pkg/python-ulmo">python-ulmo</a></h2>
+<p>I made an upload for this package as well:</p>
+<pre class="literal-block">
+* [7150daa] Correct Vcs-* fields
+* [027b50b] Mark python-ulmo-doc as Multi-Arch: foreign
+* [d72b6f6] Add patch to fix FutureWarning
+</pre>
+<p>The package was failing its autopkgtests because Python was emitting a FutureWarning onto stderr.
+This package is actually fully reproducible, and only needs a standards version bump to be fully clean.</p>
+</div>
+<div class="section" id="id3">
+<h2><a class="reference external" href="https://tracker.debian.org/pkg/gmsh">gmsh</a></h2>
+<p>On August 22nd, <a class="reference external" href="http://gmsh.info/">Gmsh 4.0.0 was released!</a> The Java API was removed and a Julia one added.
+This is a nice release because in
+<a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=904946">Debian bug #904946</a> it was found that the Gmsh package, after being updated to
+be built against OCCT instead of OCE, actually no longer worked when used in FreeCAD, giving the error:</p>
+<pre class="literal-block">
+Error   : Gmsh requires OpenCASCADE to import shape
+</pre>
+<p>My hope was that by updating to the new Gmsh version, this problem would resolve itself. However, I ran into a few problems and had to postpone
+finishing up.</p>
+</div>
+<div class="section" id="id4">
+<h2><a class="reference external" href="https://tracker.debian.org/pkg/netgen">netgen</a></h2>
+<p>On August 19th, <a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906619">Debian bug #906619</a> was reported against Netgen, which was
+an occasion to look at the state of the package. I noticed that upstream had released version 6.2.1807 (versus the current .1804) but
+it was not tagged in the Netgen repository, only as a submodule of the <a class="reference external" href="https://github.com/ngsolve/ngsolve">Ngsolve repository</a>.</p>
+<p>On August 31st, I packaged the new version and resolved the bug
+in <a class="reference external" href="https://salsa.debian.org/science-team/netgen/merge_requests/9/commits">science-team/netgen PR #9</a>.</p>
+</div>
+<div class="section" id="salome-smesh">
+<h2>salome-smesh</h2>
+<p>Although technically not August, on September 3rd I pushed the <a class="reference external" href="https://salsa.debian.org/kkremitzki-guest/salome-smesh">nearly finished package for a standalone salome-smesh on Salsa</a>
+which is fully functional except for an issue with the CMake config file. I submitted a pull request to support multi-arch for the package
+but forgot to update the path in the CMake config file, so the variables therein have to be manually set, or the file edited.</p>
+</div>
+<div class="section" id="cantera">
+<h2>cantera</h2>
+<p>On August 24th, Cantera 2.4.0 was released:</p>
+<pre class="literal-block">
+Cantera is an open-source suite of tools for problems involving chemical kinetics, thermodynamics, and transport processes.
+</pre>
+<p>Previously there had been an issue with the build, where the packages would be made successfully, but attempting to <cite>import cantera</cite> in
+Python would error out, presumably due to the way an included copy of libfmt was handled during the build. However, the issue is no longer
+present, so I now have a working Cantera 2.4.0 package! The only shortcoming is that I don't have working docs build yet, so this package
+didn't make it in time for August.</p>
+</div>
+<div class="section" id="id5">
+<h2><a class="reference external" href="https://tracker.debian.org/pkg/openfoam">openfoam</a></h2>
+<p>Previously I had submitted a pull request for OpenFOAM 6 to the Debian Science Team, but spontaneously the package began to fail,
+presumably due to some change in a dependency. I spent some time troubleshooting this issue but haven't found a resolution yet.
+Here's a snippet of the build failure:</p>
+<pre class="literal-block">
+Allwmake src/Pstream
+wmake dummy
+wmakeLnIncludeAll: running wmakeLnInclude on dependent libraries:
+    wmakeLnInclude: linking include files to /build/openfoam-6.20180805+dfsg1/src/OpenFOAM/lnInclude
+    wmakeLnInclude: linking include files to /build/openfoam-6.20180805+dfsg1/src/OSspecific/POSIX/lnInclude
+make[2]: Entering directory '/build/openfoam-6.20180805+dfsg1/src/Pstream/dummy'
+wmakeLnInclude: linking include files to ./lnInclude
+make[2]: Leaving directory '/build/openfoam-6.20180805+dfsg1/src/Pstream/dummy'
+make[2]: Entering directory '/build/openfoam-6.20180805+dfsg1/src/Pstream/dummy'
+Making dependency list for source file UOPwrite.C
+realloc(): invalid next size
+make[2]: *** Deleting file '/build/openfoam-6.20180805+dfsg1/platforms/linux64GccDPInt32Opt/src/Pstream/dummy/UOPwrite.C.dep'
+Making dependency list for source file UIPread.C
+realloc(): invalid next size
+make[2]: *** Deleting file '/build/openfoam-6.20180805+dfsg1/platforms/linux64GccDPInt32Opt/src/Pstream/dummy/UIPread.C.dep'
+Making dependency list for source file UPstream.C
+realloc(): invalid next size
+make[2]: *** Deleting file '/build/openfoam-6.20180805+dfsg1/platforms/linux64GccDPInt32Opt/src/Pstream/dummy/UPstream.C.dep'
+</pre>
+<p>I'll have to continue investigating this one.</p>
+</div>
+<div class="section" id="id6">
+<h2><a class="reference external" href="https://tracker.debian.org/pkg/pyside2">pyside2</a></h2>
+<p>I reported <a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906020">Debian bug #906020</a> about missing Python 3 CMake config files,
+which was fixed Aug 28th. I began investigating how this would Pivy builds, but got sidetracked by a problem with the <cite>med-fichier</cite> package.</p>
+</div>
+<div class="section" id="id7">
+<h2><a class="reference external" href="https://tracker.debian.org/pkg/freecad">freecad</a></h2>
+<p>I ran into some build issues trying to update the package now that my Debian Unstable workstation is running Qt 5.11:</p>
+<pre class="literal-block">
+error: invalid use of incomplete type ‘class QAction’
+     QAction* action = new QAction(tr("Remove"), this);
+</pre>
+<p>There are several instances of this throughout the codebase that can basically be fixed with by adding some <cite>#include</cite> s.</p>
+</div>
+<div class="section" id="projectchrono">
+<h2>projectchrono</h2>
+<p>There was a bit of discussion about utilization of <a class="reference external" href="http://www.projectchrono.org/">Project Chrono</a>, an open source multi-physics simulation engine,
+in FreeCAD. One problem with pursuing this is that it isn't packaged at all for Debian, which is rather surprising! It seems like high-quality software.
+I began looking at packaging it and it actually doesn't seem that bad. One of the main issues is actually the naming: it's really long! There's also a
+bit of worry about naming collisions I'll have to look into. As of now, I have a working package except for the Python bindings. Enabling them results
+in this failure in the build process:</p>
+<pre class="literal-block">
+[ 53%] Building CXX object src/demos/irrlicht/CMakeFiles/demo_IRR_soilbin.dir/demo_IRR_soilbin.cpp.o
+cd /build/project-chrono-3.0.0/obj-x86_64-linux-gnu/src/demos/irrlicht &amp;&amp; /usr/lib/ccache/c++  -DBP_USE_FIXEDPOINT_INT_32 -I/build/project-chrono-3.0.0/src -I/build/project-chrono-3.0.0/obj-x86_64-linux-gnu -I/build/project-chrono-3.0.0/src/chrono -I/build/project-chrono-3.0.0/src/chrono/collision/bullet -I/build/project-chrono-3.0.0/src/chrono/collision/gimpact -I/build/project-chrono-3.0.0/src/chrono/collision/convexdecomposition/HACD -I/usr/include/irrlicht  -g -O2 -fdebug-prefix-map=/build/project-chrono-3.0.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -pthread -fopenmp  -march=native -msse4.2 -mfpmath=sse  -march=native -mavx2  -march=native -mfma  -std=c++14 -pthread -fopenmp  -march=native -msse4.2 -mfpmath=sse  -march=native -mavx2  -march=native -mfma    -std=c++14 -pthread -fopenmp  -march=native -msse4.2 -mfpmath=sse  -march=native -mavx2  -march=native -mfma  -o CMakeFiles/demo_IRR_soilbin.dir/demo_IRR_soilbin.cpp.o -c /build/project-chrono-3.0.0/src/demos/irrlicht/demo_IRR_soilbin.cpp
+/build/project-chrono-3.0.0/obj-x86_64-linux-gnu/swig/ChModuleCorePYTHON_wrap.cxx: In member function 'virtual void chrono::ChLogPython::Output(const char*, size_t)':
+/build/project-chrono-3.0.0/obj-x86_64-linux-gnu/swig/ChModuleCorePYTHON_wrap.cxx:7610:23: error: format not a string literal and no format arguments [-Werror=format-security]
+     PySys_WriteStdout(buffer);
+                       ^~~~~~
+</pre>
+</div>
+<div class="section" id="opencamlib">
+<h2>opencamlib</h2>
+<p>There was a problem with this package's doc depends, which I fixed at the end of August. However, it's still awaiting sponsorship to be uploaded
+into the Debian archives.</p>
+</div>
+<div class="section" id="med-fichier">
+<h2>med-fichier</h2>
+<p>The <a class="reference external" href="https://tracker.debian.org/pkg/med-fichier">med-fichier package</a> in Debian currently is built with autotools but somewhat supports CMake builds, which
+would be nice to switch to as it would provide CMake configuration files in libmedc-dev. I worked on updating the package, but currently building docs is broken,
+and for some reason, the Fortran library is being statically linked.</p>
+</div>
+<div class="section" id="planet-freecad">
+<h2>Planet FreeCAD</h2>
+<p>The <a class="reference external" href="https://tracker.debian.org/pkg/planet-venus">planet-venus package</a> in Debian is available for running your own RSS feed aggregation service.
+I wanted to set up a planet.freecad.io to provide exactly that. However, the current version of the package is broken, and it only works in Debian 7, a.k.a. old-old-stable.</p>
+<p>I spent some time researching the state of the package, but it's fairly rough, and most importantly, upstream is far from active. I'd like to run the RSS service but
+fixing the package seems like a tall order.</p>
+</div>
+<div class="section" id="freecad-io">
+<h2>freecad.io</h2>
+<p>We previously had two servers available to run some of the web services for the FreeCAD project, but sadly they rebooted but never came back online.</p>
+<p>I'm now paying for a VPS in Frankfurt using the money from <a class="reference external" href="https://patreon.com/kkremitzki">my Patreon</a>. Unfortunately, it's a bit resource-strained
+from the FreeIPA server hogging things.</p>
+</div>
+<div class="section" id="if-you-like-my-work-as-described-above-and-would-like-to-support-me-continuing-to-improve-the-state-of-open-engineering-on-linux-please-contribute-to-my-patreon">
+<h2>If you like my work as described above and would like to support me continuing to improve the state of open engineering on Linux, <a class="reference external" href="https://patreon.com/kkremitzki">please contribute to my Patreon!</a>
+</h2>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../google-summer-of-code-2018-with-freecad/" rel="prev" title="Google Summer of Code 2018 with FreeCAD">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+                        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="kkremitzki",
+            disqus_url="/blog/free-software-activities-in-august-2018/",
+        disqus_title="Free Software Activities in August 2018",
+        disqus_identifier="cache/posts/free-software-activities-in-august-2018.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2018         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

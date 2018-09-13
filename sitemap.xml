@@ -23,11 +23,11 @@
  </url>
  <url>
   <loc>/archive.html</loc>
-  <lastmod>2018-08-14T10:00:00Z</lastmod>
+  <lastmod>2018-09-13T09:04:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/</loc>
-  <lastmod>2018-08-14T10:00:00Z</lastmod>
+  <lastmod>2018-09-07T22:27:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</loc>
@@ -36,6 +36,10 @@
  <url>
   <loc>/blog/equation-solving-with-python/</loc>
   <lastmod>2018-08-14T09:59:00Z</lastmod>
+ </url>
+ <url>
+  <loc>/blog/free-software-activities-in-august-2018/</loc>
+  <lastmod>2018-09-07T22:27:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/french-lessons/</loc>
@@ -103,7 +107,7 @@
  </url>
  <url>
   <loc>/blog/index-2.html</loc>
-  <lastmod>2018-08-14T10:00:00Z</lastmod>
+  <lastmod>2018-09-13T09:04:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</loc>
@@ -120,6 +124,10 @@
  <url>
   <loc>/blog/my-freecad-project-was-accepted-into-google-summer-of-code/</loc>
   <lastmod>2018-08-14T09:59:00Z</lastmod>
+ </url>
+ <url>
+  <loc>/blog/open-engineering-activities-in-august-2018/</loc>
+  <lastmod>2018-09-01T11:55:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/primer-on-python-projects/</loc>

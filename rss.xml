@@ -1,5 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 14 Aug 2018 10:09:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Google Summer of Code 2018 with FreeCAD</title><link>/blog/google-summer-of-code-2018-with-freecad/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all! This post is my final work product for GSoC 2018 for the FreeCAD project.
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 13 Sep 2018 09:12:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Software Activities in August 2018</title><link>/blog/free-software-activities-in-august-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all! After reading some of the nice activity logs published by members of the
+Debian Project at &lt;a class="reference external" href="https://planet.debian.org"&gt;https://planet.debian.org&lt;/a&gt;, I've decided to publish my own version.
+This will mostly be my work on FreeCAD and Debian, but will also include other points
+of note from my many interests. I'll also include relevant activities for &lt;a class="reference external" href="https://www.patreon.com/kkremitzki"&gt;my supporters
+on Patreon&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As covered in my previous post, most of the first half of August was spent finishing
+my Google Summer of Code project for FreeCAD, which largely turned into "packaging
+for the Debian Science Team" since FreeCAD's dependency chain and options for
+integration are so vast. However, the nature of the work is highly parallel.
+For example, when packaging, most issues occur either almost immediately into the build,
+or after the build has finished. This means that after an initial bit of packaging work
+that allows a build to actually proceed, one then has to launch the build and wait
+anywhere from a few minutes to a few hours to see the next issue arise. So, as a
+result, I worked on &lt;em&gt;many&lt;/em&gt; packages in parallel. A negative consequence of this was
+that I somewhat overloaded my plate in terms of things I can handle, so in actuality
+this meant I would work on a handful of packages on several machines at once, and then
+once those issues were largely resolved I would move onto another handful, rather
+than really juggling them all at once.&lt;/p&gt;
+&lt;p&gt;After finishing GSoC, I first turned my attention to two of the packages I had
+worked on in parallel, python-fluids and python-ulmo.&lt;/p&gt;
+&lt;div class="section" id="id1"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://tracker.debian.org/pkg/python-fluids"&gt;python-fluids&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I made a new upload for this package to correct several issues. Here's an excerpt from the changelog:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+* [1215102] Make python-fluids-doc Multi-Arch: foreign
+* [eb610fd] Correct Vcs-* fields
+* [62570cd] Updated to Standards-Version 4.2.0, no change required
+* [29e96a7] Correct debian/watch
+* [3e90d05] Add missing scipy dependency
+* [cd776a2] Add lintian override for
+  package-contains-documentation-outside-usr-share-doc
+&lt;/pre&gt;
+&lt;p&gt;The package still fails some reproducibility tests on i386 and could use a standards version bump, but other
+than that, this package is almost completely clean now! It's quite satisfying cleaning up these packages.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id2"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://tracker.debian.org/pkg/python-ulmo"&gt;python-ulmo&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I made an upload for this package as well:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+* [7150daa] Correct Vcs-* fields
+* [027b50b] Mark python-ulmo-doc as Multi-Arch: foreign
+* [d72b6f6] Add patch to fix FutureWarning
+&lt;/pre&gt;
+&lt;p&gt;The package was failing its autopkgtests because Python was emitting a FutureWarning onto stderr.
+This package is actually fully reproducible, and only needs a standards version bump to be fully clean.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id3"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://tracker.debian.org/pkg/gmsh"&gt;gmsh&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On August 22nd, &lt;a class="reference external" href="http://gmsh.info/"&gt;Gmsh 4.0.0 was released!&lt;/a&gt; The Java API was removed and a Julia one added.
+This is a nice release because in
+&lt;a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=904946"&gt;Debian bug #904946&lt;/a&gt; it was found that the Gmsh package, after being updated to
+be built against OCCT instead of OCE, actually no longer worked when used in FreeCAD, giving the error:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Error   : Gmsh requires OpenCASCADE to import shape
+&lt;/pre&gt;
+&lt;p&gt;My hope was that by updating to the new Gmsh version, this problem would resolve itself. However, I ran into a few problems and had to postpone
+finishing up.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id4"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://tracker.debian.org/pkg/netgen"&gt;netgen&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On August 19th, &lt;a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906619"&gt;Debian bug #906619&lt;/a&gt; was reported against Netgen, which was
+an occasion to look at the state of the package. I noticed that upstream had released version 6.2.1807 (versus the current .1804) but
+it was not tagged in the Netgen repository, only as a submodule of the &lt;a class="reference external" href="https://github.com/ngsolve/ngsolve"&gt;Ngsolve repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;On August 31st, I packaged the new version and resolved the bug
+in &lt;a class="reference external" href="https://salsa.debian.org/science-team/netgen/merge_requests/9/commits"&gt;science-team/netgen PR #9&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="salome-smesh"&gt;
+&lt;h2&gt;salome-smesh&lt;/h2&gt;
+&lt;p&gt;Although technically not August, on September 3rd I pushed the &lt;a class="reference external" href="https://salsa.debian.org/kkremitzki-guest/salome-smesh"&gt;nearly finished package for a standalone salome-smesh on Salsa&lt;/a&gt;
+which is fully functional except for an issue with the CMake config file. I submitted a pull request to support multi-arch for the package
+but forgot to update the path in the CMake config file, so the variables therein have to be manually set, or the file edited.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cantera"&gt;
+&lt;h2&gt;cantera&lt;/h2&gt;
+&lt;p&gt;On August 24th, Cantera 2.4.0 was released:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Cantera is an open-source suite of tools for problems involving chemical kinetics, thermodynamics, and transport processes.
+&lt;/pre&gt;
+&lt;p&gt;Previously there had been an issue with the build, where the packages would be made successfully, but attempting to &lt;cite&gt;import cantera&lt;/cite&gt; in
+Python would error out, presumably due to the way an included copy of libfmt was handled during the build. However, the issue is no longer
+present, so I now have a working Cantera 2.4.0 package! The only shortcoming is that I don't have working docs build yet, so this package
+didn't make it in time for August.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id5"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://tracker.debian.org/pkg/openfoam"&gt;openfoam&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Previously I had submitted a pull request for OpenFOAM 6 to the Debian Science Team, but spontaneously the package began to fail,
+presumably due to some change in a dependency. I spent some time troubleshooting this issue but haven't found a resolution yet.
+Here's a snippet of the build failure:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Allwmake src/Pstream
+wmake dummy
+wmakeLnIncludeAll: running wmakeLnInclude on dependent libraries:
+    wmakeLnInclude: linking include files to /build/openfoam-6.20180805+dfsg1/src/OpenFOAM/lnInclude
+    wmakeLnInclude: linking include files to /build/openfoam-6.20180805+dfsg1/src/OSspecific/POSIX/lnInclude
+make[2]: Entering directory '/build/openfoam-6.20180805+dfsg1/src/Pstream/dummy'
+wmakeLnInclude: linking include files to ./lnInclude
+make[2]: Leaving directory '/build/openfoam-6.20180805+dfsg1/src/Pstream/dummy'
+make[2]: Entering directory '/build/openfoam-6.20180805+dfsg1/src/Pstream/dummy'
+Making dependency list for source file UOPwrite.C
+realloc(): invalid next size
+make[2]: *** Deleting file '/build/openfoam-6.20180805+dfsg1/platforms/linux64GccDPInt32Opt/src/Pstream/dummy/UOPwrite.C.dep'
+Making dependency list for source file UIPread.C
+realloc(): invalid next size
+make[2]: *** Deleting file '/build/openfoam-6.20180805+dfsg1/platforms/linux64GccDPInt32Opt/src/Pstream/dummy/UIPread.C.dep'
+Making dependency list for source file UPstream.C
+realloc(): invalid next size
+make[2]: *** Deleting file '/build/openfoam-6.20180805+dfsg1/platforms/linux64GccDPInt32Opt/src/Pstream/dummy/UPstream.C.dep'
+&lt;/pre&gt;
+&lt;p&gt;I'll have to continue investigating this one.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id6"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://tracker.debian.org/pkg/pyside2"&gt;pyside2&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I reported &lt;a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=906020"&gt;Debian bug #906020&lt;/a&gt; about missing Python 3 CMake config files,
+which was fixed Aug 28th. I began investigating how this would Pivy builds, but got sidetracked by a problem with the &lt;cite&gt;med-fichier&lt;/cite&gt; package.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="id7"&gt;
+&lt;h2&gt;&lt;a class="reference external" href="https://tracker.debian.org/pkg/freecad"&gt;freecad&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I ran into some build issues trying to update the package now that my Debian Unstable workstation is running Qt 5.11:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+error: invalid use of incomplete type ‘class QAction’
+     QAction* action = new QAction(tr("Remove"), this);
+&lt;/pre&gt;
+&lt;p&gt;There are several instances of this throughout the codebase that can basically be fixed with by adding some &lt;cite&gt;#include&lt;/cite&gt; s.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="projectchrono"&gt;
+&lt;h2&gt;projectchrono&lt;/h2&gt;
+&lt;p&gt;There was a bit of discussion about utilization of &lt;a class="reference external" href="http://www.projectchrono.org/"&gt;Project Chrono&lt;/a&gt;, an open source multi-physics simulation engine,
+in FreeCAD. One problem with pursuing this is that it isn't packaged at all for Debian, which is rather surprising! It seems like high-quality software.
+I began looking at packaging it and it actually doesn't seem that bad. One of the main issues is actually the naming: it's really long! There's also a
+bit of worry about naming collisions I'll have to look into. As of now, I have a working package except for the Python bindings. Enabling them results
+in this failure in the build process:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+[ 53%] Building CXX object src/demos/irrlicht/CMakeFiles/demo_IRR_soilbin.dir/demo_IRR_soilbin.cpp.o
+cd /build/project-chrono-3.0.0/obj-x86_64-linux-gnu/src/demos/irrlicht &amp;amp;&amp;amp; /usr/lib/ccache/c++  -DBP_USE_FIXEDPOINT_INT_32 -I/build/project-chrono-3.0.0/src -I/build/project-chrono-3.0.0/obj-x86_64-linux-gnu -I/build/project-chrono-3.0.0/src/chrono -I/build/project-chrono-3.0.0/src/chrono/collision/bullet -I/build/project-chrono-3.0.0/src/chrono/collision/gimpact -I/build/project-chrono-3.0.0/src/chrono/collision/convexdecomposition/HACD -I/usr/include/irrlicht  -g -O2 -fdebug-prefix-map=/build/project-chrono-3.0.0=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -pthread -fopenmp  -march=native -msse4.2 -mfpmath=sse  -march=native -mavx2  -march=native -mfma  -std=c++14 -pthread -fopenmp  -march=native -msse4.2 -mfpmath=sse  -march=native -mavx2  -march=native -mfma    -std=c++14 -pthread -fopenmp  -march=native -msse4.2 -mfpmath=sse  -march=native -mavx2  -march=native -mfma  -o CMakeFiles/demo_IRR_soilbin.dir/demo_IRR_soilbin.cpp.o -c /build/project-chrono-3.0.0/src/demos/irrlicht/demo_IRR_soilbin.cpp
+/build/project-chrono-3.0.0/obj-x86_64-linux-gnu/swig/ChModuleCorePYTHON_wrap.cxx: In member function 'virtual void chrono::ChLogPython::Output(const char*, size_t)':
+/build/project-chrono-3.0.0/obj-x86_64-linux-gnu/swig/ChModuleCorePYTHON_wrap.cxx:7610:23: error: format not a string literal and no format arguments [-Werror=format-security]
+     PySys_WriteStdout(buffer);
+                       ^~~~~~
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="opencamlib"&gt;
+&lt;h2&gt;opencamlib&lt;/h2&gt;
+&lt;p&gt;There was a problem with this package's doc depends, which I fixed at the end of August. However, it's still awaiting sponsorship to be uploaded
+into the Debian archives.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="med-fichier"&gt;
+&lt;h2&gt;med-fichier&lt;/h2&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://tracker.debian.org/pkg/med-fichier"&gt;med-fichier package&lt;/a&gt; in Debian currently is built with autotools but somewhat supports CMake builds, which
+would be nice to switch to as it would provide CMake configuration files in libmedc-dev. I worked on updating the package, but currently building docs is broken,
+and for some reason, the Fortran library is being statically linked.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="planet-freecad"&gt;
+&lt;h2&gt;Planet FreeCAD&lt;/h2&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://tracker.debian.org/pkg/planet-venus"&gt;planet-venus package&lt;/a&gt; in Debian is available for running your own RSS feed aggregation service.
+I wanted to set up a planet.freecad.io to provide exactly that. However, the current version of the package is broken, and it only works in Debian 7, a.k.a. old-old-stable.&lt;/p&gt;
+&lt;p&gt;I spent some time researching the state of the package, but it's fairly rough, and most importantly, upstream is far from active. I'd like to run the RSS service but
+fixing the package seems like a tall order.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="freecad-io"&gt;
+&lt;h2&gt;freecad.io&lt;/h2&gt;
+&lt;p&gt;We previously had two servers available to run some of the web services for the FreeCAD project, but sadly they rebooted but never came back online.&lt;/p&gt;
+&lt;p&gt;I'm now paying for a VPS in Frankfurt using the money from &lt;a class="reference external" href="https://patreon.com/kkremitzki"&gt;my Patreon&lt;/a&gt;. Unfortunately, it's a bit resource-strained
+from the FreeIPA server hogging things.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="if-you-like-my-work-as-described-above-and-would-like-to-support-me-continuing-to-improve-the-state-of-open-engineering-on-linux-please-contribute-to-my-patreon"&gt;
+&lt;h2&gt;If you like my work as described above and would like to support me continuing to improve the state of open engineering on Linux, &lt;a class="reference external" href="https://patreon.com/kkremitzki"&gt;please contribute to my Patreon!&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;&lt;/div&gt;</description><guid>/blog/free-software-activities-in-august-2018/</guid><pubDate>Wed, 12 Sep 2018 10:20:13 GMT</pubDate></item><item><title>Google Summer of Code 2018 with FreeCAD</title><link>/blog/google-summer-of-code-2018-with-freecad/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all! This post is my final work product for GSoC 2018 for the FreeCAD project.
 The main center for communication for FreeCAD is the forums, but we also coordinated things
 through the #freecad channel on Freenode.
 &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;amp;t=28478"&gt;The main thread for my project was here.&lt;/a&gt;&lt;/p&gt;
@@ -404,60 +570,4 @@ I had to look up a few volume formulas but otherwise the tests for the lengthly 
 &lt;p&gt;Additionally, there was an issue with both Loft and Pipe not claiming children correctly in the tree which I fixed.&lt;/p&gt;&lt;/div&gt;</description><category>mathjax</category><guid>/blog/gsoc-week-7-recap/</guid><pubDate>Fri, 28 Jul 2017 20:30:58 GMT</pubDate></item><item><title>GSoC Week 6 Recap</title><link>/blog/gsoc-week-6-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Short post this week! I was in Spokane, Washington, from July 15-19th for a robotics competition being held at the Annual International Meeting of my professional society,
 the American Society of Agricultural &amp;amp; Biological Engineers, or ASABE. I only had a smattering of time to work on the various FreeCAD bugs I have mentioned in previous posts
 so there isn't much to report on that front. Instead, I'll leave a picture from the beautiful Spokane downtown area.&lt;/p&gt;
-&lt;img alt="/images/gsoc-6-1.jpg" class="align-center" src="/images/gsoc-6-1.jpg"&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-6-recap/</guid><pubDate>Fri, 21 Jul 2017 05:26:28 GMT</pubDate></item><item><title>GSoC Week 5 recap</title><link>/blog/gsoc-week-5-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;This week started out with some interesting discussions on the future Python structure of FreeCAD, over
-&lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=10&amp;amp;t=23197"&gt;on the forums&lt;/a&gt;. This was especially salient
-as I have a bit of pain interacting with parts of the FreeCAD Python API and improvements to it would
-be a good long-term goal after finishing GSoC.&lt;/p&gt;
-&lt;p&gt;I decided that the &lt;tt class="docutils literal"&gt;TestPartDesignApp.py&lt;/tt&gt; file I had been working in thus far needed splitting up,
-as I was cramming almost every new test into it.
-The &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/blob/master/src/Mod/PartDesign/TestPartDesignApp.py"&gt;new version of this file&lt;/a&gt;
-is a pretty nice indicator of the overall status of PartDesign test coverage.&lt;/p&gt;
-&lt;p&gt;I also added some basic tests for datum tools, covering simple creation scenarios. While exploring the 4th datum
-tool, &lt;tt class="docutils literal"&gt;ShapeBinder&lt;/tt&gt;, I found a bug that causes a crash, so I will need to look into that shortly to see if it's an
-easy fix.&lt;/p&gt;
-&lt;p&gt;&lt;tt class="docutils literal"&gt;LinearPattern&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;PolarPattern&lt;/tt&gt; got 6 new tests each, covering all the major variations of sketch-
-or primitive-based features.&lt;/p&gt;
-&lt;p&gt;Finally, I added one new test for each of the dressup features, &lt;tt class="docutils literal"&gt;Fillet&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Chamfer&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;Draft&lt;/tt&gt;, and &lt;tt class="docutils literal"&gt;Thickness&lt;/tt&gt;.&lt;/p&gt;
-&lt;p&gt;Here's the pull request summarizing my work: &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/869"&gt;https://github.com/FreeCAD/FreeCAD/pull/869&lt;/a&gt;&lt;/p&gt;
-&lt;table border="1" class="docutils"&gt;
-&lt;colgroup&gt;
-&lt;col width="33%"&gt;
-&lt;col width="28%"&gt;
-&lt;col width="11%"&gt;
-&lt;col width="28%"&gt;
-&lt;/colgroup&gt;
-&lt;thead valign="bottom"&gt;
-&lt;tr&gt;&lt;th class="head"&gt;tool category&lt;/th&gt;
-&lt;th class="head"&gt;initial, current test count&lt;/th&gt;
-&lt;th class="head"&gt;status&lt;/th&gt;
-&lt;th class="head"&gt;notes&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody valign="top"&gt;
-&lt;tr&gt;&lt;td&gt;datum tools&lt;/td&gt;
-&lt;td&gt;0, 3&lt;/td&gt;
-&lt;td&gt;ready&lt;/td&gt;
-&lt;td&gt;found shapebinder crash bug&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;add. &amp;amp; sub. features/primitives&lt;/td&gt;
-&lt;td&gt;15, 15&lt;/td&gt;
-&lt;td&gt;ready&lt;/td&gt;
-&lt;td&gt; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;transformations&lt;/td&gt;
-&lt;td&gt;3, 15&lt;/td&gt;
-&lt;td&gt;ready&lt;/td&gt;
-&lt;td&gt;all done but MultiTransform&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;dressup features&lt;/td&gt;
-&lt;td&gt;0, 4&lt;/td&gt;
-&lt;td&gt;ready&lt;/td&gt;
-&lt;td&gt; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;boolean operation&lt;/td&gt;
-&lt;td&gt;0, 0&lt;/td&gt;
-&lt;td&gt;ready&lt;/td&gt;
-&lt;td&gt; &lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;&lt;/div&gt;</description><category>freecad</category><category>gsoc</category><guid>/blog/gsoc-week-5-recap/</guid><pubDate>Tue, 11 Jul 2017 19:45:35 GMT</pubDate></item></channel></rss>
+&lt;img alt="/images/gsoc-6-1.jpg" class="align-center" src="/images/gsoc-6-1.jpg"&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-6-recap/</guid><pubDate>Fri, 21 Jul 2017 05:26:28 GMT</pubDate></item></channel></rss>
