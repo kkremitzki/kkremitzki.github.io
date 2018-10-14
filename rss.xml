@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 13 Sep 2018 09:12:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Software Activities in August 2018</title><link>/blog/free-software-activities-in-august-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all! After reading some of the nice activity logs published by members of the
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 14 Oct 2018 03:49:37 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Software Activities in September 2018</title><link>/blog/free-software-activities-in-september-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all, unfortunately my update comes late again this month, although I have good reason! I just finished landing a job
+as a scientific software developer. From the looks of it, I'll mostly be working on things from a systems engineering perspective,
+but it'll be in the context of the scientific Python ecosystem as well as involving Qt. This is nice in that while I will have less
+free time to spend on FreeCAD, it will almost certainly be of increasingly higher quality.&lt;/p&gt;
+&lt;p&gt;Another interesting benefit of the job is that it will allow me to move back to Austin, which has the very well-equipped hackerspace
+&lt;a class="reference external" href="http://atxhs.org"&gt;ATX Hackerspace&lt;/a&gt;. I look forward to joining and having a chance to finally experiment with FreeCAD's CNC integrations,
+and to have a great space to hack on hardware and software.&lt;/p&gt;
+&lt;p&gt;Now, finally, to summarize what I've worked on in the month of September.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I created a &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;amp;t=31046"&gt;thread on the FreeCAD forums&lt;/a&gt; to announce the revival of the
+&lt;a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa"&gt;FreeCAD Community Extras PPA&lt;/a&gt;. This will be used to host packages of interest
+to the FreeCAD community, and things that need testing for possible future inclusion in FreeCAD. In retrospect, I should have used this PPA to get
+testers for the packages I was working on during my last Google Summer of Code.&lt;/li&gt;
+&lt;li&gt;&lt;dl class="first docutils"&gt;
+&lt;dt&gt;To this FreeCAD Community Extras PPA, I uploaded packages for:&lt;/dt&gt;
+&lt;dd&gt;&lt;ul class="first last"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/aewallin/opencamlib"&gt;OpenCAMLIB&lt;/a&gt;, a C++ library with Python bindings for creating 3D toolpaths for CNC machines such as mills and lathes.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/aewallin/openvoronoi"&gt;OpenVoronoi&lt;/a&gt;, another C++/Python library for 2D Voronoi diagrams for point and line-segment sites.&lt;/li&gt;
+&lt;li&gt;Laughlin Research's standalone &lt;a class="reference external" href="https://github.com/LaughlinResearch/SMESH"&gt;SMESH&lt;/a&gt;, the Salome meshing framework.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/NGSolve/netgen"&gt;Netgen&lt;/a&gt;'s latest release, 6.2.1807, a 3D tetrahedral mesh generator.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/IfcOpenShell/IfcOpenShell"&gt;IfcOpenShell&lt;/a&gt;, an open source Python IFC library and geometry engine.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/ifcquery/ifcplusplus"&gt;IfcPlusPlus&lt;/a&gt;, an open source C++ class model, reader, and writer for IFC files with simple Qt/OpenSceneGraph viewer application.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;/li&gt;
+&lt;li&gt;I have long been interested in having CAD database support, and I spent quite a bit of September working with my friend on research and initial work for this. From what we've found,
+we can feasibly have a PostgreSQL extension similar to PostGIS, but for CAD: &lt;a class="reference external" href="https://github.com/postcad"&gt;PostCAD&lt;/a&gt;. This would mainly involve a marriage between &lt;a class="reference external" href="https://www.opencascade.com/"&gt;OpenCASCADE&lt;/a&gt;, the C++ geometry and topology kernel of FreeCAD,
+and &lt;a class="reference external" href="https://github.com/jtv/libpqxx"&gt;libpqxx&lt;/a&gt;, the official C++ client library for PostgreSQL. The potential for such an extension would be huge, with all the power and features
+of PostgreSQL with an understanding of CAD data and geometry. For example, FreeCAD could interface with this database, and have the database take care of things like editing locks
+for models, permissions for readingn and writing of models, and so forth. Furthermore, by creating a database-level abstraction for CAD, that opens the way for web abstractions
+for CAD, similar to GeoDjango's GIS extensions for Django. That work could one day pave the way for a web interface for FreeCAD.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As always, if you appreciate the work I do with FreeCAD, the Debian Science Team, and Open Engineering on Linux, any level of support would be appreciated
+&lt;a class="reference external" href="https://patreon.com/kkremitzki"&gt;on my Patreon!&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><guid>/blog/free-software-activities-in-september-2018/</guid><pubDate>Sun, 14 Oct 2018 03:47:15 GMT</pubDate></item><item><title>Free Software Activities in August 2018</title><link>/blog/free-software-activities-in-august-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all! After reading some of the nice activity logs published by members of the
 Debian Project at &lt;a class="reference external" href="https://planet.debian.org"&gt;https://planet.debian.org&lt;/a&gt;, I've decided to publish my own version.
 This will mostly be my work on FreeCAD and Debian, but will also include other points
 of note from my many interests. I'll also include relevant activities for &lt;a class="reference external" href="https://www.patreon.com/kkremitzki"&gt;my supporters
@@ -567,7 +601,4 @@ the difference in volumes according to the formula for that shape, e.g.&lt;/p&gt
 &lt;p&gt;for Additive-&lt;span class="math"&gt;\(R\)&lt;/span&gt; and Subtractive-&lt;span class="math"&gt;\(r\)&lt;/span&gt; Primitive Spheres.
 I had to look up a few volume formulas but otherwise the tests for the lengthly list in the parentheses above went quickly.&lt;/p&gt;
 &lt;p&gt;I also fixed a bug with Loft sections not being hidden, so e.g. the Sketches being lofted to or through were still visible.&lt;/p&gt;
-&lt;p&gt;Additionally, there was an issue with both Loft and Pipe not claiming children correctly in the tree which I fixed.&lt;/p&gt;&lt;/div&gt;</description><category>mathjax</category><guid>/blog/gsoc-week-7-recap/</guid><pubDate>Fri, 28 Jul 2017 20:30:58 GMT</pubDate></item><item><title>GSoC Week 6 Recap</title><link>/blog/gsoc-week-6-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Short post this week! I was in Spokane, Washington, from July 15-19th for a robotics competition being held at the Annual International Meeting of my professional society,
-the American Society of Agricultural &amp;amp; Biological Engineers, or ASABE. I only had a smattering of time to work on the various FreeCAD bugs I have mentioned in previous posts
-so there isn't much to report on that front. Instead, I'll leave a picture from the beautiful Spokane downtown area.&lt;/p&gt;
-&lt;img alt="/images/gsoc-6-1.jpg" class="align-center" src="/images/gsoc-6-1.jpg"&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-6-recap/</guid><pubDate>Fri, 21 Jul 2017 05:26:28 GMT</pubDate></item></channel></rss>
+&lt;p&gt;Additionally, there was an issue with both Loft and Pipe not claiming children correctly in the tree which I fixed.&lt;/p&gt;&lt;/div&gt;</description><category>mathjax</category><guid>/blog/gsoc-week-7-recap/</guid><pubDate>Fri, 28 Jul 2017 20:30:58 GMT</pubDate></item></channel></rss>

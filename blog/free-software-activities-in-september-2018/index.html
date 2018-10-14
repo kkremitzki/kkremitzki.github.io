@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Software Activities in September 2018 | Biosystems Engineering Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../../assets/css/custom.css">
+<link rel="stylesheet" href="../../assets/css/code.css">
+<meta name="author" content="Kurt Kremitzki">
+<link rel="prev" href="../free-software-activities-in-august-2018/" title="Free Software Activities in August 2018" type="text/html">
+<meta property="og:site_name" content="Biosystems Engineering Blog">
+<meta property="og:title" content="Free Software Activities in September 2018">
+<meta property="og:url" content="/blog/free-software-activities-in-september-2018/">
+<meta property="og:description" content="Hello all, unfortunately my update comes late again this month, although I have good reason! I just finished landing a job
+as a scientific software developer. From the looks of it, I'll mostly be work">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-10-13T22:47:15-05:00">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../">About</a>
+                </li>
+<li>
+<a href="../">Blog</a>
+                </li>
+<li>
+<a href="../tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Free Software Activities in September 2018</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2018-10-13T22:47:15-05:00" itemprop="datePublished" title="2018-10-13 22:47">2018-10-13 22:47</time></a></p>
+                <p class="commentline">            <a href="#disqus_thread" data-disqus-identifier="cache/posts/free-software-activities-in-september-2018.html">Comments</a>
+
+
+            
+        </p>
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Hello all, unfortunately my update comes late again this month, although I have good reason! I just finished landing a job
+as a scientific software developer. From the looks of it, I'll mostly be working on things from a systems engineering perspective,
+but it'll be in the context of the scientific Python ecosystem as well as involving Qt. This is nice in that while I will have less
+free time to spend on FreeCAD, it will almost certainly be of increasingly higher quality.</p>
+<p>Another interesting benefit of the job is that it will allow me to move back to Austin, which has the very well-equipped hackerspace
+<a class="reference external" href="http://atxhs.org">ATX Hackerspace</a>. I look forward to joining and having a chance to finally experiment with FreeCAD's CNC integrations,
+and to have a great space to hack on hardware and software.</p>
+<p>Now, finally, to summarize what I've worked on in the month of September.</p>
+<ul class="simple">
+<li>I created a <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;t=31046">thread on the FreeCAD forums</a> to announce the revival of the
+<a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa">FreeCAD Community Extras PPA</a>. This will be used to host packages of interest
+to the FreeCAD community, and things that need testing for possible future inclusion in FreeCAD. In retrospect, I should have used this PPA to get
+testers for the packages I was working on during my last Google Summer of Code.</li>
+<li><dl class="first docutils">
+<dt>To this FreeCAD Community Extras PPA, I uploaded packages for:</dt>
+<dd><ul class="first last">
+<li>
+<a class="reference external" href="https://github.com/aewallin/opencamlib">OpenCAMLIB</a>, a C++ library with Python bindings for creating 3D toolpaths for CNC machines such as mills and lathes.</li>
+<li>
+<a class="reference external" href="https://github.com/aewallin/openvoronoi">OpenVoronoi</a>, another C++/Python library for 2D Voronoi diagrams for point and line-segment sites.</li>
+<li>Laughlin Research's standalone <a class="reference external" href="https://github.com/LaughlinResearch/SMESH">SMESH</a>, the Salome meshing framework.</li>
+<li>
+<a class="reference external" href="https://github.com/NGSolve/netgen">Netgen</a>'s latest release, 6.2.1807, a 3D tetrahedral mesh generator.</li>
+<li>
+<a class="reference external" href="https://github.com/IfcOpenShell/IfcOpenShell">IfcOpenShell</a>, an open source Python IFC library and geometry engine.</li>
+<li>
+<a class="reference external" href="https://github.com/ifcquery/ifcplusplus">IfcPlusPlus</a>, an open source C++ class model, reader, and writer for IFC files with simple Qt/OpenSceneGraph viewer application.</li>
+</ul></dd>
+</dl></li>
+<li>I have long been interested in having CAD database support, and I spent quite a bit of September working with my friend on research and initial work for this. From what we've found,
+we can feasibly have a PostgreSQL extension similar to PostGIS, but for CAD: <a class="reference external" href="https://github.com/postcad">PostCAD</a>. This would mainly involve a marriage between <a class="reference external" href="https://www.opencascade.com/">OpenCASCADE</a>, the C++ geometry and topology kernel of FreeCAD,
+and <a class="reference external" href="https://github.com/jtv/libpqxx">libpqxx</a>, the official C++ client library for PostgreSQL. The potential for such an extension would be huge, with all the power and features
+of PostgreSQL with an understanding of CAD data and geometry. For example, FreeCAD could interface with this database, and have the database take care of things like editing locks
+for models, permissions for readingn and writing of models, and so forth. Furthermore, by creating a database-level abstraction for CAD, that opens the way for web abstractions
+for CAD, similar to GeoDjango's GIS extensions for Django. That work could one day pave the way for a web interface for FreeCAD.</li>
+</ul>
+<p>As always, if you appreciate the work I do with FreeCAD, the Debian Science Team, and Open Engineering on Linux, any level of support would be appreciated
+<a class="reference external" href="https://patreon.com/kkremitzki">on my Patreon!</a></p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul class="pager hidden-print">
+<li class="previous">
+                <a href="../free-software-activities-in-august-2018/" rel="prev" title="Free Software Activities in August 2018">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+                        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="kkremitzki",
+            disqus_url="/blog/free-software-activities-in-september-2018/",
+        disqus_title="Free Software Activities in September 2018",
+        disqus_identifier="cache/posts/free-software-activities-in-september-2018.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2018         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

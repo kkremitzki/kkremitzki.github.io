@@ -71,7 +71,60 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="free-software-activities-in-august-2018/" class="u-url">Free Software Activities in August 2018</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="free-software-activities-in-september-2018/" class="u-url">Free Software Activities in September 2018</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="free-software-activities-in-september-2018/" rel="bookmark"><time class="published dt-published" datetime="2018-10-13T22:47:15-05:00" title="2018-10-13 22:47">2018-10-13 22:47</time></a></p>
+                <p class="commentline">            <a href="free-software-activities-in-september-2018/#disqus_thread" data-disqus-identifier="cache/posts/free-software-activities-in-september-2018.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Hello all, unfortunately my update comes late again this month, although I have good reason! I just finished landing a job
+as a scientific software developer. From the looks of it, I'll mostly be working on things from a systems engineering perspective,
+but it'll be in the context of the scientific Python ecosystem as well as involving Qt. This is nice in that while I will have less
+free time to spend on FreeCAD, it will almost certainly be of increasingly higher quality.</p>
+<p>Another interesting benefit of the job is that it will allow me to move back to Austin, which has the very well-equipped hackerspace
+<a class="reference external" href="http://atxhs.org">ATX Hackerspace</a>. I look forward to joining and having a chance to finally experiment with FreeCAD's CNC integrations,
+and to have a great space to hack on hardware and software.</p>
+<p>Now, finally, to summarize what I've worked on in the month of September.</p>
+<ul class="simple">
+<li>I created a <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;t=31046">thread on the FreeCAD forums</a> to announce the revival of the
+<a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa">FreeCAD Community Extras PPA</a>. This will be used to host packages of interest
+to the FreeCAD community, and things that need testing for possible future inclusion in FreeCAD. In retrospect, I should have used this PPA to get
+testers for the packages I was working on during my last Google Summer of Code.</li>
+<li><dl class="first docutils">
+<dt>To this FreeCAD Community Extras PPA, I uploaded packages for:</dt>
+<dd><ul class="first last">
+<li>
+<a class="reference external" href="https://github.com/aewallin/opencamlib">OpenCAMLIB</a>, a C++ library with Python bindings for creating 3D toolpaths for CNC machines such as mills and lathes.</li>
+<li>
+<a class="reference external" href="https://github.com/aewallin/openvoronoi">OpenVoronoi</a>, another C++/Python library for 2D Voronoi diagrams for point and line-segment sites.</li>
+<li>Laughlin Research's standalone <a class="reference external" href="https://github.com/LaughlinResearch/SMESH">SMESH</a>, the Salome meshing framework.</li>
+<li>
+<a class="reference external" href="https://github.com/NGSolve/netgen">Netgen</a>'s latest release, 6.2.1807, a 3D tetrahedral mesh generator.</li>
+<li>
+<a class="reference external" href="https://github.com/IfcOpenShell/IfcOpenShell">IfcOpenShell</a>, an open source Python IFC library and geometry engine.</li>
+<li>
+<a class="reference external" href="https://github.com/ifcquery/ifcplusplus">IfcPlusPlus</a>, an open source C++ class model, reader, and writer for IFC files with simple Qt/OpenSceneGraph viewer application.</li>
+</ul></dd>
+</dl></li>
+<li>I have long been interested in having CAD database support, and I spent quite a bit of September working with my friend on research and initial work for this. From what we've found,
+we can feasibly have a PostgreSQL extension similar to PostGIS, but for CAD: <a class="reference external" href="https://github.com/postcad">PostCAD</a>. This would mainly involve a marriage between <a class="reference external" href="https://www.opencascade.com/">OpenCASCADE</a>, the C++ geometry and topology kernel of FreeCAD,
+and <a class="reference external" href="https://github.com/jtv/libpqxx">libpqxx</a>, the official C++ client library for PostgreSQL. The potential for such an extension would be huge, with all the power and features
+of PostgreSQL with an understanding of CAD data and geometry. For example, FreeCAD could interface with this database, and have the database take care of things like editing locks
+for models, permissions for readingn and writing of models, and so forth. Furthermore, by creating a database-level abstraction for CAD, that opens the way for web abstractions
+for CAD, similar to GeoDjango's GIS extensions for Django. That work could one day pave the way for a web interface for FreeCAD.</li>
+</ul>
+<p>As always, if you appreciate the work I do with FreeCAD, the Debian Science Team, and Open Engineering on Linux, any level of support would be appreciated
+<a class="reference external" href="https://patreon.com/kkremitzki">on my Patreon!</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="free-software-activities-in-august-2018/" class="u-url">Free Software Activities in August 2018</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -757,25 +810,6 @@ the difference in volumes according to the formula for that shape, e.g.</p>
 I had to look up a few volume formulas but otherwise the tests for the lengthly list in the parentheses above went quickly.</p>
 <p>I also fixed a bug with Loft sections not being hidden, so e.g. the Sketches being lofted to or through were still visible.</p>
 <p>Additionally, there was an issue with both Loft and Pipe not claiming children correctly in the tree which I fixed.</p>
-</div>
-    </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-6-recap/" class="u-url">GSoC Week 6 Recap</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="gsoc-week-6-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-07-21T00:26:28-05:00" title="2017-07-21 00:26">2017-07-21 00:26</time></a></p>
-                <p class="commentline">            <a href="gsoc-week-6-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-6-recap.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>Short post this week! I was in Spokane, Washington, from July 15-19th for a robotics competition being held at the Annual International Meeting of my professional society,
-the American Society of Agricultural &amp; Biological Engineers, or ASABE. I only had a smattering of time to work on the various FreeCAD bugs I have mentioned in previous posts
-so there isn't much to report on that front. Instead, I'll leave a picture from the beautiful Spokane downtown area.</p>
-<img alt="/images/gsoc-6-1.jpg" class="align-center" src="../images/gsoc-6-1.jpg">
 </div>
     </div>
     </article>

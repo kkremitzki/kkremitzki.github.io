@@ -218,24 +218,24 @@ steps and begin contributing.</p>
 <li>Pull down a copy of the code. (If you don't have a copy of git, run <tt class="docutils literal">sudo <span class="pre">apt-get</span> install git</tt>.)</li>
 </ol>
 <blockquote>
-<pre class="code bash"><a name="rest_code_a962701523334754be06e32c5358acfe-1"></a>git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
-<a name="rest_code_a962701523334754be06e32c5358acfe-2"></a>mkdir freecad-build
+<pre class="code bash"><a name="rest_code_5a761703b7524de89885c13da3206943-1"></a>git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
+<a name="rest_code_5a761703b7524de89885c13da3206943-2"></a>mkdir freecad-build
 </pre>
 </blockquote>
 <ol class="arabic simple" start="2">
 <li>Install all dependencies.</li>
 </ol>
 <blockquote>
-<pre class="code bash"><a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-1"></a>sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev <span class="se">\</span>
-<a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-2"></a>  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  <span class="se">\</span>
-<a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-3"></a>  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev <span class="se">\</span>
-<a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-4"></a>  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools <span class="s1">'liboce*-dev'</span> <span class="se">\</span>
-<a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-5"></a>  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev <span class="se">\</span>
-<a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-6"></a>  libfreetype6 libfreetype6-dev
-<a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-7"></a>
-<a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-8"></a><span class="c1"># Install optional packages</span>
-<a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-9"></a>sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen <span class="se">\</span>
-<a name="rest_code_ad47aa293d46422c83e027c6a1fbaf51-10"></a>  libcoin80-doc libspnav-dev
+<pre class="code bash"><a name="rest_code_724e2e9839e34b22aca9f734240088d5-1"></a>sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev <span class="se">\</span>
+<a name="rest_code_724e2e9839e34b22aca9f734240088d5-2"></a>  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  <span class="se">\</span>
+<a name="rest_code_724e2e9839e34b22aca9f734240088d5-3"></a>  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev <span class="se">\</span>
+<a name="rest_code_724e2e9839e34b22aca9f734240088d5-4"></a>  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools <span class="s1">'liboce*-dev'</span> <span class="se">\</span>
+<a name="rest_code_724e2e9839e34b22aca9f734240088d5-5"></a>  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev <span class="se">\</span>
+<a name="rest_code_724e2e9839e34b22aca9f734240088d5-6"></a>  libfreetype6 libfreetype6-dev
+<a name="rest_code_724e2e9839e34b22aca9f734240088d5-7"></a>
+<a name="rest_code_724e2e9839e34b22aca9f734240088d5-8"></a><span class="c1"># Install optional packages</span>
+<a name="rest_code_724e2e9839e34b22aca9f734240088d5-9"></a>sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen <span class="se">\</span>
+<a name="rest_code_724e2e9839e34b22aca9f734240088d5-10"></a>  libcoin80-doc libspnav-dev
 </pre>
 </blockquote>
 <ol class="arabic simple" start="3">
@@ -245,9 +245,9 @@ Don't forget the period at the end of the <tt class="docutils literal">make</tt>
 <tt class="docutils literal"><span class="pre">freecad-build</span></tt> directory; it's good to keep the source code and build directories separate.</li>
 </ol>
 <blockquote>
-<pre class="code bash"><a name="rest_code_91a033ace30a4796b1534bbfe9a61aae-1"></a><span class="nb">cd</span> freecad-build
-<a name="rest_code_91a033ace30a4796b1534bbfe9a61aae-2"></a>cmake ../freecad-code
-<a name="rest_code_91a033ace30a4796b1534bbfe9a61aae-3"></a>make -j<span class="k">$(</span>nproc<span class="k">)</span> .
+<pre class="code bash"><a name="rest_code_15ad6619e2fc42439b2682ef3d6535f0-1"></a><span class="nb">cd</span> freecad-build
+<a name="rest_code_15ad6619e2fc42439b2682ef3d6535f0-2"></a>cmake ../freecad-code
+<a name="rest_code_15ad6619e2fc42439b2682ef3d6535f0-3"></a>make -j<span class="k">$(</span>nproc<span class="k">)</span> .
 </pre>
 </blockquote>
 <ol class="arabic simple" start="4">
@@ -255,10 +255,10 @@ Don't forget the period at the end of the <tt class="docutils literal">make</tt>
 error message, which occurs because the expected <tt class="docutils literal">libfreeimage.so</tt> file was moved into a subdirectory of <tt class="docutils literal">/usr/lib/</tt>.</li>
 </ol>
 <blockquote>
-<pre class="code bash"><a name="rest_code_e61adad8a680426f823c93496e7a2311-1"></a>make<span class="o">[</span><span class="m">2</span><span class="o">]</span>: *** No rule to make target <span class="s1">'/usr/lib/libfreeimage.so'</span>, needed by <span class="s1">'lib/libSMDS.so'</span>.  Stop.
-<a name="rest_code_e61adad8a680426f823c93496e7a2311-2"></a>
-<a name="rest_code_e61adad8a680426f823c93496e7a2311-3"></a><span class="c1"># Fix with this line.</span>
-<a name="rest_code_e61adad8a680426f823c93496e7a2311-4"></a>sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
+<pre class="code bash"><a name="rest_code_fdab30ee00454bd8b64d31a9d2633400-1"></a>make<span class="o">[</span><span class="m">2</span><span class="o">]</span>: *** No rule to make target <span class="s1">'/usr/lib/libfreeimage.so'</span>, needed by <span class="s1">'lib/libSMDS.so'</span>.  Stop.
+<a name="rest_code_fdab30ee00454bd8b64d31a9d2633400-2"></a>
+<a name="rest_code_fdab30ee00454bd8b64d31a9d2633400-3"></a><span class="c1"># Fix with this line.</span>
+<a name="rest_code_fdab30ee00454bd8b64d31a9d2633400-4"></a>sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
 </pre>
 </blockquote>
 <p>Once the build is complete, a runnable copy of the FreeCAD executable will be in the <tt class="docutils literal"><span class="pre">freecad-build</span></tt> folder. Any changes
@@ -308,7 +308,7 @@ However, when working directly in the Linux console, things are a little more co
 <p>My particular need is to swap the <tt class="docutils literal">Caps Lock</tt> and <tt class="docutils literal">Escape</tt> keys; as a <tt class="docutils literal">vim</tt> user, I use <tt class="docutils literal">Escape</tt> constantly to return to Normal mode.
 To be more efficient and avoid the possibility of repetitive strain injury from long-term pinky stretching to reach <tt class="docutils literal">Escape</tt>, the following line
 can be added to the file <tt class="docutils literal">/etc/rc.local</tt>, before the final line <tt class="docutils literal">exit 0</tt>.</p>
-<pre class="code bash"><a name="rest_code_286272761a104c409a83780aea25f62f-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
+<pre class="code bash"><a name="rest_code_f5f73a453f7c4255bc4403c8fda1edec-1"></a>/usr/bin/dumpkeys <span class="p">|</span> /bin/sed <span class="s1">'s/CtrlL_Lock/Escape/'</span> <span class="p">|</span> /usr/bin/loadkeys
 </pre>
 <p>If you aren't familiar with Bash, a little explanation might be in order. First, note that this single-line command is actually three
 commands separated by the pipe character <tt class="docutils literal">|</tt>.
@@ -384,51 +384,51 @@ validate measurements before adding to the rolling average</li>
 <li>The downside is a lag time in response to changes in the measurement, and the lag time goes up with accuracy</li>
 </ul>
 <p>Now, on to the code!</p>
-<pre class="code python"><a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-1"></a><span class="c1"># Create empty list-type variable so we can</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-2"></a><span class="c1"># store measurements</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-3"></a><span class="n">sensor_measurements</span> <span class="o">=</span> <span class="p">[]</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-4"></a>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-5"></a><span class="c1"># Declare these variables at a top level so you can</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-6"></a><span class="c1"># easily edit them once for your whole script to</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-7"></a><span class="c1"># test performance</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-8"></a><span class="n">upper_reasonable_bound</span> <span class="o">=</span> <span class="mi">200</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-9"></a><span class="n">lower_reasonable_bound</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-10"></a><span class="n">rolling_average_size</span> <span class="o">=</span> <span class="mi">4</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-11"></a>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-12"></a><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">):</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-13"></a>  <span class="sd">"""</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-14"></a><span class="sd">  Use the builtin functions sum and len to make a quick average function</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-15"></a><span class="sd">  """</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-16"></a>  <span class="c1"># Handle division by zero error</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-17"></a>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-18"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-19"></a>  <span class="k">else</span><span class="p">:</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-20"></a>    <span class="c1"># When you use the average later, make sure to include something like</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-21"></a>    <span class="c1"># sensor_average = rolling_average(sensor_measurements)</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-22"></a>    <span class="c1"># if (conditions) and sensor_average &gt; -1:</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-23"></a>    <span class="c1"># This way, -1 can be used as an "invalid" value</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-24"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-25"></a>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-26"></a><span class="k">def</span> <span class="nf">rolling_average</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-27"></a>  <span class="c1"># Update rolling average if measurement is ok, otherwise</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-28"></a>  <span class="c1"># skip to returning the average from previous values</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-29"></a>  <span class="k">if</span> <span class="n">lower_reasonable_bound</span> <span class="o">&lt;</span> <span class="n">measurement</span> <span class="o">&lt;</span> <span class="n">upper_reasonable_bound</span><span class="p">:</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-30"></a>    <span class="c1"># Remove first item from list if it's full according to our chosen size</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-31"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">rolling_average_size</span><span class="p">:</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-32"></a>      <span class="n">measurements</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-33"></a>    <span class="n">measurements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">measurement</span><span class="p">)</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-34"></a>  <span class="k">return</span> <span class="n">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-35"></a>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-36"></a><span class="c1"># Your control loop may be handled in another file</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-37"></a><span class="c1"># or with another method, here's an example usage</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-38"></a><span class="kn">import</span> <span class="nn">some_sensor_module</span> <span class="kn">as</span> <span class="nn">ssm</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-39"></a><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-40"></a>  <span class="n">sensor_measurement</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">some_sensor_function</span><span class="p">()</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-41"></a>  <span class="n">sensor_value</span> <span class="o">=</span> <span class="n">rolling_average</span><span class="p">(</span><span class="n">sensor_measurement</span><span class="p">,</span> <span class="n">sensor_measurements</span><span class="p">)</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-42"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">condition_using_sensor_value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-43"></a>    <span class="n">some_logic_handler_function</span><span class="p">(</span><span class="n">sensor_value</span><span class="p">)</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-44"></a>  <span class="k">else</span><span class="p">:</span>
-<a name="rest_code_12b37acf4c0c4c0183938895729dc1b4-45"></a>    <span class="c1"># and so forth</span>
+<pre class="code python"><a name="rest_code_38454da406a34fc49e256edc499385e6-1"></a><span class="c1"># Create empty list-type variable so we can</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-2"></a><span class="c1"># store measurements</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-3"></a><span class="n">sensor_measurements</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-4"></a>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-5"></a><span class="c1"># Declare these variables at a top level so you can</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-6"></a><span class="c1"># easily edit them once for your whole script to</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-7"></a><span class="c1"># test performance</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-8"></a><span class="n">upper_reasonable_bound</span> <span class="o">=</span> <span class="mi">200</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-9"></a><span class="n">lower_reasonable_bound</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-10"></a><span class="n">rolling_average_size</span> <span class="o">=</span> <span class="mi">4</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-11"></a>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-12"></a><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">):</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-13"></a>  <span class="sd">"""</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-14"></a><span class="sd">  Use the builtin functions sum and len to make a quick average function</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-15"></a><span class="sd">  """</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-16"></a>  <span class="c1"># Handle division by zero error</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-17"></a>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-18"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-19"></a>  <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-20"></a>    <span class="c1"># When you use the average later, make sure to include something like</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-21"></a>    <span class="c1"># sensor_average = rolling_average(sensor_measurements)</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-22"></a>    <span class="c1"># if (conditions) and sensor_average &gt; -1:</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-23"></a>    <span class="c1"># This way, -1 can be used as an "invalid" value</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-24"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-25"></a>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-26"></a><span class="k">def</span> <span class="nf">rolling_average</span><span class="p">(</span><span class="n">measurement</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-27"></a>  <span class="c1"># Update rolling average if measurement is ok, otherwise</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-28"></a>  <span class="c1"># skip to returning the average from previous values</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-29"></a>  <span class="k">if</span> <span class="n">lower_reasonable_bound</span> <span class="o">&lt;</span> <span class="n">measurement</span> <span class="o">&lt;</span> <span class="n">upper_reasonable_bound</span><span class="p">:</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-30"></a>    <span class="c1"># Remove first item from list if it's full according to our chosen size</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-31"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">rolling_average_size</span><span class="p">:</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-32"></a>      <span class="n">measurements</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-33"></a>    <span class="n">measurements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">measurement</span><span class="p">)</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-34"></a>  <span class="k">return</span> <span class="n">average</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-35"></a>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-36"></a><span class="c1"># Your control loop may be handled in another file</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-37"></a><span class="c1"># or with another method, here's an example usage</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-38"></a><span class="kn">import</span> <span class="nn">some_sensor_module</span> <span class="kn">as</span> <span class="nn">ssm</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-39"></a><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-40"></a>  <span class="n">sensor_measurement</span> <span class="o">=</span> <span class="n">ssm</span><span class="o">.</span><span class="n">some_sensor_function</span><span class="p">()</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-41"></a>  <span class="n">sensor_value</span> <span class="o">=</span> <span class="n">rolling_average</span><span class="p">(</span><span class="n">sensor_measurement</span><span class="p">,</span> <span class="n">sensor_measurements</span><span class="p">)</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-42"></a>  <span class="k">if</span> <span class="p">(</span><span class="n">condition_using_sensor_value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">sensor_value</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-43"></a>    <span class="n">some_logic_handler_function</span><span class="p">(</span><span class="n">sensor_value</span><span class="p">)</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-44"></a>  <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_38454da406a34fc49e256edc499385e6-45"></a>    <span class="c1"># and so forth</span>
 </pre>
 <p>Let me know in the comments if you have any questions or feedback!</p>
 </div>
@@ -447,7 +447,7 @@ validate measurements before adding to the rolling average</li>
     </header><div class="e-content entry-content">
     <div>
 <p>This one is short, sweet, and to the point. How often do you have your PDF set to a nice zoom level, only to have it reset when navigating via the Bookmarks/Index? If you use GNOME as a Linux DE (desktop environment), then you can fire up a terminal and use this <tt class="docutils literal">gsettings</tt> one-liner to preserve zoom:</p>
-<pre class="code bash"><a name="rest_code_b6105e6f173a4d5f8b4e91dee87f7994-1"></a>gsettings <span class="nb">set</span> org.gnome.Evince allow-links-change-zoom <span class="nb">false</span>
+<pre class="code bash"><a name="rest_code_372e9c40139e4c4288c8ff0d7af510cd-1"></a>gsettings <span class="nb">set</span> org.gnome.Evince allow-links-change-zoom <span class="nb">false</span>
 </pre>
 <p>A great alternative PDF reader is the <tt class="docutils literal">vim</tt>-key friendly <a class="reference external" href="https://pwmt.org/projects/zathura/">zathura</a>. I've had issues opening larger PDFs with it though, so your mileage may vary.</p>
 </div>
@@ -469,22 +469,22 @@ validate measurements before adding to the rolling average</li>
 Command-line setup involves editing two files, <tt class="docutils literal">/etc/network/interfaces</tt> and <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>. Since these are system files, they won't be writable by a normal user. The command <tt class="docutils literal">sudo <span class="pre">-e</span> &lt;filename&gt;</tt> can be used to edit system files with superuser privileges, using the default editor. Normally, this is the program <tt class="docutils literal">nano</tt>, which is fairly self-explanatory; make your changes using the keyboard and save the file with <tt class="docutils literal"><span class="pre">Ctrl-X</span></tt>. For advanced users, this can be changed via something like <tt class="docutils literal">export EDITOR=vi</tt>.</p>
 <p>The first file, <tt class="docutils literal">/etc/network/interfaces</tt>, needs to have the following:</p>
 <!-- TEASER_END -->
-<pre class="code bash"><a name="rest_code_2029acd4575142dab2565dcafa898f8d-1"></a>allow-hotplug wlan0
-<a name="rest_code_2029acd4575142dab2565dcafa898f8d-2"></a>iface wlan0 inet dhcp
-<a name="rest_code_2029acd4575142dab2565dcafa898f8d-3"></a>  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+<pre class="code bash"><a name="rest_code_7e3b87ecd5fd4b3a8f57cc8d1204b5f5-1"></a>allow-hotplug wlan0
+<a name="rest_code_7e3b87ecd5fd4b3a8f57cc8d1204b5f5-2"></a>iface wlan0 inet dhcp
+<a name="rest_code_7e3b87ecd5fd4b3a8f57cc8d1204b5f5-3"></a>  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 </pre>
 <p>The <tt class="docutils literal"><span class="pre">allow-hotplug</span></tt> line allows the <tt class="docutils literal">wlan0</tt> (wireless LAN) interface to be brought up when hotplugged into a running Raspberry Pi.
 The <tt class="docutils literal">iface ... dhcp</tt> line means we are requesting an IP address from the wireless network's DHCP servers, and the <tt class="docutils literal"><span class="pre">wpa-conf</span></tt> line specifies which file to use for our auth config.</p>
 <p>In <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>, you should have:</p>
-<pre class="code bash"><a name="rest_code_d1fb4f77c87948f2a0a44cd79c8b7502-1"></a><span class="nv">network</span><span class="o">={</span>
-<a name="rest_code_d1fb4f77c87948f2a0a44cd79c8b7502-2"></a>     <span class="nv">ssid</span><span class="o">=</span>”tamulink-wpa”
-<a name="rest_code_d1fb4f77c87948f2a0a44cd79c8b7502-3"></a>     <span class="nv">scan_ssid</span><span class="o">=</span><span class="m">1</span>
-<a name="rest_code_d1fb4f77c87948f2a0a44cd79c8b7502-4"></a>     <span class="nv">key_mgmt</span><span class="o">=</span>WPA-EAP
-<a name="rest_code_d1fb4f77c87948f2a0a44cd79c8b7502-5"></a>     <span class="nv">eap</span><span class="o">=</span>PEAP
-<a name="rest_code_d1fb4f77c87948f2a0a44cd79c8b7502-6"></a>     <span class="nv">identity</span><span class="o">=</span>”YOUR_NET_ID”
-<a name="rest_code_d1fb4f77c87948f2a0a44cd79c8b7502-7"></a>     <span class="nv">password</span><span class="o">=</span>”YOUR_TAMU_PASSWORD”
-<a name="rest_code_d1fb4f77c87948f2a0a44cd79c8b7502-8"></a>     <span class="nv">pairwise</span><span class="o">=</span>CCMP
-<a name="rest_code_d1fb4f77c87948f2a0a44cd79c8b7502-9"></a><span class="o">}</span>
+<pre class="code bash"><a name="rest_code_27888b4435054b749d8be63f56eef802-1"></a><span class="nv">network</span><span class="o">={</span>
+<a name="rest_code_27888b4435054b749d8be63f56eef802-2"></a>     <span class="nv">ssid</span><span class="o">=</span>”tamulink-wpa”
+<a name="rest_code_27888b4435054b749d8be63f56eef802-3"></a>     <span class="nv">scan_ssid</span><span class="o">=</span><span class="m">1</span>
+<a name="rest_code_27888b4435054b749d8be63f56eef802-4"></a>     <span class="nv">key_mgmt</span><span class="o">=</span>WPA-EAP
+<a name="rest_code_27888b4435054b749d8be63f56eef802-5"></a>     <span class="nv">eap</span><span class="o">=</span>PEAP
+<a name="rest_code_27888b4435054b749d8be63f56eef802-6"></a>     <span class="nv">identity</span><span class="o">=</span>”YOUR_NET_ID”
+<a name="rest_code_27888b4435054b749d8be63f56eef802-7"></a>     <span class="nv">password</span><span class="o">=</span>”YOUR_TAMU_PASSWORD”
+<a name="rest_code_27888b4435054b749d8be63f56eef802-8"></a>     <span class="nv">pairwise</span><span class="o">=</span>CCMP
+<a name="rest_code_27888b4435054b749d8be63f56eef802-9"></a><span class="o">}</span>
 </pre>
 <p>Make sure that there is no space in <tt class="docutils literal">network={</tt>, and that the ssid, identity and passwords are wrapped in quotes.</p>
 <p>The network can be brought up or down via <tt class="docutils literal">sudo ifup wlan0</tt> or <tt class="docutils literal">sudo ifdown wlan0</tt>.</p>
@@ -509,10 +509,10 @@ This post is advice mainly targeted at everyone in the class.
 Here are a few useful snippets when starting your first big Python project.</p>
 <p class="h3">Imports</p>
 <p>If you're working on a file, e.g. <tt class="docutils literal">code.py</tt>, and it's getting large, you can break off some of that code (usually functions) into another file. Let's say you name this file <tt class="docutils literal">functions.py</tt>. Then, in your original file, you would add to the top:</p>
-<pre class="code python"><a name="rest_code_d4b3d09f664948a880ba24ad2cced300-1"></a><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">function1</span><span class="p">,</span> <span class="n">function2</span> <span class="c1"># etc</span>
-<a name="rest_code_d4b3d09f664948a880ba24ad2cced300-2"></a><span class="c1"># if you have a lot of functions, you can use something like</span>
-<a name="rest_code_d4b3d09f664948a880ba24ad2cced300-3"></a><span class="c1"># from functions import (function1, function2, ... ,</span>
-<a name="rest_code_d4b3d09f664948a880ba24ad2cced300-4"></a><span class="c1">#                        functionN_minus_one, functionN)</span>
+<pre class="code python"><a name="rest_code_1e464a2ed2e442a7818ae318480eda4f-1"></a><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">function1</span><span class="p">,</span> <span class="n">function2</span> <span class="c1"># etc</span>
+<a name="rest_code_1e464a2ed2e442a7818ae318480eda4f-2"></a><span class="c1"># if you have a lot of functions, you can use something like</span>
+<a name="rest_code_1e464a2ed2e442a7818ae318480eda4f-3"></a><span class="c1"># from functions import (function1, function2, ... ,</span>
+<a name="rest_code_1e464a2ed2e442a7818ae318480eda4f-4"></a><span class="c1">#                        functionN_minus_one, functionN)</span>
 </pre>
 <p>An example of how to use this, in the context of BAEN370, would be using the following project structure:</p>
 <pre class="literal-block">
@@ -524,56 +524,56 @@ baen370/
 <p>Then, those files' contents would look something like this:</p>
 <!-- TEASER_END -->
 <p><strong>run.py</strong></p>
-<pre class="code python"><a name="rest_code_50d54a73faa44ba3a40f7228196134b8-1"></a><span class="kn">from</span> <span class="nn">navigation</span> <span class="kn">import</span> <span class="n">NavigationStrategy</span>
-<a name="rest_code_50d54a73faa44ba3a40f7228196134b8-2"></a><span class="c1"># Add more imports like this if you need something from sensors.py, etc.</span>
-<a name="rest_code_50d54a73faa44ba3a40f7228196134b8-3"></a>
-<a name="rest_code_50d54a73faa44ba3a40f7228196134b8-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
-<a name="rest_code_50d54a73faa44ba3a40f7228196134b8-5"></a>  <span class="c1"># Bundle your code for how to handle the maze into one function.</span>
-<a name="rest_code_50d54a73faa44ba3a40f7228196134b8-6"></a>  <span class="c1"># That way you can have a file just for running the maze, and you</span>
-<a name="rest_code_50d54a73faa44ba3a40f7228196134b8-7"></a>  <span class="c1"># can work on other functions by themselves in logically separated files.</span>
-<a name="rest_code_50d54a73faa44ba3a40f7228196134b8-8"></a>  <span class="n">NavigationStrategy</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_904f712b03714164a1c2271cb91d4324-1"></a><span class="kn">from</span> <span class="nn">navigation</span> <span class="kn">import</span> <span class="n">NavigationStrategy</span>
+<a name="rest_code_904f712b03714164a1c2271cb91d4324-2"></a><span class="c1"># Add more imports like this if you need something from sensors.py, etc.</span>
+<a name="rest_code_904f712b03714164a1c2271cb91d4324-3"></a>
+<a name="rest_code_904f712b03714164a1c2271cb91d4324-4"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+<a name="rest_code_904f712b03714164a1c2271cb91d4324-5"></a>  <span class="c1"># Bundle your code for how to handle the maze into one function.</span>
+<a name="rest_code_904f712b03714164a1c2271cb91d4324-6"></a>  <span class="c1"># That way you can have a file just for running the maze, and you</span>
+<a name="rest_code_904f712b03714164a1c2271cb91d4324-7"></a>  <span class="c1"># can work on other functions by themselves in logically separated files.</span>
+<a name="rest_code_904f712b03714164a1c2271cb91d4324-8"></a>  <span class="n">NavigationStrategy</span><span class="p">()</span>
 </pre>
 <p><strong>navigation.py</strong></p>
-<pre class="code python"><a name="rest_code_97da9a16adce47b295b8b8a0429238ce-1"></a><span class="kn">from</span> <span class="nn">sensors</span> <span class="kn">import</span> <span class="n">front_prox</span><span class="p">,</span> <span class="n">right_prox</span><span class="p">,</span> <span class="n">front_far</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-2"></a>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-3"></a><span class="k">def</span> <span class="nf">NavigationStrategy</span><span class="p">():</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-4"></a>  <span class="c1"># Describe your navigation strategy here.</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-5"></a>  <span class="c1"># It might look something like this, if you're doing a right-following strategy</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-6"></a>  <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-7"></a>    <span class="k">while</span> <span class="n">front_far</span><span class="p">()</span> <span class="ow">and</span> <span class="n">right_prox</span><span class="p">():</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-8"></a>      <span class="k">if</span> <span class="ow">not</span> <span class="n">front_prox</span><span class="p">():</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-9"></a>        <span class="c1"># gotta go fast</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-10"></a>      <span class="k">else</span><span class="p">:</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-11"></a>        <span class="c1"># slow it down</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-12"></a>    <span class="k">while</span> <span class="ow">not</span> <span class="n">right_prox</span><span class="p">():</span>
-<a name="rest_code_97da9a16adce47b295b8b8a0429238ce-13"></a>      <span class="c1"># How will you handle a right proximity sensor saying "there's no wall nearby"?</span>
+<pre class="code python"><a name="rest_code_a619aa749ed24a269fc0658d04644dae-1"></a><span class="kn">from</span> <span class="nn">sensors</span> <span class="kn">import</span> <span class="n">front_prox</span><span class="p">,</span> <span class="n">right_prox</span><span class="p">,</span> <span class="n">front_far</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-2"></a>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-3"></a><span class="k">def</span> <span class="nf">NavigationStrategy</span><span class="p">():</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-4"></a>  <span class="c1"># Describe your navigation strategy here.</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-5"></a>  <span class="c1"># It might look something like this, if you're doing a right-following strategy</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-6"></a>  <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-7"></a>    <span class="k">while</span> <span class="n">front_far</span><span class="p">()</span> <span class="ow">and</span> <span class="n">right_prox</span><span class="p">():</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-8"></a>      <span class="k">if</span> <span class="ow">not</span> <span class="n">front_prox</span><span class="p">():</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-9"></a>        <span class="c1"># gotta go fast</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-10"></a>      <span class="k">else</span><span class="p">:</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-11"></a>        <span class="c1"># slow it down</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-12"></a>    <span class="k">while</span> <span class="ow">not</span> <span class="n">right_prox</span><span class="p">():</span>
+<a name="rest_code_a619aa749ed24a269fc0658d04644dae-13"></a>      <span class="c1"># How will you handle a right proximity sensor saying "there's no wall nearby"?</span>
 </pre>
 <p><strong>sensors.py</strong></p>
 <p>In this example, I could have used <tt class="docutils literal">from gopigo import *</tt>, but this is discouraged. For more on why, check out <a class="reference external" href="http://stackoverflow.com/a/2360808">http://stackoverflow.com/a/2360808</a>.</p>
-<pre class="code python"><a name="rest_code_efeb687dd78341169de8c74f0bc3c407-1"></a><span class="kn">import</span> <span class="nn">gopigo</span> <span class="kn">as</span> <span class="nn">gpg</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-2"></a><span class="c1"># Don't do this:</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-3"></a><span class="c1"># from gopigo import *</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-4"></a>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-5"></a><span class="c1"># Set your thresholds for what is "close" and "far" here</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-6"></a><span class="n">near_threshold</span> <span class="o">=</span> <span class="mi">15</span> <span class="c1"># cm, assuming sensors' voltage-&gt;cm math is true</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-7"></a><span class="n">far_threshold</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># cm</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-8"></a>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-9"></a><span class="k">def</span> <span class="nf">front_prox</span><span class="p">():</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-10"></a>  <span class="c1"># write a function that looks like</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-11"></a>  <span class="k">if</span> <span class="n">some_condition</span> <span class="c1">#  sensor says stuff is near</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-12"></a>    <span class="k">return</span> <span class="bp">True</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-13"></a>  <span class="c1"># No need for else here</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-14"></a>  <span class="k">return</span> <span class="bp">False</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-15"></a>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-16"></a><span class="k">def</span> <span class="nf">right_prox</span><span class="p">:</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-17"></a>  <span class="c1"># something similar to front_prox. replace "pass" with the definition of the function</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-18"></a>  <span class="k">pass</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-19"></a>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-20"></a><span class="k">def</span> <span class="nf">front_far</span><span class="p">:</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-21"></a>  <span class="c1"># If you want to try to speed up in a straightaway,</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-22"></a>  <span class="c1"># write something that returns True when it should go fast</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-23"></a>  <span class="c1"># Replace "pass" with your code.</span>
-<a name="rest_code_efeb687dd78341169de8c74f0bc3c407-24"></a>  <span class="k">pass</span>
+<pre class="code python"><a name="rest_code_e24029f90fc4411ca9cb53493947b780-1"></a><span class="kn">import</span> <span class="nn">gopigo</span> <span class="kn">as</span> <span class="nn">gpg</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-2"></a><span class="c1"># Don't do this:</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-3"></a><span class="c1"># from gopigo import *</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-4"></a>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-5"></a><span class="c1"># Set your thresholds for what is "close" and "far" here</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-6"></a><span class="n">near_threshold</span> <span class="o">=</span> <span class="mi">15</span> <span class="c1"># cm, assuming sensors' voltage-&gt;cm math is true</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-7"></a><span class="n">far_threshold</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># cm</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-8"></a>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-9"></a><span class="k">def</span> <span class="nf">front_prox</span><span class="p">():</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-10"></a>  <span class="c1"># write a function that looks like</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-11"></a>  <span class="k">if</span> <span class="n">some_condition</span> <span class="c1">#  sensor says stuff is near</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-12"></a>    <span class="k">return</span> <span class="bp">True</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-13"></a>  <span class="c1"># No need for else here</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-14"></a>  <span class="k">return</span> <span class="bp">False</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-15"></a>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-16"></a><span class="k">def</span> <span class="nf">right_prox</span><span class="p">:</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-17"></a>  <span class="c1"># something similar to front_prox. replace "pass" with the definition of the function</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-18"></a>  <span class="k">pass</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-19"></a>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-20"></a><span class="k">def</span> <span class="nf">front_far</span><span class="p">:</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-21"></a>  <span class="c1"># If you want to try to speed up in a straightaway,</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-22"></a>  <span class="c1"># write something that returns True when it should go fast</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-23"></a>  <span class="c1"># Replace "pass" with your code.</span>
+<a name="rest_code_e24029f90fc4411ca9cb53493947b780-24"></a>  <span class="k">pass</span>
 </pre>
 <p class="h3">Using IDLE</p>
 <p>IDLE is not the best tool for the job (I'd recommend the free IDE, Spyder) but if it's the tool you use, you might as well get the most out of it.
@@ -639,31 +639,31 @@ to solve for the <span class="math">\(n\)</span>th variable. We can create <tt c
 set of knowns, and pass in any (independent) combination of <span class="math">\(n-1\)</span> variables from
 our expression to get a number.</p>
 <!-- TEASER_END -->
-<pre class="code python"><a name="rest_code_dffc240fc2134b9d9fa7964beb912667-1"></a><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">solve</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-2"></a>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-3"></a><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">Rh</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'v, n, Rh, S'</span><span class="p">)</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-4"></a>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-5"></a><span class="n">knowns_1</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-6"></a><span class="n">knowns_2</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">}</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-7"></a><span class="n">knowns_3</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-8"></a>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-9"></a><span class="k">def</span> <span class="nf">solve_mannings</span><span class="p">(</span><span class="n">input_dict</span><span class="p">):</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-10"></a>    <span class="n">mannings_eqn</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span> <span class="o">+</span> <span class="mf">1.49</span><span class="o">/</span><span class="n">n</span> <span class="o">*</span> <span class="n">Rh</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">S</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-11"></a>    <span class="c1"># Use dict flag to get {variable: value} output, not anonymous [value]</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-12"></a>    <span class="n">solution</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mannings_eqn</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">input_dict</span><span class="p">),</span> <span class="nb">dict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-13"></a>    <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-14"></a>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-15"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_1</span><span class="p">)</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-16"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_2</span><span class="p">)</span>
-<a name="rest_code_dffc240fc2134b9d9fa7964beb912667-17"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_3</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_462e251dcf6a48f8b083f28c99342a12-1"></a><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">solve</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-2"></a>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-3"></a><span class="n">v</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">Rh</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">'v, n, Rh, S'</span><span class="p">)</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-4"></a>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-5"></a><span class="n">knowns_1</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.025</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">}</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-6"></a><span class="n">knowns_2</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">S</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">}</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-7"></a><span class="n">knowns_3</span> <span class="o">=</span> <span class="p">{</span><span class="n">n</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">Rh</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-8"></a>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-9"></a><span class="k">def</span> <span class="nf">solve_mannings</span><span class="p">(</span><span class="n">input_dict</span><span class="p">):</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-10"></a>    <span class="n">mannings_eqn</span> <span class="o">=</span> <span class="o">-</span><span class="n">v</span> <span class="o">+</span> <span class="mf">1.49</span><span class="o">/</span><span class="n">n</span> <span class="o">*</span> <span class="n">Rh</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">S</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-11"></a>    <span class="c1"># Use dict flag to get {variable: value} output, not anonymous [value]</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-12"></a>    <span class="n">solution</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">mannings_eqn</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">input_dict</span><span class="p">),</span> <span class="nb">dict</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-13"></a>    <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-14"></a>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-15"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_1</span><span class="p">)</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-16"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_2</span><span class="p">)</span>
+<a name="rest_code_462e251dcf6a48f8b083f28c99342a12-17"></a><span class="n">solve_mannings</span><span class="p">(</span><span class="n">knowns_3</span><span class="p">)</span>
 </pre>
 <p>However, the third set of knowns gives us an
 <a class="reference external" href="https://en.wikipedia.org/wiki/Underdetermined_system">underdetermined system</a>
 since we only have two equations for our four-variable system. Accordingly, we
 will have as output one variable as a function of another, in this case <span class="math">\(S\)</span>:</p>
-<pre class="code python"><a name="rest_code_34f51aa16baf4b21be66e159420343c2-1"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">27.6638694483322</span><span class="p">}]</span>
-<a name="rest_code_34f51aa16baf4b21be66e159420343c2-2"></a><span class="p">[{</span><span class="n">Rh</span><span class="p">:</span> <span class="mf">5.19987727958683</span><span class="p">}]</span>
-<a name="rest_code_34f51aa16baf4b21be66e159420343c2-3"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">87.1357285987434</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S</span><span class="p">)}]</span>
+<pre class="code python"><a name="rest_code_7504a2401c7f415ba8ef3d41008e4c0e-1"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">27.6638694483322</span><span class="p">}]</span>
+<a name="rest_code_7504a2401c7f415ba8ef3d41008e4c0e-2"></a><span class="p">[{</span><span class="n">Rh</span><span class="p">:</span> <span class="mf">5.19987727958683</span><span class="p">}]</span>
+<a name="rest_code_7504a2401c7f415ba8ef3d41008e4c0e-3"></a><span class="p">[{</span><span class="n">v</span><span class="p">:</span> <span class="mf">87.1357285987434</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S</span><span class="p">)}]</span>
 </pre>
 </div>
     </div>
