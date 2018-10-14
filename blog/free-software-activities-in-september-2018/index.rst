@@ -37,4 +37,8 @@ Now, finally, to summarize what I've worked on in the month of September.
   for CAD, similar to GeoDjango's GIS extensions for Django. That work could one day pave the way for a web interface for FreeCAD.
 
 As always, if you appreciate the work I do with FreeCAD, the Debian Science Team, and Open Engineering on Linux, any level of support would be appreciated
-`on my Patreon! <https://patreon.com/kkremitzki>`_
+`on my Patreon! <https://patreon.com/kkremitzki>`_ Currently this money helps offset server costs for some of the experimental FreeCAD community stuff.
+I would like to continue to use it to offset my costs for FreeCAD development and equipment. If I can reach my current goal of $100/month, I'd like to
+use it to purchase a `Pinebook, a $99 ARM64 laptop <https://www.pine64.org/?page_id=3707>`_ which I could use for FreeCAD & Debian ARM development.
+I'd really like FreeCAD to be usable (and not painfully slow) on ARM since its low-cost nature means it is highly available for educational institutions.
+Maybe one day I'll even be able to afford milling/CNC equipment so I can see just how far FreeCAD integration can take us!
