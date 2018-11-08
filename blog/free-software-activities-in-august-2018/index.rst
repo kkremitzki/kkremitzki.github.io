@@ -1,7 +1,7 @@
 .. title: Free Software Activities in August 2018
 .. slug: free-software-activities-in-august-2018
 .. date: 2018-09-12 05:20:13 UTC-05:00
-.. tags: 
+.. tags: debian
 .. category: 
 .. link: 
 .. description: 

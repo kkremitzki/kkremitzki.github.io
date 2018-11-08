@@ -19,7 +19,6 @@ article: http://ogp.me/ns/article#
 <link rel="next" href="index-2.html" type="text/html">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><script src="../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../assets/css/custom.css">
 <link rel="stylesheet" href="../assets/css/code.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -71,7 +70,44 @@ article: http://ogp.me/ns/article#
     
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="free-software-activities-in-september-2018/" class="u-url">Free Software Activities in September 2018</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="beginning-debian-development-a-review/" class="u-url">Beginning Debian Development: A Review</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="beginning-debian-development-a-review/" rel="bookmark"><time class="published dt-published" datetime="2018-10-15T07:00:14-05:00" title="2018-10-15 07:00">2018-10-15 07:00</time></a></p>
+                <p class="commentline">            <a href="beginning-debian-development-a-review/#disqus_thread" data-disqus-identifier="cache/posts/beginning-debian-development-a-review.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Write your post here.</p>
+<p># Why You Should
+Debian is the upstream of several other Linux distributions such as Ubuntu and Linux Mint.
+Improvements made to Debian improve the entire Debian-family ecosystem.</p>
+<p>Debian Unstable represents the tip of Debian development; it is a rolling release distribution
+where packages become available as soon as they are uploaded and built. Because of that, it earns
+its name 'Unstable' and can be more difficult to use than, say, an Ubuntu LTS, but it also
+provides the opportunity to hone one's skills and participate in Debian development, and those
+skills can be readily transferred if one wishes to contribute to Ubuntu or any other Debian-family
+distro.</p>
+<p># Getting Started
+Setting up a VM or using real hardware</p>
+<p># Debian Packaging Concepts
+Source folder and debian folder, accretion of tools,
+many packaging ecosystems, build tools, etc
+Link to modern debian packaging github</p>
+<p># Debian Development Tools
+salsa, tracker, BTS, apt-file, debian codesearch</p>
+<p># Building the FreeCAD Package
+Talk about dpkg-buildpackage, gbp buildpackage, sbuild</p>
+<p># Appendix: Configuration Files
+Include e.g. .gbp.conf, .quiltrc, .config/git/ignore, and others</p>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="free-software-activities-in-september-2018/" class="u-url">Free Software Activities in September 2018</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -786,45 +822,13 @@ Currently, it fails with the wonderfully verbose error message 'TopoDS::Shell'.<
 </ul>
 </div>
     </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="gsoc-week-7-recap/" class="u-url">GSoC Week 7 Recap</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline"><a href="gsoc-week-7-recap/" rel="bookmark"><time class="published dt-published" datetime="2017-07-28T15:30:58-05:00" title="2017-07-28 15:30">2017-07-28 15:30</time></a></p>
-                <p class="commentline">            <a href="gsoc-week-7-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-7-recap.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>I hit a nice milestone this week! With <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/899">PR 899</a> I hit total tool <em>test</em> coverage for the Part Design workbench.
-Now, what exactly does that mean? Well, if you look at my screenshot of the workbench tools from Week 2, every one of those is now covered by tests with most
-key functionality hit. Some of them, like the dressup features Fillet and Chamfer, only have one test, either because the tool is simple or because further tests
-lie outside the scope of the Part Design workbench (e.g. testing the topological naming robustness of Fillet to recalculation.)</p>
-<p>The PartDesign Primitive (Box, Cylinder, Sphere, Cone, Ellipsoid, Torus, Prism, and Wedge) tests were interesting to write.
-I was able to cover basic construction of both Additive and Subtractive primitives of each type by simply making a large Additive Primitive
-and smaller Subtractive Primitive inside the first, and then ensuring that the ensuing Shape's Volume property was about equal to
-the difference in volumes according to the formula for that shape, e.g.</p>
-<p>\[
-\mathrm{Shape.Volume}\ \approx V = \frac{4}{3}\pi (R^3 - r^3)
-\]</p>
-<p>for Additive-<span class="math">\(R\)</span> and Subtractive-<span class="math">\(r\)</span> Primitive Spheres.
-I had to look up a few volume formulas but otherwise the tests for the lengthly list in the parentheses above went quickly.</p>
-<p>I also fixed a bug with Loft sections not being hidden, so e.g. the Sketches being lofted to or through were still visible.</p>
-<p>Additionally, there was an issue with both Loft and Pipe not claiming children correctly in the tree which I fixed.</p>
-</div>
-    </div>
     </article>
 </div>
         <nav class="postindexpager"><ul class="pager">
 <li class="next">
                 <a href="index-2.html" rel="next">Older posts</a>
             </li>
-        </ul></nav><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha256-ExtbCSBuYA7kq1Pz362ibde9nnsHYPt6JxuxYeZbU+c=" crossorigin="anonymous"></script><script>
-                renderMathInElement(document.body);
-            </script>
+        </ul></nav><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
 </div>
         <!--End of body content-->
 
