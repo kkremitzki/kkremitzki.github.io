@@ -23,15 +23,11 @@
  </url>
  <url>
   <loc>/archive.html</loc>
-  <lastmod>2018-11-08T05:42:00Z</lastmod>
+  <lastmod>2018-11-08T06:20:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/</loc>
-  <lastmod>2018-09-23T21:24:00Z</lastmod>
- </url>
- <url>
-  <loc>/blog/beginning-debian-development-a-review/</loc>
-  <lastmod>2018-11-08T05:42:00Z</lastmod>
+  <lastmod>2018-11-08T05:59:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</loc>
@@ -115,7 +111,7 @@
  </url>
  <url>
   <loc>/blog/index-2.html</loc>
-  <lastmod>2018-11-08T05:42:00Z</lastmod>
+  <lastmod>2018-11-08T06:20:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</loc>

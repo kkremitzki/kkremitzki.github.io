@@ -15,7 +15,7 @@
  </sitemap>
  <sitemap>
   <loc>/blog/tags/debian.xml</loc>
-  <lastmod>2018-11-08T05:42:00Z</lastmod>
+  <lastmod>2018-11-08T06:20:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/foss.xml</loc>
@@ -47,10 +47,10 @@
  </sitemap>
  <sitemap>
   <loc>/rss.xml</loc>
-  <lastmod>2018-11-08T05:42:00Z</lastmod>
+  <lastmod>2018-11-08T06:20:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/sitemap.xml</loc>
-  <lastmod>2018-11-08T05:42:00Z</lastmod>
+  <lastmod>2018-11-08T06:20:00Z</lastmod>
  </sitemap>
 </sitemapindex>

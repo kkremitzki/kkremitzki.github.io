@@ -1,26 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 08 Nov 2018 05:42:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Beginning Debian Development: A Review</title><link>/blog/beginning-debian-development-a-review/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Write your post here.&lt;/p&gt;
-&lt;p&gt;# Why You Should
-Debian is the upstream of several other Linux distributions such as Ubuntu and Linux Mint.
-Improvements made to Debian improve the entire Debian-family ecosystem.&lt;/p&gt;
-&lt;p&gt;Debian Unstable represents the tip of Debian development; it is a rolling release distribution
-where packages become available as soon as they are uploaded and built. Because of that, it earns
-its name 'Unstable' and can be more difficult to use than, say, an Ubuntu LTS, but it also
-provides the opportunity to hone one's skills and participate in Debian development, and those
-skills can be readily transferred if one wishes to contribute to Ubuntu or any other Debian-family
-distro.&lt;/p&gt;
-&lt;p&gt;# Getting Started
-Setting up a VM or using real hardware&lt;/p&gt;
-&lt;p&gt;# Debian Packaging Concepts
-Source folder and debian folder, accretion of tools,
-many packaging ecosystems, build tools, etc
-Link to modern debian packaging github&lt;/p&gt;
-&lt;p&gt;# Debian Development Tools
-salsa, tracker, BTS, apt-file, debian codesearch&lt;/p&gt;
-&lt;p&gt;# Building the FreeCAD Package
-Talk about dpkg-buildpackage, gbp buildpackage, sbuild&lt;/p&gt;
-&lt;p&gt;# Appendix: Configuration Files
-Include e.g. .gbp.conf, .quiltrc, .config/git/ignore, and others&lt;/p&gt;&lt;/div&gt;</description><guid>/blog/beginning-debian-development-a-review/</guid><pubDate>Mon, 15 Oct 2018 12:00:14 GMT</pubDate></item><item><title>Free Software Activities in September 2018</title><link>/blog/free-software-activities-in-september-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all, unfortunately my update comes late again this month, although I have good reason! I just finished landing a job
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 08 Nov 2018 06:20:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Software Activities in September 2018</title><link>/blog/free-software-activities-in-september-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all, unfortunately my update comes late again this month, although I have good reason! I just finished landing a job
 as a scientific software developer. From the looks of it, I'll mostly be working on things from a systems engineering perspective,
 but it'll be in the context of the scientific Python ecosystem as well as involving Qt. This is nice in that while I will have less
 free time to spend on FreeCAD, it will almost certainly be of increasingly higher quality.&lt;/p&gt;
@@ -612,4 +591,18 @@ you may need to set the Map Reversed option for the sketch itself to true.&lt;/p
 &lt;li&gt;(mentioned in week 3) Revolution has unhandled error for some bad revolution axis choices, does bad revolution without error for others&lt;/li&gt;
 &lt;li&gt;(new) Pipe fails when its path is a loop. For example, a Pipe with a circle as a base and a larger, orthogonal circle passing through the base should become a torus.
 Currently, it fails with the wonderfully verbose error message 'TopoDS::Shell'.&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-8-recap/</guid><pubDate>Fri, 04 Aug 2017 08:19:02 GMT</pubDate></item></channel></rss>
+&lt;/ul&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-8-recap/</guid><pubDate>Fri, 04 Aug 2017 08:19:02 GMT</pubDate></item><item><title>GSoC Week 7 Recap</title><link>/blog/gsoc-week-7-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;I hit a nice milestone this week! With &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/899"&gt;PR 899&lt;/a&gt; I hit total tool &lt;em&gt;test&lt;/em&gt; coverage for the Part Design workbench.
+Now, what exactly does that mean? Well, if you look at my screenshot of the workbench tools from Week 2, every one of those is now covered by tests with most
+key functionality hit. Some of them, like the dressup features Fillet and Chamfer, only have one test, either because the tool is simple or because further tests
+lie outside the scope of the Part Design workbench (e.g. testing the topological naming robustness of Fillet to recalculation.)&lt;/p&gt;
+&lt;p&gt;The PartDesign Primitive (Box, Cylinder, Sphere, Cone, Ellipsoid, Torus, Prism, and Wedge) tests were interesting to write.
+I was able to cover basic construction of both Additive and Subtractive primitives of each type by simply making a large Additive Primitive
+and smaller Subtractive Primitive inside the first, and then ensuring that the ensuing Shape's Volume property was about equal to
+the difference in volumes according to the formula for that shape, e.g.&lt;/p&gt;
+&lt;p&gt;\[
+\mathrm{Shape.Volume}\ \approx V = \frac{4}{3}\pi (R^3 - r^3)
+\]&lt;/p&gt;
+&lt;p&gt;for Additive-&lt;span class="math"&gt;\(R\)&lt;/span&gt; and Subtractive-&lt;span class="math"&gt;\(r\)&lt;/span&gt; Primitive Spheres.
+I had to look up a few volume formulas but otherwise the tests for the lengthly list in the parentheses above went quickly.&lt;/p&gt;
+&lt;p&gt;I also fixed a bug with Loft sections not being hidden, so e.g. the Sketches being lofted to or through were still visible.&lt;/p&gt;
+&lt;p&gt;Additionally, there was an issue with both Loft and Pipe not claiming children correctly in the tree which I fixed.&lt;/p&gt;&lt;/div&gt;</description><category>mathjax</category><guid>/blog/gsoc-week-7-recap/</guid><pubDate>Fri, 28 Jul 2017 20:30:58 GMT</pubDate></item></channel></rss>
