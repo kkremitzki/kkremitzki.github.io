@@ -23,7 +23,7 @@
  </url>
  <url>
   <loc>/archive.html</loc>
-  <lastmod>2018-11-08T06:20:00Z</lastmod>
+  <lastmod>2018-11-09T05:10:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/</loc>
@@ -40,6 +40,10 @@
  <url>
   <loc>/blog/free-software-activities-in-august-2018/</loc>
   <lastmod>2018-09-07T22:27:00Z</lastmod>
+ </url>
+ <url>
+  <loc>/blog/free-software-activities-in-october-2018/</loc>
+  <lastmod>2018-11-09T05:10:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/free-software-activities-in-september-2018/</loc>
@@ -111,7 +115,7 @@
  </url>
  <url>
   <loc>/blog/index-2.html</loc>
-  <lastmod>2018-11-08T06:20:00Z</lastmod>
+  <lastmod>2018-11-09T05:10:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</loc>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html prefix="
+og: http://ogp.me/ns#
+article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Software Activities in October 2018 | Biosystems Engineering Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../../assets/css/custom.css">
+<link rel="stylesheet" href="../../assets/css/code.css">
+<meta name="author" content="Kurt Kremitzki">
+<link rel="prev" href="../free-software-activities-in-september-2018/" title="Free Software Activities in September 2018" type="text/html">
+<meta property="og:site_name" content="Biosystems Engineering Blog">
+<meta property="og:title" content="Free Software Activities in October 2018">
+<meta property="og:url" content="/blog/free-software-activities-in-october-2018/">
+<meta property="og:description" content="Intro
+Welcome to another monthly summary of my free software work. Currently I'm focusing
+on improving the state of packaging for FreeCAD and its ecosystem of dependencies
+and related packages in Debi">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-11-07T23:59:21-06:00">
+<meta property="article:tag" content="debian">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" role="navigation" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../">About</a>
+                </li>
+<li>
+<a href="../">Blog</a>
+                </li>
+<li>
+<a href="../tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Free Software Activities in October 2018</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Kurt Kremitzki
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2018-11-07T23:59:21-06:00" itemprop="datePublished" title="2018-11-07 23:59">2018-11-07 23:59</time></a></p>
+                <p class="commentline">            <a href="#disqus_thread" data-disqus-identifier="cache/posts/free-software-activities-in-october-2018.html">Comments</a>
+
+
+            
+        </p>
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<div class="section" id="intro">
+<h2>Intro</h2>
+<p>Welcome to another monthly summary of my free software work. Currently I'm focusing
+on improving the state of packaging for FreeCAD and its ecosystem of dependencies
+and related packages in Debian Science. Additionally, I recently revived the <a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa">FreeCAD
+Community Extras PPA</a>
+as a way of staging these packages out to users for testing. If
+you are a FreeCAD user, developer, or simply a user of one of these packages, I would
+greatly appreciate your feedback and testing to identify bugs while my packages wait
+to make it into the Debian archive.</p>
+<p>However, in the long-term, I plan to move away from spending so much time on Debian
+packaging and returning to FreeCAD core development, and a special not-so-secret related project:
+PostCAD, providing OpenCASCADE geometry &amp; topology bindings plus CAD data and filetype format support for PostgreSQL, a la PostGIS.
+The goal is to build this out as a rich backend which FreeCAD can talk to about neat CAD stuff.
+It's a heaping of work, though, so I don't expect to have a public release until mid or late 2019.</p>
+<p>I would like to find others who
+are interested in contributing to FreeCAD ecosystem packaging for mentorship. That way,
+my efforts are maintained by the community and the quality and availability of packages
+won't wane with my attention on them. Since FreeCAD participates in Google Summer of
+Code, this would be a great opportunity for interested university students to learn
+Debian packaging and improve the state of science &amp; engineering software on Debian.</p>
+<p>Anyway, on to my summary!</p>
+</div>
+<div class="section" id="debian-news">
+<h2>Debian News</h2>
+<p>This month, I officially became a Debian Maintainer. This is a basic level of formal
+membership in the Debian project, and it comes with limited upload rights to the
+archive. I can only upload packages for which I am marked as a maintainer, for example
+FreeCAD.</p>
+<p>I took advantage of this to upload some improvements for FreeCAD which I had
+been sitting on. After a few tweaks, the package was ready for an upgraded upload
+from Experimental to Unstable, which begins the process of candidacy for Testing,
+the release pocket for the upcoming Debian 10.</p>
+</div>
+<div class="section" id="debian-freecad-gets-qt-5">
+<h2>Debian FreeCAD Gets Qt 5</h2>
+<img alt="/images/freecad-qt5.png" class="align-center" src="../../images/freecad-qt5.png"><p>Most important about this upload, though was that FreeCAD is finally being built
+with Qt 5 support. While Qt 5 had been working for quite a while, we were waiting
+on a dependency to be uploaded to Debian, PySide 2, which finally was uploaded this
+summer. Because this is a big switch to flip, any testing and reporting of bugs for
+this Debian package would be appreciated!</p>
+</div>
+<div class="section" id="freecad-package-structure-reorganization">
+<h2>FreeCAD Package Structure Reorganization</h2>
+<p>One of the other major packaging changes for FreeCAD 0.17 is that the package is
+no longer a single, monolithic <tt class="docutils literal">freecad</tt> package. We now have:</p>
+<ul class="simple">
+<li>a <tt class="docutils literal">freecad</tt> metapackage, which installs the other packages</li>
+<li>common files and resources (e.g. images) in <tt class="docutils literal"><span class="pre">freecad-common</span></tt>
+</li>
+<li>
+<tt class="docutils literal"><span class="pre">freecad-runtime</span></tt> contains Python 2/3 compatible runtime files</li>
+<li>the executable built against Python 2, <tt class="docutils literal"><span class="pre">freecad-python2</span></tt>
+</li>
+<li>and the library files used by the executable, <tt class="docutils literal"><span class="pre">libfreecad-python2-0.17</span></tt>
+</li>
+</ul>
+<p>There are several advantages to this approach. The first is that since <tt class="docutils literal"><span class="pre">freecad-common</span></tt>
+and <tt class="docutils literal"><span class="pre">freecad-runtime</span></tt> are just pictures, Python scripts, and the like, we can save
+space in the archive by only needing one copy of the package, instead of one for each
+supported architecture. For <tt class="docutils literal"><span class="pre">freecad-python2</span></tt> and <tt class="docutils literal"><span class="pre">libfreecad-python2-0.17</span></tt>, one can
+see the advantage in the name: since these are Python 2 specific, we will soon be
+able to provide their Python 3 counterparts.</p>
+<p>Ideally, by the time of the Debian 10 release, the FreeCAD 0.17 package will provide
+both Python 2 and 3 supported versions, and which one you want to use can be switched
+between using the <tt class="docutils literal">alternatives</tt> system, which I will explain later in this post.</p>
+</div>
+<div class="section" id="freecad-python-3-imminent">
+<h2>FreeCAD Python 3 Imminent</h2>
+<p>Like Qt 5, FreeCAD has supported Python 3 for quite some time. (Workbenches and
+3rd party code are another story.) However, in Debian, a Python 3-enabled FreeCAD
+package is blocked by the pending upload of pivy 0.6. I helped coordinate the upstream
+release of this package but due to issues with its dependency Coin3D the upload is stalled
+until those issues are resolved.</p>
+</div>
+<div class="section" id="community-extras-ppa-early-packge-previews">
+<h2>Community Extras PPA - Early Packge Previews</h2>
+<p>Now that we have the Community Extras PPA, it serves as a convenient location for me to upload packages
+as soon as I have one completed and ready for testing. Here are my uploads this month.</p>
+<div class="section" id="gmsh-4">
+<h3>Gmsh 4</h3>
+<img alt="/images/gmsh-airplane.png" class="align-center" src="../../images/gmsh-airplane.png"><p><a class="reference external" href="http://gmsh.info/">Gmsh</a> has released a major version upgrade, which includes removing the
+experimental Java API and introducing Julia bindings, although this package doesn't
+do anything with them. The current version in the Debian archives is 3.0.6.</p>
+<p>This package is only available on Bionic (Ubuntu 18.04) due to its dependencies. I hadn't tried on
+Cosmic (Ubuntu 18.10) since I worked on this in the beginning of October and it wasn't released yet.</p>
+</div>
+<div class="section" id="calculix-2-14">
+<h3>Calculix 2.14</h3>
+<img alt="/images/calculix-turbocharger.jpeg" class="align-center" src="../../images/calculix-turbocharger.jpeg"><p><a class="reference external" href="http://www.calculix.de/">CalculiX</a> in Debian is currently several versions behind (2.11) so I got a request
+to package this. However, CalculiX actually spans several packages, but calculix-ccx,
+the solver, is the only one used by FreeCAD, so unlike the other packages, this one
+is not quite ready for Debian until the other ones are done as well, since they are
+separate source packages.</p>
+<p>This package is available on Bionic and Xenial (Ubuntu 16.04).</p>
+</div>
+<div class="section" id="translated-freecad-doc-packages">
+<h3>Translated FreeCAD-Doc Packages</h3>
+<p>One of the big areas for improvement in FreeCAD is the state of its documentation, and
+I'm glad to announce that one big improvement is on its way. I have been working on
+a standalone <tt class="docutils literal"><span class="pre">freecad-doc</span></tt> package, since it was removed from the Debian archive for
+being derived from pre-compiled binary files. This package involves using a local
+synced copy of the FreeCAD Wiki text and images, and using the script that was used
+to generate the aforementioned binary files.</p>
+<p>The main improvement my package offers is support for the two most complete translations
+of the FreeCAD wiki, French and Italian. This is accomplished by making <tt class="docutils literal"><span class="pre">freecad-doc</span></tt>
+a metapackage which depends on any one of <tt class="docutils literal"><span class="pre">freecad-doc-en</span></tt>, <tt class="docutils literal"><span class="pre">-it</span></tt>, or <tt class="docutils literal"><span class="pre">-fr</span></tt> being installed.
+Then, the relevant files in <tt class="docutils literal"><span class="pre">freecad-doc</span></tt> upon which <tt class="docutils literal">freecad</tt> will call are in fact
+managed symlinks to the appropriate translations. The symlinks are managed by the
+<a class="reference external" href="https://wiki.debian.org/DebianAlternatives">DebianAlternatives</a> system (see update-alternatives(1).)</p>
+<p>In order to switch between translations if more than one is installed, you can run
+<tt class="docutils literal">sudo <span class="pre">update-alternatives</span> <span class="pre">--config</span> <span class="pre">freecad-doc</span></tt>. This will control the in-program help for FreeCAD,
+so when you click the "What's this?" button, the resultant help page will be the translated version.</p>
+<p>Additionally, compiled PDFs of the FreeCAD help are provided for all three languages.</p>
+<p>One result of the nature of this package is that it is quite large: each <tt class="docutils literal"><span class="pre">freecad-doc</span></tt> translated package
+weighs in about 300 MB so the combined size is about 1.2 GB, per Ubuntu distribution.</p>
+<p>As a result, this package is only available on Bionic and Xenial.</p>
+</div>
+<div class="section" id="pycollada-0-6-now-with-python-3">
+<h3>PyCOLLADA 0.6, now with Python 3!</h3>
+<img alt="/images/collada.jpeg" class="align-center" src="../../images/collada.jpeg"><p>Another package which is fairly out of date in Debian (version 0.4 present), I decided
+to update it since <a class="reference external" href="https://github.com/pycollada/pycollada">pycollada</a> is a dependency of FreeCAD and I am intrigued by the possibilities
+of the <a class="reference external" href="https://en.wikipedia.org/wiki/COLLADA">COLLADA (COLLAborative Design Activity) format</a>.
+This allows for interchange with interactive 3D applications like Blender.</p>
+<p>The big news with this package is that Python 3 support is now available, so I updated the source packaging
+to provide both Python 2 and 3 packages.</p>
+<p>Again due to dependencies, it's only available on Cosmic and Bionic.</p>
+</div>
+</div>
+<div class="section" id="sponsors">
+<h2>Sponsors</h2>
+<p>My work on Debian Science and FreeCAD is supported by my patrons at <a class="reference external" href="https://patreon.com/kkremitzki">https://patreon.com/kkremitzki</a>. Thank you all very much!</p>
+<p>If you appreciate my work as described in this post, any level of support is greatly appreciated, including moral support!</p>
+</div>
+<div class="section" id="social-media">
+<h2>Social Media</h2>
+<p>You can follow me on Twitter at <a class="reference external" href="https://twitter.com/thekurtwk">@thekurtwk</a>. I'm also currently working on
+a Twitch streaming setup, which I hope to have ready by the end of the year! I'll be trying out some live programming,
+engineering, and Linux gaming. <a class="reference external" href="https://www.twitch.tv/kkremitzki">You can find me at twitch.tv/kkremitzki</a>.</p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../tags/debian/" rel="tag">debian</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../free-software-activities-in-september-2018/" rel="prev" title="Free Software Activities in September 2018">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+                        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="kkremitzki",
+            disqus_url="/blog/free-software-activities-in-october-2018/",
+        disqus_title="Free Software Activities in October 2018",
+        disqus_identifier="cache/posts/free-software-activities-in-october-2018.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2018         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

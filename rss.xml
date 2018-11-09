@@ -1,5 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 08 Nov 2018 06:20:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Software Activities in September 2018</title><link>/blog/free-software-activities-in-september-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all, unfortunately my update comes late again this month, although I have good reason! I just finished landing a job
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 09 Nov 2018 06:20:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Software Activities in October 2018</title><link>/blog/free-software-activities-in-october-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;div class="section" id="intro"&gt;
+&lt;h2&gt;Intro&lt;/h2&gt;
+&lt;p&gt;Welcome to another monthly summary of my free software work. Currently I'm focusing
+on improving the state of packaging for FreeCAD and its ecosystem of dependencies
+and related packages in Debian Science. Additionally, I recently revived the &lt;a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa"&gt;FreeCAD
+Community Extras PPA&lt;/a&gt;
+as a way of staging these packages out to users for testing. If
+you are a FreeCAD user, developer, or simply a user of one of these packages, I would
+greatly appreciate your feedback and testing to identify bugs while my packages wait
+to make it into the Debian archive.&lt;/p&gt;
+&lt;p&gt;However, in the long-term, I plan to move away from spending so much time on Debian
+packaging and returning to FreeCAD core development, and a special not-so-secret related project:
+PostCAD, providing OpenCASCADE geometry &amp;amp; topology bindings plus CAD data and filetype format support for PostgreSQL, a la PostGIS.
+The goal is to build this out as a rich backend which FreeCAD can talk to about neat CAD stuff.
+It's a heaping of work, though, so I don't expect to have a public release until mid or late 2019.&lt;/p&gt;
+&lt;p&gt;I would like to find others who
+are interested in contributing to FreeCAD ecosystem packaging for mentorship. That way,
+my efforts are maintained by the community and the quality and availability of packages
+won't wane with my attention on them. Since FreeCAD participates in Google Summer of
+Code, this would be a great opportunity for interested university students to learn
+Debian packaging and improve the state of science &amp;amp; engineering software on Debian.&lt;/p&gt;
+&lt;p&gt;Anyway, on to my summary!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="debian-news"&gt;
+&lt;h2&gt;Debian News&lt;/h2&gt;
+&lt;p&gt;This month, I officially became a Debian Maintainer. This is a basic level of formal
+membership in the Debian project, and it comes with limited upload rights to the
+archive. I can only upload packages for which I am marked as a maintainer, for example
+FreeCAD.&lt;/p&gt;
+&lt;p&gt;I took advantage of this to upload some improvements for FreeCAD which I had
+been sitting on. After a few tweaks, the package was ready for an upgraded upload
+from Experimental to Unstable, which begins the process of candidacy for Testing,
+the release pocket for the upcoming Debian 10.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="debian-freecad-gets-qt-5"&gt;
+&lt;h2&gt;Debian FreeCAD Gets Qt 5&lt;/h2&gt;
+&lt;img alt="/images/freecad-qt5.png" class="align-center" src="/images/freecad-qt5.png"&gt;
+&lt;p&gt;Most important about this upload, though was that FreeCAD is finally being built
+with Qt 5 support. While Qt 5 had been working for quite a while, we were waiting
+on a dependency to be uploaded to Debian, PySide 2, which finally was uploaded this
+summer. Because this is a big switch to flip, any testing and reporting of bugs for
+this Debian package would be appreciated!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="freecad-package-structure-reorganization"&gt;
+&lt;h2&gt;FreeCAD Package Structure Reorganization&lt;/h2&gt;
+&lt;p&gt;One of the other major packaging changes for FreeCAD 0.17 is that the package is
+no longer a single, monolithic &lt;tt class="docutils literal"&gt;freecad&lt;/tt&gt; package. We now have:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;a &lt;tt class="docutils literal"&gt;freecad&lt;/tt&gt; metapackage, which installs the other packages&lt;/li&gt;
+&lt;li&gt;common files and resources (e.g. images) in &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-common&lt;/span&gt;&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;&lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-runtime&lt;/span&gt;&lt;/tt&gt; contains Python 2/3 compatible runtime files&lt;/li&gt;
+&lt;li&gt;the executable built against Python 2, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-python2&lt;/span&gt;&lt;/tt&gt;&lt;/li&gt;
+&lt;li&gt;and the library files used by the executable, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;libfreecad-python2-0.17&lt;/span&gt;&lt;/tt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are several advantages to this approach. The first is that since &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-common&lt;/span&gt;&lt;/tt&gt;
+and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-runtime&lt;/span&gt;&lt;/tt&gt; are just pictures, Python scripts, and the like, we can save
+space in the archive by only needing one copy of the package, instead of one for each
+supported architecture. For &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-python2&lt;/span&gt;&lt;/tt&gt; and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;libfreecad-python2-0.17&lt;/span&gt;&lt;/tt&gt;, one can
+see the advantage in the name: since these are Python 2 specific, we will soon be
+able to provide their Python 3 counterparts.&lt;/p&gt;
+&lt;p&gt;Ideally, by the time of the Debian 10 release, the FreeCAD 0.17 package will provide
+both Python 2 and 3 supported versions, and which one you want to use can be switched
+between using the &lt;tt class="docutils literal"&gt;alternatives&lt;/tt&gt; system, which I will explain later in this post.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="freecad-python-3-imminent"&gt;
+&lt;h2&gt;FreeCAD Python 3 Imminent&lt;/h2&gt;
+&lt;p&gt;Like Qt 5, FreeCAD has supported Python 3 for quite some time. (Workbenches and
+3rd party code are another story.) However, in Debian, a Python 3-enabled FreeCAD
+package is blocked by the pending upload of pivy 0.6. I helped coordinate the upstream
+release of this package but due to issues with its dependency Coin3D the upload is stalled
+until those issues are resolved.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="community-extras-ppa-early-packge-previews"&gt;
+&lt;h2&gt;Community Extras PPA - Early Packge Previews&lt;/h2&gt;
+&lt;p&gt;Now that we have the Community Extras PPA, it serves as a convenient location for me to upload packages
+as soon as I have one completed and ready for testing. Here are my uploads this month.&lt;/p&gt;
+&lt;div class="section" id="gmsh-4"&gt;
+&lt;h3&gt;Gmsh 4&lt;/h3&gt;
+&lt;img alt="/images/gmsh-airplane.png" class="align-center" src="/images/gmsh-airplane.png"&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://gmsh.info/"&gt;Gmsh&lt;/a&gt; has released a major version upgrade, which includes removing the
+experimental Java API and introducing Julia bindings, although this package doesn't
+do anything with them. The current version in the Debian archives is 3.0.6.&lt;/p&gt;
+&lt;p&gt;This package is only available on Bionic (Ubuntu 18.04) due to its dependencies. I hadn't tried on
+Cosmic (Ubuntu 18.10) since I worked on this in the beginning of October and it wasn't released yet.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="calculix-2-14"&gt;
+&lt;h3&gt;Calculix 2.14&lt;/h3&gt;
+&lt;img alt="/images/calculix-turbocharger.jpeg" class="align-center" src="/images/calculix-turbocharger.jpeg"&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.calculix.de/"&gt;CalculiX&lt;/a&gt; in Debian is currently several versions behind (2.11) so I got a request
+to package this. However, CalculiX actually spans several packages, but calculix-ccx,
+the solver, is the only one used by FreeCAD, so unlike the other packages, this one
+is not quite ready for Debian until the other ones are done as well, since they are
+separate source packages.&lt;/p&gt;
+&lt;p&gt;This package is available on Bionic and Xenial (Ubuntu 16.04).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="translated-freecad-doc-packages"&gt;
+&lt;h3&gt;Translated FreeCAD-Doc Packages&lt;/h3&gt;
+&lt;p&gt;One of the big areas for improvement in FreeCAD is the state of its documentation, and
+I'm glad to announce that one big improvement is on its way. I have been working on
+a standalone &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-doc&lt;/span&gt;&lt;/tt&gt; package, since it was removed from the Debian archive for
+being derived from pre-compiled binary files. This package involves using a local
+synced copy of the FreeCAD Wiki text and images, and using the script that was used
+to generate the aforementioned binary files.&lt;/p&gt;
+&lt;p&gt;The main improvement my package offers is support for the two most complete translations
+of the FreeCAD wiki, French and Italian. This is accomplished by making &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-doc&lt;/span&gt;&lt;/tt&gt;
+a metapackage which depends on any one of &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-doc-en&lt;/span&gt;&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-it&lt;/span&gt;&lt;/tt&gt;, or &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-fr&lt;/span&gt;&lt;/tt&gt; being installed.
+Then, the relevant files in &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-doc&lt;/span&gt;&lt;/tt&gt; upon which &lt;tt class="docutils literal"&gt;freecad&lt;/tt&gt; will call are in fact
+managed symlinks to the appropriate translations. The symlinks are managed by the
+&lt;a class="reference external" href="https://wiki.debian.org/DebianAlternatives"&gt;DebianAlternatives&lt;/a&gt; system (see update-alternatives(1).)&lt;/p&gt;
+&lt;p&gt;In order to switch between translations if more than one is installed, you can run
+&lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;update-alternatives&lt;/span&gt; &lt;span class="pre"&gt;--config&lt;/span&gt; &lt;span class="pre"&gt;freecad-doc&lt;/span&gt;&lt;/tt&gt;. This will control the in-program help for FreeCAD,
+so when you click the "What's this?" button, the resultant help page will be the translated version.&lt;/p&gt;
+&lt;p&gt;Additionally, compiled PDFs of the FreeCAD help are provided for all three languages.&lt;/p&gt;
+&lt;p&gt;One result of the nature of this package is that it is quite large: each &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-doc&lt;/span&gt;&lt;/tt&gt; translated package
+weighs in about 300 MB so the combined size is about 1.2 GB, per Ubuntu distribution.&lt;/p&gt;
+&lt;p&gt;As a result, this package is only available on Bionic and Xenial.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pycollada-0-6-now-with-python-3"&gt;
+&lt;h3&gt;PyCOLLADA 0.6, now with Python 3!&lt;/h3&gt;
+&lt;img alt="/images/collada.jpeg" class="align-center" src="/images/collada.jpeg"&gt;
+&lt;p&gt;Another package which is fairly out of date in Debian (version 0.4 present), I decided
+to update it since &lt;a class="reference external" href="https://github.com/pycollada/pycollada"&gt;pycollada&lt;/a&gt; is a dependency of FreeCAD and I am intrigued by the possibilities
+of the &lt;a class="reference external" href="https://en.wikipedia.org/wiki/COLLADA"&gt;COLLADA (COLLAborative Design Activity) format&lt;/a&gt;.
+This allows for interchange with interactive 3D applications like Blender.&lt;/p&gt;
+&lt;p&gt;The big news with this package is that Python 3 support is now available, so I updated the source packaging
+to provide both Python 2 and 3 packages.&lt;/p&gt;
+&lt;p&gt;Again due to dependencies, it's only available on Cosmic and Bionic.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sponsors"&gt;
+&lt;h2&gt;Sponsors&lt;/h2&gt;
+&lt;p&gt;My work on Debian Science and FreeCAD is supported by my patrons at &lt;a class="reference external" href="https://patreon.com/kkremitzki"&gt;https://patreon.com/kkremitzki&lt;/a&gt;. Thank you all very much!&lt;/p&gt;
+&lt;p&gt;If you appreciate my work as described in this post, any level of support is greatly appreciated, including moral support!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="social-media"&gt;
+&lt;h2&gt;Social Media&lt;/h2&gt;
+&lt;p&gt;You can follow me on Twitter at &lt;a class="reference external" href="https://twitter.com/thekurtwk"&gt;@thekurtwk&lt;/a&gt;. I'm also currently working on
+a Twitch streaming setup, which I hope to have ready by the end of the year! I'll be trying out some live programming,
+engineering, and Linux gaming. &lt;a class="reference external" href="https://www.twitch.tv/kkremitzki"&gt;You can find me at twitch.tv/kkremitzki&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>debian</category><guid>/blog/free-software-activities-in-october-2018/</guid><pubDate>Thu, 08 Nov 2018 05:59:21 GMT</pubDate></item><item><title>Free Software Activities in September 2018</title><link>/blog/free-software-activities-in-september-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello all, unfortunately my update comes late again this month, although I have good reason! I just finished landing a job
 as a scientific software developer. From the looks of it, I'll mostly be working on things from a systems engineering perspective,
 but it'll be in the context of the scientific Python ecosystem as well as involving Qt. This is nice in that while I will have less
 free time to spend on FreeCAD, it will almost certainly be of increasingly higher quality.&lt;/p&gt;
@@ -591,18 +730,4 @@ you may need to set the Map Reversed option for the sketch itself to true.&lt;/p
 &lt;li&gt;(mentioned in week 3) Revolution has unhandled error for some bad revolution axis choices, does bad revolution without error for others&lt;/li&gt;
 &lt;li&gt;(new) Pipe fails when its path is a loop. For example, a Pipe with a circle as a base and a larger, orthogonal circle passing through the base should become a torus.
 Currently, it fails with the wonderfully verbose error message 'TopoDS::Shell'.&lt;/li&gt;
-&lt;/ul&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-8-recap/</guid><pubDate>Fri, 04 Aug 2017 08:19:02 GMT</pubDate></item><item><title>GSoC Week 7 Recap</title><link>/blog/gsoc-week-7-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;I hit a nice milestone this week! With &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/899"&gt;PR 899&lt;/a&gt; I hit total tool &lt;em&gt;test&lt;/em&gt; coverage for the Part Design workbench.
-Now, what exactly does that mean? Well, if you look at my screenshot of the workbench tools from Week 2, every one of those is now covered by tests with most
-key functionality hit. Some of them, like the dressup features Fillet and Chamfer, only have one test, either because the tool is simple or because further tests
-lie outside the scope of the Part Design workbench (e.g. testing the topological naming robustness of Fillet to recalculation.)&lt;/p&gt;
-&lt;p&gt;The PartDesign Primitive (Box, Cylinder, Sphere, Cone, Ellipsoid, Torus, Prism, and Wedge) tests were interesting to write.
-I was able to cover basic construction of both Additive and Subtractive primitives of each type by simply making a large Additive Primitive
-and smaller Subtractive Primitive inside the first, and then ensuring that the ensuing Shape's Volume property was about equal to
-the difference in volumes according to the formula for that shape, e.g.&lt;/p&gt;
-&lt;p&gt;\[
-\mathrm{Shape.Volume}\ \approx V = \frac{4}{3}\pi (R^3 - r^3)
-\]&lt;/p&gt;
-&lt;p&gt;for Additive-&lt;span class="math"&gt;\(R\)&lt;/span&gt; and Subtractive-&lt;span class="math"&gt;\(r\)&lt;/span&gt; Primitive Spheres.
-I had to look up a few volume formulas but otherwise the tests for the lengthly list in the parentheses above went quickly.&lt;/p&gt;
-&lt;p&gt;I also fixed a bug with Loft sections not being hidden, so e.g. the Sketches being lofted to or through were still visible.&lt;/p&gt;
-&lt;p&gt;Additionally, there was an issue with both Loft and Pipe not claiming children correctly in the tree which I fixed.&lt;/p&gt;&lt;/div&gt;</description><category>mathjax</category><guid>/blog/gsoc-week-7-recap/</guid><pubDate>Fri, 28 Jul 2017 20:30:58 GMT</pubDate></item></channel></rss>
+&lt;/ul&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-8-recap/</guid><pubDate>Fri, 04 Aug 2017 08:19:02 GMT</pubDate></item></channel></rss>
