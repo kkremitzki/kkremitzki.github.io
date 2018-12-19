@@ -1,11 +1,9 @@
 .. title: GSoC Week 7 Recap
 .. slug: gsoc-week-7-recap
 .. date: 2017-07-28 15:30:58 UTC-05:00
-.. tags: mathjax
-.. category: 
-.. link: 
-.. description: 
+.. tags: 
 .. type: text
+.. has_math: yes
 
 I hit a nice milestone this week! With `PR 899 <https://github.com/FreeCAD/FreeCAD/pull/899>`_ I hit total tool *test* coverage for the Part Design workbench.
 Now, what exactly does that mean? Well, if you look at my screenshot of the workbench tools from Week 2, every one of those is now covered by tests with most

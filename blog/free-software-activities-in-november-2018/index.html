@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Software Activities in November 2018 | Biosystems Engineering Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../../assets/css/custom.css">
+<link rel="stylesheet" href="../../assets/css/code.css">
+<meta name="author" content="Kurt Kremitzki">
+<link rel="prev" href="../free-software-activities-in-october-2018/" title="Free Software Activities in October 2018" type="text/html">
+<meta property="og:site_name" content="Biosystems Engineering Blog">
+<meta property="og:title" content="Free Software Activities in November 2018">
+<meta property="og:url" content="/blog/free-software-activities-in-november-2018/">
+<meta property="og:description" content="Intro
+Welcome to another of my monthly summaries on my work in the free software
+world. My mission is to make engineering and science available for everyone,
+and Debian, the Universal Operating System">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-12-18T23:20:10-06:00">
+<meta property="article:tag" content="debian freecad postcad">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../">About</a>
+                </li>
+<li>
+<a href="../">Blog</a>
+                </li>
+<li>
+<a href="../tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+                </li>
+<li>
+<a href="https://gitlab.com/kkremitzki">GitLab</a>
+                </li>
+<li>
+<a href="https://salsa.debian.org/kkremitzki-guest">Salsa</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Free Software Activities in November 2018</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Kurt Kremitzki
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2018-12-18T23:20:10-06:00" itemprop="datePublished" title="2018-12-18 23:20">2018-12-18 23:20</time></a>
+            </p>
+                <p class="commentline">            <a href="#disqus_thread" data-disqus-identifier="cache/posts/free-software-activities-in-november-2018.html">Comments</a>
+
+
+            
+        </p>
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<div class="section" id="intro">
+<h2>Intro</h2>
+<p>Welcome to another of my monthly summaries on my work in the free software
+world. My mission is to make engineering and science available for everyone,
+and Debian, the Universal Operating System, is my weapon of choice.</p>
+<p>I received some feedback on my last post that I made it seem I would be
+stepping away from my role maintaining FreeCAD and other packages on the Debian
+Science Team, which was an unfortunate miscommunication on my part. Mainly, I
+just would like to reduce the proportion of my overall free software time on
+it, from its current amount, nearly 100%, to a roughly even 1/3rd split between
+Debian Science, FreeCAD, and PostCAD. The latter is a promising personal
+project to make an OpenCASCADE-powered CAD extension for PostgreSQL, bringing
+support for CAD file formats, datatypes, and algorithms to the powerful
+Postgres ecosystem, similar to what PostCAD has done for geospatial analysis.
+This could serve as a backend for both FreeCAD in the short term, and in the
+long term, it could power a web-based version of FreeCAD, perhaps with some
+Django-powered middleware serving a REST API for some WebGL-based frontend.</p>
+<p>So, besides summarizing my work this month, I also plan to give a synopsis on
+my Debian packaging, for both what's in-progress and on my wishlist. As you'll
+see, it's quite extensive. My hope is that by whittling away at both lists, my
+Debian Science work can focus more on maintenance of existing packages, and
+free up some time for other things.</p>
+</div>
+<div class="section" id="sponsors">
+<h2>Sponsors</h2>
+<p>My work on Debian Science, FreeCAD, and PostCAD is <cite>supported by my patrons on
+Patreon &lt;https://patreon.com/kkremitzki&gt;</cite>. While I had created a Liberapay a
+while back, I never got any traction with it, and I found out recently that it
+was because I had not set it up to actually receive payments. So, if you don't
+like Patreon for whatever reason, you can also <a class="reference external" href="https://liberapay.com/kkremitzki">support me on Liberapay</a>. Just to round things out, if you don't
+like either of those platforms, you can also <a class="reference external" href="https://paypal.me/kkremitzki">help support my work via PayPal</a>.</p>
+</div>
+<div class="section" id="transition-for-coin3">
+<h2>Transition for coin3</h2>
+<p>Coin3D is a scene graph library and a fundamental part of FreeCAD.
+Unfortunately, it hasn't had a release since 2011, but development has been
+picking up recently, so it's likely that a release is not too far off. Even
+without a formal release, several improvements have been made including CMake
+support, so it's time to prepare a transition in advance of the Debian 10
+release. Luckily, Leo Palomo-Avellaneda has taken the initiative of getting
+this transition started.</p>
+<p>Currently, the new Coin3D package is available in Debian Experimental as we
+prepare the reverse-dependencies to build against it. For FreeCAD, we directly
+depend on Pivy, which are Python bindings for Coin. Pivy, in turn, depends on
+Coin and SoQt, which is a Qt GUI component toolkit library for Coin. A
+pre-release version of SoQt is also being packaged since, like Coin, CMake
+support has been added, as well as support for Qt 5.</p>
+<p>Unfortunately, I've been grinding my gears on building Pivy against the new
+Coin and SoQt for a good part of this month, which is especially troublesome
+since FreeCAD's transition to Python 3 is blocked by the upload of a new Pivy,
+which I prepared earlier this year.</p>
+<p>With any luck, I'll be able to help Leo finish the Coin and SoQt transition and
+have Pivy prepared in December.</p>
+</div>
+<div class="section" id="gmsh-update">
+<h2>Gmsh Update</h2>
+<p>Gmsh is a 3D finite element mesh generator with built-in pre- and
+post-processing facilities. It's also one of the main meshers used by FreeCAD's
+Finite Element Modeling Workbench, besides Netgen.</p>
+<p>Currently Debian has Gmsh 3.0.6, but a new major version was released in
+August. I've already prepared this new major version for testing in FreeCAD's
+Community Extras PPA, but I hadn't cleaned up the packaging yet to submit to
+Debian. However, in November, there were two point releases, 4.0.5 and 4.0.6,
+so I wasn't able to complete this work this month, but I'm sure it'll be done
+in early December.</p>
+<p>One major piece of information regarding Gmsh 4 is a change in the API: the
+libjava-gmsh3 package in Debian was never meant to be a public API, and so Gmsh
+upstream has requested that we no longer ship it. To offset this, there have
+been refinements for the actual public API, which officially comes in C, Python
+3 and (new) Julia flavors. However, I haven't found much information on Julia
+packaging in Debian, so I'll likely hold off on that package.</p>
+</div>
+<div class="section" id="pyside-2-rebuild-ppa-plans">
+<h2>PySide 2 Rebuild &amp; PPA Plans</h2>
+<p>Since FreeCAD is an LGPL-licensed Qt project, we must use PySide and not PyQt
+to do Qt things with Python. Because of this, the FreeCAD migration to Qt 5 on
+Debian was blocked by the packaging of PySide 2, which was completed by
+Freexian SARL over the summer. In Debian, we now have a Qt 5-enabled FreeCAD,
+although our daily builds PPA is still using Qt 4.</p>
+<p>Besides the Qt 4-&gt;5 transition, we're also finishing up a Python 2-&gt;3
+transition. At the end of the summer I published a <cite>freecad-python3</cite> package in
+the PPA which also used Qt 5. However, it wasn't really fully usable, moreso a
+proof-of-concept that such a build indeed buildable.</p>
+<p>At this point, the Debian FreeCAD package has begun to diverge from the FreeCAD
+PPAs; besides Qt 5 builds not being available currently, the Debian package has
+also been split into several packages (e.g. <cite>libfreecad</cite>, <cite>freecad-common</cite>,
+etc. packages) in order to better comply with Debian Policy and the Filesystem
+Hierarchy Standard.</p>
+<p>So, there's a bit of work to do to catch the PPAs up. First, the package split
+needs to be done. Then, I need to upload an alternative <cite>freecad-daily</cite> package
+for Qt 5 builds, separate from Python 3. Once that is done and has undergone
+some testing, <cite>freecad-daily</cite> can be replaced by it, and it in turn can be
+replaced by a <cite>freecad-python3</cite> package for further testing. Since FreeCAD's
+0.18 release is imminent, I'll need to get this taken care of during December,
+so stay tuned.</p>
+</div>
+<div class="section" id="packaging-in-progress">
+<h2>Packaging in Progress</h2>
+<p>My first packaging list is all the software I've already started packaging. For
+some, it's almost complete, and for others, I've only just begun.</p>
+<p>The purpose of these lists is not to give status updates, but to announce what
+all I'm interested in to anyone reading this, and to give an idea of how much
+packaging work I have in mind to improve this usage of Debian.</p>
+<div class="section" id="cantera">
+<h3>cantera</h3>
+<div class="section" id="homepage-github">
+<h4>
+<a class="reference external" href="https://cantera.org/">Homepage</a>, <a class="reference external" href="https://github.com/Cantera/cantera">GitHub</a>
+</h4>
+<blockquote>
+Cantera is an open-source suite of tools for problems involving chemical
+kinetics, thermodynamics, and transport processes.</blockquote>
+<p>I had this package working and waiting to be sponsored, but it looks like it currently fails
+to build from source, so this just requires some maintenance.</p>
+</div>
+</div>
+<div class="section" id="coolprop">
+<h3>coolprop</h3>
+<div class="section" id="id1">
+<h4>
+<a class="reference external" href="http://www.coolprop.org/">Homepage</a>, <a class="reference external" href="https://github.com/CoolProp/CoolProp">GitHub</a>
+</h4>
+<blockquote>
+CoolProp is a thermophysical property database and wrappers for a selection
+of programming environments. It offers similar functionality to REFPROP,
+although CoolProp is open-source and free.</blockquote>
+<p>This package was previously building completely, but failing when one would attempt to do
+an <cite>import coolprop</cite>. Now that it's been a while since I worked with it, it
+seems to be failing to build.</p>
+</div>
+</div>
+<div class="section" id="elmerfem">
+<h3>elmerfem</h3>
+<div class="section" id="id2">
+<h4>
+<a class="reference external" href="http://www.elmerfem.org/">Homepage</a>, <a class="reference external" href="https://github.com/ElmerCSC/elmerfem">GitHub</a>
+</h4>
+<blockquote>
+Elmer is a finite element software for numerical solution of partial
+differential equations. Elmer is capable of handling any number of equations
+and is therefore ideally suited for the simulation of multiphysical problems.
+It includes models, for example, of structural mechanics, fluid dynamics, heat
+transfer and electromagnetics. Users can also write their own equations that
+can be dynamically linked with the main program.</blockquote>
+<p>This was previously in Debian but removed due to abandonment, so a great deal
+of the work is already done, but it also requires quite a bit of updating to
+current Debian standards.</p>
+</div>
+</div>
+<div class="section" id="if97">
+<h3>if97</h3>
+<div class="section" id="pdf-standard-github">
+<h4>
+<a class="reference external" href="http://www.iapws.org/relguide/IF97-Rev.pdf">PDF Standard</a>, <a class="reference external" href="https://github.com/CoolProp/IF97">GitHub</a>
+</h4>
+<blockquote>
+Open-source C++ implementation of the IAPWS-IF97 equations to calculate
+properties of the pure water substance.</blockquote>
+<p>This is a dependency of CoolProp, and I already have it packaged and waiting
+for sponsorship at <a class="reference external" href="https://salsa.debian.org/science-team/if97">https://salsa.debian.org/science-team/if97</a>.</p>
+</div>
+</div>
+<div class="section" id="ifcopenshell">
+<h3>ifcopenshell</h3>
+<div class="section" id="id3">
+<h4>
+<a class="reference external" href="http://www.ifcopenshell.org/">Homepage</a>, <a class="reference external" href="https://github.com/IfcOpenShell/IfcOpenShell">GitHub</a>
+</h4>
+<blockquote>
+IfcOpenShell is an open source (LGPL) software library that helps users and
+software developers to work with the IFC file format. The IFC file format
+can be used to describe building and construction data. The format is
+commonly used for Building Information Modelling. IfcOpenShell uses
+OpenCASCADE internally to convert the implicit geometry in IFC files into
+explicit geometry that any software CAD or modelling package can
+understand.</blockquote>
+<p>I already have this packaged and awaiting sponsorship at <a class="reference external" href="https://salsa.debian.org/kkremitzki-guest/ifcopenshell">https://salsa.debian.org/kkremitzki-guest/ifcopenshell</a>.</p>
+<p>It's also available on the <a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa">FreeCAD Community Extras PPA</a>.</p>
+</div>
+</div>
+<div class="section" id="ifcplusplus">
+<h3>ifcplusplus</h3>
+<div class="section" id="id4">
+<h4>
+<a class="reference external" href="http://ifcquery.com/">Homepage</a>, <a class="reference external" href="https://github.com/ifcquery/ifcplusplus">GitHub</a>
+</h4>
+<blockquote>
+IfcPlusPlus is an open source C++ class model, as well as a reader and
+writer for IFC files in STEP format. It features easy and efficient memory
+management using smart pointers, a parallel reader for fast parsing on
+multi-core CPU's, and a simple IFC viewer application using Qt and
+OpenSceneGraph.</blockquote>
+<p>I already have this packaged and awaiting sponsorship at <a class="reference external" href="https://salsa.debian.org/kkremitzki-guest/ifcplusplus">https://salsa.debian.org/kkremitzki-guest/ifcplusplus</a>.</p>
+<p>It's also available on the <a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa">FreeCAD Community Extras PPA</a>.</p>
+</div>
+</div>
+<div class="section" id="opencamlib">
+<h3>opencamlib</h3>
+<div class="section" id="id6">
+<h4>
+<a class="reference external" href="http://www.anderswallin.net/tag/opencamlib/">Homepage</a>, <a class="reference external" href="https://github.com/aewallin/opencamlib">GitHub</a>
+</h4>
+<blockquote>
+OpenCAMLib (OCL) is a C++ library with Python bindings for creating 3D
+toolpaths for CNC-machines such as mills and lathes.</blockquote>
+<p>I already have this packaged and awaiting sponsorship at <a class="reference external" href="https://salsa.debian.org/science-team/opencamlib">https://salsa.debian.org/science-team/opencamlib</a>.</p>
+<p>It's also available on the <a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa">FreeCAD Community Extras PPA</a>.</p>
+</div>
+</div>
+<div class="section" id="openvoronoi">
+<h3>openvoronoi</h3>
+<div class="section" id="id8">
+<h4>
+<a class="reference external" href="http://www.anderswallin.net/category/cnc/cam/openvoronoi/">Homepage</a>, <a class="reference external" href="https://github.com/aewallin/openvoronoi">GitHub</a>
+</h4>
+<blockquote>
+2D voronoi diagram for point and line-segment sites using incremental
+topology-oriented algorithm. C++ with Python bindings.</blockquote>
+<p>I already have this packaged and awaiting sponsorship at <a class="reference external" href="https://salsa.debian.org/kkremitzki-guest/openvoronoi">https://salsa.debian.org/kkremitzki-guest/openvoronoi</a>.</p>
+<p>It's also available on the <a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa">FreeCAD Community Extras PPA</a>.</p>
+</div>
+</div>
+<div class="section" id="projectchrono">
+<h3>projectchrono</h3>
+<div class="section" id="id10">
+<h4>
+<a class="reference external" href="https://projectchrono.org/">Homepage</a>, <a class="reference external" href="https://github.com/projectchrono/chrono">GitHub</a>
+</h4>
+<blockquote>
+C++ library for multi-physics simulation. The applications areas in which
+Chrono is most often used are vehicle dynamics, robotics, and machine
+design. In vehicle dynamics, Chrono has mature support for tire/terrain
+interaction modeling and simulation.</blockquote>
+<p>I've only roughly begun packaging this, and I'm already tired of typing
+<cite>libprojectchrono</cite>. Anyway, it's a rather large set of components which will be
+broken up into several packages. Luckily, things are done in a pretty normal
+way so I don't imagine this will be difficult to finish packaging, just a
+little time-costly.</p>
+</div>
+</div>
+<div class="section" id="smesh">
+<h3>smesh</h3>
+<div class="section" id="github">
+<h4><a class="reference external" href="https://github.com/LaughlinResearch/smesh">GitHub</a></h4>
+<blockquote>
+A stand-alone library of the mesh framework from the Salome Platform</blockquote>
+<p>I've gotten this standalone version of SMESH packaged and awaiting sponsorship
+at <a class="reference external" href="https://salsa.debian.org/kkremitzki-guest/salome-smesh">https://salsa.debian.org/kkremitzki-guest/salome-smesh</a>.  Eventually, I want
+to package the entire Salome Platform, but it's extremely large and really
+several source packages. Packaging this as an intermediate step allows us to
+remove SMESH from FreeCAD's included sources.</p>
+<p>It's also available on the <a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa">FreeCAD Community Extras PPA</a>.</p>
+</div>
+</div>
+<div class="section" id="xcfem">
+<h3>xcfem</h3>
+<div class="section" id="id12">
+<h4>
+<a class="reference external" href="https://sites.google.com/site/xcfemanalysis/">Homepage</a>, <a class="reference external" href="https://github.com/xcfem/xc">GitHub</a>
+</h4>
+<blockquote>
+XC is an open source FEA program designed to solve structural analysis
+problems.</blockquote>
+<p>This library is supposed to be an alternative to the not-quite-freely licensed
+OpenSees, which is used in seismic research and analysis. There has been some
+interest in the FreeCAD forums about using this, so I'm beginning packaging it
+in advance. However, it seems a bit complicated as it requires multiple
+sources, the GitHub <cite>xcfem/xc</cite> repo as well as <cite>xcfem/xc_utils</cite>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="wishlist-packages">
+<h2>Wishlist Packages</h2>
+<div class="section" id="geom">
+<h3>2geom</h3>
+<div class="section" id="homepage-gitlab">
+<h4>
+<a class="reference external" href="http://lib2geom.sourceforge.net/">Homepage</a>, <a class="reference external" href="https://gitlab.com/inkscape/lib2geom">GitLab</a>
+</h4>
+<blockquote>
+lib2geom (2Geom in private life) was initially a library developed for
+Inkscape but will provide a robust computational geometry framework for any
+application. It is not a rendering library, instead concentrating on high
+level algorithms such as computing arc length.</blockquote>
+<p>I looked at this package and it seemed like it will be straightforward to
+package, and with the parent project's popularity, someone else may get to it
+first.</p>
+</div>
+</div>
+<div class="section" id="bimserver">
+<h3>bimserver</h3>
+<div class="section" id="id13">
+<h4>
+<a class="reference external" href="bimserver.org">Homepage</a>, <a class="reference external" href="https://github.com/opensourceBIM/BIMserver">GitHub</a>
+</h4>
+<blockquote>
+The Building Information Model server (short: BIMserver) enables you to
+store and manage the information of a construction (or other building
+related) project. Data is stored in the open standard IFC. The BIMserver is
+not a fileserver, but it uses a model-driven architecture approach. This
+means that IFC data is stored in an underlying database. The main advantage
+of this approach is the ability to query, merge and filter the BIM-model
+and generate IFC files on the fly.</blockquote>
+<p>The integration of BIM with FreeCAD is a very promising endeavor, and letting
+FreeCAD be the client in a client-server model provides many potential
+benefits. (This is the reason I'm working on PostCAD.) Packaging BIMserver
+is a natural decision, then. However, it's a Java application, which I have
+little experience with language-wise and none in terms of packaging it in
+Debian, so this one has a bit of a difficulty associated with it.</p>
+</div>
+</div>
+<div class="section" id="cadquery">
+<h3>cadquery</h3>
+<div class="section" id="id14">
+<h4>
+<a class="reference external" href="https://dcowden.github.io/cadquery/index.html">Homepage</a>, <a class="reference external" href="https://github.com/dcowden/cadquery">GitHub</a>
+</h4>
+<blockquote>
+CadQuery is an intuitive, easy-to-use python based language for building
+parametric 3D CAD models. CadQuery is for 3D CAD what jQuery is for
+javascript. Imagine selecting Faces of a 3d object the same way you select
+DOM objects with JQuery!</blockquote>
+<p>CadQuery is an interesting project which actually makes use of FreeCAD, and
+indeed FreeCAD even has a CadQuery Workbench. This would be nice to package as
+a way of extending the FreeCAD ecosystem on Debian.</p>
+<p>Unfortunately, CadQuery 2 is planning on moving away from FreeCAD to PythonOCC,
+which is based on the now behind-the-times OpenCASCADE Community Edition fork,
+based on OpenCASCADE 6.9.1; FreeCAD and other projects are moving back to the
+mainline OpenCASCADE Technology project which is about to release version
+7.4.0. It would be nice if both CadQuery and FreeCAD could instead move to use
+PyOCCT as a middle-layer between itself and OpenCASCADE.</p>
+</div>
+</div>
+<div class="section" id="libreoffice-code-highlighter">
+<h3>libreoffice-code-highlighter</h3>
+<div class="section" id="id15">
+<h4>
+<a class="reference external" href="https://extensions.libreoffice.org/extensions/code-highlighter">Homepage</a>, <a class="reference external" href="https://github.com/slgobinath/libreoffice-code-highlighter">GitHub</a>
+</h4>
+<blockquote>
+This extension highlights the code snippets for over 350 languages in
+LibreOffice.</blockquote>
+<p>I have packaged a LibreOffice extension before, and it was fairly easy, so I expect this one will be too. However its priority is rather low.</p>
+</div>
+</div>
+<div class="section" id="lib3mf">
+<h3>lib3mf</h3>
+<div class="section" id="id16">
+<h4>
+<a class="reference external" href="https://3mf.io/">Homepage</a>, <a class="reference external" href="https://github.com/3MFConsortium/lib3mf">GitHub</a>
+</h4>
+<blockquote>
+Lib3MF is a C++ implementation of the 3D Manufacturing Format file standard.</blockquote>
+<p>This seems like a straightforward library to package, but there is no pressing need as FreeCAD does not support it yet.</p>
+</div>
+</div>
+<div class="section" id="muesli">
+<h3>muesli</h3>
+<div class="section" id="homepage-bitbucket">
+<h4>
+<a class="reference external" href="https://materials.imdea.org/research/simulation-tools/muesli/">Homepage</a>, <a class="reference external" href="https://bitbucket.org/ignromero/muesli">BitBucket</a>
+</h4>
+<blockquote>
+MUESLI, a Material UnivErSal LIbrary, is a collection of C++ classes and
+functions designed to model material behavior at the continuum level.
+Developed at IMDEA Materials, it is available to the material science and
+computational mechanics community as a suite of standard models and as a
+platform for developing new ones.</blockquote>
+<p>This seems like a great candidate package for Debian Science but I have had
+some difficulty building it, which I need to conquer before packaging can
+begin.</p>
+</div>
+</div>
+<div class="section" id="cling">
+<h3>cling</h3>
+<div class="section" id="id17">
+<h4>
+<a class="reference external" href="https://root.cern.ch/cling">Homepage</a>, <a class="reference external" href="https://github.com/root-project/cling">GitHub</a>
+</h4>
+<blockquote>
+Cling is an interactive C++ interpreter, built on top of Clang and LLVM
+compiler infrastructure. Cling realizes the read-eval-print loop (REPL)
+concept, in order to leverage rapid application development. Implemented as
+a small extension to LLVM and Clang, the interpreter reuses their strengths
+such as the praised concise and expressive compiler diagnostics.</blockquote>
+<p>cling is an incredible project which should have been packaged already.
+Hopefully someone else gets to it first.</p>
+</div>
+</div>
+<div class="section" id="dpkg-licenses">
+<h3>dpkg-licenses</h3>
+<div class="section" id="id18">
+<h4><a class="reference external" href="https://github.com/daald/dpkg-licenses">GitHub</a></h4>
+<blockquote>
+A command line tool which lists the licenses of all installed packages in a Debian-based system (like Ubuntu)</blockquote>
+<p>This is a small script which gives a summary of the licenses used by the installed packages on your system--a good way to audit packages, e.g. forbidding AGPL.</p>
+</div>
+</div>
+<div class="section" id="landlab">
+<h3>landlab</h3>
+<div class="section" id="id19">
+<h4>
+<a class="reference external" href="https://landlab.github.io/#/#install">Homepage</a>, <a class="reference external" href="https://github.com/landlab/landlab">GitHub</a>
+</h4>
+<blockquote>
+<p>Landlab is a Python-based modeling environment that allows scientists and
+students to build numerical landscape models. Designed for disciplines
+that quantify earth surface dynamics such as geomorphology, hydrology,
+glaciology, and stratigraphy, it can also be used in related fields.</p>
+<p>Landlab provides components to compute flows (such as water, sediment,
+glacial ice, volcanic material, or landslide debris) across a gridded
+terrain. With its robust, reusable components, Landlab allows scientists
+to quickly build landscape model experiments and compute mass balance
+across scales.</p>
+</blockquote>
+<p>Landlab is another interesting Debian Science candidate but I have no pressing need to package it.</p>
+</div>
+</div>
+<div class="section" id="nikola">
+<h3>nikola</h3>
+<div class="section" id="id20">
+<h4>
+<a class="reference external" href="https://getnikola.com/">Homepage</a>, <a class="reference external" href="https://github.com/getnikola/nikola">GitHub</a>
+</h4>
+<blockquote>
+A static website and blog generator, written in Python.</blockquote>
+<p>Nikola is what I use to create this blog, but it's somewhat fast moving and a
+slow maintainer in Debian previously caused problems, so I don't want to pick
+this up until I've leveled up my package maintenance.</p>
+</div>
+</div>
+<div class="section" id="osifont">
+<h3>osifont</h3>
+<div class="section" id="id21">
+<h4>
+<a class="reference external" href="https://fontlibrary.org/en/font/osifont">Homepage</a>, <a class="reference external" href="https://github.com/hikikomori82/osifont">GitHub</a>
+</h4>
+<blockquote>
+In some European countries, CAD projects must have font which conform to
+IS0 3O98 specification. Commercial CADs has this font, but free CADs not.
+There is no available free font yet, so this project will fix this. This
+font will be created completely from the scratch. Font is created with free
+tools like FontForge, Inkscape, Gimp. Font is available under 3 licences:
+GNU GPL licence version 3 with GPL font exception, GNU GPL licence version
+2 with GPL font exception, GNU LGPL licence version 3 with GPL font
+exception.</blockquote>
+<p>This is a bundled font with FreeCAD, so I'd like to separate into its own
+package. However, the need to package it is not pressing, so I haven't picked
+it up.</p>
+</div>
+</div>
+<div class="section" id="pigpio">
+<h3>pigpio</h3>
+<div class="section" id="id22">
+<h4>
+<a class="reference external" href="http://abyz.me.uk/rpi/pigpio/">Homepage</a>, <a class="reference external" href="https://github.com/joan2937/pigpio">GitHub</a>
+</h4>
+<blockquote>
+pigpio is a C library for the Raspberry which allows control of the General
+Purpose Input Outputs (GPIO).</blockquote>
+<p>This is an important tool for teaching with Raspberry Pi's and should be
+packaged as soon as possible, I've just had more pressing concerns.</p>
+</div>
+</div>
+<div class="section" id="piscope">
+<h3>piscope</h3>
+<div class="section" id="id23">
+<h4>
+<a class="reference external" href="http://abyz.me.uk/rpi/pigpio/piscope.html">Homepage</a>, <a class="reference external" href="https://github.com/joan2937/piscope">GitHub</a>
+</h4>
+<blockquote>
+A logic analyser (digital waveform viewer).  piscope uses the services of
+the pigpio library. pigpio needs to be running on the Pi whose gpios are to
+be monitored.</blockquote>
+<p>Being able to see the waveform of a GPIO pin on a Raspberry Pi is incredibly
+useful for teaching robotics and electrical engineering classes with them. This
+also needs to be packaged.</p>
+</div>
+</div>
+<div class="section" id="pyocct">
+<h3>pyocct</h3>
+<div class="section" id="id24">
+<h4><a class="reference external" href="https://github.com/LaughlinResearch/pyOCCT">GitHub</a></h4>
+<blockquote>
+The pyOCCT project provides Python bindings to the OpenCASCADE 7.2.0
+geometry kernel and SMESH 8.3.0 meshing library via pybind11. Together,
+this technology stack enables rapid CAD/CAE application development in the
+popular Python programming language.</blockquote>
+<p>This is a very promising library for Python OpenCASCADE development, so I'd
+like to get it packaged, but it's blocked by getting SMESH packaged.</p>
+</div>
+</div>
+<div class="section" id="pyray">
+<h3>pyray</h3>
+<div class="section" id="id25">
+<h4><a class="reference external" href="https://github.com/ryu577/pyray">GitHub</a></h4>
+<blockquote>
+A 3D rendering library written completely in Python.</blockquote>
+<p>A promising library for integrating raytracing functionality directly into
+FreeCAD, and for general raytracing in Python.</p>
+</div>
+</div>
+<div class="section" id="quarter">
+<h3>quarter</h3>
+<div class="section" id="bitbucket">
+<h4><a class="reference external" href="https://bitbucket.org/Coin3D/quarter">BitBucket</a></h4>
+<blockquote>
+Quarter is a light-weight glue library that provides seamless integration
+between the Coin high-level 3D visualization library and Qt's 2D user
+interface library.  The functionality in Quarter revolves around
+QuarterWidget, a subclass of QGLWidget. This widget provides functionality
+for rendering of Coin scenegraphs and translation of QEvents into SoEvents.
+Using this widget is as easy as using any other QWidget.</blockquote>
+<p>FreeCAD already uses an included (and slightly modified) copy of Quarter in its
+source, so I'd like to package Quarter in a standalone fashion as part of
+moving FreeCAD away from bundled copies in its source.</p>
+</div>
+</div>
+<div class="section" id="rebound">
+<h3>rebound</h3>
+<div class="section" id="id26">
+<h4>
+<a class="reference external" href="https://rebound.readthedocs.io/en/latest/">Homepage</a>, <a class="reference external" href="https://github.com/hannorein/rebound">GitHub</a>
+</h4>
+<blockquote>
+REBOUND is an N-body integrator, i.e. a software package that can integrate
+the motion of particles under the influence of gravity. The particles can
+represent stars, planets, moons, ring or dust particles. REBOUND is very
+flexible and can be customized to accurately and efficiently solve many
+problems in astrophysics.</blockquote>
+<p>This seems like a really great library to have in Debian Science, but it's not a priority.</p>
+</div>
+</div>
+<div class="section" id="sqlint">
+<h3>sqlint</h3>
+<div class="section" id="id27">
+<h4><a class="reference external" href="https://github.com/purcell/sqlint">GitHub</a></h4>
+<blockquote>
+<p>SQLint is a simple command-line linter which reads your SQL files and
+reports any syntax errors or warnings it finds.</p>
+<p>At this stage, SQLint checks SQL against the ANSI syntax, and uses the
+PostgreSQL SQL parser to achieve this. In time, we hope to add support for
+non-standard SQL variants (e.g. MySQL). Contributions are welcome.</p>
+</blockquote>
+<p>This would be a very useful utility to have in Debian, but I always write SQL without flaw the first try. (wink)</p>
+</div>
+</div>
+<div class="section" id="swatmodel">
+<h3>swatmodel</h3>
+<div class="section" id="id28">
+<h4>
+<a class="reference external" href="https://swat.tamu.edu/">Homepage</a>, <a class="reference external" href="https://github.com/WatershedModels/SWAT">GitHub</a>
+</h4>
+<blockquote>
+The Soil &amp; Water Assessment Tool is a small watershed to river basin-scale
+model used to simulate the quality and quantity of surface and ground water
+and predict the environmental impact of land use, land management
+practices, and climate change. SWAT is widely used in assessing soil
+erosion prevention and control, non-point source pollution control and
+regional management in watersheds.</blockquote>
+<p>SWAT is a powerful research tool in agricultural engineering, among several
+others I'm interested in eventually packaging for Debian. The planned package
+will be based on a CMake-enabled fork of the upstream source, which is built
+with Intel's Fortran compiler by default and also had to be adapted for
+gfortran.</p>
+</div>
+</div>
+<div class="section" id="wger">
+<h3>wger</h3>
+<div class="section" id="id29">
+<h4>
+<a class="reference external" href="https://wger.de/en/software/features">Homepage</a>, <a class="reference external" href="https://github.com/wger-project/wger">GitHub</a>
+</h4>
+<blockquote>
+Self hosted FLOSS fitness/workout and weight tracker written with Django</blockquote>
+<p>This is a very promising application which could be used as both a fitness
+tracker as well as a weight/nutrition tracker, something along the lines of a
+self-hosted MyFitnessPal. However, my other packaging priorities outweigh this
+at the moment.</p>
+</div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>So, there you have it! My mostly complete list of in-progress and wishlist
+items for Debian packaging. If you have any feedback on packages on the list,
+or want to get in touch with me, you can find me <a class="reference external" href="https://twitter.com/thekurtwk">on Twitter</a> or send me an email at kurt at kwk.systems.
+I'll also be starting to stream my Debian &amp; FreeCAD work very soon, <a class="reference external" href="https://twitch.tv/kkremitzki">subscribe
+to me on Twitch</a> to get notified when I go
+live.</p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../tags/debian-freecad-postcad/" rel="tag">debian freecad postcad</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../free-software-activities-in-october-2018/" rel="prev" title="Free Software Activities in October 2018">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+                        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="kkremitzki",
+            disqus_url="/blog/free-software-activities-in-november-2018/",
+        disqus_title="Free Software Activities in November 2018",
+        disqus_identifier="cache/posts/free-software-activities-in-november-2018.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2018         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

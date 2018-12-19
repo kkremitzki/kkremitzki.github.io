@@ -1,11 +1,9 @@
 .. title: Equation Solving with Python & SymPy
 .. slug: equation-solving-with-python
 .. date: 2016-04-10 06:12:16 UTC-05:00
-.. tags: mathjax,python
-.. category: 
-.. link: 
-.. description: 
+.. tags: python
 .. type: text
+.. has_math: yes
 
 In engineering applications, the same equation will be solved over and over with 
 different values or measurements as inputs. Anticipating this, we can either 

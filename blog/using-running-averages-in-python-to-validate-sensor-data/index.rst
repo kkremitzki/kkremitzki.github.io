@@ -1,11 +1,9 @@
 .. title: Using Running Averages in Python to Validate Sensor Data
 .. slug: using-running-averages-in-python-to-validate-sensor-data
 .. date: 2016-05-05 05:09:04 UTC-05:00
-.. tags: mathjax,python,control_theory
-.. category: 
-.. link: 
-.. description: 
+.. tags: python, control_theory
 .. type: text
+.. has_math: yes
 
 .. class:: h3
 

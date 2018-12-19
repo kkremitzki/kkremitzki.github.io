@@ -1,11 +1,9 @@
 .. title: GSoC Week 1 Recap
 .. slug: gsoc-week-1-recap
 .. date: 2017-06-06 14:28:12 UTC-05:00
-.. tags: mathjax,gsoc,freecad
-.. category: 
-.. link: 
-.. description: 
+.. tags: gsoc, freecad
 .. type: text
+.. has_math: yes
 
 The first week of Google Summer of Code has ended, and so it's time for a recap post!
 
