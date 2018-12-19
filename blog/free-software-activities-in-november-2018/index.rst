@@ -1,7 +1,7 @@
 .. title: Free Software Activities in November 2018
 .. slug: free-software-activities-in-november-2018
 .. date: 2018-12-18 23:20:10 UTC-06:00
-.. tags: debian freecad postcad
+.. tags: debian,freecad,postcad
 .. category: 
 .. link: 
 .. description: 
