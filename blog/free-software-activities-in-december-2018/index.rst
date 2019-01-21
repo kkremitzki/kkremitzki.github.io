@@ -74,3 +74,13 @@ interested in more background, you can consult `this video by József Nagy
 Similarly, it seems likely that the OpenFOAM package will be changing over to
 the openfoam.com version soon. I've already succesfully built the latest
 OpenFOAM from this source, version 1812, and plan to submit it soon.
+
+Thanks to my sponsors
+=====================
+This work is made possible in part by contributions from readers like you! You
+can send moral support my way `via Twitter @thekurtwk
+<https://twitter.com/thekurtwk>`_.  Financial support is also appreciated at
+any level and possible on several platforms: `Patreon
+<https://patreon.com/kkremitzki>`_, `Liberapay
+<https://liberapay.com/kkremitzki>`_, and `PayPal
+<https://paypal.me/kkremitzki>`_.
