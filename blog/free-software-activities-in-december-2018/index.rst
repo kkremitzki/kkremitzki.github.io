@@ -1,7 +1,7 @@
 .. title: Free Software Activities in December 2018
 .. slug: free-software-activities-in-december-2018
-.. date: 2019-01-12 18:19:53 UTC-06:00
-.. tags: 
+.. date: 2019-01-20 18:19:53 UTC-06:00
+.. tags: debian
 .. category: 
 .. link: 
 .. description: 
