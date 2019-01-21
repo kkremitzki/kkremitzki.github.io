@@ -73,7 +73,76 @@
     
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="free-software-activities-in-november-2018/" class="u-url">Free Software Activities in November 2018</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="free-software-activities-in-december-2018/" class="u-url">Free Software Activities in December 2018</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline">
+            <a href="free-software-activities-in-december-2018/" rel="bookmark">
+            <time class="published dt-published" datetime="2019-01-12T18:19:53-06:00" itemprop="datePublished" title="2019-01-12 18:19">2019-01-12 18:19</time></a>
+            </p>
+                <p class="commentline">            <a href="free-software-activities-in-december-2018/#disqus_thread" data-disqus-identifier="cache/posts/free-software-activities-in-december-2018.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Hello again for another of my monthly updates on my work on Debian Science and
+the FreeCAD ecosystem.</p>
+<p>There's only a few announcement items since I was mostly enjoying my holidays,
+but several important things were accomplished this month. Also, since there's
+not much time left before the release of Debian 10, there's some consideration
+to be done towards what I'll be working on in the next few months.</p>
+<div class="section" id="gmsh-bugfix-no-gmsh-4-yet">
+<h2>gmsh bugfix; no gmsh 4 yet</h2>
+<img alt="/images/dec18-gmsh.png" class="align-center" src="../images/dec18-gmsh.png"><p>At the beginning of the month, I uploaded gmsh 3.0.6+dfsg1-4. This had a patch
+submitted by Joost van Zwieten (thanks!) to fix <a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=904946">Debian bug #904946</a> which was
+preventing gmsh usage in FreeCAD, as well as adding an autopkgtest to make sure
+that behavior remains.</p>
+</div>
+<div class="section" id="new-coin3d-transition-pivy-uploaded">
+<h2>New Coin3D transition; Pivy uploaded!</h2>
+<img alt="/images/dec18-coin3d.jpeg" class="align-center" src="../images/dec18-coin3d.jpeg"><p>Near the middle of the month, Leo Palomo-Avellaneda, Anton Gladky, and I finished the
+transition for the coin3 package, which is a scene graph library and high-level
+wrapper of OpenGL. The new version is a pre-release coin3 4.0.0 which adds
+CMake support. It also fixes <a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=874727">Debian bug #874727</a> which caused
+FreeCAD to segfault when importing an SVG.  FreeCAD also uses pivy, a Python
+wrapper for coin, as a runtime dependency, and completing this transition has
+finished the last blocker for a Python 3 FreeCAD package, so thanks to Leo and
+Anton!</p>
+</div>
+<div class="section" id="new-release-for-med-fichier-not-by-me">
+<h2>New release for med-fichier (not by me)</h2>
+<object class="align-center" data="../images/dec18-HDF.svg" type="image/svg+xml">
+/images/dec18-HDF.svg</object>
+<p>Another FreeCAD dependency had a new release this month, <a class="reference external" href="https://tracker.debian.org/pkg/med-fichier">med-fichier 4.0.0</a>.  This software is developed by
+Électricité de France and built on the HDF5 library and file format but is
+specialized for mesh data. It is also a dependency of gmsh which introduced
+some difficulty for the gmsh package.</p>
+</div>
+<div class="section" id="openfoam-upstream-switch-from-openfoam-org-to-openfoam-com">
+<h2>OpenFOAM upstream switch; from openfoam.org to openfoam.com</h2>
+<img alt="/images/dec18-openfoam.jpg" class="align-center" src="../images/dec18-openfoam.jpg"><p>The final noteworthy item for this month was an interesting bit of
+correspondence I received concerning the OpenFOAM package. As I had mentioned
+in previous posts, the current OpenFOAM version in Debian is 4.x, and I had
+worked on updating the package for OpenFOAM 6.x. My packaging was working and
+complete last summer, but for an inexplicable reason it stopped building late
+summer, started building again for about a week in September, and then stopped
+again. I would really like an up-to-date OpenFOAM in Debian 10, and so when I
+received an email from the people at openfoam.com about packaging their
+version, I was very intrigued. You see, the version in Debian is currently from
+openfoam.org. Besides the TLD difference, there is a bit of history between the
+two versions, but for end users there should major difference. If you're
+interested in more background, you can consult <a class="reference external" href="https://www.youtube.com/watch?v=8ggYvqEwghQ">this video by József Nagy</a>.</p>
+<p>Similarly, it seems likely that the OpenFOAM package will be changing over to
+the openfoam.com version soon. I've already succesfully built the latest
+OpenFOAM from this source, version 1812, and plan to submit it soon.</p>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="free-software-activities-in-november-2018/" class="u-url">Free Software Activities in November 2018</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 Kurt Kremitzki
@@ -1517,33 +1586,6 @@ dialogs to use unified icon list GUI code, as well as (iii) making the icon set 
 "Attachment Editor Improvement" project.</p>
 </div>
     </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="gsoc-week-9-recap/" class="u-url">GSoC Week 9 Recap</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                Kurt Kremitzki
-            </span></p>
-            <p class="dateline">
-            <a href="gsoc-week-9-recap/" rel="bookmark">
-            <time class="published dt-published" datetime="2017-08-10T21:18:04-05:00" itemprop="datePublished" title="2017-08-10 21:18">2017-08-10 21:18</time></a>
-            </p>
-                <p class="commentline">            <a href="gsoc-week-9-recap/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-9-recap.html">Comments</a>
-
-
-        </p>
-</div>
-    </header><div class="e-content entry-content">
-    <div>
-<p>I celebrated my birthday in south Texas last week! I was about 3 miles from the future SpaceX launch facility opening in 2018.
-It'll be great to possibly see launches to Mars from there in the next few years.</p>
-<p>I mostly spent this week working on the bugs I mentioned last week. I wanted to try to make a dent in the outstanding bugs I've found.
-Unfortunately, my lack of C++ background (compared to Python) really hampered this; it's a little bit like trying to run before you walk.
-In the end, I only fixed the Revolution bug(s). In the case where a revolution is attempted on the same plane as the sketch, resulting in e.g. a flat disc,
-the issue was that the code was checking the angle between the sketch's normal and the revolution plane's normal, looking for a 0° angle. However,
-it was failing to fail in the case of a 180° angle.</p>
-<p>I also added a simple convenience check for all tools in Part Design: if you open a document with only one body and try to click a PDN tool's button,
-the single body will be auto-activated instead of popping up a warning. If there are no bodies or more than one, the warning still occurs.</p>
-</div>
-    </div>
     </article>
 </div>
         <nav class="postindexpager"><ul class="pager">
@@ -1556,7 +1598,7 @@ the single body will be auto-activated instead of popping up a warning. If there
 
         <footer id="footer">
             
-Contents © 2018         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+Contents © 2019         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
 - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
 
             

@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 19 Dec 2018 17:16:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Software Activities in November 2018</title><link>/blog/free-software-activities-in-november-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;div class="section" id="intro"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 21 Jan 2019 04:05:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Software Activities in December 2018</title><link>/blog/free-software-activities-in-december-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello again for another of my monthly updates on my work on Debian Science and
+the FreeCAD ecosystem.&lt;/p&gt;
+&lt;p&gt;There's only a few announcement items since I was mostly enjoying my holidays,
+but several important things were accomplished this month. Also, since there's
+not much time left before the release of Debian 10, there's some consideration
+to be done towards what I'll be working on in the next few months.&lt;/p&gt;
+&lt;div class="section" id="gmsh-bugfix-no-gmsh-4-yet"&gt;
+&lt;h2&gt;gmsh bugfix; no gmsh 4 yet&lt;/h2&gt;
+&lt;img alt="/images/dec18-gmsh.png" class="align-center" src="/images/dec18-gmsh.png"&gt;
+&lt;p&gt;At the beginning of the month, I uploaded gmsh 3.0.6+dfsg1-4. This had a patch
+submitted by Joost van Zwieten (thanks!) to fix &lt;a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=904946"&gt;Debian bug #904946&lt;/a&gt; which was
+preventing gmsh usage in FreeCAD, as well as adding an autopkgtest to make sure
+that behavior remains.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="new-coin3d-transition-pivy-uploaded"&gt;
+&lt;h2&gt;New Coin3D transition; Pivy uploaded!&lt;/h2&gt;
+&lt;img alt="/images/dec18-coin3d.jpeg" class="align-center" src="/images/dec18-coin3d.jpeg"&gt;
+&lt;p&gt;Near the middle of the month, Leo Palomo-Avellaneda, Anton Gladky, and I finished the
+transition for the coin3 package, which is a scene graph library and high-level
+wrapper of OpenGL. The new version is a pre-release coin3 4.0.0 which adds
+CMake support. It also fixes &lt;a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=874727"&gt;Debian bug #874727&lt;/a&gt; which caused
+FreeCAD to segfault when importing an SVG.  FreeCAD also uses pivy, a Python
+wrapper for coin, as a runtime dependency, and completing this transition has
+finished the last blocker for a Python 3 FreeCAD package, so thanks to Leo and
+Anton!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="new-release-for-med-fichier-not-by-me"&gt;
+&lt;h2&gt;New release for med-fichier (not by me)&lt;/h2&gt;
+&lt;object class="align-center" data="/images/dec18-HDF.svg" type="image/svg+xml"&gt;
+/images/dec18-HDF.svg&lt;/object&gt;
+&lt;p&gt;Another FreeCAD dependency had a new release this month, &lt;a class="reference external" href="https://tracker.debian.org/pkg/med-fichier"&gt;med-fichier 4.0.0&lt;/a&gt;.  This software is developed by
+Électricité de France and built on the HDF5 library and file format but is
+specialized for mesh data. It is also a dependency of gmsh which introduced
+some difficulty for the gmsh package.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="openfoam-upstream-switch-from-openfoam-org-to-openfoam-com"&gt;
+&lt;h2&gt;OpenFOAM upstream switch; from openfoam.org to openfoam.com&lt;/h2&gt;
+&lt;img alt="/images/dec18-openfoam.jpg" class="align-center" src="/images/dec18-openfoam.jpg"&gt;
+&lt;p&gt;The final noteworthy item for this month was an interesting bit of
+correspondence I received concerning the OpenFOAM package. As I had mentioned
+in previous posts, the current OpenFOAM version in Debian is 4.x, and I had
+worked on updating the package for OpenFOAM 6.x. My packaging was working and
+complete last summer, but for an inexplicable reason it stopped building late
+summer, started building again for about a week in September, and then stopped
+again. I would really like an up-to-date OpenFOAM in Debian 10, and so when I
+received an email from the people at openfoam.com about packaging their
+version, I was very intrigued. You see, the version in Debian is currently from
+openfoam.org. Besides the TLD difference, there is a bit of history between the
+two versions, but for end users there should major difference. If you're
+interested in more background, you can consult &lt;a class="reference external" href="https://www.youtube.com/watch?v=8ggYvqEwghQ"&gt;this video by József Nagy&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Similarly, it seems likely that the OpenFOAM package will be changing over to
+the openfoam.com version soon. I've already succesfully built the latest
+OpenFOAM from this source, version 1812, and plan to submit it soon.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><guid>/blog/free-software-activities-in-december-2018/</guid><pubDate>Sun, 13 Jan 2019 00:19:53 GMT</pubDate></item><item><title>Free Software Activities in November 2018</title><link>/blog/free-software-activities-in-november-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;div class="section" id="intro"&gt;
 &lt;h2&gt;Intro&lt;/h2&gt;
 &lt;p&gt;Welcome to another of my monthly summaries on my work in the free software
 world. My mission is to make engineering and science available for everyone,
@@ -1242,12 +1295,4 @@ an icon, where feasible; hopefully the large size will allow for expressive icon
 can be displayed in the reference selection area.&lt;/p&gt;
 &lt;p&gt;Altogether, (i) splitting out the placement and toggling when it has no effect (i.e. there is no attachment) and (ii) reworking Reference Selection and Attachment Mode
 dialogs to use unified icon list GUI code, as well as (iii) making the icon set to explain the attachment concepts to users, comprise the components of this
-"Attachment Editor Improvement" project.&lt;/p&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-10-recap/</guid><pubDate>Sun, 20 Aug 2017 12:22:49 GMT</pubDate></item><item><title>GSoC Week 9 Recap</title><link>/blog/gsoc-week-9-recap/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;I celebrated my birthday in south Texas last week! I was about 3 miles from the future SpaceX launch facility opening in 2018.
-It'll be great to possibly see launches to Mars from there in the next few years.&lt;/p&gt;
-&lt;p&gt;I mostly spent this week working on the bugs I mentioned last week. I wanted to try to make a dent in the outstanding bugs I've found.
-Unfortunately, my lack of C++ background (compared to Python) really hampered this; it's a little bit like trying to run before you walk.
-In the end, I only fixed the Revolution bug(s). In the case where a revolution is attempted on the same plane as the sketch, resulting in e.g. a flat disc,
-the issue was that the code was checking the angle between the sketch's normal and the revolution plane's normal, looking for a 0° angle. However,
-it was failing to fail in the case of a 180° angle.&lt;/p&gt;
-&lt;p&gt;I also added a simple convenience check for all tools in Part Design: if you open a document with only one body and try to click a PDN tool's button,
-the single body will be auto-activated instead of popping up a warning. If there are no bodies or more than one, the warning still occurs.&lt;/p&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-9-recap/</guid><pubDate>Fri, 11 Aug 2017 02:18:04 GMT</pubDate></item></channel></rss>
+"Attachment Editor Improvement" project.&lt;/p&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-10-recap/</guid><pubDate>Sun, 20 Aug 2017 12:22:49 GMT</pubDate></item></channel></rss>
