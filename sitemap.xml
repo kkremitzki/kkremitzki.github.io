@@ -27,11 +27,11 @@
  </url>
  <url>
   <loc>/archive.html</loc>
-  <lastmod>2019-01-21T03:49:00Z</lastmod>
+  <lastmod>2019-03-01T06:41:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/</loc>
-  <lastmod>2019-01-21T03:49:00Z</lastmod>
+  <lastmod>2019-03-01T06:41:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/connecting-a-raspberry-pi-to-texas-am-wifi/</loc>
@@ -127,7 +127,7 @@
  </url>
  <url>
   <loc>/blog/index-2.html</loc>
-  <lastmod>2019-01-21T03:49:00Z</lastmod>
+  <lastmod>2019-03-01T06:41:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/keeping-zoom-level-when-navigating-pdf-in-evince-gnomes-document-viewer/</loc>
@@ -140,6 +140,10 @@
  <url>
   <loc>/blog/looking-back-on-2017/</loc>
   <lastmod>2018-08-14T09:59:00Z</lastmod>
+ </url>
+ <url>
+  <loc>/blog/my-free-software-activities-in-january-february-2019/</loc>
+  <lastmod>2019-03-01T06:41:00Z</lastmod>
  </url>
  <url>
   <loc>/blog/my-freecad-project-was-accepted-into-google-summer-of-code/</loc>

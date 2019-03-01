@@ -19,7 +19,7 @@
  </sitemap>
  <sitemap>
   <loc>/blog/tags/debian.xml</loc>
-  <lastmod>2018-12-19T17:16:00Z</lastmod>
+  <lastmod>2019-03-01T06:41:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/foss.xml</loc>
@@ -55,10 +55,10 @@
  </sitemap>
  <sitemap>
   <loc>/rss.xml</loc>
-  <lastmod>2019-01-21T03:49:00Z</lastmod>
+  <lastmod>2019-03-01T06:41:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/sitemap.xml</loc>
-  <lastmod>2019-01-21T03:49:00Z</lastmod>
+  <lastmod>2019-03-01T06:41:00Z</lastmod>
  </sitemap>
 </sitemapindex>

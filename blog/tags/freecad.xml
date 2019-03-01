@@ -1,5 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/freecad.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 19 Dec 2018 17:16:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Free Software Activities in November 2018</title><link>/blog/free-software-activities-in-november-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;div class="section" id="intro"&gt;
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/freecad.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 01 Mar 2019 08:16:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My Free Software Activities in January &amp; February 2019</title><link>/blog/my-free-software-activities-in-january-february-2019/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;div class="section" id="intro"&gt;
+&lt;h2&gt;Intro&lt;/h2&gt;
+&lt;p&gt;Hello all and welcome again to another of my monthly summary posts on my work
+in free software, with a focus on open engineering in &lt;a class="reference external" href="https://www.debian.org/"&gt;Debian&lt;/a&gt; &amp;amp; &lt;a class="reference external" href="https://www.ubuntu.com/"&gt;Ubuntu&lt;/a&gt;.  I'm
+fortunate to have the &lt;a class="reference external" href="https://lists.debian.org/debian-devel-announce/2019/02/msg00008.html"&gt;February 12th Debian 10 soft freeze deadline&lt;/a&gt; to
+scapegoat for my missed January update, and thanks too to February for being
+short enough to postpone it further and combine the two updates.&lt;/p&gt;
+&lt;p&gt;I've decided to go with a bit of a dryer chronological approach to this update
+as there's lots to cover. Worth highlighting, however:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="highlights"&gt;
+&lt;h2&gt;Highlights&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;New Debian upload for a &lt;a class="reference external" href="https://www.freecadweb.org/"&gt;FreeCAD&lt;/a&gt; 0.18 pre-release&lt;/li&gt;
+&lt;li&gt;New Debian upload for &lt;a class="reference external" href="https://www.openfoam.com/"&gt;OpenFOAM&lt;/a&gt;. An upstream
+switch from openfoam.org to openfoam.com and a different versioning scheme
+results in a massive version bump, 4.1 to 1812. That's over 1800 versions better.
+(Seriously though, it's about a 2 year bump in changes.)&lt;/li&gt;
+&lt;li&gt;New Debian uploads for &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Mesh_generation"&gt;mesh generation&lt;/a&gt; softwares &lt;a class="reference external" href="http://gmsh.info/"&gt;Gmsh&lt;/a&gt; 4.1.3 and &lt;a class="reference external" href="https://ngsolve.org/"&gt;Netgen&lt;/a&gt; 6.2.1810 --
+though Netgen might miss Debian 10? It's stuck in the NEW queue.&lt;/li&gt;
+&lt;li&gt;FreeCAD is participating in Google Summer of Code and I'm looking for a
+student to mentor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;hr class="docutils"&gt;
+&lt;div class="section" id="timeline"&gt;
+&lt;h2&gt;Timeline&lt;/h2&gt;
+&lt;div class="section" id="january"&gt;
+&lt;h3&gt;January&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Jan 6: &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;amp;t=25175&amp;amp;start=20#p278504"&gt;Updated&lt;/a&gt;
+the &lt;a class="reference external" href="https://freecadweb.org/tracker"&gt;FreeCAD bug tracker&lt;/a&gt; to the latest
+version.&lt;/li&gt;
+&lt;li&gt;Jan 12: Completed transition of FreeCAD PPAs to new versions of &lt;a class="reference external" href="https://en.wikipedia.org/wiki/Coin3D"&gt;Coin3D&lt;/a&gt; &amp;amp; its Python bindings package Pivy,
+which &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;amp;t=26599"&gt;resolved a major breakage caused by me on Dec 29&lt;/a&gt; but was a necessary
+precursor to a FreeCAD 0.18 release; I just didn't execute it as well as I
+should have&lt;/li&gt;
+&lt;li&gt;Jan 16: &lt;a class="reference external" href="https://tracker.debian.org/news/1021265/accepted-openfoam-1812dfsg1-1exp1-source-into-experimental/"&gt;Upload&lt;/a&gt;
+of OpenFOAM 1812.&lt;/li&gt;
+&lt;li&gt;Jan 18: &lt;a class="reference external" href="https://github.com/aewallin/opencamlib/issues/31#issuecomment-455452094"&gt;Discussed on GitHub&lt;/a&gt;
+with the upstream of &lt;a class="reference external" href="http://www.anderswallin.net/cam/"&gt;OpenCAMLib&lt;/a&gt; about
+release plans now that it is Python 3 compatible&lt;/li&gt;
+&lt;li&gt;Jan 19: &lt;a class="reference external" href="https://github.com/libMesh/libmesh/issues/2003"&gt;Contact via GitHub issue&lt;/a&gt; with &lt;a class="reference external" href="http://libmesh.github.io/"&gt;libMesh&lt;/a&gt; upstream about Debian packaging, with
+enthusiastic response.&lt;/li&gt;
+&lt;li&gt;Jan 19: &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/1916"&gt;FreeCAD pull request&lt;/a&gt; to fix Start Workbench
+behavior in Debian/Ubuntu since we can't include binary &lt;a class="reference external" href="https://www.freecadweb.org/wiki/File_Format_FCStd"&gt;.FCStd&lt;/a&gt; examples, even though
+they're glorified ZIPs, for Debian Free Software Guidelines reasons (or can we?
+please contact me if you know otherwise)&lt;/li&gt;
+&lt;li&gt;Jan 25-27: Hosted &lt;a class="reference external" href="https://wiki.debian.org/BSP/2019/01/us/Austin"&gt;Austin Debian Bug Squashing Party&lt;/a&gt;. Unfortunately, it wasn't
+very successful in drawing in people besides those already interested in Debian
+at the host venue, the &lt;a class="reference external" href="http://atxhs.org/wiki/Main_Page"&gt;ATX Hackerspace&lt;/a&gt;. I
+didn't want to over-advertise it since the venue was limited in capacity, which
+in retrospect was a mistake. Oh well, there was also plenty to learn for the
+next one. The following bugs were closed: 918479, 888026, 884092, 886538,
+882510, 899099, 920525, 919711.&lt;/li&gt;
+&lt;li&gt;Jan 26: &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;amp;t=26599"&gt;Announced&lt;/a&gt; the experimental
+&lt;a class="reference external" href="https://staging.freecad.io"&gt;staging.freecad.io&lt;/a&gt;, an instance of FreeCAD's
+homepage designed to test possible improvements to be had by moving away from
+shared hosting&lt;/li&gt;
+&lt;li&gt;Jan 28: &lt;a class="reference external" href="https://github.com/sfepy/sfepy/issues/496"&gt;Contact via GitHub issue&lt;/a&gt; with &lt;a class="reference external" href="http://sfepy.org/doc-devel/index.html"&gt;sfepy&lt;/a&gt; upstream about it failing to build
+from source to try to get help on issue potentially preventing it from being
+included in Debian 10.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="february"&gt;
+&lt;h3&gt;February&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Feb 4: Sponsored uploads of &lt;a class="reference external" href="https://tracker.debian.org/news/1027009/accepted-freecad-018pre1dfsg1-1exp1-source-all-amd64-into-experimental-experimental/"&gt;FreeCAD 0.18 pre-release&lt;/a&gt;
+and &lt;a class="reference external" href="https://tracker.debian.org/news/1027010/accepted-gmsh-413ds1-1-source-amd64-all-into-unstable-unstable/"&gt;Gmsh 4.1.3&lt;/a&gt;
+into Unstable, thanks Anton Gladky.&lt;/li&gt;
+&lt;li&gt;Feb 4: Announced &lt;a class="reference external" href="https://tracker.freecad.io"&gt;tracker.freecad.io&lt;/a&gt;, an
+experimental instance of FreeCAD's bug tracker designed to test possible
+improvements to be had from moving away from shared hosting&lt;/li&gt;
+&lt;li&gt;Feb 5: Regained control of abandoned FreeCAD Snap, which was a pre-release of
+0.17, by way of the uploader returning from MIA and adding me.&lt;/li&gt;
+&lt;li&gt;Feb 9: &lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD-Homepage/pull/33"&gt;Merge PR&lt;/a&gt; for
+FreeCAD-Homepage repo to add Expires headers and unset ETags to try to get
+better performance&lt;/li&gt;
+&lt;li&gt;Feb 13: &lt;a class="reference external" href="https://github.com/sfepy/sfepy/issues/496#issuecomment-463089344"&gt;Confirmed sfepy upstream fix resolved the issue&lt;/a&gt;, but it
+came a day after the soft freeze preventing re-entry to Testing.&lt;/li&gt;
+&lt;li&gt;Feb 23: &lt;a class="reference external" href="https://tracker.debian.org/news/1031845/accepted-python-fluids-0173-1-source-into-unstable/"&gt;Upload&lt;/a&gt;
+of python-fluids 0.1.73, experiment with &lt;a class="reference external" href="https://salsa.debian.org/salsa-ci-team/pipeline/blob/master/README.md"&gt;Salsa GitLab CI&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Feb 25: &lt;a class="reference external" href="https://summerofcode.withgoogle.com/"&gt;Google Summer of Code&lt;/a&gt;
+organizations announced. FreeCAD participating under umbrella organization
+OpenCAx led by &lt;a class="reference external" href="https://brlcad.org/"&gt;BRL-CAD&lt;/a&gt;. I created a &lt;a class="reference external" href="https://github.com/opencax/GSoC/issues/13"&gt;GitHub issue&lt;/a&gt; for the project I'd like to
+mentor. I'm looking for a student interested in improving the state of Debian &amp;amp;
+Ubuntu packaging for FreeCAD and its ecosystem of packages. Particularly -- not
+everyone's first encounter with FreeCAD is with the latest and greatest
+version. If someone installs an old version and has a bad experience with an
+easily fixable packaging bug, we should try to tackle that issue to not drive
+away people who are already interested, but get a bad impression.&lt;/li&gt;
+&lt;li&gt;Feb 25: Sponsored &lt;a class="reference external" href="https://ftp-master.debian.org/new/netgen_6.2.1810+dfsg1-1.html"&gt;upload&lt;/a&gt; of Netgen to
+Unstable, thanks Anton Gladky. Netgen had to re-enter NEW because I made a
+mistake in the naming of the binary package, so I had to revise the package to
+make libnglib-6.2 (for the .1810 release) replace libnglib-6.2.1804.&lt;/li&gt;
+&lt;li&gt;Feb 25: Sponsored &lt;a class="reference external" href="https://ftp-master.debian.org/new/pycollada_0.6-1.html"&gt;upload&lt;/a&gt;
+of &lt;a class="reference external" href="https://github.com/pycollada/pycollada"&gt;pycollada&lt;/a&gt; which adds Python 3
+support and a python3- package, so it has to pass through NEW again.&lt;/li&gt;
+&lt;li&gt;Feb 28: &lt;a class="reference external" href="https://tracker.debian.org/news/1033005/accepted-opencascade-730dfsg1-5-source-into-unstable/"&gt;Upload&lt;/a&gt;
+of &lt;a class="reference external" href="https://www.opencascade.com/"&gt;OpenCASCADE&lt;/a&gt;, revising the package to
+revert to the default 'opencascade' installation paths instead of 'occt' (a
+not-so-great packaging decision as OpenCASCADE was my 2nd ever Debian package)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sponsorship"&gt;
+&lt;h2&gt;Sponsorship&lt;/h2&gt;
+&lt;p&gt;Verbal support by way of my contact info below is greatly
+appreciated, but if you want to help support my free software &amp;amp; open
+engineering work financially, I've made it easy with several options:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://patreon.com/kkremitzki"&gt;Patreon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://paypal.me/kkremitzki"&gt;PayPal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://liberapay.com/kkremitzki"&gt;Liberapay&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.wispay.io/t/0d7"&gt;Wispay&lt;/a&gt; (cryptocurrency)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Any level of support is appreciated!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="contact"&gt;
+&lt;h2&gt;Contact&lt;/h2&gt;
+&lt;p&gt;You can follow me on Twitter &lt;a class="reference external" href="https://twitter.com/thekurtwk"&gt;@thekurtwk&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I'm also now on &lt;a class="reference external" href="https://matrix.org/blog/home/"&gt;Matrix&lt;/a&gt;, an open network for
+secure, decentralized communication, &lt;a class="reference external" href="https://matrix.to/#/@kkremitzki:matrix.org"&gt;@kkremitzki:matrix.org&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>debian</category><category>freecad</category><guid>/blog/my-free-software-activities-in-january-february-2019/</guid><pubDate>Fri, 01 Mar 2019 06:10:43 GMT</pubDate></item><item><title>Free Software Activities in November 2018</title><link>/blog/free-software-activities-in-november-2018/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;div class="section" id="intro"&gt;
 &lt;h2&gt;Intro&lt;/h2&gt;
 &lt;p&gt;Welcome to another of my monthly summaries on my work in the free software
 world. My mission is to make engineering and science available for everyone,
