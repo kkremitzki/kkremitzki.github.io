@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Summer Update for FreeCAD &amp; Debian Science Work | Biosystems Engineering Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../../assets/css/custom.css">
+<link rel="stylesheet" href="../../assets/css/code.css">
+<meta name="author" content="Kurt Kremitzki">
+<link rel="prev" href="../my-free-software-activities-in-january-february-2019/" title="My Free Software Activities in January &amp; February 2019" type="text/html">
+<meta property="og:site_name" content="Biosystems Engineering Blog">
+<meta property="og:title" content="Summer Update for FreeCAD &amp; Debian Science Work">
+<meta property="og:url" content="/blog/summer-update-for-freecad-debian-science-work/">
+<meta property="og:description" content='Hello, and welcome to my "summer update" on my free software work on FreeCAD
+and the Debian Science team. I call it a summer update because it was winter
+when I last wrote, and quite some time has ela'>
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-07-31T23:47:23-05:00">
+<meta property="article:tag" content="debian">
+<meta property="article:tag" content="freecad">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../">About</a>
+                </li>
+<li>
+<a href="../">Blog</a>
+                </li>
+<li>
+<a href="../tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+                </li>
+<li>
+<a href="https://gitlab.com/kkremitzki">GitLab</a>
+                </li>
+<li>
+<a href="https://salsa.debian.org/kkremitzki-guest">Salsa</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Summer Update for FreeCAD &amp; Debian Science Work</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Kurt Kremitzki
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2019-07-31T23:47:23-05:00" itemprop="datePublished" title="2019-07-31 23:47">2019-07-31 23:47</time></a>
+            </p>
+                <p class="commentline">            <a href="#disqus_thread" data-disqus-identifier="cache/posts/summer-update-for-freecad-debian-science-work.html">Comments</a>
+
+
+            
+        </p>
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Hello, and welcome to my "summer update" on my free software work on FreeCAD
+and the Debian Science team. I call it a summer update because it was winter
+when I last wrote, and quite some time has elapsed since I fell out of the
+monthly update habit. This is a high-level summary of what I've been working on
+since March.</p>
+<div class="section" id="freecad-0-18-release-debian-10-full-freeze">
+<h2>FreeCAD 0.18 Release &amp; Debian 10 Full Freeze</h2>
+<img alt="/images/freecadsplash.png" class="align-center" src="../../images/freecadsplash.png"><p><br></p>
+<p>The official release date of FreeCAD 0.18
+( <a class="reference external" href="https://www.freecadweb.org/wiki/Release_notes_0.18">release notes</a> )
+is March 12, 2019, although the git tag for it wasn't pushed until March 14th.
+This timing was a bit unfortunate as the full freeze for Debian 10 went into
+effect March 12th, with a de-facto freeze date of March 2nd due to the 10 day
+testing migration period. To compound things, since this was my first Debian
+release as a packaging contributor, I didn't do things quite right such that
+while I probably could have gotten FreeCAD 0.18 into Debian 10, I didn't.
+Instead, what's available is a pre-release version from about a month before
+the release which is missing a few bugfixes and refinements.</p>
+<p>On the positive side, this is an impetus for me to learn about <a class="reference external" href="https://backports.debian.org/">Debian
+Backports</a>, a way to provide non-bugfix
+updates to Debian Stable users. The 0.18 release line has already had several
+bugfix releases; I've currently got Debian Testing/Unstable as well as the
+Ubuntu Stable PPA up-to-date with version 0.18.3. As soon as I'm able, I'll get
+this version into Debian Backports, too.</p>
+</div>
+<div class="section" id="freecad-ppa-improvements">
+<h2>FreeCAD PPA Improvements</h2>
+<p>Another nice improvement I've recently made is migrating the packaging for the
+Ubuntu Stable and Daily PPAs to Debian's GitLab instance at
+<a class="reference external" href="https://salsa.debian.org/science-team/freecad">https://salsa.debian.org/science-team/freecad</a> by creating the <tt class="docutils literal">ppa/master</tt> and
+<tt class="docutils literal">ppa/daily</tt> branches. Having all the Debian and Ubuntu packaging in one place
+means that propagating updates has become a matter of git merging and pushing.
+Once any changes are in place, I simply have to trigger an import and build on
+Launchpad for the stable releases. For the daily builds, changes are
+automatically synced and the <tt class="docutils literal">debian</tt> directory from Salsa is combined with the
+latest synced upstream source from GitHub, so daily builds no longer have to be
+triggered manually. However, this has uncovered another problem in our process
+which being worked on at the FreeCAD forums. (Thread: <a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=42&amp;t=37216">Finding a solution for
+the 'version.h' issue</a></p>
+</div>
+<div class="section" id="science-team-package-updates">
+<h2>Science Team Package Updates</h2>
+<img alt="/images/bunny.png" class="align-center" src="../../images/bunny.png"><p><br></p>
+<p>The main Science Team packages I've been working on recently have been
+OpenCASCADE, Netgen, Gmsh, and OpenFOAM.</p>
+<p>For OpenCASCADE, I have uploaded the third bugfix release in the 7.3.0 series.
+Unfortunately, their versioning scheme is a bit unusual, so this version is tagged 7.3.0p3.
+This is unfortunate because <tt class="docutils literal">dpkg <span class="pre">--compare-versions</span> 7.3.0p3+dfsg1 gt
+7.3.0+dfsg1</tt> evaluates to false. As such, I've uploaded this package as 7.3.3,
+with plans to contact upstream to discuss their bugfix release versioning
+scheme. Currently, version 7.4.0 has an upstream target release date for the
+end of August, so there will be an opportunity to convince them to release
+7.4.1 instead of 7.4.0p1. If you're interested in the changes contained in this
+upload, you can refer to the <a class="reference external" href="https://git.dev.opencascade.org/gitweb/?p=occt.git;a=shortlog;h=refs/tags/V7_3_0p3">upstream git log</a>
+for more information.</p>
+<p>In collaboration with Nico Schlömer and Anton Gladky, the newest Gmsh, version
+4.4.1, has been uploaded to wait in the Debian NEW queue. See <a class="reference external" href="https://gitlab.onelab.info/gmsh/gmsh/blob/master/CHANGELOG.txt">the upstream
+changelog</a>
+for more information on what's new.</p>
+<p>I've also prepared the package for the newest version of Netgen, 6.2.1905.
+Unfortunately, uploading this is blocked because 6.2.1810 is still in Debian
+NEW. However, I've tested compiling FreeCAD against Netgen, and I've been able
+to get the integration with it working again, so once I'm able to do this
+upload, I'll be able to upload a new and improved FreeCAD with the power of
+Netgen meshing.</p>
+<p>I've also begun working on packaging the latest OpenFOAM release, 1906. I've
+gotten a little sidetracked, though, as a pecularity in the way upstream
+prepares their tarballs seems to be triggering a bug in GNU tar. I should have
+this one uploaded soon. For a preview in what'll be coming, see the <a class="reference external" href="https://www.openfoam.com/releases/openfoam-v1906/">release
+notes for version 1906</a>.</p>
+</div>
+<div class="section" id="gitlab-ci-experimentation-with-salsa-debian-org">
+<h2>GitLab CI Experimentation with salsa.debian.org</h2>
+<p>Some incredibly awesome Debian contributors have set up the ability to use
+GitLab CI to automate the testing of Debian packages (see <a class="reference external" href="https://wiki.debian.org/Salsa/Doc#Running_Continuous_Integration_.28CI.29_tests">documentation</a>.)</p>
+<p>I did a bit of experimentation with it. Unfortunately, both OpenCASCADE and
+FreeCAD exceeded the 2 hour time limit. There's a lot of promise in it for
+smaller packages, though!</p>
+</div>
+<div class="section" id="python-2-removal-in-debian-underway">
+<h2>Python 2 Removal in Debian Underway</h2>
+<img alt="/images/deadsnakes.jpeg" class="align-center" src="../../images/deadsnakes.jpeg"><p><br></p>
+<p>Per <a class="reference external" href="https://pythonclock.org">pythonclock.org</a>, Python 2 has less than 5
+months until it's end-of-life, so the task of removing it for the next version
+of Debian has begun. For now, it's mainly limited to leaf packages with nothing
+depending on them. As such, I've uploaded Python 3-only packages for new
+upstream releases of <tt class="docutils literal"><span class="pre">python-fluids</span></tt> (a fluid dynamics engineering &amp; design
+library) and <tt class="docutils literal"><span class="pre">python-ulmo</span></tt> (provides clean &amp; simple access to public hydrology
+and climatology data).</p>
+</div>
+<div class="section" id="debian-developer-application">
+<h2>Debian Developer Application</h2>
+<p>I've finally applied to become a full Debian Developer, which is an exciting
+prospect. I'll be more able to enact improvements without having to bug, well,
+mostly Anton, Andreas, and Tobias. (Thanks!) I'm also looking forward to having
+access to more resources to improve my packages on other architectures,
+particularly arm64 now that the Raspberry Pi 4 is out and potentially a serious
+candidate for a low-powered FreeCAD workstation.</p>
+<p>The process is slow and calculating, as it should be, so it'll be some time
+before I'm officially in, but it sure will be cause for celebration.</p>
+</div>
+<div class="section" id="google-summer-of-code-mentoring">
+<h2>Google Summer of Code Mentoring</h2>
+<div class="figure align-center">
+<img alt="/images/gsoc.png" src="../../images/gsoc.png"><p class="caption">CC-BY-SA-4.0, Aswinshenoy.</p>
+</div>
+<p><br></p>
+<p>I'm mentoring a Google Summer of Code project for FreeCAD this year! (See
+<a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;t=35493">forum thread</a>.) My
+student is quite new to FreeCAD and Debian/Ubuntu, so the first half of the
+project has involved relatively the deep-end topics of using Debian packaging
+to distribute bugfixes for FreeCAD and to learn by exploring related packages
+in its ecosystem. In particular, focus was given to OpenCAMLib, since there is
+a lot of user and developer interest in FreeCAD's potential for generating
+toolpaths for machining and manufacturing the models created in the program.</p>
+<p>Now that he's officially swimming and not sinking, the next phase is working on
+making development and packaging-related improvements for FreeCAD on Windows,
+which is in even rougher shape than Debian/Ubuntu, but more his area of
+familiarity. Stay tuned for the final results!</p>
+</div>
+<div class="section" id="thanks-to-my-sponsors">
+<h2>Thanks to my sponsors</h2>
+<p>This work is made possible in part by contributions from readers like you! You
+can send moral support my way <a class="reference external" href="https://twitter.com/thekurtwk">via Twitter @thekurtwk</a>.  Financial support is also appreciated at
+any level and possible on several platforms: <a class="reference external" href="https://patreon.com/kkremitzki">Patreon</a>, <a class="reference external" href="https://liberapay.com/kkremitzki">Liberapay</a>, and <a class="reference external" href="https://paypal.me/kkremitzki">PayPal</a>.</p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../tags/debian/" rel="tag">debian</a></li>
+            <li><a class="tag p-category" href="../tags/freecad/" rel="tag">freecad</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../my-free-software-activities-in-january-february-2019/" rel="prev" title="My Free Software Activities in January &amp; February 2019">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+                        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="kkremitzki",
+            disqus_url="/blog/summer-update-for-freecad-debian-science-work/",
+        disqus_title="Summer Update for FreeCAD & Debian Science Work",
+        disqus_identifier="cache/posts/summer-update-for-freecad-debian-science-work.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2019         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>
