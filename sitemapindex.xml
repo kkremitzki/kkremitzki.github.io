@@ -15,7 +15,7 @@
  </sitemap>
  <sitemap>
   <loc>/blog/tags/debian.xml</loc>
-  <lastmod>2019-08-01T06:52:00Z</lastmod>
+  <lastmod>2019-08-01T07:13:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/foss.xml</loc>
@@ -23,7 +23,7 @@
  </sitemap>
  <sitemap>
   <loc>/blog/tags/freecad.xml</loc>
-  <lastmod>2019-08-01T06:52:00Z</lastmod>
+  <lastmod>2019-08-01T07:13:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/gsoc.xml</loc>
@@ -51,10 +51,10 @@
  </sitemap>
  <sitemap>
   <loc>/rss.xml</loc>
-  <lastmod>2019-08-01T06:52:00Z</lastmod>
+  <lastmod>2019-08-01T07:13:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/sitemap.xml</loc>
-  <lastmod>2019-08-01T06:52:00Z</lastmod>
+  <lastmod>2019-08-01T07:13:00Z</lastmod>
  </sitemap>
 </sitemapindex>

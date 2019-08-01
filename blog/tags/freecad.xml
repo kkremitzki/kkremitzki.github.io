@@ -1,5 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/freecad.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 01 Mar 2019 08:16:58 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My Free Software Activities in January &amp; February 2019</title><link>/blog/my-free-software-activities-in-january-february-2019/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;div class="section" id="intro"&gt;
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/freecad.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 01 Aug 2019 07:13:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Summer Update for FreeCAD &amp; Debian Science Work</title><link>/blog/summer-update-for-freecad-debian-science-work/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello, and welcome to my "summer update" on my free software work on FreeCAD
+and the Debian Science team. I call it a summer update because it was winter
+when I last wrote, and quite some time has elapsed since I fell out of the
+monthly update habit. This is a high-level summary of what I've been working on
+since March.&lt;/p&gt;
+&lt;div class="section" id="freecad-0-18-release-debian-10-full-freeze-timing"&gt;
+&lt;h2&gt;FreeCAD 0.18 Release &amp;amp; Debian 10 Full Freeze Timing&lt;/h2&gt;
+&lt;img alt="/images/freecadsplash.png" class="align-center" src="/images/freecadsplash.png"&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;The official release date of FreeCAD 0.18
+( &lt;a class="reference external" href="https://www.freecadweb.org/wiki/Release_notes_0.18"&gt;release notes&lt;/a&gt; )
+is March 12, 2019, although the git tag for it wasn't pushed until March 14th.
+This timing was a bit unfortunate as the full freeze for Debian 10 went into
+effect March 12th, with a de-facto freeze date of March 2nd due to the 10 day
+testing migration period. To compound things, since this was my first Debian
+release as a packaging contributor, I didn't do things quite right such that
+while I probably could have gotten FreeCAD 0.18 into Debian 10, I didn't.
+Instead, what's available is a pre-release version from about a month before
+the release which is missing a few bugfixes and refinements.&lt;/p&gt;
+&lt;p&gt;On the positive side, this is an impetus for me to learn about &lt;a class="reference external" href="https://backports.debian.org/"&gt;Debian
+Backports&lt;/a&gt;, a way to provide non-bugfix
+updates to Debian Stable users. The 0.18 release line has already had several
+bugfix releases; I've currently got Debian Testing/Unstable as well as the
+Ubuntu Stable PPA up-to-date with version 0.18.3. As soon as I'm able, I'll get
+this version into Debian Backports, too.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="freecad-ppa-improvements"&gt;
+&lt;h2&gt;FreeCAD PPA Improvements&lt;/h2&gt;
+&lt;p&gt;Another nice improvement I've recently made is migrating the packaging for the
+Ubuntu Stable and Daily PPAs to Debian's GitLab instance at
+&lt;a class="reference external" href="https://salsa.debian.org/science-team/freecad"&gt;https://salsa.debian.org/science-team/freecad&lt;/a&gt; by creating the &lt;tt class="docutils literal"&gt;ppa/master&lt;/tt&gt; and
+&lt;tt class="docutils literal"&gt;ppa/daily&lt;/tt&gt; branches. Having all the Debian and Ubuntu packaging in one place
+means that propagating updates has become a matter of git merging and pushing.
+Once any changes are in place, I simply have to trigger an import and build on
+Launchpad for the stable releases. For the daily builds, changes are
+automatically synced and the &lt;tt class="docutils literal"&gt;debian&lt;/tt&gt; directory from Salsa is combined with the
+latest synced upstream source from GitHub, so daily builds no longer have to be
+triggered manually. However, this has uncovered another problem in our process
+which being worked on at the FreeCAD forums. (Thread: &lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=42&amp;amp;t=37216"&gt;Finding a solution for
+the 'version.h' issue&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="science-team-package-updates"&gt;
+&lt;h2&gt;Science Team Package Updates&lt;/h2&gt;
+&lt;img alt="/images/bunny.png" class="align-center" src="/images/bunny.png"&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;The main Science Team packages I've been working on recently have been
+OpenCASCADE, Netgen, Gmsh, and OpenFOAM.&lt;/p&gt;
+&lt;p&gt;For OpenCASCADE, I have uploaded the third bugfix release in the 7.3.0 series.
+Unfortunately, their versioning scheme is a bit unusual, so this version is tagged 7.3.0p3.
+This is unfortunate because &lt;tt class="docutils literal"&gt;dpkg &lt;span class="pre"&gt;--compare-versions&lt;/span&gt; 7.3.0p3+dfsg1 gt
+7.3.0+dfsg1&lt;/tt&gt; evaluates to false. As such, I've uploaded this package as 7.3.3,
+with plans to contact upstream to discuss their bugfix release versioning
+scheme. Currently, version 7.4.0 has an upstream target release date for the
+end of August, so there will be an opportunity to convince them to release
+7.4.1 instead of 7.4.0p1. If you're interested in the changes contained in this
+upload, you can refer to the &lt;a class="reference external" href="https://git.dev.opencascade.org/gitweb/?p=occt.git;a=shortlog;h=refs/tags/V7_3_0p3"&gt;upstream git log&lt;/a&gt;
+for more information.&lt;/p&gt;
+&lt;p&gt;In collaboration with Nico Schlömer and Anton Gladky, the newest Gmsh, version
+4.4.1, has been uploaded to wait in the Debian NEW queue. See &lt;a class="reference external" href="https://gitlab.onelab.info/gmsh/gmsh/blob/master/CHANGELOG.txt"&gt;the upstream
+changelog&lt;/a&gt;
+for more information on what's new.&lt;/p&gt;
+&lt;p&gt;I've also prepared the package for the newest version of Netgen, 6.2.1905.
+Unfortunately, uploading this is blocked because 6.2.1810 is still in Debian
+NEW. However, I've tested compiling FreeCAD against Netgen, and I've been able
+to get the integration with it working again, so once I'm able to do this
+upload, I'll be able to upload a new and improved FreeCAD with the power of
+Netgen meshing.&lt;/p&gt;
+&lt;p&gt;I've also begun working on packaging the latest OpenFOAM release, 1906. I've
+gotten a little sidetracked, though, as a pecularity in the way upstream
+prepares their tarballs seems to be triggering a bug in GNU tar. I should have
+this one uploaded soon. For a preview in what'll be coming, see the &lt;a class="reference external" href="https://www.openfoam.com/releases/openfoam-v1906/"&gt;release
+notes for version 1906&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gitlab-ci-experimentation-with-salsa-debian-org"&gt;
+&lt;h2&gt;GitLab CI Experimentation with salsa.debian.org&lt;/h2&gt;
+&lt;p&gt;Some incredibly awesome Debian contributors have set up the ability to use
+GitLab CI to automate the testing of Debian packages (see &lt;a class="reference external" href="https://wiki.debian.org/Salsa/Doc#Running_Continuous_Integration_.28CI.29_tests"&gt;documentation&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;I did a bit of experimentation with it. Unfortunately, both OpenCASCADE and
+FreeCAD exceeded the 2 hour time limit. There's a lot of promise in it for
+smaller packages, though!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-2-removal-in-debian-underway"&gt;
+&lt;h2&gt;Python 2 Removal in Debian Underway&lt;/h2&gt;
+&lt;img alt="/images/deadsnakes.jpeg" class="align-center" src="/images/deadsnakes.jpeg"&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Per &lt;a class="reference external" href="https://pythonclock.org"&gt;pythonclock.org&lt;/a&gt;, Python 2 has less than 5
+months until it's end-of-life, so the task of removing it for the next version
+of Debian has begun. For now, it's mainly limited to leaf packages with nothing
+depending on them. As such, I've uploaded Python 3-only packages for new
+upstream releases of &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;python-fluids&lt;/span&gt;&lt;/tt&gt; (a fluid dynamics engineering &amp;amp; design
+library) and &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;python-ulmo&lt;/span&gt;&lt;/tt&gt; (provides clean &amp;amp; simple access to public hydrology
+and climatology data).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="debian-developer-application"&gt;
+&lt;h2&gt;Debian Developer Application&lt;/h2&gt;
+&lt;p&gt;I've finally applied to become a full Debian Developer, which is an exciting
+prospect. I'll be more able to enact improvements without having to bug, well,
+mostly Anton, Andreas, and Tobias. (Thanks!) I'm also looking forward to having
+access to more resources to improve my packages on other architectures,
+particularly arm64 now that the Raspberry Pi 4 is out and potentially a serious
+candidate for a low-powered FreeCAD workstation.&lt;/p&gt;
+&lt;p&gt;The process is slow and calculating, as it should be, so it'll be some time
+before I'm officially in, but it sure will be cause for celebration.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="google-summer-of-code-mentoring"&gt;
+&lt;h2&gt;Google Summer of Code Mentoring&lt;/h2&gt;
+&lt;div class="figure align-center"&gt;
+&lt;img alt="/images/gsoc.png" src="/images/gsoc.png"&gt;
+&lt;p class="caption"&gt;CC-BY-SA-4.0, Aswinshenoy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;I'm mentoring a Google Summer of Code project for FreeCAD this year! (See
+&lt;a class="reference external" href="https://forum.freecadweb.org/viewtopic.php?f=8&amp;amp;t=35493"&gt;forum thread&lt;/a&gt;.) My
+student is quite new to FreeCAD and Debian/Ubuntu, so the first half of the
+project has involved relatively the deep-end topics of using Debian packaging
+to distribute bugfixes for FreeCAD and to learn by exploring related packages
+in its ecosystem. In particular, focus was given to OpenCAMLib, since there is
+a lot of user and developer interest in FreeCAD's potential for generating
+toolpaths for machining and manufacturing the models created in the program.&lt;/p&gt;
+&lt;p&gt;Now that he's officially swimming and not sinking, the next phase is working on
+making development and packaging-related improvements for FreeCAD on Windows,
+which is in even rougher shape than Debian/Ubuntu, but more his area of
+familiarity. Stay tuned for the final results!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="thanks-to-my-sponsors"&gt;
+&lt;h2&gt;Thanks to my sponsors&lt;/h2&gt;
+&lt;p&gt;This work is made possible in part by contributions from readers like you! You
+can send moral support my way &lt;a class="reference external" href="https://twitter.com/thekurtwk"&gt;via Twitter @thekurtwk&lt;/a&gt;.  Financial support is also appreciated at
+any level and possible on several platforms: &lt;a class="reference external" href="https://patreon.com/kkremitzki"&gt;Patreon&lt;/a&gt;, &lt;a class="reference external" href="https://liberapay.com/kkremitzki"&gt;Liberapay&lt;/a&gt;, and &lt;a class="reference external" href="https://paypal.me/kkremitzki"&gt;PayPal&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>debian</category><category>freecad</category><guid>/blog/summer-update-for-freecad-debian-science-work/</guid><pubDate>Thu, 01 Aug 2019 04:47:23 GMT</pubDate></item><item><title>My Free Software Activities in January &amp; February 2019</title><link>/blog/my-free-software-activities-in-january-february-2019/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;div class="section" id="intro"&gt;
 &lt;h2&gt;Intro&lt;/h2&gt;
 &lt;p&gt;Hello all and welcome again to another of my monthly summary posts on my work
 in free software, with a focus on open engineering in &lt;a class="reference external" href="https://www.debian.org/"&gt;Debian&lt;/a&gt; &amp;amp; &lt;a class="reference external" href="https://www.ubuntu.com/"&gt;Ubuntu&lt;/a&gt;.  I'm
@@ -1043,23 +1172,23 @@ steps and begin contributing.&lt;/p&gt;
 &lt;li&gt;Pull down a copy of the code. (If you don't have a copy of git, run &lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install git&lt;/tt&gt;.)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_978a630f56ac4c21bf635b604480df8b-1"&gt;&lt;/a&gt;git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
-&lt;a name="rest_code_978a630f56ac4c21bf635b604480df8b-2"&gt;&lt;/a&gt;mkdir freecad-build
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_5e3917f4bba5427fae65bf9f4feabf08-1"&gt;&lt;/a&gt;git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
+&lt;a name="rest_code_5e3917f4bba5427fae65bf9f4feabf08-2"&gt;&lt;/a&gt;mkdir freecad-build
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="2"&gt;
 &lt;li&gt;Install all dependencies.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-1"&gt;&lt;/a&gt;sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-2"&gt;&lt;/a&gt;  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-3"&gt;&lt;/a&gt;  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-4"&gt;&lt;/a&gt;  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools &lt;span class="s1"&gt;'liboce*-dev'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-5"&gt;&lt;/a&gt;  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-6"&gt;&lt;/a&gt;  libfreetype6 libfreetype6-dev
-&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-7"&gt;&lt;/a&gt;
-&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-8"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Install optional packages&lt;/span&gt;
-&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-9"&gt;&lt;/a&gt;sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_207627ce3aa147b7aecfb93435efa176-10"&gt;&lt;/a&gt;  libcoin80-doc libspnav-dev
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-1"&gt;&lt;/a&gt;sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-2"&gt;&lt;/a&gt;  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-3"&gt;&lt;/a&gt;  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-4"&gt;&lt;/a&gt;  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools &lt;span class="s1"&gt;'liboce*-dev'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-5"&gt;&lt;/a&gt;  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-6"&gt;&lt;/a&gt;  libfreetype6 libfreetype6-dev
+&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-7"&gt;&lt;/a&gt;
+&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-8"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Install optional packages&lt;/span&gt;
+&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-9"&gt;&lt;/a&gt;sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-10"&gt;&lt;/a&gt;  libcoin80-doc libspnav-dev
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="3"&gt;
 &lt;li&gt;Move into build folder, make and compile the software. Use the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-j&lt;/span&gt; $(nproc)&lt;/tt&gt; flag to use all N of your CPU cores
@@ -1068,19 +1197,19 @@ Don't forget the period at the end of the &lt;tt class="docutils literal"&gt;mak
 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-build&lt;/span&gt;&lt;/tt&gt; directory; it's good to keep the source code and build directories separate.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_ed8c9a4478b54d81bebff5a320a2de19-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; freecad-build
-&lt;a name="rest_code_ed8c9a4478b54d81bebff5a320a2de19-2"&gt;&lt;/a&gt;cmake ../freecad-code
-&lt;a name="rest_code_ed8c9a4478b54d81bebff5a320a2de19-3"&gt;&lt;/a&gt;make -j&lt;span class="k"&gt;$(&lt;/span&gt;nproc&lt;span class="k"&gt;)&lt;/span&gt; .
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_7ac22fc5fd904c28bf347c25864b5339-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; freecad-build
+&lt;a name="rest_code_7ac22fc5fd904c28bf347c25864b5339-2"&gt;&lt;/a&gt;cmake ../freecad-code
+&lt;a name="rest_code_7ac22fc5fd904c28bf347c25864b5339-3"&gt;&lt;/a&gt;make -j&lt;span class="k"&gt;$(&lt;/span&gt;nproc&lt;span class="k"&gt;)&lt;/span&gt; .
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="4"&gt;
 &lt;li&gt;Fix Ubuntu 64-bit issue. If you are using a 64-bit version of Ubuntu (hopefully), you may run in to the following
 error message, which occurs because the expected &lt;tt class="docutils literal"&gt;libfreeimage.so&lt;/tt&gt; file was moved into a subdirectory of &lt;tt class="docutils literal"&gt;/usr/lib/&lt;/tt&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_edceb17c60e4494bac8cbaa04c5fedd1-1"&gt;&lt;/a&gt;make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: *** No rule to make target &lt;span class="s1"&gt;'/usr/lib/libfreeimage.so'&lt;/span&gt;, needed by &lt;span class="s1"&gt;'lib/libSMDS.so'&lt;/span&gt;.  Stop.
-&lt;a name="rest_code_edceb17c60e4494bac8cbaa04c5fedd1-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_edceb17c60e4494bac8cbaa04c5fedd1-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Fix with this line.&lt;/span&gt;
-&lt;a name="rest_code_edceb17c60e4494bac8cbaa04c5fedd1-4"&gt;&lt;/a&gt;sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_8a965a0dbe9044d4a3ff90e72f4d6905-1"&gt;&lt;/a&gt;make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: *** No rule to make target &lt;span class="s1"&gt;'/usr/lib/libfreeimage.so'&lt;/span&gt;, needed by &lt;span class="s1"&gt;'lib/libSMDS.so'&lt;/span&gt;.  Stop.
+&lt;a name="rest_code_8a965a0dbe9044d4a3ff90e72f4d6905-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_8a965a0dbe9044d4a3ff90e72f4d6905-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Fix with this line.&lt;/span&gt;
+&lt;a name="rest_code_8a965a0dbe9044d4a3ff90e72f4d6905-4"&gt;&lt;/a&gt;sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;p&gt;Once the build is complete, a runnable copy of the FreeCAD executable will be in the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-build&lt;/span&gt;&lt;/tt&gt; folder. Any changes
 made to the source code can be tested after re-compiling the executable.&lt;/p&gt;

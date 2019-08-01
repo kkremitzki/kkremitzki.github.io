@@ -13,8 +13,8 @@ when I last wrote, and quite some time has elapsed since I fell out of the
 monthly update habit. This is a high-level summary of what I've been working on
 since March.
 
-FreeCAD 0.18 Release & Debian 10 Full Freeze
---------------------------------------------
+FreeCAD 0.18 Release & Debian 10 Full Freeze Timing
+---------------------------------------------------
 .. image:: /images/freecadsplash.png
   :align: center
 
