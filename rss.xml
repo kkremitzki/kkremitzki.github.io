@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 01 Aug 2019 07:13:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Summer Update for FreeCAD &amp; Debian Science Work</title><link>/blog/summer-update-for-freecad-debian-science-work/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello, and welcome to my "summer update" on my free software work on FreeCAD
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog</title><link>https://kkremitzki.github.io/</link><description>Notes on my journey in biosystems engineering.</description><atom:link href="/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 04 Aug 2019 05:36:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Blog going read-only</title><link>/blog/blog-going-read-only/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;p&gt;This blog is going read-only. I'll be keeping it around to preserve my Google
+Summer of Code posts. Otherwise, my blogging will continue at &lt;a class="reference external" href="https://kwk.systems/blog"&gt;kwk.systems/blog&lt;/a&gt;.&lt;/p&gt;</description><guid>/blog/blog-going-read-only/</guid><pubDate>Sun, 04 Aug 2019 05:30:06 GMT</pubDate></item><item><title>Summer Update for FreeCAD &amp; Debian Science Work</title><link>/blog/summer-update-for-freecad-debian-science-work/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello, and welcome to my "summer update" on my free software work on FreeCAD
 and the Debian Science team. I call it a summer update because it was winter
 when I last wrote, and quite some time has elapsed since I fell out of the
 monthly update habit. This is a high-level summary of what I've been working on
@@ -1469,51 +1470,4 @@ Hurricane Harvey. We are using an open-source toolchain involving PostGIS, Pytho
 and QGIS, and the project is really quite exciting since our analysis could be applied
 to other coastal cities and regions facing extreme weather events in the future.&lt;/p&gt;
 &lt;p&gt;Altogether, it's been a great year, but I foresee 2018 being even better. If
-you're reading this, I want to wish you a happy new year with hope for the same!&lt;/p&gt;&lt;/div&gt;</description><guid>/blog/looking-back-on-2017/</guid><pubDate>Fri, 29 Dec 2017 07:30:51 GMT</pubDate></item><item><title>GSoC Week 12: Final Work Product</title><link>/blog/gsoc-week-12-final-work-product/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Well, it's time to finally wrap up the summer!&lt;/p&gt;
-&lt;p&gt;It's been a really great and rewarding opportunity, so I first want to thank everyone at Google and beyond who helped put GSoC together,
-as well as my mentor Stefan Tröger for providing feedback and guidance.&lt;/p&gt;
-&lt;p&gt;I was able to work with code that ranged almost the entire stack of FreeCAD dependencies: from low-level OpenCASCADE code involving
-quaternions &amp;amp; transformations, geometry &amp;amp; topology; to the scene graph library Coin3D we have to thank for our pretty screenshots;
-the connection between C++ and Python code, which I have a feeling will be useful later in my engineering career; and all the way up to the
-Qt GUI in both C++ as well as its Python interface PySide.&lt;/p&gt;
-&lt;p&gt;As a result, I feel very prepared to continue working with the FreeCAD project and look forward to doing so. I really think it's a great
-program and hope to use it for many years in the future.&lt;/p&gt;
-&lt;p&gt;So again, my thanks!&lt;/p&gt;
-&lt;p&gt;The main goal of the project was to get test coverage of the Part Design Workbench, and to explore it to find showstopping bugs. The only
-remaining one involves a crash in ShapeBinder, discussed at &lt;a class="reference external" href="https://freecadweb.org/tracker/view.php?id=2517"&gt;https://freecadweb.org/tracker/view.php?id=2517&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I fixed quite a few bugs and I think the general experience with the workbench is better.
-Test coverage is there for all the tools, and I'd say the workbench is ready for the public, so now the major work is to release FreeCAD 0.17,
-the biggest FreeCAD release ever, with its new Part Design (no longer "NEXT") Workbench.&lt;/p&gt;
-&lt;p&gt;My other goal of improvements to Boolean Operation was made unnecessary by someone else's PR in May.&lt;/p&gt;
-&lt;p&gt;The last goal, improvements to the Attachment Editor, ended up being a little too big for this GSoC, and could even possibly serve
-as a good GSoC project for next summer, although whoever does it had better be fairly artistic at making explanatory yet small icons.&lt;/p&gt;
-&lt;p&gt;In my opinion, I'd say the summer was a success.&lt;/p&gt;
-&lt;p&gt;Altogether, my code contribution can be summarized with 7 PRs and one experimental branch:&lt;/p&gt;
-&lt;p&gt;PR's:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/816"&gt;https://github.com/FreeCAD/FreeCAD/pull/816&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/829"&gt;https://github.com/FreeCAD/FreeCAD/pull/829&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/848"&gt;https://github.com/FreeCAD/FreeCAD/pull/848&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/869"&gt;https://github.com/FreeCAD/FreeCAD/pull/869&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/899"&gt;https://github.com/FreeCAD/FreeCAD/pull/899&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/920"&gt;https://github.com/FreeCAD/FreeCAD/pull/920&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/957"&gt;https://github.com/FreeCAD/FreeCAD/pull/957&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Experimental Attachment Editor/PartDesign Datum Tools branch:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="https://github.com/kkremitzki/freecad/tree/pdn_datum_tools"&gt;https://github.com/kkremitzki/freecad/tree/pdn_datum_tools&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here's my summary posts, summarized:&lt;/p&gt;
-&lt;ol class="arabic simple"&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-1-recap/"&gt;/blog/gsoc-week-1-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-2-recap/"&gt;/blog/gsoc-week-2-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-3-recap/"&gt;/blog/gsoc-week-3-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-4-recap/"&gt;/blog/gsoc-week-4-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-5-recap/"&gt;/blog/gsoc-week-5-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-6-recap/"&gt;/blog/gsoc-week-6-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-7-recap/"&gt;/blog/gsoc-week-7-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-8-recap/"&gt;/blog/gsoc-week-8-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-9-recap/"&gt;/blog/gsoc-week-9-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-10-recap/"&gt;/blog/gsoc-week-10-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a class="reference external" href="/blog/gsoc-week-11-recap/"&gt;/blog/gsoc-week-11-recap/&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;</description><guid>/blog/gsoc-week-12-final-work-product/</guid><pubDate>Sun, 27 Aug 2017 17:50:18 GMT</pubDate></item></channel></rss>
+you're reading this, I want to wish you a happy new year with hope for the same!&lt;/p&gt;&lt;/div&gt;</description><guid>/blog/looking-back-on-2017/</guid><pubDate>Fri, 29 Dec 2017 07:30:51 GMT</pubDate></item></channel></rss>

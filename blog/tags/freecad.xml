@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/freecad.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 01 Aug 2019 07:13:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Summer Update for FreeCAD &amp; Debian Science Work</title><link>/blog/summer-update-for-freecad-debian-science-work/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello, and welcome to my "summer update" on my free software work on FreeCAD
+<?xml-stylesheet type="text/xsl" href="../../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Biosystems Engineering Blog (Posts about freecad)</title><link>https://kkremitzki.github.io/</link><description></description><atom:link href="/blog/tags/freecad.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 04 Aug 2019 05:36:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Summer Update for FreeCAD &amp; Debian Science Work</title><link>/blog/summer-update-for-freecad-debian-science-work/</link><dc:creator>Kurt Kremitzki</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello, and welcome to my "summer update" on my free software work on FreeCAD
 and the Debian Science team. I call it a summer update because it was winter
 when I last wrote, and quite some time has elapsed since I fell out of the
 monthly update habit. This is a high-level summary of what I've been working on
@@ -1172,23 +1172,23 @@ steps and begin contributing.&lt;/p&gt;
 &lt;li&gt;Pull down a copy of the code. (If you don't have a copy of git, run &lt;tt class="docutils literal"&gt;sudo &lt;span class="pre"&gt;apt-get&lt;/span&gt; install git&lt;/tt&gt;.)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_5e3917f4bba5427fae65bf9f4feabf08-1"&gt;&lt;/a&gt;git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
-&lt;a name="rest_code_5e3917f4bba5427fae65bf9f4feabf08-2"&gt;&lt;/a&gt;mkdir freecad-build
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_c0044adad79e49bb87c0a978c96f74d0-1"&gt;&lt;/a&gt;git clone https://github.com/FreeCAD/FreeCAD.git freecad-code
+&lt;a name="rest_code_c0044adad79e49bb87c0a978c96f74d0-2"&gt;&lt;/a&gt;mkdir freecad-build
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="2"&gt;
 &lt;li&gt;Install all dependencies.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-1"&gt;&lt;/a&gt;sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-2"&gt;&lt;/a&gt;  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-3"&gt;&lt;/a&gt;  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-4"&gt;&lt;/a&gt;  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools &lt;span class="s1"&gt;'liboce*-dev'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-5"&gt;&lt;/a&gt;  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-6"&gt;&lt;/a&gt;  libfreetype6 libfreetype6-dev
-&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-7"&gt;&lt;/a&gt;
-&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-8"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Install optional packages&lt;/span&gt;
-&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-9"&gt;&lt;/a&gt;sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen &lt;span class="se"&gt;\&lt;/span&gt;
-&lt;a name="rest_code_f8197416b91d4bcea6d266921ae7d6e2-10"&gt;&lt;/a&gt;  libcoin80-doc libspnav-dev
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-1"&gt;&lt;/a&gt;sudo apt-get install build-essential cmake python python-matplotlib libtool libcoin80-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-2"&gt;&lt;/a&gt;  libsoqt4-dev libxerces-c-dev libboost-dev libboost-filesystem-dev libboost-regex-dev  &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-3"&gt;&lt;/a&gt;  libboost-program-options-dev libboost-signals-dev libboost-thread-dev libboost-python-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-4"&gt;&lt;/a&gt;  libqt4-dev libqt4-opengl-dev qt4-dev-tools python-dev python-pyside pyside-tools &lt;span class="s1"&gt;'liboce*-dev'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-5"&gt;&lt;/a&gt;  oce-draw libeigen3-dev libqtwebkit-dev libshiboken-dev libpyside-dev libode-dev swig libzipios++-dev &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-6"&gt;&lt;/a&gt;  libfreetype6 libfreetype6-dev
+&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-7"&gt;&lt;/a&gt;
+&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-8"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Install optional packages&lt;/span&gt;
+&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-9"&gt;&lt;/a&gt;sudo apt-get install libsimage-dev checkinstall python-pivy python-qt4 doxygen &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;a name="rest_code_950bea0f66674928b07e1acc4215ebaf-10"&gt;&lt;/a&gt;  libcoin80-doc libspnav-dev
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="3"&gt;
 &lt;li&gt;Move into build folder, make and compile the software. Use the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;-j&lt;/span&gt; $(nproc)&lt;/tt&gt; flag to use all N of your CPU cores
@@ -1197,19 +1197,19 @@ Don't forget the period at the end of the &lt;tt class="docutils literal"&gt;mak
 &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-build&lt;/span&gt;&lt;/tt&gt; directory; it's good to keep the source code and build directories separate.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_7ac22fc5fd904c28bf347c25864b5339-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; freecad-build
-&lt;a name="rest_code_7ac22fc5fd904c28bf347c25864b5339-2"&gt;&lt;/a&gt;cmake ../freecad-code
-&lt;a name="rest_code_7ac22fc5fd904c28bf347c25864b5339-3"&gt;&lt;/a&gt;make -j&lt;span class="k"&gt;$(&lt;/span&gt;nproc&lt;span class="k"&gt;)&lt;/span&gt; .
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_fd18a9e31d4d4cc583514a6a9a68199b-1"&gt;&lt;/a&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; freecad-build
+&lt;a name="rest_code_fd18a9e31d4d4cc583514a6a9a68199b-2"&gt;&lt;/a&gt;cmake ../freecad-code
+&lt;a name="rest_code_fd18a9e31d4d4cc583514a6a9a68199b-3"&gt;&lt;/a&gt;make -j&lt;span class="k"&gt;$(&lt;/span&gt;nproc&lt;span class="k"&gt;)&lt;/span&gt; .
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;ol class="arabic simple" start="4"&gt;
 &lt;li&gt;Fix Ubuntu 64-bit issue. If you are using a 64-bit version of Ubuntu (hopefully), you may run in to the following
 error message, which occurs because the expected &lt;tt class="docutils literal"&gt;libfreeimage.so&lt;/tt&gt; file was moved into a subdirectory of &lt;tt class="docutils literal"&gt;/usr/lib/&lt;/tt&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;pre class="code bash"&gt;&lt;a name="rest_code_8a965a0dbe9044d4a3ff90e72f4d6905-1"&gt;&lt;/a&gt;make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: *** No rule to make target &lt;span class="s1"&gt;'/usr/lib/libfreeimage.so'&lt;/span&gt;, needed by &lt;span class="s1"&gt;'lib/libSMDS.so'&lt;/span&gt;.  Stop.
-&lt;a name="rest_code_8a965a0dbe9044d4a3ff90e72f4d6905-2"&gt;&lt;/a&gt;
-&lt;a name="rest_code_8a965a0dbe9044d4a3ff90e72f4d6905-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Fix with this line.&lt;/span&gt;
-&lt;a name="rest_code_8a965a0dbe9044d4a3ff90e72f4d6905-4"&gt;&lt;/a&gt;sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
+&lt;pre class="code bash"&gt;&lt;a name="rest_code_da9d010892df42f3a6d1ea08bcce9de6-1"&gt;&lt;/a&gt;make&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: *** No rule to make target &lt;span class="s1"&gt;'/usr/lib/libfreeimage.so'&lt;/span&gt;, needed by &lt;span class="s1"&gt;'lib/libSMDS.so'&lt;/span&gt;.  Stop.
+&lt;a name="rest_code_da9d010892df42f3a6d1ea08bcce9de6-2"&gt;&lt;/a&gt;
+&lt;a name="rest_code_da9d010892df42f3a6d1ea08bcce9de6-3"&gt;&lt;/a&gt;&lt;span class="c1"&gt;# Fix with this line.&lt;/span&gt;
+&lt;a name="rest_code_da9d010892df42f3a6d1ea08bcce9de6-4"&gt;&lt;/a&gt;sudo ln -s /usr/lib/x86_64-linux-gnu/libfreeimage.so /usr/lib
 &lt;/pre&gt;&lt;/blockquote&gt;
 &lt;p&gt;Once the build is complete, a runnable copy of the FreeCAD executable will be in the &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;freecad-build&lt;/span&gt;&lt;/tt&gt; folder. Any changes
 made to the source code can be tested after re-compiling the executable.&lt;/p&gt;
