@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Notes on my journey in biosystems engineering.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biosystems Engineering Blog (old posts, page 3) | Biosystems Engineering Blog</title>
+<link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../rss.xml">
+<link rel="canonical" href="#">
+<link rel="icon" href="../favicon.ico" sizes="16x16">
+<link rel="prev" href="." type="text/html">
+<link rel="next" href="index-2.html" type="text/html">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><script src="../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../assets/css/custom.css">
+<link rel="stylesheet" href="../assets/css/code.css">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../">About</a>
+                </li>
+<li>
+<a href=".">Blog</a>
+                </li>
+<li>
+<a href="tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+                </li>
+<li>
+<a href="https://gitlab.com/kkremitzki">GitLab</a>
+                </li>
+<li>
+<a href="https://salsa.debian.org/kkremitzki-guest">Salsa</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+    
+    
+<div class="postindex">
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="gsoc-week-12-final-work-product/" class="u-url">GSoC Week 12: Final Work Product</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                Kurt Kremitzki
+            </span></p>
+            <p class="dateline">
+            <a href="gsoc-week-12-final-work-product/" rel="bookmark">
+            <time class="published dt-published" datetime="2017-08-27T12:50:18-05:00" itemprop="datePublished" title="2017-08-27 12:50">2017-08-27 12:50</time></a>
+            </p>
+                <p class="commentline">            <a href="gsoc-week-12-final-work-product/#disqus_thread" data-disqus-identifier="cache/posts/gsoc-week-12-recap.html">Comments</a>
+
+
+        </p>
+</div>
+    </header><div class="e-content entry-content">
+    <div>
+<p>Well, it's time to finally wrap up the summer!</p>
+<p>It's been a really great and rewarding opportunity, so I first want to thank everyone at Google and beyond who helped put GSoC together,
+as well as my mentor Stefan Tröger for providing feedback and guidance.</p>
+<p>I was able to work with code that ranged almost the entire stack of FreeCAD dependencies: from low-level OpenCASCADE code involving
+quaternions &amp; transformations, geometry &amp; topology; to the scene graph library Coin3D we have to thank for our pretty screenshots;
+the connection between C++ and Python code, which I have a feeling will be useful later in my engineering career; and all the way up to the
+Qt GUI in both C++ as well as its Python interface PySide.</p>
+<p>As a result, I feel very prepared to continue working with the FreeCAD project and look forward to doing so. I really think it's a great
+program and hope to use it for many years in the future.</p>
+<p>So again, my thanks!</p>
+<p>The main goal of the project was to get test coverage of the Part Design Workbench, and to explore it to find showstopping bugs. The only
+remaining one involves a crash in ShapeBinder, discussed at <a class="reference external" href="https://freecadweb.org/tracker/view.php?id=2517">https://freecadweb.org/tracker/view.php?id=2517</a>.</p>
+<p>I fixed quite a few bugs and I think the general experience with the workbench is better.
+Test coverage is there for all the tools, and I'd say the workbench is ready for the public, so now the major work is to release FreeCAD 0.17,
+the biggest FreeCAD release ever, with its new Part Design (no longer "NEXT") Workbench.</p>
+<p>My other goal of improvements to Boolean Operation was made unnecessary by someone else's PR in May.</p>
+<p>The last goal, improvements to the Attachment Editor, ended up being a little too big for this GSoC, and could even possibly serve
+as a good GSoC project for next summer, although whoever does it had better be fairly artistic at making explanatory yet small icons.</p>
+<p>In my opinion, I'd say the summer was a success.</p>
+<p>Altogether, my code contribution can be summarized with 7 PRs and one experimental branch:</p>
+<p>PR's:</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/816">https://github.com/FreeCAD/FreeCAD/pull/816</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/829">https://github.com/FreeCAD/FreeCAD/pull/829</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/848">https://github.com/FreeCAD/FreeCAD/pull/848</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/869">https://github.com/FreeCAD/FreeCAD/pull/869</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/899">https://github.com/FreeCAD/FreeCAD/pull/899</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/920">https://github.com/FreeCAD/FreeCAD/pull/920</a></li>
+<li><a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/957">https://github.com/FreeCAD/FreeCAD/pull/957</a></li>
+</ol>
+<p>Experimental Attachment Editor/PartDesign Datum Tools branch:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/kkremitzki/freecad/tree/pdn_datum_tools">https://github.com/kkremitzki/freecad/tree/pdn_datum_tools</a></li>
+</ul>
+<p>Here's my summary posts, summarized:</p>
+<ol class="arabic simple">
+<li><a class="reference external" href="gsoc-week-1-recap/">/blog/gsoc-week-1-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-2-recap/">/blog/gsoc-week-2-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-3-recap/">/blog/gsoc-week-3-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-4-recap/">/blog/gsoc-week-4-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-5-recap/">/blog/gsoc-week-5-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-6-recap/">/blog/gsoc-week-6-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-7-recap/">/blog/gsoc-week-7-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-8-recap/">/blog/gsoc-week-8-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-9-recap/">/blog/gsoc-week-9-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-10-recap/">/blog/gsoc-week-10-recap/</a></li>
+<li><a class="reference external" href="gsoc-week-11-recap/">/blog/gsoc-week-11-recap/</a></li>
+</ol>
+</div>
+    </div>
+    </article>
+</div>
+        <nav class="postindexpager"><ul class="pager">
+<li class="previous">
+                <a href="." rel="prev">Newer posts</a>
+            </li>
+            <li class="next">
+                <a href="index-2.html" rel="next">Older posts</a>
+            </li>
+        </ul></nav><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2019         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>
