@@ -7,58 +7,58 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>/blog/tags/cad.xml</loc>
-  <lastmod>2019-08-04T05:33:00Z</lastmod>
+  <lastmod>2019-11-01T05:15:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/control_theory.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/debian.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/foss.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/freecad.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/gsoc.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/linux.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/mathjax.xml</loc>
-  <lastmod>2019-08-04T05:33:00Z</lastmod>
+  <lastmod>2019-11-01T05:15:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/postcad.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/python.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/blog/tags/raspberry_pi.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/galleries/rss.xml</loc>
-  <lastmod>2019-08-04T05:33:00Z</lastmod>
+  <lastmod>2019-11-01T05:15:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/rss.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>/sitemap.xml</loc>
-  <lastmod>2019-08-04T05:36:00Z</lastmod>
+  <lastmod>2019-11-01T05:21:00Z</lastmod>
  </sitemap>
 </sitemapindex>

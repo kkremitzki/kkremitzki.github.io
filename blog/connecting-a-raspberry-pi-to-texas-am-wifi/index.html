@@ -103,22 +103,22 @@ Command-line setup involves edit">
 Command-line setup involves editing two files, <tt class="docutils literal">/etc/network/interfaces</tt> and <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>. Since these are system files, they won't be writable by a normal user. The command <tt class="docutils literal">sudo <span class="pre">-e</span> &lt;filename&gt;</tt> can be used to edit system files with superuser privileges, using the default editor. Normally, this is the program <tt class="docutils literal">nano</tt>, which is fairly self-explanatory; make your changes using the keyboard and save the file with <tt class="docutils literal"><span class="pre">Ctrl-X</span></tt>. For advanced users, this can be changed via something like <tt class="docutils literal">export EDITOR=vi</tt>.</p>
 <p>The first file, <tt class="docutils literal">/etc/network/interfaces</tt>, needs to have the following:</p>
 <!-- TEASER_END -->
-<pre class="code bash"><a name="rest_code_e9aa7b1aa668417a9befb57c43ea2381-1"></a>allow-hotplug wlan0
-<a name="rest_code_e9aa7b1aa668417a9befb57c43ea2381-2"></a>iface wlan0 inet dhcp
-<a name="rest_code_e9aa7b1aa668417a9befb57c43ea2381-3"></a>  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+<pre class="code bash"><a name="rest_code_02e1a49368a2485ea1bb9684bb3254aa-1"></a>allow-hotplug wlan0
+<a name="rest_code_02e1a49368a2485ea1bb9684bb3254aa-2"></a>iface wlan0 inet dhcp
+<a name="rest_code_02e1a49368a2485ea1bb9684bb3254aa-3"></a>  wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 </pre>
 <p>The <tt class="docutils literal"><span class="pre">allow-hotplug</span></tt> line allows the <tt class="docutils literal">wlan0</tt> (wireless LAN) interface to be brought up when hotplugged into a running Raspberry Pi.
 The <tt class="docutils literal">iface ... dhcp</tt> line means we are requesting an IP address from the wireless network's DHCP servers, and the <tt class="docutils literal"><span class="pre">wpa-conf</span></tt> line specifies which file to use for our auth config.</p>
 <p>In <tt class="docutils literal">/etc/wpa_supplicant/wpa_supplicant.conf</tt>, you should have:</p>
-<pre class="code bash"><a name="rest_code_f2c0f69e76b640559d52ad9ab9878f73-1"></a><span class="nv">network</span><span class="o">={</span>
-<a name="rest_code_f2c0f69e76b640559d52ad9ab9878f73-2"></a>     <span class="nv">ssid</span><span class="o">=</span>”tamulink-wpa”
-<a name="rest_code_f2c0f69e76b640559d52ad9ab9878f73-3"></a>     <span class="nv">scan_ssid</span><span class="o">=</span><span class="m">1</span>
-<a name="rest_code_f2c0f69e76b640559d52ad9ab9878f73-4"></a>     <span class="nv">key_mgmt</span><span class="o">=</span>WPA-EAP
-<a name="rest_code_f2c0f69e76b640559d52ad9ab9878f73-5"></a>     <span class="nv">eap</span><span class="o">=</span>PEAP
-<a name="rest_code_f2c0f69e76b640559d52ad9ab9878f73-6"></a>     <span class="nv">identity</span><span class="o">=</span>”YOUR_NET_ID”
-<a name="rest_code_f2c0f69e76b640559d52ad9ab9878f73-7"></a>     <span class="nv">password</span><span class="o">=</span>”YOUR_TAMU_PASSWORD”
-<a name="rest_code_f2c0f69e76b640559d52ad9ab9878f73-8"></a>     <span class="nv">pairwise</span><span class="o">=</span>CCMP
-<a name="rest_code_f2c0f69e76b640559d52ad9ab9878f73-9"></a><span class="o">}</span>
+<pre class="code bash"><a name="rest_code_543bf3ae732b44c3a786b76aa06ac8da-1"></a><span class="nv">network</span><span class="o">={</span>
+<a name="rest_code_543bf3ae732b44c3a786b76aa06ac8da-2"></a>     <span class="nv">ssid</span><span class="o">=</span>”tamulink-wpa”
+<a name="rest_code_543bf3ae732b44c3a786b76aa06ac8da-3"></a>     <span class="nv">scan_ssid</span><span class="o">=</span><span class="m">1</span>
+<a name="rest_code_543bf3ae732b44c3a786b76aa06ac8da-4"></a>     <span class="nv">key_mgmt</span><span class="o">=</span>WPA-EAP
+<a name="rest_code_543bf3ae732b44c3a786b76aa06ac8da-5"></a>     <span class="nv">eap</span><span class="o">=</span>PEAP
+<a name="rest_code_543bf3ae732b44c3a786b76aa06ac8da-6"></a>     <span class="nv">identity</span><span class="o">=</span>”YOUR_NET_ID”
+<a name="rest_code_543bf3ae732b44c3a786b76aa06ac8da-7"></a>     <span class="nv">password</span><span class="o">=</span>”YOUR_TAMU_PASSWORD”
+<a name="rest_code_543bf3ae732b44c3a786b76aa06ac8da-8"></a>     <span class="nv">pairwise</span><span class="o">=</span>CCMP
+<a name="rest_code_543bf3ae732b44c3a786b76aa06ac8da-9"></a><span class="o">}</span>
 </pre>
 <p>Make sure that there is no space in <tt class="docutils literal">network={</tt>, and that the ssid, identity and passwords are wrapped in quotes.</p>
 <p>The network can be brought up or down via <tt class="docutils literal">sudo ifup wlan0</tt> or <tt class="docutils literal">sudo ifdown wlan0</tt>.</p>

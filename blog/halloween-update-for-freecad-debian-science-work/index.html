@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halloween Update for FreeCAD &amp; Debian Science Work | Biosystems Engineering Blog</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href=".">
+<link rel="icon" href="../../favicon.ico" sizes="16x16">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script src="../../assets/js/jquery.min.js"></script><link rel="stylesheet" href="../../assets/css/custom.css">
+<link rel="stylesheet" href="../../assets/css/code.css">
+<meta name="author" content="Kurt Kremitzki">
+<link rel="prev" href="../summer-update-for-freecad-debian-science-work/" title="Summer Update for FreeCAD &amp; Debian Science Work" type="text/html">
+<meta property="og:site_name" content="Biosystems Engineering Blog">
+<meta property="og:title" content="Halloween Update for FreeCAD &amp; Debian Science Work">
+<meta property="og:url" content="/blog/halloween-update-for-freecad-debian-science-work/">
+<meta property="og:description" content="There's been a spooky amount of activity in the FreeCAD &amp; Debian Science world
+since I last wrote!  Because this update covers August, September, and October,
+I'll try to be brief and only touch on th">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-10-31T22:04:54-05:00">
+<meta property="article:tag" content="debian">
+<meta property="article:tag" content="freecad">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../">
+
+                <span id="blog-title">Biosystems Engineering Blog</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../">About</a>
+                </li>
+<li>
+<a href="../">Blog</a>
+                </li>
+<li>
+<a href="../tags">Tags</a>
+                </li>
+<li>
+<a href="https://github.com/kkremitzki">GitHub</a>
+                </li>
+<li>
+<a href="https://gitlab.com/kkremitzki">GitLab</a>
+                </li>
+<li>
+<a href="https://salsa.debian.org/kkremitzki-guest">Salsa</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Halloween Update for FreeCAD &amp; Debian Science Work</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    Kurt Kremitzki
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2019-10-31T22:04:54-05:00" itemprop="datePublished" title="2019-10-31 22:04">2019-10-31 22:04</time></a>
+            </p>
+                <p class="commentline">            <a href="#disqus_thread" data-disqus-identifier="cache/posts/halloween-update-for-freecad-debian-science-work.html">Comments</a>
+
+
+            
+        </p>
+</div>
+        
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>There's been a spooky amount of activity in the FreeCAD &amp; Debian Science world
+since I last wrote!  Because this update covers August, September, and October,
+I'll try to be brief and only touch on the key points.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#staging-merging-app-link-functionality" id="id1">Staging &amp; Merging App::Link Functionality</a></li>
+<li><a class="reference internal" href="#freecad-python-2-removal-in-debian-testing" id="id2">FreeCAD Python 2 removal in Debian Testing</a></li>
+<li><a class="reference internal" href="#freecad-python-3-support-added-for-ubuntu-16-04" id="id3">FreeCAD Python 3 support added for Ubuntu 16.04</a></li>
+<li><a class="reference internal" href="#netgen-and-pybind11-builds" id="id4">Netgen and Pybind11 Builds</a></li>
+<li><a class="reference internal" href="#opencascade-7-4-0" id="id5">OpenCASCADE 7.4.0</a></li>
+<li><a class="reference internal" href="#openfoam-1906" id="id6">OpenFOAM 1906</a></li>
+<li><a class="reference internal" href="#gmsh-4-4-1" id="id7">Gmsh 4.4.1</a></li>
+<li><a class="reference internal" href="#netgen-6-2-1905" id="id8">Netgen 6.2.1905</a></li>
+<li><a class="reference internal" href="#github-sponsors-program" id="id9">GitHub Sponsors Program</a></li>
+<li><a class="reference internal" href="#thanks-for-your-support" id="id10">Thanks for your support</a></li>
+</ul>
+</div>
+<div class="section" id="staging-merging-app-link-functionality">
+<h2><a class="toc-backref" href="#id1">Staging &amp; Merging App::Link Functionality</a></h2>
+<div class="figure align-center">
+<img alt="App::Link example" src="../../images/applink.png" style="width: 600px;"><p class="caption"><em>The "App::Link" object allows lightweight linking of objects in a document
+and from external documents.</em></p>
+</div>
+<p>In August, a major milestone towards unified, mainline mechanical assembly
+functionality in FreeCAD was reached.</p>
+<p>One of the core challenges in implementing assembly functionality is the
+problem of topological naming. In a CAD model there are topological entities,
+such as solids, faces, edges, and vertices. We must choose some algorithm to
+name them so that you can refer to relationships to make an assembly. A simple
+example would be two cubes, connected by touching faces. If a parameter in your
+model changes, and after recalculation, your "Face_N" is on the wrong side of
+the cube, your assembly may break, or not be what you are expecting. Without a
+good approach to topological naming, parametric FreeCAD models won't be robust
+to changes and recalculations, which defeats the purpose of parametric
+modeling.</p>
+<p>Because this is such a difficult problem, progress has been slow. However,
+recently a relatively new FreeCAD developer, 'realthunder', put significant
+work towards this problem, with a solution finally on the horizon. Because it
+required major changes to FreeCAD's internals, the review and testing period
+was and continues to be lengthy.</p>
+<p>The milestone in particular was merging of a large chunk of this code, referred
+to in short as "App::Link functionality". This diff is huge: <em>+70,441</em>
+<em>-14,562</em> lines of C++. You can <a class="reference external" href="https://github.com/FreeCAD/FreeCAD/pull/2350">read more about it on the pull request itself</a>.</p>
+<p>I only played a minor contributing role in this effort, preparing a short-lived
+staging PPA to provide a package for testers after the pull request was opened
+in July, but it's rather significant news in terms of the project and so worth
+spreading. Mechanical assembly is (no surprise) a must-have for mechanical
+engineers interested in FreeCAD, and it's considered by some to be the last
+remaining blocker for FreeCAD's 1.0 release.</p>
+<p>Extra links: notes for code reviewers from the PR author, for the dedicated
+readers out there.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/realthunder/FreeCAD_assembly3/wiki/Concepts">https://github.com/realthunder/FreeCAD_assembly3/wiki/Concepts</a></li>
+<li><a class="reference external" href="https://github.com/realthunder/FreeCAD_assembly3/wiki/Core-Changes">https://github.com/realthunder/FreeCAD_assembly3/wiki/Core-Changes</a></li>
+</ul>
+</div>
+<div class="section" id="freecad-python-2-removal-in-debian-testing">
+<h2><a class="toc-backref" href="#id2">FreeCAD Python 2 removal in Debian Testing</a></h2>
+<p>The Python 2 removal in Debian Testing continues, and with it, FreeCAD's Python
+2 package is gone. However, upon upload, several new build failures appeared on
+the i386, mipsel, and s390x platforms. Turns out there was a regression in dwz,
+a software I had never heard of before. I tried troubleshooting but
+unfortunately had FreeCAD drop out of testing due to the Python 2 removal bug
+filed against it.</p>
+<p>Luckily, when I <a class="reference external" href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=942193">filed a bug against dwz</a>, Matthias Klose
+and Tom de Vries helped isolate and upstream the problem, with Tom even
+<a class="reference external" href="https://sourceware.org/bugzilla/show_bug.cgi?id=25109">bisecting the regressing commit in the upstream bug</a>. Thank you, you two!</p>
+<p>After adding a workaround to fix those build failures, the new Python 3-only
+FreeCAD package is on its way to Debian Testing.</p>
+</div>
+<div class="section" id="freecad-python-3-support-added-for-ubuntu-16-04">
+<h2><a class="toc-backref" href="#id3">FreeCAD Python 3 support added for Ubuntu 16.04</a></h2>
+<p>Qt 5 &amp; Python 3 builds for FreeCAD have been available on Ubuntu 18.04 and
+newer and Debian 10 and newer platforms for some time now. However, Ubuntu
+16.04 was problematic due to its old Qt version, which meant a Qt 4, Python 3
+build had to be produced. This had been on the back burner for a while because
+when I initially attempted backporting the necessary packages, I encountered
+some friction.</p>
+<p>However, since it's the last holdout Python 2 platform, I took another look at
+things to try to speed up the "py2ectomy". It turns out that the missing
+package needed for a Python 3 build, pivy, was failing to build because of
+<a class="reference external" href="https://wiki.debian.org/Hardening#DEB_BUILD_HARDENING_PIE_.28gcc.2Fg.2B-.2B-_-fPIE_-pie.29">"PIE hardening"</a>,
+a Debian security hardening flag. I had all such flags turned on, so I just had
+to disable that particular one to get things going.</p>
+<p>So, Python 3 builds are now available for Ubuntu 16.04 in the <a class="reference external" href="https://launchpad.net/~freecad-maintainers/+archive/ubuntu/freecad-daily">FreeCAD Daily
+Builds PPA</a>,
+and they will be coming soon to the stable PPA as well. A new bugfix release
+has been made for stable, 0.18.4, so I am working on that first, and the Python
+3 package will come with it.</p>
+</div>
+<div class="section" id="netgen-and-pybind11-builds">
+<h2><a class="toc-backref" href="#id4">Netgen and Pybind11 Builds</a></h2>
+<p>Good news for users of FreeCAD's finite element modeling workbench!</p>
+<p>Integration with Netgen, a mesh generator, has long been an optional but
+off-by-default build option for FreeCAD, due to packaging difficulties.
+However, since I have taken over things in recent years, I have finally gotten
+things to the state where we can turn this back on by default. As part of this
+change, I am also building FreeCAD with Pybind11 instead of Boost.Python,
+marking another milestone in managing FreeCAD's dependencies.</p>
+<p>Since this may introduce bugs, I've started by making this change for all of
+FreeCAD's daily builds in the Ubuntu PPA, as well as the package currently in
+Debian Unstable. Eventually, this change may come to the stable PPA.</p>
+</div>
+<div class="section" id="opencascade-7-4-0">
+<h2><a class="toc-backref" href="#id5">OpenCASCADE 7.4.0</a></h2>
+<div class="figure align-center">
+<img alt="OCCT performance improvement example" src="../../images/occt740.png" style="width: 600px;"><p class="caption"><em>An assembly of a single solid box replicated ~93,000 times. This test case is more than 10x faster in OCCT 7.4.0.</em></p>
+</div>
+<p><a class="reference external" href="https://www.opencascade.com/sites/default/files/documents/release_notes_7.4.0.pdf">After more than a year of development</a> (PDF warning), a new
+minor version of OpenCASCADE Technology (OCCT) has been released.</p>
+<p>OCCT is the geometry &amp; topology kernel of FreeCAD, and it is also a dependency
+for several related projects including Gmsh, IFCOpenShell, Netgen, and
+OpenCAMLib. New releases in OCCT generally herald stability and performance
+upgrades for core behavior. However, there are some breaking changes and so
+these improvements are yet to be seen.</p>
+<p>For the time being, OCCT 7.4.0 packages are available in <a class="reference external" href="https://launchpad.net/~kkremitzki/+archive/ubuntu/opencascade">my OpenCASCADE PPA</a> and by
+building the package directly from
+<a class="reference external" href="https://salsa.debian.org/science-team/opencascade">https://salsa.debian.org/science-team/opencascade</a>.</p>
+</div>
+<div class="section" id="openfoam-1906">
+<h2><a class="toc-backref" href="#id6">OpenFOAM 1906</a></h2>
+<p>I uploaded <a class="reference external" href="https://openfoam.com/releases/openfoam-v1906/index.php">the latest version of OpenFOAM</a>, the toolbox for
+computational fluid dynamics. It's now available in Ubuntu 19.10, Debian
+Testing, and via the <a class="reference external" href="https://launchpad.net/~freecad-community/+archive/ubuntu/ppa">FreeCAD Community Extras PPA</a>.</p>
+</div>
+<div class="section" id="gmsh-4-4-1">
+<h2><a class="toc-backref" href="#id7">Gmsh 4.4.1</a></h2>
+<p><a class="reference external" href="https://gitlab.onelab.info/gmsh/gmsh/blob/master/CHANGELOG.txt">The latest version of Gmsh</a>, a 3D finite
+element mesh generator, is also in Ubuntu 19.10, Debian Testing, and the
+Community Extras PPA. Thanks to Nico Schlömer for helping maintain this
+package.</p>
+</div>
+<div class="section" id="netgen-6-2-1905">
+<h2><a class="toc-backref" href="#id8">Netgen 6.2.1905</a></h2>
+<p>This version of Netgen is only available via the FreeCAD Daily and Community
+Extras PPAs. Unfortunately Netgen has been stuck in the Debian NEW queue for
+over 8 months now.</p>
+</div>
+<div class="section" id="github-sponsors-program">
+<h2><a class="toc-backref" href="#id9">GitHub Sponsors Program</a></h2>
+<p>I was accepted into the <a class="reference external" href="https://github.com/sponsors/kkremitzki/">GitHub Sponsors</a> program! GitHub is matching
+donations for the first year. Hopefully this helps fund my FOSS work, and FOSS
+work in general.</p>
+</div>
+<div class="section" id="thanks-for-your-support">
+<h2><a class="toc-backref" href="#id10">Thanks for your support</a></h2>
+<p>I appreciate any feedback you might have.</p>
+<p>You can get in touch with me <a class="reference external" href="https://twitter.com/thekurtwk">via Twitter @thekurtwk</a>.</p>
+<p>If you'd like to donate to help support my work, <a class="reference external" href="https://www.kwk.systems/blog/pages/donate/">there are several methods
+available on my site</a>.</p>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../tags/debian/" rel="tag">debian</a></li>
+            <li><a class="tag p-category" href="../tags/freecad/" rel="tag">freecad</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../summer-update-for-freecad-debian-science-work/" rel="prev" title="Summer Update for FreeCAD &amp; Debian Science Work">Previous post</a>
+            </li>
+        </ul></nav></aside><section class="comments hidden-print"><h2>Comments</h2>
+                        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="kkremitzki",
+            disqus_url="/blog/halloween-update-for-freecad-debian-science-work/",
+        disqus_title="Halloween Update for FreeCAD & Debian Science Work",
+        disqus_identifier="cache/posts/halloween-update-for-freecad-debian-science-work.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        </section></article><script>var disqus_shortname="kkremitzki";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            
+Contents © 2019         <a href="mailto:kkremitzki@gmail.com">Kurt Kremitzki</a>
+- Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+
+            
+        </footer>
+</div>
+</div>
+
+            <script src="../../assets/js/all-nocdn.js"></script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates --><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-77885418-1', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>
